@@ -1,7 +1,7 @@
 .PostShare {
   display: flex;
   gap: 1rem;
-  background-color: (--cardColor);
+  background-color: var(--cardColor);
   padding: 1rem;
   border-radius: 1rem;
 }

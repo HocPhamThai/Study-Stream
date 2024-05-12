@@ -1,5 +1,5 @@
 import React from 'react'
-import './Post.css'
+import './Post.scss'
 import Comment from '../../img/comment.png'
 import Share from '../../img/share.png'
 import Heart from '../../img/like.png'
@@ -9,20 +9,20 @@ const Post = ({ data }) => {
   return (
     <div className="Post">
       <img src={data.img} alt="" />
+
       <div className="postReact">
         <img src={data.liked ? Heart : NotLike} alt="" />
         <img src={Comment} alt="" />
         <img src={Share} alt="" />
       </div>
 
-      <span>{data.likes} likes</span>
+      <span style={{ color: "var(--gray)", fontSize: '12px' }}>{data.likes} likes</span>
 
       <div className="detail">
-        <span>
-          <strong>{data.name}</strong>
-        </span>
-        <span> {data.desc}</span>
+        <span><b>{data.name} </b></span>
+        <span>{data.desc}</span>
       </div>
+
     </div>
   )
 }

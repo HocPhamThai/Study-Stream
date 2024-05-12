@@ -1,10 +1,10 @@
 import React from 'react'
-import './ProfileSide.css'
+import FollowersCard from '../FollowersCard/FollowersCard'
 import LogoSearch from '../LogoSearch/LogoSearch'
 import ProfileCard from '../ProfileCard/ProfileCard'
-import FollowersCard from '../FollowersCard/FollowersCard'
+import './ProfileSide.scss'
 
-const ProfileSide = () => {
+function ProfileSide() {
   return (
     <div className="ProfileSide">
       <LogoSearch />

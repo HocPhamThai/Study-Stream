@@ -1,14 +1,15 @@
 import React from 'react'
-import LogoSearch from '../LogoSearch/LogoSearch'
 import FollowersCard from '../FollowersCard/FollowersCard'
+import LogoSearch from '../LogoSearch/LogoSearch'
 import InfoCard from '../InfoCard/InfoCard'
-
+import './ProfileLeft.scss'
 const ProfileLeft = () => {
   return (
-    <div className="ProfileSide">
+    <div className="ProfileLeft">
       <LogoSearch />
       <InfoCard />
       <FollowersCard />
+
     </div>
   )
 }

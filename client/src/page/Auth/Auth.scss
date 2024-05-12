@@ -1,0 +1,89 @@
+.Auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 4rem;
+  position: relative;
+
+  >div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth-left {
+    gap: 2rem;
+
+    >img {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+
+  .Webname {
+    >h1 {
+      font-size: 3rem;
+      background-color: red;
+
+      // Tạo gradient 
+      background-image: var(--buttonBg);
+
+      //Đặt kích thước
+      background-size: 100%;
+      background-repeat: repeat;
+
+      // Áp dụng nhiều trình duyệt
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+    }
+
+    >h6 {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.infoForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  >div {
+    display: flex;
+    gap: 1rem;
+    height: 2rem;
+    width: 90%;
+  }
+}
+
+.infoInput {
+  border: none;
+  outline: none;
+  background-color: var(--inputColor);
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1;
+}
+
+.infoButton {
+  width: 6rem;
+  height: 2rem;
+  align-self: flex-end;
+}
+
+.authForm {
+  background-color: var(--cardColor);
+  border-radius: 1rem;
+  padding: 1rem;
+
+  >div {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}

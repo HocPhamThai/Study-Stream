@@ -1,23 +1,23 @@
 import React from 'react'
-import './FollwersCard.css'
-import { Followers } from '../../Data/FollowersData'
+import './FollowersCard.scss'
+import { Follower } from '../../Data/FollowersData'
 
-const FollowersCard = () => {
+function FollowersCard() {
   return (
-    <div className="FollowersCard">
+    <div className='FollowersCard'>
       <h3>Who is following you</h3>
 
-      {Followers.map((follower, index) => {
+      {Follower.map((follower, id) => {
         return (
           <div className="follower">
             <div>
-              <img className="followerImage" src={follower.img} alt="" />
+              <img src={follower.img} alt="" className='followerImage' />
               <div className="name">
                 <span>{follower.name}</span>
                 <span>@{follower.username}</span>
               </div>
             </div>
-            <button className="button fc-button">Follow</button>
+            <button className='button fc-button'>Follow</button>
           </div>
         )
       })}
