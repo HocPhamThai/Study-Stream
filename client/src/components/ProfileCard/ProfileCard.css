@@ -4,7 +4,7 @@
   flex-direction: column;
   position: relative;
   gap: 1rem;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--cardColor);
 }
 
@@ -96,5 +96,4 @@
   height: 2rem;
   padding-left: 20px;
   padding-right: 20px;
-  
 }
