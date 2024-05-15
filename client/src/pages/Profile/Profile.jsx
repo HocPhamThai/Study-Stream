@@ -1,18 +1,19 @@
 import React from 'react'
-import './Profile.css'
-import ProfileLeft from '../../components/ProfileLeft/ProfileLeft'
-import ProfileCard from '../../components/ProfileCard/ProfileCard'
 import PostSide from '../../components/PostSide/PostSide'
-import RightSide from './../../components/RightSide/RightSide'
-
+import ProfileCard from '../../components/ProfileCard/ProfileCard'
+import ProfileLeft from '../../components/ProfileLeft/ProfileLeft'
+import RightSide from '../../components/RightSide/RightSide'
+import './Profile.scss'
 const Profile = () => {
   return (
     <div className="Profile">
       <ProfileLeft />
-      <dir className="Profile-center">
+
+      <div className="Profile-center">
         <ProfileCard />
         <PostSide />
-      </dir>
+      </div>
+
       <RightSide />
     </div>
   )
