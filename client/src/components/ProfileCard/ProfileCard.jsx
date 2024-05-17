@@ -4,11 +4,9 @@ import Profile from '../../img/profileImg.jpg'
 import './ProfileCard.scss'
 
 function ProfileCard() {
-
   const ProfilePage = true
   return (
     <div className="ProfileCard">
-
       <div className="ProfileImages">
         <img src={Cover} alt="" />
         <img src={Profile} alt="" />
@@ -33,8 +31,7 @@ function ProfileCard() {
           </div>
           {ProfilePage && (
             <>
-              <div className='vertical-line'>
-              </div>
+              <div className="verticalLine"></div>
               <div className="follow">
                 <span>3</span>
                 <span>Posts</span>
@@ -45,11 +42,8 @@ function ProfileCard() {
         <hr />
       </div>
 
-      {ProfilePage ? '' :
-        <span>
-          My Profile
-        </span>}
-    </div >
+      {ProfilePage ? '' : <span>My Profile</span>}
+    </div>
   )
 }
 

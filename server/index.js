@@ -5,14 +5,15 @@ import dotenv from 'dotenv'
 import AuthRoute from './Routes/authRoute.js'
 import UserRoute from './Routes/userRoute.js'
 import PostRoute from './Routes/postRoute.js'
+import UploadRoute from './Routes/uploadRoute.js'
 import cors from 'cors'
 
 const app = express()
 
 //middleware
-app.use(cors())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use(cors())
 dotenv.config()
 
 mongoose
@@ -27,3 +28,4 @@ mongoose
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/post', PostRoute)
+app.use('/upload', UploadRoute)

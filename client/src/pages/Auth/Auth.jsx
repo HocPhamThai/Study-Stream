@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './Auth.scss'
 import Logo from '../../img/logo.png'
 import { logIn, signUp } from '../../actions/AuthAction'
+import authReducer from './../../reducers/authReducer'
 
 const Auth = () => {
-  const [isSignUp, SetIsSignup] = useState(false)
   const dispatch = useDispatch()
+  const loading = useSelector((state) => state.authReducer.loading)
+  const [isSignUp, SetIsSignup] = useState(false)
 
   const [data, setData] = useState({
     firstname: '',
@@ -62,6 +64,7 @@ const Auth = () => {
                 name="firstname"
                 onChange={handleChange}
                 value={data.firstname}
+                required
               />
               <input
                 type="text"
@@ -70,6 +73,7 @@ const Auth = () => {
                 name="lastname"
                 onChange={handleChange}
                 value={data.lastname}
+                required
               />
             </div>
           )}
@@ -81,6 +85,7 @@ const Auth = () => {
               name="username"
               onChange={handleChange}
               value={data.username}
+              required
             />
           </div>
           <div>
@@ -92,6 +97,7 @@ const Auth = () => {
               onChange={handleChange}
               value={data.password}
               autoComplete="off"
+              required
             />
             {isSignUp && (
               <input
@@ -101,6 +107,7 @@ const Auth = () => {
                 name="confirmpass"
                 onChange={handleChange}
                 value={data.confirmpass}
+                required
               />
             )}
           </div>
@@ -138,8 +145,12 @@ const Auth = () => {
             </span>
           </div>
 
-          <button className="button infoButton" type="submit">
-            {isSignUp ? 'Sign Up' : 'Login'}
+          <button
+            className="button infoButton"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Loading....' : isSignUp ? 'Sign Up' : 'Login'}
           </button>
         </form>
       </div>

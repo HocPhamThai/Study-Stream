@@ -5,19 +5,19 @@
   padding: 1rem;
   border-radius: 1rem;
 
-  >img {
+  > img {
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
   }
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
     width: 90%;
     gap: 1rem;
 
-    >input {
+    > input {
       background-color: var(--inputColor);
       border-radius: 10px;
       padding: 10px;
@@ -57,20 +57,19 @@
   .previewImage {
     position: relative;
 
-    >svg {
+    > svg {
       position: absolute;
+      stroke: #fff;
       right: 1rem;
       top: 0.5rem;
       cursor: pointer;
     }
 
-    >img {
+    > img {
       width: 100%;
       max-height: 20rem;
       object-fit: cover;
       bottom: 0.5rem;
     }
   }
-
-
 }

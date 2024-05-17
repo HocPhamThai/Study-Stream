@@ -1,23 +1,29 @@
 import UserModel from '../Models/userModel.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const registerUser = async (req, res) => {
-  const { username, password, firstname, lastname } = req.body
-
   //bcrypt
   const salt = await bcrypt.genSalt(10)
-  const hassedPassword = await bcrypt.hash(password, salt)
+  const hassedPassword = await bcrypt.hash(req.body.password, salt)
 
-  const newUser = new UserModel({
-    username,
-    password: hassedPassword,
-    firstname,
-    lastname,
-  })
+  const newUser = new UserModel({ ...req.body, password: hassedPassword })
+  const { username } = req.body
 
   try {
-    newUser.save()
-    res.status(200).json({ message: 'User has been registered' })
+    const oldUser = await UserModel.findOne({ username: username })
+    if (oldUser) {
+      return res.status(400).json({ message: 'User already exists' })
+    }
+    const user = await newUser.save()
+    const token = jwt.sign(
+      { username: user.username, id: user._id },
+      process.env.JWT_KEY,
+      {
+        expiresIn: '1h',
+      }
+    )
+    res.status(200).json({ user, token })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -31,10 +37,17 @@ const loginUser = async (req, res) => {
 
     if (user) {
       const validity = await bcrypt.compare(password, user.password)
-      if (validity) {
-        res.status(200).json({ message: 'Login successful' })
-      } else {
+      if (!validity) {
         res.status(400).json({ message: 'Invalid password' })
+      } else {
+        const token = jwt.sign(
+          { username: user.username, id: user._id },
+          process.env.JWT_KEY,
+          {
+            expiresIn: '1h',
+          }
+        )
+        res.status(200).json({ user, token })
       }
     }
   } catch (error) {
