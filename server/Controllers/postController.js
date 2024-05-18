@@ -52,6 +52,7 @@ const updatePost = async (req, res) => {
   }
 }
 
+//delete a post
 const deletePost = async (req, res) => {
   const id = req.params.id
   const { userId } = req.body

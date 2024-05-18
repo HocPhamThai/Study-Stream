@@ -9,6 +9,9 @@ import UploadRoute from './Routes/uploadRoute.js'
 import cors from 'cors'
 
 const app = express()
+// set up public folder
+app.use(express.static('public'))
+app.use('/images', express.static('images'))
 
 //middleware
 app.use(bodyParser.json({ limit: '30mb', extended: true }))

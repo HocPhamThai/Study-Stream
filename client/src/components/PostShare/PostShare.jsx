@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../actions/uploadAction'
 
 const PostShare = () => {
+  const loading = useSelector((state) => state.postReducer.uploading)
   const [image, setImage] = useState(null)
   const imageRef = useRef()
   const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const PostShare = () => {
 
     if (image) {
       const data = new FormData()
-      const filename = Date.now()  + image.name
+      const filename = Date.now() + image.name
 
       data.append('name', filename)
       data.append('file', image)
@@ -42,7 +43,13 @@ const PostShare = () => {
         console.log(error)
       }
       dispatch(uploadPost(newPost))
+      reset()
     }
+  }
+
+  const reset = () => {
+    setImage(null)
+    desc.current.value = ''
   }
   return (
     <div className="PostShare">
@@ -70,8 +77,12 @@ const PostShare = () => {
             <UilSchedule />
             Schedule
           </div>
-          <button className="button post-share-button" onClick={handleSubmit}>
-            Share
+          <button
+            className="button post-share-button"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? 'Posting...' : 'Share'}
           </button>
         </div>
         <div style={{ display: 'none' }}>
@@ -86,7 +97,11 @@ const PostShare = () => {
         {image && (
           <div className="previewImage">
             <UilTimes onClick={() => setImage(null)} />
-            <img src={URL.createObjectURL(image)} alt="" />
+            <img
+              src={URL.createObjectURL(image)}
+              alt=""
+              style={{ borderRadius: '0.5rem' }}
+            />
           </div>
         )}
       </div>
