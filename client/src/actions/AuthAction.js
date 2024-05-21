@@ -20,4 +20,8 @@ const signUp = (formData) => async (dispatch) => {
   }
 }
 
-export { logIn, signUp }
+const logOut = () => async (dispatch) => {
+  dispatch({ type: 'AUTH_LOGOUT' })
+}
+
+export { logIn, signUp, logOut }

@@ -9,7 +9,6 @@ const ProfileLeft = () => {
       <LogoSearch />
       <InfoCard />
       <FollowersCard />
-
     </div>
   )
 }

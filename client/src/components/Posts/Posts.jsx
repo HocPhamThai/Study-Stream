@@ -12,7 +12,7 @@ function Posts() {
 
   useEffect(() => {
     dispatch(getTimelinePosts(user._id))
-  })
+  }, [])
   return loading ? (
     'Fetching Timeline Posts...'
   ) : (

@@ -15,10 +15,13 @@
   display: flex;
   justify-content: space-between;
 
-  >img {
+  > img {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-
+  a > img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }

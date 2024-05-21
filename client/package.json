@@ -5,8 +5,8 @@
   "proxy": "http://localhost:8001",
   "dependencies": {
     "@iconscout/react-unicons": "^2.0.2",
-    "@mantine/core": "^7.9.1",
-    "@mantine/hooks": "^7.9.1",
+    "@mantine/core": "^4.2.12",
+    "@mantine/hooks": "^4.2.12",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
