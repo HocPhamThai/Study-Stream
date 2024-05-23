@@ -1,10 +1,16 @@
 import UserModel from '../Models/userModel.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 //get all User
 const getAllUser = async (req, res) => {
   try {
-    const users = await UserModel.find()
+    let users = await UserModel.find()
+
+    users = users.map((user) => {
+      const { password, ...other } = user._doc
+      return other
+    })
 
     res.status(200).json(users)
   } catch (error) {
@@ -29,11 +35,12 @@ const getUser = async (req, res) => {
   }
 }
 
+// update a user
 const updateUser = async (req, res) => {
   const id = req.params.id
-  const { currentUserId, currentUserAdminStatus, password } = req.body
+  const { _id, currentUserAdminStatus, password } = req.body
 
-  if (id === currentUserId || currentUserAdminStatus) {
+  if (id === _id || currentUserAdminStatus) {
     try {
       if (password) {
         const salt = await bcrypt.genSalt(10)
@@ -44,7 +51,15 @@ const updateUser = async (req, res) => {
         new: true,
       })
 
-      res.status(200).json(user)
+      const token = jwt.sign(
+        {
+          username: user.username,
+          id: user._id,
+        },
+        process.env.JWT_KEY,
+        { expiresIn: '1h' }
+      )
+      res.status(200).json({ user, token })
     } catch (error) {
       res.status(500).json({ message: error.message })
     }
@@ -73,17 +88,17 @@ const deleteUser = async (req, res) => {
 
 const followUser = async (req, res) => {
   const id = req.params.id
-  const { currentUserId } = req.body
+  const { _id } = req.body
 
-  if (id === currentUserId) {
+  if (id === _id) {
     res.status(403).json({ message: "You can't follow yourself" })
   } else {
     try {
       const followUser = await UserModel.findById(id)
-      const followingUser = await UserModel.findById(currentUserId)
+      const followingUser = await UserModel.findById(_id)
 
-      if (!followUser.followers.includes(currentUserId)) {
-        await followUser.updateOne({ $push: { followers: currentUserId } })
+      if (!followUser.followers.includes(_id)) {
+        await followUser.updateOne({ $push: { followers: _id } })
         await followingUser.updateOne({ $push: { followings: id } })
         res.status(200).json({ message: 'User has been followed' })
       } else {
@@ -97,18 +112,18 @@ const followUser = async (req, res) => {
 
 const unFollowUser = async (req, res) => {
   const id = req.params.id // id is the id of the user who wants to unfollow
-  const { currentUserId } = req.body // currentUserId is the id of the user who wants to unfollow
+  const { _id } = req.body // _id is the id of the user who wants to unfollow
 
-  if (id === currentUserId) {
+  if (id === _id) {
     res.status(403).json({ message: "You can't unfollow yourself" })
   } else {
     try {
       const followUser = await UserModel.findById(id)
-      const followingUser = await UserModel.findById(currentUserId)
+      const followingUser = await UserModel.findById(_id)
 
       // check if the user is already followed then unfollow
-      if (followUser.followers.includes(currentUserId)) {
-        await followUser.updateOne({ $pull: { followers: currentUserId } })
+      if (followUser.followers.includes(_id)) {
+        await followUser.updateOne({ $pull: { followers: _id } })
         await followingUser.updateOne({ $pull: { followings: id } })
         res.status(200).json({ message: 'User has been unfollowed' })
       } else {

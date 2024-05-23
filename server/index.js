@@ -13,7 +13,7 @@ const app = express()
 app.use(express.static('public'))
 app.use('/images', express.static('images'))
 
-//middleware
+// middleware
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
@@ -27,7 +27,7 @@ mongoose
     console.log(error.message)
   })
 
-// usage of the Routes
+// Routes defining
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/post', PostRoute)
