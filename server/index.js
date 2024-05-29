@@ -6,6 +6,8 @@ import AuthRoute from './Routes/authRoute.js'
 import UserRoute from './Routes/userRoute.js'
 import PostRoute from './Routes/postRoute.js'
 import UploadRoute from './Routes/uploadRoute.js'
+import ChatRoute from './Routes/chatRoute.js'
+import MessageRoute from './Routes/messageRoute.js'
 import cors from 'cors'
 
 const app = express()
@@ -32,3 +34,5 @@ app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/post', PostRoute)
 app.use('/upload', UploadRoute)
+app.use('/chat', ChatRoute)
+app.use('/message', MessageRoute)
