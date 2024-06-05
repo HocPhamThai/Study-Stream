@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
   try {
     const oldUser = await UserModel.findOne({ username: username })
     if (oldUser) {
-      return res.status(400).json({ message: 'User already exists' })
+      return res.status(400).json({ error: 'User already exists' })
     }
     const user = await newUser.save()
 
@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
     if (user) {
       const validity = await bcrypt.compare(password, user.password)
       if (!validity) {
-        res.status(400).json({ message: 'Invalid password' })
+        res.status(400).json({ error: 'Invalid password' })
       } else {
         const token = jwt.sign(
           { username: user.username, id: user._id },

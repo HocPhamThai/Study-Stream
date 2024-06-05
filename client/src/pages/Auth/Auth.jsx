@@ -114,6 +114,7 @@ const Auth = () => {
           {!isSignUp ? (
             ''
           ) : (
+            // error in signup
             <span
               style={{
                 display: confirmpass ? 'none' : 'block',
