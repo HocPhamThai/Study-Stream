@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
     )
     res.status(200).json({ user, token })
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ error: error.message })
   }
 }
 
@@ -50,6 +50,8 @@ const loginUser = async (req, res) => {
         )
         res.status(200).json({ user, token })
       }
+    } else {
+      res.status(400).json({ error: 'Username does not exist' })
     }
   } catch (error) {
     res.status(500).json({ err: error.message })

@@ -1,7 +1,7 @@
 const initialState = {
   authData: null,
   loading: false,
-  error: false,
+  error: null,
   updateLoading: false,
 }
 
@@ -14,10 +14,12 @@ const authReducer = (state = initialState, action) => {
       localStorage.setItem('profile', JSON.stringify({ ...action?.data }))
       return { ...state, authData: action.data, loading: false, error: false }
     case 'AUTH_FAIL':
-      return { ...state, loading: false, error: true }
+      return { ...state, loading: false, error: action.error }
     case 'AUTH_LOGOUT':
       localStorage.clear()
       return { ...state, authData: null, loading: false, error: false }
+    case 'CLEAR_ERROR':
+      return { ...state, error: null }
     // case 'UPDATE_USER':
     case 'UPDATE_USER_START':
       return { ...state, updateLoading: true, error: false }

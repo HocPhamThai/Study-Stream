@@ -8,6 +8,7 @@ import authReducer from './../../reducers/authReducer'
 const Auth = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
+  const error = useSelector((state) => state.authReducer.error)
   const [isSignUp, SetIsSignup] = useState(false)
 
   const [data, setData] = useState({
@@ -19,20 +20,45 @@ const Auth = () => {
   })
 
   const [confirmpass, setConfirmpass] = useState(true)
+  const [formErrors, setFormErrors] = useState([])
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (isSignUp) {
-      data.password === data.confirmpass
-        ? dispatch(signUp(data))
-        : setConfirmpass(false)
-    } else {
-      dispatch(logIn(data))
+    const errors = validateForm()
+    setFormErrors(errors)
+    if (Object.keys(errors).length === 0) {
+      if (isSignUp) {
+        data.password === data.confirmpass
+          ? dispatch(signUp(data))
+          : setConfirmpass(false)
+      } else {
+        dispatch(logIn(data))
+      }
     }
   }
+
+  const validateForm = () => {
+    let errors = {}
+
+    if (!data.username) {
+      errors.username = 'Username is required'
+    } else if (!/\S+@\S+\.\S+/.test(data.username)) {
+      errors.username = 'Username is invalid'
+    } else if (!data.password) {
+      errors.password = 'Password is required'
+    } else if (data.password.length < 6) {
+      errors.password = 'Password needs to be 6 characters or more'
+    } else if (isSignUp && data.password !== data.confirmpass) {
+      errors.confirmpass = 'Passwords do not match'
+    }
+    setConfirmpass(data.password === data.confirmpass)
+    return errors
+  }
+
   const resetForm = () => {
     setConfirmpass(true)
     setData({
@@ -42,6 +68,7 @@ const Auth = () => {
       password: '',
       confirmpass: '',
     })
+    dispatch({ type: 'CLEAR_ERROR' })
   }
   return (
     <div className="Auth">
@@ -53,7 +80,12 @@ const Auth = () => {
         </div>
       </div>
       <div className="auth-right">
-        <form className="infoForm authForm" onSubmit={handleSubmit}>
+        <form
+          className={
+            !isSignUp ? 'infoForm authForm widthLoginForm' : 'infoForm authForm'
+          }
+          onSubmit={handleSubmit}
+        >
           <h3>{isSignUp ? 'Sign Up' : 'Login'}</h3>
           {isSignUp && (
             <div>
@@ -111,22 +143,39 @@ const Auth = () => {
               />
             )}
           </div>
+          {formErrors.firstname && (
+            <span className="error">{formErrors.firstname}</span>
+          )}
+          {formErrors.lastname && (
+            <span className="error">{formErrors.lastname}</span>
+          )}
+          {formErrors.username && (
+            <span className="error">{formErrors.username}</span>
+          )}
           {!isSignUp ? (
             ''
           ) : (
             // error in signup
-            <span
-              style={{
-                display: confirmpass ? 'none' : 'block',
-                color: 'red',
-                fontSize: '12px',
-                alignSelf: 'flex-end',
-                marginRight: '1rem',
-              }}
-            >
-              * The confirm password is not match!!!
-            </span>
+            <>
+              {!formErrors.password ? (
+                <span
+                  style={{
+                    display: confirmpass ? 'none' : 'block',
+                    color: 'red',
+                    fontSize: '0.8rem',
+                    alignSelf: 'flex-end',
+                    marginRight: '1rem',
+                  }}
+                >
+                  * The confirm password is not match!!!
+                </span>
+              ) : (
+                <span className="error">{formErrors.password}</span>
+              )}
+            </>
           )}
+          {!isSignUp && error && <span className="error">{error}</span>}
+          {isSignUp && error && <span className="error">{error}</span>}
           <div>
             <span
               style={{
@@ -145,7 +194,6 @@ const Auth = () => {
                 : "Don't have an account? Sign Up"}
             </span>
           </div>
-
           <button
             className="button infoButton"
             type="submit"
