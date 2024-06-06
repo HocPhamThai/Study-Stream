@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react'
-import ProfileImage from '../../img/profileImg.jpg'
-import './PostShare.scss'
-import { UilScenery } from '@iconscout/react-unicons'
-import { UilPlayCircle } from '@iconscout/react-unicons'
-import { UilLocationPoint } from '@iconscout/react-unicons'
-import { UilSchedule } from '@iconscout/react-unicons'
-import { UilTimes } from '@iconscout/react-unicons'
+import {
+  UilLocationPoint,
+  UilPlayCircle,
+  UilScenery,
+  UilSchedule,
+  UilTimes,
+} from '@iconscout/react-unicons'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../actions/uploadAction'
+import './PostShare.scss'
 
 const PostShare = () => {
   const loading = useSelector((state) => state.postReducer.uploading)

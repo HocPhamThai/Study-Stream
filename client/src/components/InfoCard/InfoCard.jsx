@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import './InfoCard.scss'
 import { UilPen } from '@iconscout/react-unicons'
-import { useState } from 'react'
-import ProfileModal from '../ProfileModal/ProfileModal'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import * as UserApi from '../../api/UserRequest'
 import { logOut } from '../../actions/AuthAction'
+import * as UserApi from '../../api/UserRequest'
+import ProfileModal from '../ProfileModal/ProfileModal'
+import './InfoCard.scss'
 
 const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState(false)
@@ -29,7 +28,7 @@ const InfoCard = () => {
       }
     }
     fetchProfileUser()
-  }, [user])
+  }, [profileUserId, user])
 
   const handleLogOut = () => {
     dispatch(logOut())

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './Auth.scss'
-import Logo from '../../img/logo.png'
 import { logIn, signUp } from '../../actions/AuthAction'
-import authReducer from './../../reducers/authReducer'
+import Logo from '../../img/logo.png'
+import './Auth.scss'
 
 const Auth = () => {
   const dispatch = useDispatch()

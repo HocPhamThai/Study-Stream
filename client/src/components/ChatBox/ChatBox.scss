@@ -58,7 +58,7 @@
   justify-content: space-between;
   height: 3.5rem;
   align-items: center;
-  gap: 1rem;
+  // gap: 1rem;
   padding: 0.8rem;
   border-radius: 1rem;
   align-self: end;
@@ -85,4 +85,8 @@
 .chat-sender > div {
   height: 70%;
   padding: 0px 15px 0px 15px;
+}
+
+.send-button {
+  padding: 0.8rem;
 }

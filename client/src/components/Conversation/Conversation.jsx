@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getUser } from '../../api/UserRequest'
 import './Conversation.scss'
 
-const Conversation = ({ data, currentUserId }) => {
+const Conversation = ({ data, currentUserId, online }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [userData, setUserData] = useState(null)
 
@@ -17,12 +17,12 @@ const Conversation = ({ data, currentUserId }) => {
       }
     }
     getUserData()
-  }, [])
+  }, [friendId])
   return (
     <>
       <div className="conversation">
         <div>
-          <div className="online-dot"></div>
+          {online && <div className="online-dot"></div>}
           <img
             src={
               userData?.profilePicture
@@ -37,7 +37,7 @@ const Conversation = ({ data, currentUserId }) => {
             <span>
               {userData?.firstname} {userData?.lastname}
             </span>
-            <span>Online</span>
+            <span>{online ? 'Online' : 'Offline'}</span>
           </div>
         </div>
       </div>

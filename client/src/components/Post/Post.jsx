@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Post.scss'
 import Comment from '../../img/comment.png'
 import Share from '../../img/share.png'
 import Heart from '../../img/like.png'
 import NotLike from '../../img/notlike.png'
-import postReducer from './../../reducers/postReducer'
 import { useSelector } from 'react-redux'
-import authReducer from './../../reducers/authReducer'
 import { likePost } from '../../api/PostRequest'
 
 const Post = ({ data, id }) => {
