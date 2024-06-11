@@ -4,9 +4,13 @@
   "private": true,
   "proxy": "http://localhost:8001",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@iconscout/react-unicons": "^2.0.2",
     "@mantine/core": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
+    "@mui/material": "^5.15.19",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -21,6 +25,7 @@
     "redux-thunk": "^3.1.0",
     "sass": "^1.77.1",
     "socket.io-client": "^4.7.5",
+    "styled-components": "^6.1.11",
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
