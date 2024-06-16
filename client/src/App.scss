@@ -14,6 +14,12 @@
   --shedule: #e1ae4a;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   overflow: hidden;
   color: var (--black);

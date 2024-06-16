@@ -46,7 +46,7 @@ const Auth = () => {
     if (!data.username) {
       errors.username = 'Username is required'
     } else if (!/\S+@\S+\.\S+/.test(data.username)) {
-      errors.username = 'Username is invalid'
+      errors.username = 'Please enter a valid email address'
     } else if (!data.password) {
       errors.password = 'Password is required'
     } else if (data.password.length < 6) {
@@ -68,6 +68,11 @@ const Auth = () => {
       confirmpass: '',
     })
     dispatch({ type: 'CLEAR_ERROR' })
+  }
+
+  const handleForgot = () => {
+    window.location.href = '/forgot'
+    dispatch({ type: 'FORGOT_PASSWORD' })
   }
   return (
     <div className="Auth">
@@ -111,7 +116,7 @@ const Auth = () => {
           <div>
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               className="infoInput"
               name="username"
               onChange={handleChange}
@@ -176,6 +181,21 @@ const Auth = () => {
           {!isSignUp && error && <span className="error">{error}</span>}
           {isSignUp && error && <span className="error">{error}</span>}
           <div>
+            <span>
+              <a
+                style={{
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                  color: 'blue',
+                  textDecoration: 'underline',
+                  lineHeight: 1,
+                }}
+                href="/forgot"
+                onClick={handleForgot}
+              >
+                Forgot Password?
+              </a>
+            </span>
             <span
               style={{
                 fontSize: '12px',
