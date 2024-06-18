@@ -63,3 +63,9 @@ button:disabled {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.studyroom-main {
+  ::-webkit-scrollbar {
+    display: block !important;
+  }
+}
