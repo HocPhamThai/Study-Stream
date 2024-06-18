@@ -7,12 +7,14 @@ import Profile from './pages/Profile/Profile'
 import Rules from './pages/Rules/Rules'
 import Home from './pages/home/Home'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
+import { Toaster } from 'sonner'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
 
   return (
     <div className="App">
+      <Toaster position="top-right" />
       <div className="blur" style={{ top: '-18%', right: '0' }}></div>
       <div className="blur" style={{ top: '36%', left: '-8rem' }}></div>
       <Routes>

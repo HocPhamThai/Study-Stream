@@ -42,7 +42,6 @@ const Auth = () => {
 
   const validateForm = () => {
     let errors = {}
-
     if (!data.username) {
       errors.username = 'Username is required'
     } else if (!/\S+@\S+\.\S+/.test(data.username)) {
@@ -67,12 +66,12 @@ const Auth = () => {
       password: '',
       confirmpass: '',
     })
+    setFormErrors([])
     dispatch({ type: 'CLEAR_ERROR' })
   }
 
   const handleForgot = () => {
     window.location.href = '/forgot'
-    dispatch({ type: 'FORGOT_PASSWORD' })
   }
   return (
     <div className="Auth">
@@ -166,7 +165,7 @@ const Auth = () => {
                   style={{
                     display: confirmpass ? 'none' : 'block',
                     color: 'red',
-                    fontSize: '0.8rem',
+                    fontSize: '0.7rem',
                     alignSelf: 'flex-end',
                     marginRight: '1rem',
                   }}
@@ -181,21 +180,24 @@ const Auth = () => {
           {!isSignUp && error && <span className="error">{error}</span>}
           {isSignUp && error && <span className="error">{error}</span>}
           <div>
-            <span>
-              <a
+            <a
+              style={{
+                fontSize: '12px',
+                cursor: 'pointer',
+                color: 'blue',
+                textDecoration: 'underline',
+              }}
+              href="/forgot"
+              onClick={handleForgot}
+            >
+              <span
                 style={{
-                  fontSize: '12px',
-                  cursor: 'pointer',
-                  color: 'blue',
-                  textDecoration: 'underline',
                   lineHeight: 1,
                 }}
-                href="/forgot"
-                onClick={handleForgot}
               >
                 Forgot Password?
-              </a>
-            </span>
+              </span>
+            </a>
             <span
               style={{
                 fontSize: '12px',

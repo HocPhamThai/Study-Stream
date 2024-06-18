@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import UserModel from '../Models/userModel.js'
+import nodemailer from 'nodemailer'
 
 const registerUser = async (req, res) => {
   //bcrypt
@@ -70,10 +71,13 @@ const forgotPassword = async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000)
     user.resetPasswordOTP = otp
     // 60000 milliseconds = 1 minute
-    user.resetPasswordExpires = Date.now() + 600000 //10 minutes
+    user.resetPasswordExpires = Date.now() + 3600000 //10 minutes
     await user.save()
     const transporter = nodemailer.createTransport({
-      service: 'Gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      service: 'gmail',
+      secure: true,
       auth: {
         user: 'phamthaihoc008@gmail.com',
         pass: process.env.EMAIL_PASSWORD,
@@ -81,14 +85,16 @@ const forgotPassword = async (req, res) => {
     })
 
     const mailOptions = {
-      to: user.email,
-      from: 'your-email@gmail.com',
+      to: user.username,
+      from: 'studystreamSystem',
       subject: 'Password Reset OTP Study Stream',
       text: `Your OTP for password reset is ${otp} `,
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.log(process.env.EMAIL_PASSWORD)
+        console.log(error)
         return res.status(500).json({ message: 'Error sending email' })
       }
       res.status(200).json({ message: 'OTP đã được gửi đến email của bạn' })
@@ -100,7 +106,7 @@ const forgotPassword = async (req, res) => {
 
 const verifyOTP = async (req, res) => {
   const { email, otp } = req.body
-  const user = await User.findOne({ username: email })
+  const user = await UserModel.findOne({ username: email })
   if (!user) {
     return res.status(400).json({ error: 'Email does not exist' })
   }
@@ -111,18 +117,15 @@ const verifyOTP = async (req, res) => {
 }
 
 const resetPassword = async (req, res) => {
-  const { email, otp, newPassword } = req.body
-  const user = UserModel.findOne({ username: email })
+  const { email, newPassword } = req.body
+  const user = await UserModel.findOne({ username: email })
 
   try {
     if (!user) {
       return res.status(400).json({ error: 'Email does not exist' })
     }
-    if (
-      user.resetPasswordOTP !== otp ||
-      user.resetPasswordExpires < Date.now()
-    ) {
-      return res.status(400).json({ message: 'OTP is invalid or expires' })
+    if (user.resetPasswordExpires < Date.now()) {
+      return res.status(400).json({ message: 'OTP is expires' })
     }
     const salt = await bcrypt.genSalt(10)
     const hassedPassword = await bcrypt.hash(newPassword, salt)

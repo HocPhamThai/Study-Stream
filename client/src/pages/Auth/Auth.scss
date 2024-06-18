@@ -1,7 +1,7 @@
 .Auth {
   .error {
     color: red;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     align-self: flex-end;
     margin-right: 1rem;
   }
@@ -96,4 +96,11 @@
 
 .widthLoginForm {
   width: 18rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+  align-self: flex-end;
+  margin-right: 1rem;
 }
