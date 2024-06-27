@@ -11,15 +11,7 @@ const PasswordResetFlow = ({ email }) => {
     setOtpVerified(true)
   }
 
-  return (
-    <div>
-      {!otpVerified ? (
-        <EnterOTP email={email} onOTPSuccess={handleOTPSuccess} />
-      ) : (
-        <ChangePassword email={email} />
-      )}
-    </div>
-  )
+  return <div>{!otpVerified ? <EnterOTP email={email} onOTPSuccess={handleOTPSuccess} /> : <ChangePassword email={email} />}</div>
 }
 
 export default PasswordResetFlow
