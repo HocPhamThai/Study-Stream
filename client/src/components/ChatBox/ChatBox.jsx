@@ -79,8 +79,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
   })
 
   return (
-    <>
-      <div className="ChatBox-container">
+    <div className="ChatBox-container">
         {chat ? (
           <>
             <div className="Chat-header">
@@ -137,7 +136,6 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
           </span>
         )}
       </div>
-    </>
   )
 }
 

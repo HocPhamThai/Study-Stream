@@ -31,9 +31,7 @@ const Auth = () => {
     setFormErrors(errors)
     if (Object.keys(errors).length === 0) {
       if (isSignUp) {
-        data.password === data.confirmpass
-          ? dispatch(signUp(data))
-          : setConfirmpass(false)
+        data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmpass(false)
       } else {
         dispatch(logIn(data))
       }
@@ -42,7 +40,6 @@ const Auth = () => {
 
   const validateForm = () => {
     let errors = {}
-
     if (!data.username) {
       errors.username = 'Username is required'
     } else if (!/\S+@\S+\.\S+/.test(data.username)) {
@@ -67,12 +64,12 @@ const Auth = () => {
       password: '',
       confirmpass: '',
     })
+    setFormErrors([])
     dispatch({ type: 'CLEAR_ERROR' })
   }
 
   const handleForgot = () => {
     window.location.href = '/forgot'
-    dispatch({ type: 'FORGOT_PASSWORD' })
   }
   return (
     <div className="Auth">
@@ -84,45 +81,16 @@ const Auth = () => {
         </div>
       </div>
       <div className="auth-right">
-        <form
-          className={
-            !isSignUp ? 'infoForm authForm widthLoginForm' : 'infoForm authForm'
-          }
-          onSubmit={handleSubmit}
-        >
+        <form className={!isSignUp ? 'infoForm authForm widthLoginForm' : 'infoForm authForm'} onSubmit={handleSubmit}>
           <h3>{isSignUp ? 'Sign Up' : 'Login'}</h3>
           {isSignUp && (
             <div>
-              <input
-                type="text"
-                placeholder="First Name"
-                className="infoInput"
-                name="firstname"
-                onChange={handleChange}
-                value={data.firstname}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="infoInput"
-                name="lastname"
-                onChange={handleChange}
-                value={data.lastname}
-                required
-              />
+              <input type="text" placeholder="First Name" className="infoInput" name="firstname" onChange={handleChange} value={data.firstname} required />
+              <input type="text" placeholder="Last Name" className="infoInput" name="lastname" onChange={handleChange} value={data.lastname} required />
             </div>
           )}
           <div>
-            <input
-              type="text"
-              placeholder="Email"
-              className="infoInput"
-              name="username"
-              onChange={handleChange}
-              value={data.username}
-              required
-            />
+            <input type="text" placeholder="Email" className="infoInput" name="username" onChange={handleChange} value={data.username} required />
           </div>
           <div>
             <input
@@ -147,15 +115,9 @@ const Auth = () => {
               />
             )}
           </div>
-          {formErrors.firstname && (
-            <span className="error">{formErrors.firstname}</span>
-          )}
-          {formErrors.lastname && (
-            <span className="error">{formErrors.lastname}</span>
-          )}
-          {formErrors.username && (
-            <span className="error">{formErrors.username}</span>
-          )}
+          {formErrors.firstname && <span className="error">{formErrors.firstname}</span>}
+          {formErrors.lastname && <span className="error">{formErrors.lastname}</span>}
+          {formErrors.username && <span className="error">{formErrors.username}</span>}
           {!isSignUp ? (
             ''
           ) : (
@@ -166,7 +128,7 @@ const Auth = () => {
                   style={{
                     display: confirmpass ? 'none' : 'block',
                     color: 'red',
-                    fontSize: '0.8rem',
+                    fontSize: '0.7rem',
                     alignSelf: 'flex-end',
                     marginRight: '1rem',
                   }}
@@ -181,21 +143,24 @@ const Auth = () => {
           {!isSignUp && error && <span className="error">{error}</span>}
           {isSignUp && error && <span className="error">{error}</span>}
           <div>
-            <span>
-              <a
+            <a
+              style={{
+                fontSize: '12px',
+                cursor: 'pointer',
+                color: 'blue',
+                textDecoration: 'underline',
+              }}
+              href="/forgot"
+              onClick={handleForgot}
+            >
+              <span
                 style={{
-                  fontSize: '12px',
-                  cursor: 'pointer',
-                  color: 'blue',
-                  textDecoration: 'underline',
                   lineHeight: 1,
                 }}
-                href="/forgot"
-                onClick={handleForgot}
               >
                 Forgot Password?
-              </a>
-            </span>
+              </span>
+            </a>
             <span
               style={{
                 fontSize: '12px',
@@ -208,16 +173,10 @@ const Auth = () => {
                 resetForm()
               }}
             >
-              {isSignUp
-                ? 'Already have an account! Login'
-                : "Don't have an account? Sign Up"}
+              {isSignUp ? 'Already have an account! Login' : "Don't have an account? Sign Up"}
             </span>
           </div>
-          <button
-            className="button infoButton"
-            type="submit"
-            disabled={loading}
-          >
+          <button className="button infoButton" type="submit" disabled={loading}>
             {loading ? 'Loading....' : isSignUp ? 'Sign Up' : 'Login'}
           </button>
         </form>

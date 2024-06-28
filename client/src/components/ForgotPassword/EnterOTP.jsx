@@ -11,22 +11,21 @@ const EnterOTP = ({ email, onOTPSuccess }) => {
       await verifyOTP(email, otp)
       onOTPSuccess(otp)
     } catch (error) {
-      setError('OTP không hợp lệ hoặc đã hết hạn')
+      setError('Invalid OTP, please try again')
     }
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nhập OTP"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-        />
-        <button type="submit">Xác nhận OTP</button>
+    <div className="container">
+      <form className="infoForm formContainer" onSubmit={handleSubmit}>
+        <h3>Enter OTP</h3>
+        <span>Please check your email to get OTP</span>
+        <input style={{ width: '100%' }} className="infoInput" type="text" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+        {error && <span className="error">{error}</span>}
+        <button className="button infoButton" type="submit">
+          Verify OTP
+        </button>
       </form>
-      {error && <p>{error}</p>}
     </div>
   )
 }

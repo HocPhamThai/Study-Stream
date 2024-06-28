@@ -19,23 +19,13 @@ const Post = ({ data, id }) => {
   }
   return (
     <div className="Post">
-      <img
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ''}
-        alt=""
-      />
+      <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ''} alt="" />
       <div className="postReact">
-        <img
-          onClick={handleLike}
-          src={liked ? Heart : NotLike}
-          alt=""
-          style={{ cursor: 'pointer' }}
-        />
+        <img onClick={handleLike} src={liked ? Heart : NotLike} alt="" style={{ cursor: 'pointer' }} />
         <img src={Comment} alt="" />
         <img src={Share} alt="" />
       </div>
-      <span style={{ color: 'var(--gray)', fontSize: '12px' }}>
-        {likes} likes
-      </span>
+      <span style={{ color: 'var(--gray)', fontSize: '12px' }}>{likes} likes</span>
       <div className="detail">
         <span>
           <b>{data.name} </b>
