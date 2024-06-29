@@ -144,7 +144,7 @@ const StudyRoom = () => {
         </div>
       </header>
 
-      <main className="container">
+      <main className="container-main">
         <div id="room__container">
           <section id="members__container">
             <div id="members__header">
