@@ -1,5 +1,5 @@
 .studyroom {
-  .container {
+  .container-main {
     margin-top: 74px;
     /* height: clac(100vh - 74px); */
     width: 100%;
@@ -35,7 +35,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 0.8rem 1rem;
     position: fixed;
     font-size: 18px;
     background-color: #323143;
@@ -120,14 +120,17 @@
     color: #bdbdbd;
   }
 
+
   .message__author {
     margin-right: 10px;
     color: #2aca3e !important;
+
   }
 
   .message__author__bot {
     margin-right: 10px;
     color: #f95f35 !important;
+
   }
 
   .message__text {
@@ -167,7 +170,7 @@
     width: calc(100% - 40.7rem);
     position: fixed;
     left: 15.7rem;
-    /* top: clac(100vh - 72px); */
+    // top: clac(100vh - 72px);
     overflow-y: auto;
     height: 100%;
   }
@@ -183,6 +186,7 @@
     border-radius: 0;
     height: 100% !important;
     width: 100% !important;
+
     background-size: 300px;
   }
 
@@ -210,7 +214,7 @@
     overflow: hidden;
     height: 300px;
     width: 300px;
-    background-image: url("./logo.png");
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75px;
@@ -231,6 +235,7 @@
       width: 200px;
     }
   }
+
 
   @media (max-width: 1200px) {
     #members__container {

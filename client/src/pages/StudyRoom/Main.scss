@@ -28,6 +28,7 @@
 
 body {
   background-color: #1a1a1a !important;
+  color: #fff !important;
   font-size: 14px !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -147,7 +148,7 @@ a {
   border: none;
 }
 
-#members__button:hover svg > path,
+#members__button:hover svg>path,
 #chat__button:hover svg,
 .nav__link:hover svg {
   fill: #845695;
