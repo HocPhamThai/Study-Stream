@@ -4,10 +4,18 @@ import './StudyRoom.scss';
 import './Main.scss';
 import Logo from "../../img/logo.png";
 import { joinRoomInit } from '../../actions/StudyRoom_rtc';
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { enterRoom, exitRoom } from '../../api/UserRequest'
 
 const StudyRoom = () => {
   const [activeMemberContainer, setActiveMemberContainer] = useState(false);
   const [activeChatContainer, setActiveChatContainer] = useState(false);
+  const [profileUser, setProfileUser] = useState({})
+  const profileUserId = useSelector((state) => state.authReducer.profileUserId);
+  const authData = useSelector((state) => state.authReducer.authData);
+  const user = authData ? authData.user : null;
 
   const expandVideoFrame = (e) => {
     const displayFrame = document.getElementById('stream__box');
@@ -30,6 +38,25 @@ const StudyRoom = () => {
       }
     }
   };
+
+  // useEffect(() => {
+  //   const queryString = window.location.search;
+  //   const urlParams = new URLSearchParams(queryString);
+  //   const roomId = urlParams.get('room');
+  //   console.log(">>>> roomId: ", roomId)
+  //   console.log(">>>> user._id: ", user._id)
+  //   if (user) {
+  //     enterRoom(user._id);
+  //   }
+
+  //   joinRoomInit(roomId, expandVideoFrame);
+
+  //   return () => {
+  //     if (user) {
+  //       exitRoom(user._id);
+  //     }
+  //   };
+  // }, [user]);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -88,6 +115,8 @@ const StudyRoom = () => {
     }
     // }
   }, [])
+
+
 
   return (
     <div className='studyroom'>
@@ -154,7 +183,7 @@ const StudyRoom = () => {
             <div id="member__list">
               <div className="member__wrapper" id="member__2__wrapper">
                 <span className="green__icon" />
-                <p className="member_name">Dennis Ivy</p>
+                <p className="member_name">{user ? user.firstname + ' ' + user.lastname : 'Anonymous'}</p>
               </div>
             </div>
           </section>

@@ -3,11 +3,15 @@ import './DashHome.scss'
 import Logo from '../../img/logo.png'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
 
+  const focusRoom1 = () => {
+    window.location = `studyroom?room=${1}`
+  }
   return (
     <div className="bg-gray-200 z-50 -m-4">
       {/* Top Bar */}
@@ -16,7 +20,13 @@ const DashHome = () => {
           <img className="w-12 h-12 bg-center" src={Logo} alt="" />
         </span>
         <div className="w-48 h-4 bg-gray-500 rounded-full"></div>
-        <div className="w-11 h-11 bg-gray-500 rounded-full mx-4"></div>
+        <div >
+          <img className="w-11 h-11 bg-gray-500 rounded-full mx-4" src={
+            user.profilePicture
+              ? serverPublic + user.profilePicture
+              : serverPublic + 'defaultProfile.jpg'
+          } alt="" />
+        </div>
       </div>
       <div className="flex">
         {/* sidebar */}
@@ -100,13 +110,41 @@ const DashHome = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-6 gap-4 ">
+          <div className="grid grid-cols-6  gap-4 ">
             {/* Study Room section */}
-            <div className="p-8 w-full bg-gradient-to-r from-cyan-500 to-blue-500 col-start-1 col-end-5 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-white shadow-md">
+            {/* <div className="p-8 w-full bg-gradient-to-r from-cyan-500 to-blue-500 col-start-1 col-end-5 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-white shadow-md">
               <p className="text-medium font-semibold md:text-lg">Study together with strangers</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
               <button className="bg-transparent px-4 py-2 border border-red-100 hover:shadow-md" type="button">
                 Study Room
+              </button>
+            </div> */}
+            <div className='p-8 w-full bg-gradient-to-b from-[#FF9C1D]  to-[#FFF161] col-start-1 col-end-2 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-black shadow-md'>
+              <p className="text-medium font-semibold md:text-lg">Focus room 1</p>
+              <p className="mt-4 text-sm">Work balance && Love your work</p>
+              <button onClick={focusRoom1} className=" bg-[#FF9C1D] px-4 py-2 border border-red-100 hover:shadow-md" type="button">
+                Join now
+              </button>
+            </div>
+            <div className='p-8 w-full bg-gradient-to-b from-[#FFCA48] to-[#FF6900] col-start-2 col-end-3 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-black shadow-md'>
+              <p className="text-medium font-semibold md:text-lg">Focus room 2</p>
+              <p className="mt-4 text-sm">Work balance && Love your work</p>
+              <button className="bg-[#FFCA48] px-4 py-2 border border-red-100 hover:shadow-md" type="button">
+                Join now
+              </button>
+            </div>
+            <div className='p-8 w-full bg-gradient-to-b from-[#FF9C1D]  to-[#FFF161] col-start-3 col-end-4 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-black shadow-md'>
+              <p className="text-medium font-semibold md:text-lg">Focus room 3</p>
+              <p className="mt-4 text-sm">Work balance && Love your work</p>
+              <button className="bg-[#FF9C1D] px-4 py-2 border border-red-100 hover:shadow-md" type="button">
+                Join now
+              </button>
+            </div>
+            <div className='p-8 w-full bg-gradient-to-b from-[#FFCA48] to-[#FF6900] col-start-4 col-end-5 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-2xl text-black shadow-md'>
+              <p className="text-medium font-semibold md:text-lg">Focus room 4</p>
+              <p className="mt-4 text-sm">Work balance && Love your work</p>
+              <button className="bg-[#FFCA48] px-4 py-2 border border-red-100 hover:shadow-md" type="button">
+                Join now
               </button>
             </div>
 
