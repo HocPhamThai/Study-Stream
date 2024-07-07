@@ -71,12 +71,17 @@ const Chat = () => {
           <h2>Chats</h2>
           <div className="Chat-list">
             {chats.map((chat) => (
-              <div onClick={() => setCurrentChat(chat)}>
-                <Conversation
-                  data={chat}
-                  currentUserId={user._id}
-                  online={checkOnlineStatus(chat)}
-                />
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setCurrentChat(chat)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setCurrentChat(chat)
+                  }
+                }}
+              >
+                <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
               </div>
             ))}
           </div>
@@ -97,12 +102,7 @@ const Chat = () => {
           </div>
         </div>
         {/* Chat body */}
-        <ChatBox
-          chat={currentChat}
-          currentUser={user._id}
-          setSendMessage={setSendMessage}
-          receiveMessage={receiveMessage}
-        />
+        <ChatBox chat={currentChat} currentUser={user._id} setSendMessage={setSendMessage} receiveMessage={receiveMessage} />
       </div>
     </div>
   )

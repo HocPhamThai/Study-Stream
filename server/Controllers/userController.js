@@ -64,9 +64,7 @@ const updateUser = async (req, res) => {
       res.status(500).json({ message: error.message })
     }
   } else {
-    res
-      .status(403)
-      .json({ message: 'Access denied! You can update only your account!' })
+    res.status(403).json({ message: 'Access denied! You can update only your account!' })
   }
 }
 
@@ -135,4 +133,21 @@ const unFollowUser = async (req, res) => {
   }
 }
 
-export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser }
+const searchUser = async (req, res) => {
+  const { firstName, lastName } = req.query;
+
+  try {
+    const users = await UserModel.find({
+      $or: [
+        { firstName: { $regex: firstName, $options: 'i' } },
+        { lastName: { $regex: lastName, $options: 'i' } }
+      ]
+    });
+
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, searchUser }
