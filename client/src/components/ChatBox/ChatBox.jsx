@@ -80,62 +80,60 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
 
   return (
     <div className="ChatBox-container">
-        {chat ? (
-          <>
-            <div className="Chat-header">
-              <div className="follower">
-                <div>
-                  <img
-                    src={
-                      userData?.profilePicture
-                        ? serverPublic + userData.profilePicture
-                        : serverPublic + 'defaultProfile.jpg'
-                    }
-                    className="followerImage"
-                    style={{ width: '50px', height: '50px' }}
-                    alt="failed to load"
-                  />
-                  <div className="name" style={{ fontSize: '0.8rem' }}>
-                    <span>
-                      {userData?.firstname} {userData?.lastname}
-                    </span>
-                  </div>
+      {chat ? (
+        <>
+          <div className="Chat-header">
+            <div className="follower">
+              <div>
+                <img
+                  src={userData?.profilePicture ? serverPublic + userData.profilePicture : serverPublic + 'defaultProfile.jpg'}
+                  className="followerImage"
+                  style={{ width: '50px', height: '50px' }}
+                  alt="failed to load"
+                />
+                <div className="name" style={{ fontSize: '0.8rem' }}>
+                  <span>
+                    {userData?.firstname} {userData?.lastname}
+                  </span>
                 </div>
               </div>
-              <hr style={{ border: '0.1px solid #ececec', width: '85%' }} />
             </div>
-            {/* chatbox message */}
-            <div className="chat-body">
-              {messages &&
-                messages?.map((message) => (
-                  <div
-                    ref={scroll}
-                    className={
-                      message?.senderId === currentUser
-                        ? 'message own'
-                        : 'message'
-                    }
-                  >
-                    <span>{message?.text}</span>
-                    <span>{format(message?.createdAt)}</span>
-                  </div>
-                ))}
-            </div>
-            {/* chat-sender */}
-            <div className="chat-sender">
-              <div>+</div>
-              <InputEmoji value={newMessage} onChange={handleChange} />
-              <button className="send-button button" onClick={handleSend}>
-                Send
-              </button>
-            </div>
-          </>
-        ) : (
-          <span className="chatbox-empty-message">
-            Open a conversation to start a chat.
-          </span>
-        )}
-      </div>
+            <hr style={{ border: '0.1px solid #ececec', width: '85%' }} />
+          </div>
+          {/* chatbox message */}
+          <div className="chat-body">
+            {messages &&
+              messages?.map((message) => (
+                <div ref={scroll} className={message?.senderId === currentUser ? 'message own' : 'message'}>
+                  <span>{message?.text}</span>
+                  <span>{format(message?.createdAt)}</span>
+                </div>
+              ))}
+          </div>
+          {/* chat-sender */}
+          <div className="chat-sender">
+            <div>+</div>
+            <InputEmoji
+              value={newMessage}
+              onChange={handleChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSend(e)
+                }
+              }}
+              cleanOnEnter={true}
+              placeholder="Type a message"
+              style={{ width: '100%' }}
+            />
+            <button className="send-button button" onClick={handleSend}>
+              Send
+            </button>
+          </div>
+        </>
+      ) : (
+        <span className="chatbox-empty-message">Open a conversation to start a chat.</span>
+      )}
+    </div>
   )
 }
 

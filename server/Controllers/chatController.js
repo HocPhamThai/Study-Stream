@@ -9,6 +9,19 @@ const userChats = async (req, res) => {
   }
 }
 
+const createChat = async (req, res) => {
+  const newChat = new ChatModel({
+    members: [req.body.senderId, req.body.receiverId],
+  })
+
+  try {
+    const savedChat = await newChat.save()
+    res.status(200).json(savedChat)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
 const findChat = async (req, res) => {
   try {
     const chat = await ChatModel.findOne({
@@ -20,4 +33,4 @@ const findChat = async (req, res) => {
   }
 }
 
-export { findChat, userChats }
+export { findChat, userChats, createChat }

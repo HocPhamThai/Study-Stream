@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { getUser } from '../../api/UserRequest'
-import './Conversation.scss'
+import './ConversationInSearch.scss'
 
-const Conversation = ({ data, currentUserId, online }) => {
+const ConversationInSearch = ({ data, setShowChat }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [userData, setUserData] = useState(null)
 
-  const friendId = data?.members?.find((id) => id !== currentUserId)
+  const userId = data._id
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const { data } = await getUser(friendId)
+        const { data } = await getUser(userId)
         setUserData(data)
       } catch (error) {
         console.log(error)
       }
     }
     getUserData()
-  }, [friendId])
+  }, [userId])
 
   return (
     <>
-      <div className="conversation">
+      <div
+        className="conversation"
+        onClick={() =>
+          setTimeout(() => {
+            setShowChat(true)
+            window.location.reload()
+          }, 1000)
+        }
+      >
         <div>
-          {online && <div className="online-dot"></div>}
           <img
             src={userData?.profilePicture ? serverPublic + userData.profilePicture : serverPublic + 'defaultProfile.jpg'}
             className="followerImage"
@@ -34,7 +41,6 @@ const Conversation = ({ data, currentUserId, online }) => {
             <span>
               {userData?.firstname} {userData?.lastname}
             </span>
-            <span>{online ? 'Online' : 'Offline'}</span>
           </div>
         </div>
       </div>
@@ -43,4 +49,4 @@ const Conversation = ({ data, currentUserId, online }) => {
   )
 }
 
-export default Conversation
+export default ConversationInSearch

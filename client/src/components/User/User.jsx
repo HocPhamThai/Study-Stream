@@ -17,7 +17,7 @@ const User = ({ person, key }) => {
       <div>
         <img src={person.profilePicture ? serverPublic + person.profilePicture : serverPublic + 'defaultProfile.jpg'} alt="" className="followerImage" />
         <div className="name">
-          <span>{person.firstname}</span>
+          <span>{person.firstname + ' ' + person.lastname}</span>
           <span>{person.username.split('@')[0]}</span>
         </div>
       </div>

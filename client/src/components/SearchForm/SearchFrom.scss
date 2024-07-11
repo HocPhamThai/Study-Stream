@@ -1,0 +1,24 @@
+.btnBack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 30px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  padding: 0.5rem;
+}
+
+input:focus {
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
