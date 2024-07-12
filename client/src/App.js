@@ -12,6 +12,7 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import StudyRoom from './pages/StudyRoom/StudyRoom'
 import DashHome from './pages/DashHomePage/DashHome'
 import Pomodoro from './pages/PomoDoroPage/Pomodoro'
+import Test from './pages/Test/Test'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -41,6 +42,8 @@ function App() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/pomodoro" element={<Pomodoro />} />
             <Route path="/dashhome" element={<DashHome />} />
+            <Route path="/Test" element={<Test />} />
+
           </Routes>
         </div>
       )}

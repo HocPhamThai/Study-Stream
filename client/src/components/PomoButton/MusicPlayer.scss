@@ -1,0 +1,11 @@
+.audio-player-container {
+  background-color: rgba(211, 194, 238, 0.7); // Màu nền ban đầu với độ mờ 0.7
+
+  .rhap_container {
+    background-color: rgba(211, 194, 238, 0) !important; // Màu nền với độ mờ 0, !important để ghi đè
+  }
+
+  .rhap_main {
+    background-color: rgba(211, 194, 238, 0) !important; // Màu nền với độ mờ 0, !important để ghi đè
+  }
+}
