@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const API = axios.create({ baseURL: 'http://localhost:8001' })
 
-const  userChats = (id) => API.get(`/chat/${id}`)
+const createChat = (senderId, receiverId) => API.post('/chat', { senderId, receiverId })
+const userChats = (id) => API.get(`/chat/${id}`)
 
-export { userChats }
+export { userChats, createChat }

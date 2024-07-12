@@ -14,12 +14,12 @@ const enterRoom = async (req, res) => {
     if (user) {
       res.status(200).json({ message: 'User entered the room' });
     } else {
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ message: 'User not found' })
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message })
   }
-};
+}
 
 
 // Hàm xử lý khi người dùng thoát phòng
@@ -52,9 +52,9 @@ const exitRoom = async (req, res) => {
         });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message })
   }
-};
+}
 
 
 //get all User
@@ -106,22 +106,21 @@ const updateUser = async (req, res) => {
         new: true,
       })
 
-      const token = jwt.sign(
-        {
-          username: user.username,
-          id: user._id,
-        },
-        process.env.JWT_KEY,
-        { expiresIn: '1h' }
-      )
-      res.status(200).json({ user, token })
+      // const token = jwt.sign(
+      //   {
+      //     username: user.username,
+      //     id: user._id,
+      //   },
+      //   process.env.JWT_KEY,
+      //   { expiresIn: '1h' }
+      // )
+      // res.status(200).json({ user, token })
+      res.status(200).json({ user })
     } catch (error) {
       res.status(500).json({ message: error.message })
     }
   } else {
-    res
-      .status(403)
-      .json({ message: 'Access denied! You can update only your account!' })
+    res.status(403).json({ message: 'Access denied! You can update only your account!' })
   }
 }
 
@@ -190,4 +189,22 @@ const unFollowUser = async (req, res) => {
   }
 }
 
-export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, enterRoom, exitRoom }
+// use to search the user to chat
+const searchUsers = async (req, res) => {
+  const { query } = req.query
+
+  const regex = new RegExp(query.trim().replace(/\s+/g, '|'), 'i')
+
+  try {
+    const users = await UserModel.find({
+      $or: [{ firstname: { $regex: regex } }, { lastname: { $regex: regex } }],
+    })
+
+    res.status(200).json(users)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Server Error' })
+  }
+}
+
+export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, enterRoom, exitRoom, searchUsers }

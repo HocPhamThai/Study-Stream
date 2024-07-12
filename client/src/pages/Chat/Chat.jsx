@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { io } from 'socket.io-client'
-import { userChats } from '../../api/ChatRequest'
+import { createChat, userChats } from '../../api/ChatRequest'
 import ChatBox from '../../components/ChatBox/ChatBox'
 import Conversation from '../../components/Conversation/Conversation'
 import Comment from '../../img/comment.png'
@@ -11,16 +11,20 @@ import Home from '../../img/home.png'
 import Noti from '../../img/noti.png'
 import LogoSearch from './../../components/LogoSearch/LogoSearch'
 import './Chat.scss'
+import SearchForm from '../../components/SearchForm/SearchForm'
+import ConversationInSearch from '../../components/ConversationInSearch/ConversationInSearch'
+import { searchUsers } from '../../api/UserRequest'
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
-
   const [chats, setChats] = useState([])
   const [currentChat, setCurrentChat] = useState(null)
   const [onlineUsers, setOnlineUsers] = useState([])
   const [sendMessage, setSendMessage] = useState(null)
   const [receiveMessage, setReceiveMessage] = useState(null)
-
+  const [showChat, setShowChat] = useState(true)
+  const [userSearchs, setUserSearchs] = useState([])
+  const [querySearch, setQuerySearch] = useState('')
   const socket = useRef()
 
   useEffect(() => {
@@ -56,10 +60,36 @@ const Chat = () => {
     getChats()
   }, [user])
 
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const { data } = await searchUsers(querySearch)
+        setUserSearchs(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUsers()
+  }, [querySearch])
+
   const checkOnlineStatus = (chat) => {
-    const userId = chat.members.find((member) => member !== user._id)
-    const online = onlineUsers.find((user) => user.userId === userId)
+    const userId = chat.members?.find((member) => member !== user._id)
+    const online = onlineUsers?.find((user) => user.userId === userId)
     return online ? true : false
+  }
+
+  const onSearch = (query) => {
+    setQuerySearch(query)
+  }
+
+  const handleUserClick = async (receiverId) => {
+    try {
+      const newChat = await createChat(user._id, receiverId)
+      setChats((prevChats) => [...prevChats, newChat])
+      setCurrentChat(newChat)
+    } catch (error) {
+      console.error('Failed to create chat', error)
+    }
   }
 
   return (
@@ -69,16 +99,41 @@ const Chat = () => {
         <LogoSearch />
         <div className="Chat-container">
           <h2>Chats</h2>
-          <div className="Chat-list">
-            {chats.map((chat) => (
-              <div onClick={() => setCurrentChat(chat)}>
-                <Conversation
-                  data={chat}
-                  currentUserId={user._id}
-                  online={checkOnlineStatus(chat)}
-                />
-              </div>
-            ))}
+          <div>
+            <SearchForm onSearch={onSearch} setShowChat={setShowChat} />
+          </div>
+          <div className="Chat-list hover-scrollbar">
+            {showChat
+              ? chats.map((chat) => (
+                  <div
+                    key={chat._id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setCurrentChat(chat)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        setCurrentChat(chat)
+                      }
+                    }}
+                  >
+                    <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
+                  </div>
+                ))
+              : userSearchs.map((user) => (
+                  <div
+                    key={user._id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleUserClick(user._id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleUserClick(user._id)
+                      }
+                    }}
+                  >
+                    <ConversationInSearch data={user} setShowChat={setShowChat} />
+                  </div>
+                ))}
           </div>
         </div>
       </div>
@@ -97,12 +152,7 @@ const Chat = () => {
           </div>
         </div>
         {/* Chat body */}
-        <ChatBox
-          chat={currentChat}
-          currentUser={user._id}
-          setSendMessage={setSendMessage}
-          receiveMessage={receiveMessage}
-        />
+        <ChatBox chat={currentChat} currentUser={user._id} setSendMessage={setSendMessage} receiveMessage={receiveMessage} />
       </div>
     </div>
   )
