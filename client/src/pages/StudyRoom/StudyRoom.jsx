@@ -39,32 +39,37 @@ const StudyRoom = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const queryString = window.location.search;
-  //   const urlParams = new URLSearchParams(queryString);
-  //   const roomId = urlParams.get('room');
-  //   console.log(">>>> roomId: ", roomId)
-  //   console.log(">>>> user._id: ", user._id)
-  //   if (user) {
-  //     enterRoom(user._id);
-  //   }
-
-  //   joinRoomInit(roomId, expandVideoFrame);
-
-  //   return () => {
-  //     if (user) {
-  //       exitRoom(user._id);
-  //     }
-  //   };
-  // }, [user]);
-
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let roomId = urlParams.get('room') || 'main';
+    const roomId = urlParams.get('room') || 'main';
+
+    if (user) {
+      enterRoom(user._id)
+        .then(response => {
+          console.log(response.data.message); // Log success message if needed
+        })
+        .catch(error => {
+          console.error('Failed to enter room:', error);
+          // Handle error, e.g., show a notification to the user
+        });
+    }
 
     joinRoomInit(roomId, expandVideoFrame);
-  }, []);
+
+    return () => {
+      if (user) {
+        exitRoom(user._id)
+          .then(response => {
+            console.log(response.data.message); // Log success message if needed
+          })
+          .catch(error => {
+            console.error('Failed to exit room:', error);
+            // Handle error, e.g., show a notification to the user
+          });
+      }
+    };
+  }, [user]);
 
   useEffect(() => {
     const messagesContainer = document.getElementById('messages');

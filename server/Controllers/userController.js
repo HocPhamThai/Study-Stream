@@ -4,13 +4,15 @@ import jwt from 'jsonwebtoken'
 
 /// Hàm xử lý khi người dùng vào phòng
 const enterRoom = async (req, res) => {
-  const { _id } = req.body
   try {
-    const user = await UserModel.findById(_id)
+    const user = await UserModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { enterTime: new Date() },
+      { new: true } // Để trả về tài liệu đã được cập nhật
+    );
+
     if (user) {
-      user.enterTime = new Date()
-      await user.save()
-      res.status(200).json({ message: 'User entered the room' })
+      res.status(200).json({ message: 'User entered the room' });
     } else {
       res.status(404).json({ message: 'User not found' })
     }
@@ -19,25 +21,41 @@ const enterRoom = async (req, res) => {
   }
 }
 
+
 // Hàm xử lý khi người dùng thoát phòng
 const exitRoom = async (req, res) => {
-  const { _id } = req.body
   try {
-    const user = await UserModel.findById(_id)
+    const user = await UserModel.findOneAndUpdate(
+      { _id: req.params.id, enterTime: { $ne: null } }, // Kiểm tra enterTime != null
+      [
+        { $set: { enterTime: null } },
+        {
+          $inc: {
+            duration: {
+              $divide: [{ $subtract: [new Date(), "$enterTime"] }, 1000],
+            },
+          },
+        },
+      ],
+      { new: true }
+    );
+
     if (user) {
-      const exitTime = new Date()
-      const duration = (exitTime - user.enterTime) / 1000 // Tính thời gian ở trong phòng (đơn vị: giây)
-      user.enterTime = null // Xóa thời gian vào phòng
-      user.duration = (user.duration || 0) + duration // Cộng dồn thời gian
-      await user.save()
-      res.status(200).json({ message: 'User exited the room', duration })
+      res
+        .status(200)
+        .json({ message: 'User exited the room', duration: user.duration });
     } else {
-      res.status(404).json({ message: 'User not found' })
+      res
+        .status(404)
+        .json({
+          message: 'User not found or has not entered the room',
+        });
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 }
+
 
 //get all User
 const getAllUser = async (req, res) => {
