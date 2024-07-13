@@ -9,40 +9,89 @@ import Timer from '../../components/Timer/Timer'
 import ModalChangeBackgound from '../../components/PomoButton/ModalChangeBackgound'
 import './PomodoroBg.scss'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import MusicPlayer from '../../components/PomoButton/MusicPlayer'
+import { logOut } from '../../actions/AuthAction'
+
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function PomodoroBg() {
   const settingsInfo = useContext(SettingsContext)
   const { user } = useSelector((state) => state.authReducer.authData)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const style = {
     background: settingsInfo.bgColor,
   }
 
   return (
-    <div className="z-50 -m-4 min-h-screen flex flex-col h-screen bg-gradient-to-r from-blue-500" style={style} >
+    <div className="z-50 -m-4 min-h-screen flex flex-col h-screen bg-gradient-to-r from-orange-400" style={style} >
       {/* Top Bar */}
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
-          <span className='text-lg'>Hi, Tấn Lực Nguyễn</span>
-          <span className='flex cursor-pointer flex-center '>
+          <span className='text-lg'>Hi, {user.lastname} {user.firstname}</span>
+          <a href="/dashhome" className='flex cursor-pointer flex-center '>
             <svg
               className='size-[30px] '
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+              <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
               />
             </svg>
-            <span className='text-lg	'>Back</span>
-          </span>
+            <span className='text-lg'>Back</span>
+          </a>
         </div>
-        <div >
-          <img className="w-11 h-11 bg-gray-500 rounded-full mx-4" src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
-              : serverPublic + 'defaultProfile.jpg'
-          } alt="" />
+        <div className="relative mr-2">
+          <button
+            id="avatarButton"
+            onClick={toggleDropdown}
+            className="flex items-center space-x-2 focus:outline-none"
+          >
+            <img
+              className="w-11 h-11 bg-gray-500 rounded-full mx-4"
+              src={
+                user.profilePicture
+                  ? serverPublic + user.profilePicture
+                  : serverPublic + 'defaultProfile.jpg'
+              }
+              alt="User Avatar"
+            />
+          </button>
+          {isOpen && (
+            <div
+              id="userDropdown"
+              className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+            >
+              <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                <div className="font-medium truncate">{user.lastname} {user.firstname}</div>
+                <div className="font-small truncate text-gray-400">{user.username}</div>
+              </div>
+              <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                <li>
+                  <a href={`/profile/${user._id}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Help center
+                  </a>
+                </li>
+              </ul>
+              <div className="py-1">
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {/* <!-- Main Content --> */}
