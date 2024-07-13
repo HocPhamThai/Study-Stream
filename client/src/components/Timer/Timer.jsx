@@ -1,10 +1,10 @@
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import { useEffect, useRef, useState, useContext } from 'react'
 import PlayButton from '../../components/PomoButton/PlayButton'
 import PauseButton from '../../components/PomoButton/PauseButton'
 import SettingsContext from '../../store/SettingsContext'
-import ModalChangeBackgound from '../../components/PomoButton/ModalChangeBackgound'
-import ModalTimer from '../../components/PomoButton/ModalTimer'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 import './Timer.scss'
 
 const red = '#f54e4e';
@@ -18,6 +18,7 @@ const Timer = () => {
   const secondsLeftRef = useRef(secondsLeft)
   const isPausedRef = useRef(isPaused)
   const modeRef = useRef(mode)
+  const { user } = useSelector((state) => state.authReducer.authData)
 
   function tick() {
     secondsLeftRef.current--
@@ -25,7 +26,6 @@ const Timer = () => {
   }
 
   useEffect(() => {
-
     function switchMode() {
       const nextMode = modeRef.current === 'work' ? ' break' : 'work'
       const nextSeconds = (nextMode === 'work' ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60
@@ -44,14 +44,32 @@ const Timer = () => {
         return
       }
       if (secondsLeftRef.current === 0) {
+
+        if (modeRef.current === 'work') {
+
+          saveWorkSession()
+        }
         return switchMode()
       }
       tick()
 
-    }, 1000) // Fixed the interval function
+    }, 100) // Fixed the interval function
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])
+
+  const saveWorkSession = async () => {
+    try {
+      await axios.post('http://localhost:8001/workingtime/save', {
+        userId: user._id,  // Thay bằng ID của người dùng thực tế
+        duration: settingsInfo.workMinutes * 60,  // Sử dụng workMinutes để tính duration
+      })
+
+      console.log('Thời gian làm việc đã được lưu thành công.')
+    } catch (error) {
+      console.error('Lỗi khi lưu thời gian làm việc:', error)
+    }
+  }
 
   const totalSeconds = mode === 'work'
     ? settingsInfo.workMinutes * 60
@@ -70,6 +88,7 @@ const Timer = () => {
         <ModalChangeBackgound />
       </div> */}
       <div className="relative flex items-center justify-center h-100 bg-transparent rounded-full mb-4">
+
 
         <CircularProgressbar
           className='h-60 w-60'
