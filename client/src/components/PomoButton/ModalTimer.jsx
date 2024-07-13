@@ -5,19 +5,18 @@ import clock_icon from '../../img/icon_pomodoro/clock.png'
 
 const ModalTimer = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [tempWorkMinutes, setTempWorkMinutes] = useState(25);
-  const [tempBreakMinutes, setTempBreakMinutes] = useState(5);
-
+  const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
+  const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
 
   const toggleModal = () => {
     setIsOpen(!isOpen)
   }
 
   const handleSetTime = () => {
-    settingsInfo.setWorkMinutes(tempWorkMinutes);
-    settingsInfo.setBreakMinutes(tempBreakMinutes);
-    toggleModal();
-  };
+    settingsInfo.setWorkMinutes(tempWorkMinutes)
+    settingsInfo.setBreakMinutes(tempBreakMinutes)
+    toggleModal()
+  }
 
   const toggleModalCancel = () => {
     // settingsInfo.setWorkMinutes(25)
@@ -36,12 +35,7 @@ const ModalTimer = () => {
       >
         Set Times
       </button> */}
-      <img
-        src={clock_icon}
-        alt="Set Times"
-        onClick={toggleModal}
-        className="cursor-pointer size-8"
-      />
+      <img src={clock_icon} alt="Set Times" onClick={toggleModal} className="cursor-pointer size-8" />
       {isOpen && (
         <div
           id="progress-modal"
@@ -56,35 +50,31 @@ const ModalTimer = () => {
                 className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={toggleModalCancel}
               >
-                <span className="sr-only">Close modal</span>
-                ✕
+                <span className="sr-only">Close modal</span>✕
               </button>
               <div className="p-4 md:p-5">
-                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white text flex items-center justify-center">
-                  Set times
-                </h3>
-                <div className='mt-4 flex items-center gap-6'>
-                  <p className="w-full font-medium text-white">Work time (in min)</p>
+                <h3 className="mb-1 text-xl font-bold text-gray-90 flex items-center justify-center">Set times</h3>
+                <div className="mt-4 flex items-center gap-6">
+                  <p className="w-full font-medium ">Work time (in min)</p>
                   <input
                     min="1"
                     max="120"
-
                     value={tempWorkMinutes}
-                    onChange={e => setTempWorkMinutes(Number(e.target.value))}
+                    onChange={(e) => setTempWorkMinutes(Number(e.target.value))}
                     className="w-[100px] rounded-lg border-2 border-default-300 px-4 py-1.5 focus:outline-none"
                     type="number"
                   />
                 </div>
 
-                <div className='mt-4 flex items-center gap-6'>
-                  <p className="w-full font-medium text-white">Break time(in min): {settingsInfo.breakMinutes}</p>
+                <div className="mt-4 flex items-center gap-6">
+                  <p className="w-full font-medium">Break time(in min): </p>
                   <input
                     min="1"
                     max="120"
                     // value={settingsInfo.breakMinutes}
                     // onChange={e => settingsInfo.setBreakMinutes(Number(e.target.value))}
                     value={tempBreakMinutes}
-                    onChange={e => setTempBreakMinutes(Number(e.target.value))}
+                    onChange={(e) => setTempBreakMinutes(Number(e.target.value))}
                     className="w-[100px] rounded-lg border-2 border-default-300 px-4 py-1.5 focus:outline-none"
                     type="number"
                   />

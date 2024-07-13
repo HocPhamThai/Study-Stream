@@ -20,7 +20,7 @@ const InfoCard = () => {
 
   useEffect(() => {
     const fetchProfileUser = async () => {
-      console.log(">>>> profileUserId", profileUserId)
+      console.log('>>>> profileUserId', profileUserId)
       if (profileUserId === user._id) {
         setProfileUser(user)
       } else {
@@ -41,16 +41,8 @@ const InfoCard = () => {
         <h4>Your Info</h4>
         {profileUserId === user._id ? (
           <div>
-            <UilPen
-              width="2rem"
-              height="1.2rem"
-              onClick={() => setModalOpened(true)}
-            />
-            <ProfileModal
-              modalOpened={modalOpened}
-              setModalOpened={setModalOpened}
-              data={user}
-            />
+            <UilPen width="2rem" height="1.2rem" onClick={() => setModalOpened(true)} />
+            <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} data={user} />
           </div>
         ) : (
           ''

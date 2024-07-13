@@ -141,7 +141,7 @@ const Chat = () => {
       <div className="Right-side-chat">
         <div style={{ width: '20rem', alignSelf: 'flex-end' }}>
           <div className="navIcons">
-            <Link to="/home">
+            <Link to="/dashhome">
               <img src={Home} alt="" />
             </Link>
             <UilSetting />
