@@ -3,12 +3,21 @@ import FollowersCard from '../FollowersCard/FollowersCard'
 import LogoSearch from '../LogoSearch/LogoSearch'
 import InfoCard from '../InfoCard/InfoCard'
 import './ProfileLeft.scss'
+import LeftSideBar from './../LeftSideBar/LeftSideBar'
 const ProfileLeft = () => {
   return (
     <div className="ProfileLeft">
       <LogoSearch />
-      <InfoCard />
-      <FollowersCard />
+
+      <div className="SideBar">
+        <div>
+          <LeftSideBar />
+        </div>
+        <div>
+          <InfoCard />
+          <FollowersCard />
+        </div>
+      </div>
     </div>
   )
 }

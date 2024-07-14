@@ -5,3 +5,14 @@
   align-items: center;
   overflow: auto;
 }
+
+.SideBar {
+  margin-left: -1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.SideBar > div:nth-of-type(1) {
+  margin-top: -20px;
+}

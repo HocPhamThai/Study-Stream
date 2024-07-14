@@ -15,7 +15,7 @@ const saveTotalWorkingTime = async (req, res) => {
 
     if (existingRecord) {
       // Update or add daily record
-      const dailyRecordIndex = existingRecord.dailyRecords.findIndex(record => record.date.getTime() === date.getTime())
+      const dailyRecordIndex = existingRecord.dailyRecords.findIndex((record) => record.date.getTime() === date.getTime())
       if (dailyRecordIndex >= 0) {
         existingRecord.dailyRecords[dailyRecordIndex].duration += duration
       } else {
@@ -23,7 +23,7 @@ const saveTotalWorkingTime = async (req, res) => {
       }
 
       // Update weekly totals based on new daily record
-      const weeklyRecordIndex = existingRecord.weeklyTotals.findIndex(record => record.weekStart.getTime() === startOfWeek.getTime())
+      const weeklyRecordIndex = existingRecord.weeklyTotals.findIndex((record) => record.weekStart.getTime() === startOfWeek.getTime())
       if (weeklyRecordIndex >= 0) {
         existingRecord.weeklyTotals[weeklyRecordIndex].duration += duration
       } else {
@@ -33,7 +33,7 @@ const saveTotalWorkingTime = async (req, res) => {
       // Update monthly totals based on new daily record
       const month = today.getMonth() + 1 // Month is 0-indexed
       const year = today.getFullYear()
-      const monthlyRecordIndex = existingRecord.monthlyTotals.findIndex(record => record.month === month && record.year === year)
+      const monthlyRecordIndex = existingRecord.monthlyTotals.findIndex((record) => record.month === month && record.year === year)
       if (monthlyRecordIndex >= 0) {
         existingRecord.monthlyTotals[monthlyRecordIndex].duration += duration
       } else {
@@ -41,7 +41,7 @@ const saveTotalWorkingTime = async (req, res) => {
       }
 
       // Update yearly totals based on new daily record
-      const yearlyRecordIndex = existingRecord.yearlyTotals.findIndex(record => record.year === year)
+      const yearlyRecordIndex = existingRecord.yearlyTotals.findIndex((record) => record.year === year)
       if (yearlyRecordIndex >= 0) {
         existingRecord.yearlyTotals[yearlyRecordIndex].duration += duration
       } else {
@@ -106,7 +106,7 @@ const getDailyDuration = async (req, res) => {
     }
 
     const today = getTodayDate()
-    const dailyRecord = record.dailyRecords.find(record => record.date.getTime() === today.getTime())
+    const dailyRecord = record.dailyRecords.find((record) => record.date.getTime() === today.getTime())
     const todayDuration = dailyRecord ? dailyRecord.duration : 0
 
     res.status(200).json({ todayDuration })
@@ -127,7 +127,7 @@ const getWeeklyDuration = async (req, res) => {
     }
 
     const startOfWeek = getStartOfWeek()
-    const weeklyRecord = record.weeklyTotals.find(record => record.weekStart.getTime() === startOfWeek.getTime())
+    const weeklyRecord = record.weeklyTotals.find((record) => record.weekStart.getTime() === startOfWeek.getTime())
     const weekDuration = weeklyRecord ? weeklyRecord.duration : 0
 
     res.status(200).json({ weekDuration })
@@ -148,7 +148,7 @@ const getMonthlyDuration = async (req, res) => {
     }
 
     const { month, year } = getCurrentMonthAndYear()
-    const monthlyRecord = record.monthlyTotals.find(record => record.month === month && record.year === year)
+    const monthlyRecord = record.monthlyTotals.find((record) => record.month === month && record.year === year)
     const monthDuration = monthlyRecord ? monthlyRecord.duration : 0
 
     res.status(200).json({ monthDuration })
@@ -169,7 +169,7 @@ const getYearlyDuration = async (req, res) => {
     }
 
     const year = new Date().getFullYear()
-    const yearlyRecord = record.yearlyTotals.find(record => record.year === year)
+    const yearlyRecord = record.yearlyTotals.find((record) => record.year === year)
     const yearDuration = yearlyRecord ? yearlyRecord.duration : 0
 
     res.status(200).json({ yearDuration })
@@ -195,6 +195,5 @@ const getTotalDuration = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
-
 
 export { getDailyDuration, getWeeklyDuration, getMonthlyDuration, getYearlyDuration, getTotalDuration, saveTotalWorkingTime }
