@@ -1,21 +1,19 @@
 // src/components/StudyRoom.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import './StudyRoom.scss';
 import './Main.scss';
 import Logo from "../../img/logo.png";
-import { joinRoomInit } from '../../actions/StudyRoom_rtc';
-import { useParams } from 'react-router-dom'
+import { joinRoomInit, sendMessage } from '../../actions/StudyRoom_rtc';
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
 import { enterRoom, exitRoom } from '../../api/UserRequest'
 
 const StudyRoom = () => {
-  const [activeMemberContainer, setActiveMemberContainer] = useState(false);
+  const [activeMemberContainer, setActiveMemberContainer] = useState(false)
   const [activeChatContainer, setActiveChatContainer] = useState(false);
-  const [profileUser, setProfileUser] = useState({})
   const profileUserId = useSelector((state) => state.authReducer.profileUserId);
   const authData = useSelector((state) => state.authReducer.authData);
-  const user = authData ? authData.user : null;
+  const user = authData ? authData.user : null
+  const [message, setMessage] = useState('')
 
   const expandVideoFrame = (e) => {
     const displayFrame = document.getElementById('stream__box');
@@ -37,17 +35,19 @@ const StudyRoom = () => {
         videoFrames[i].style.width = '100px';
       }
     }
-  };
+  }
 
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const roomId = urlParams.get('room') || 'main';
+    const username = user !== null ? (user.firstname + ' ' + user.lastname) : 'Anonymous'
 
     if (user) {
       enterRoom(user._id)
         .then(response => {
           console.log(response.data.message); // Log success message if needed
+          sessionStorage.setItem('activeRoom', roomId)
         })
         .catch(error => {
           console.error('Failed to enter room:', error);
@@ -55,7 +55,7 @@ const StudyRoom = () => {
         });
     }
 
-    joinRoomInit(roomId, expandVideoFrame);
+    joinRoomInit(roomId, expandVideoFrame, username);
 
     return () => {
       if (user) {
@@ -121,7 +121,12 @@ const StudyRoom = () => {
     // }
   }, [])
 
-
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    const username = user !== null ? (user.firstname + ' ' + user.lastname) : 'Anonymous'
+    await sendMessage(message, username);
+    setMessage(''); // Reset lại input sau khi gửi tin nhắn
+  }
 
   return (
     <div className='studyroom'>
@@ -163,8 +168,8 @@ const StudyRoom = () => {
               <path d="M24 20h-3v4l-5.333-4h-7.667v-4h2v2h6.333l2.667 2v-2h3v-8.001h-2v-2h4v12.001zm-15.667-6l-5.333 4v-4h-3v-14.001l18 .001v14h-9.667zm-6.333-2h3v2l2.667-2h8.333v-10l-14-.001v10.001z" />
             </svg>
           </button>
-          <a className="nav__link" id="create__room__btn" href="lobby.html">
-            Create Room
+          <a className="nav__link" id="create__room__btn" href="/dashhome">
+            Go back
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={24}
@@ -183,13 +188,9 @@ const StudyRoom = () => {
           <section id="members__container">
             <div id="members__header">
               <p>Participants</p>
-              <strong id="members__count">27</strong>
+              <strong id="members__count">0</strong>
             </div>
             <div id="member__list">
-              <div className="member__wrapper" id="member__2__wrapper">
-                <span className="green__icon" />
-                <p className="member_name">{user ? user.firstname + ' ' + user.lastname : 'Anonymous'}</p>
-              </div>
             </div>
           </section>
 
@@ -250,16 +251,18 @@ const StudyRoom = () => {
           <section id="messages__container">
             <div id="messages">
               <div className="message__wrapper">
-                <div className="message__body">
-                  <strong className="message__author">Shahriar P. Shuvo 👋</strong>
-                  <p className="message__text">
-                    Does anyone know when he will be back?
-                  </p>
-                </div>
+
               </div>
             </div>
-            <form id="message__form">
-              <input type="text" name="message" placeholder="Send a message...." />
+            <form id="message__form" onSubmit={handleSendMessage}>
+              <input
+                type="text"
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+              />
+              <button type="submit" className='hidden'>Send</button>
             </form>
           </section>
         </div>
@@ -268,4 +271,4 @@ const StudyRoom = () => {
   );
 }
 
-export default StudyRoom;
+export default StudyRoom
