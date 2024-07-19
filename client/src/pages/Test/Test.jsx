@@ -1,48 +1,21 @@
-import React from 'react'
-import Logo from '../../img/logo.png'
+import React from 'react';
 
-const Test = () => {
+const IframeComponent = () => {
   return (
-    <div className="bg-gray-200 z-50 -m-4">
-      {/* Top Bar */}
-      <div className="flex justify-between items-center bg-gray-400 p-2 ">
-        <div className="w-9 h-9 relative">
-          <img src={Logo} alt="" />
-        </div>
-        <div className="w-48 h-4 bg-gray-500 rounded-full"></div>
-        <div className="w-8 h-8 bg-gray-500 rounded-full"></div>
-      </div>
-      <div className="flex">
-        {/* sidebar */}
-        <div className="w-[48px] h-screen bg-gray-300 flex flex-col items-center py-4 space-y-4">
-          <div className="w-8 h-8 bg-gray-400 rounded-full"></div>
-          <div className="w-8 h-8 bg-gray-400 rounded-full"></div>
-          <div className="w-8 h-8 bg-gray-400 rounded-full"></div>
-          <div className="w-8 h-8 bg-gray-400 rounded-full"></div>
-        </div>
-        {/* <!-- Main Content --> */}
-        <div className="flex-grow p-4 space-y-4">
-          {/* <!-- Main Section --> */}
-          <div className="flex space-x-4">
-            {/* <!-- Timers Section --> */}
-            <div className="bg-white border-2 p-4 flex-grow">
-              <div className="flex items-center justify-center h-40 bg-gray-200 rounded-full mb-4">
-                <span className="text-black">Timers</span>
-              </div>
-              <div className="bg-white h-10 mb-2"></div>
-              <div className="bg-white h-10 mb-2"></div>
-              <div className="bg-white h-10"></div>
-            </div>
-            {/* <!-- Right Sidebar --> */}
-            <div className="bg-gray-400 w-40 h-40"></div>
-          </div>
-          {/* <!-- Bottom Section --> */}
-          <div className="bg-gray-400 h-40"></div>
-        </div>
-        {/* Right bar */}
-      </div>
+    <div className="relative mr-2">
+      <h1>Embedded Content</h1>
+      <iframe
+        className="pointer-events-none fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        src="https://www.youtube.com/embed/AuhfSWFOziU?autoplay=1&loop=1&playlist=AuhfSWFOziU&amp;mute=1&amp;controls=0&amp;start=286&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1"
+        title="Example Iframe"
+        frameBorder="0"
+        allowFullScreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        style={{ width: '105vw', height: '120%' }}
+      ></iframe>
     </div>
-  )
-}
+  );
+};
 
-export default Test
+export default IframeComponent;
