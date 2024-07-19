@@ -90,7 +90,7 @@ const DashHome = () => {
             {/* Stats section */}
             <div className="col-start-1 col-end-5 bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] h-32 flex space-x-4 p-4 rounded-xl">
               <div className="bg-[#FFF161] flex flex-1 flex-col items-center justify-center p-4 shadow">
-                <div> Your Story:</div>
+                <div className="text-medium font-semibold md:text-lg"> Your Story:</div>
                 <div>{posts.length}</div>
               </div>
               <div className="bg-[#FFF161] flex flex-1 flex-col  items-center justify-center p-4 shadow">
