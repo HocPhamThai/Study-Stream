@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, useContext } from 'react'
 import axios from 'axios'
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import Posts from './../../components/Posts/Posts'
+import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
@@ -60,13 +61,10 @@ const DashHome = () => {
           <img className="h-full" src={Logo} alt="Logo" />
           <span className="text-lg">Hi, {user.firstname + ' ' + user.lastname}</span>
         </div>
-        <div>
-          <img
-            className="w-11 h-11 bg-gray-500 rounded-full mx-4"
-            src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'defaultProfile.jpg'}
-            alt=""
-          />
+        <div className='relative mr-2'>
+          <AvatarDropdown />
         </div>
+
       </div>
       <div className="flex">
         {/* sidebar */}
