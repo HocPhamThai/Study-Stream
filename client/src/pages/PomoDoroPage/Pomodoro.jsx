@@ -20,7 +20,7 @@ const green = '#4aec8c'
 const Pomodoro = () => {
   const [workMinutes, setWorkMinutes] = useState(25)
   const [breakMinutes, setBreakMinutes] = useState(5)
-  const [bgColor, setBgColor] = useState('bg-red-200')
+  const [bgColor, setBgColor] = useState('Orange')
 
   return (
     <SettingsContext.Provider value={{
