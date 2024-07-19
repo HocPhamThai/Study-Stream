@@ -1,4 +1,6 @@
 .studyroom {
+  color: white;
+
   .container-main {
     margin-top: 74px;
     /* height: clac(100vh - 74px); */
@@ -71,7 +73,7 @@
 
   .member_name {
     font-size: 14px;
-    line-height: 0;
+    line-height: 1;
   }
 
   #messages__container {
