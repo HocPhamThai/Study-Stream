@@ -7,6 +7,7 @@ const ModalTimer = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
+  const settingsInfo = useContext(SettingsContext)
 
   const toggleModal = () => {
     setIsOpen(!isOpen)
@@ -15,6 +16,7 @@ const ModalTimer = () => {
   const handleSetTime = () => {
     settingsInfo.setWorkMinutes(tempWorkMinutes)
     settingsInfo.setBreakMinutes(tempBreakMinutes)
+    settingsInfo.setMode('work')
     toggleModal()
   }
 
@@ -23,8 +25,6 @@ const ModalTimer = () => {
     // settingsInfo.setBreakMinutes(5)
     setIsOpen(!isOpen)
   }
-
-  const settingsInfo = useContext(SettingsContext)
 
   return (
     <>
@@ -35,7 +35,7 @@ const ModalTimer = () => {
       >
         Set Times
       </button> */}
-      <img src={clock_icon} alt="Set Times" onClick={toggleModal} className="cursor-pointer size-8" />
+      <img src={clock_icon} alt="Set Times" onClick={toggleModal} className="cursor-pointer size-8 " />
       {isOpen && (
         <div
           id="progress-modal"
@@ -53,21 +53,24 @@ const ModalTimer = () => {
                 <span className="sr-only">Close modal</span>✕
               </button>
               <div className="p-4 md:p-5">
-                <h3 className="mb-1 text-xl font-bold text-gray-90 flex items-center justify-center">Set times</h3>
+                <h3 className="mb-1 text-xl font-bold text-gray-90 flex items-center justify-center text-white">Set times</h3>
                 <div className="mt-4 flex items-center gap-6">
-                  <p className="w-full font-medium ">Work time (in min)</p>
+                  <p className="w-full font-medium text-white">Work time (in min)</p>
                   <input
                     min="1"
                     max="120"
-                    value={tempWorkMinutes}
-                    onChange={(e) => setTempWorkMinutes(Number(e.target.value))}
+                    value={tempWorkMinutes === "" ? "" : tempWorkMinutes}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setTempWorkMinutes(value === "" ? 0 : Number(value));
+                    }}
                     className="w-[100px] rounded-lg border-2 border-default-300 px-4 py-1.5 focus:outline-none"
                     type="number"
                   />
                 </div>
 
                 <div className="mt-4 flex items-center gap-6">
-                  <p className="w-full font-medium">Break time(in min): </p>
+                  <p className="w-full font-medium text-white">Break time(in min): </p>
                   <input
                     min="1"
                     max="120"
@@ -91,7 +94,7 @@ const ModalTimer = () => {
                   <button
                     onClick={toggleModalCancel}
                     type="button"
-                    className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                   >
                     Cancel
                   </button>

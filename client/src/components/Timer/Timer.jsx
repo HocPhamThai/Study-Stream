@@ -1,17 +1,14 @@
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import { useEffect, useRef, useState, useContext } from 'react'
-import PlayButton from '../../components/PomoButton/PlayButton'
-import PauseButton from '../../components/PomoButton/PauseButton'
 import SettingsContext from '../../store/SettingsContext'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import './Timer.scss'
-
+import Logo from '../../img/logo.png'
 const red = '#f54e4e';
 const green = '#4aec8c';
 
-const Timer = () => {
-  const settingsInfo = useContext(SettingsContext);
+const Timer = (color) => {
+  const settingsInfo = useContext(SettingsContext)
   const [isPaused, setIsPaused] = useState(true)
   const [mode, setMode] = useState('work')
   const [secondsLeft, setSecondsLeft] = useState(0)
@@ -19,6 +16,8 @@ const Timer = () => {
   const isPausedRef = useRef(isPaused)
   const modeRef = useRef(mode)
   const { user } = useSelector((state) => state.authReducer.authData)
+  const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
+  const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
 
   function tick() {
     secondsLeftRef.current--
@@ -35,6 +34,9 @@ const Timer = () => {
       setSecondsLeft(nextSeconds)
       secondsLeftRef.current = nextSeconds
     }
+    setTempWorkMinutes(settingsInfo.workMinutes)
+    setTempBreakMinutes(settingsInfo.breakMinutes)
+    setMode(settingsInfo.mode)
 
     secondsLeftRef.current = settingsInfo.workMinutes * 60
     setSecondsLeft(secondsLeftRef.current)
@@ -71,6 +73,20 @@ const Timer = () => {
     }
   }
 
+  const handleReset = () => {
+    settingsInfo.setWorkMinutes(tempWorkMinutes)
+    settingsInfo.setBreakMinutes(tempBreakMinutes)
+
+    setIsPaused(true)
+    isPausedRef.current = true
+
+    setMode('work')
+    const newMode = modeRef.current
+    const newSeconds = (newMode === 'work' ? tempWorkMinutes : tempBreakMinutes) * 60
+    setSecondsLeft(newSeconds)
+    secondsLeftRef.current = newSeconds
+  }
+
   const totalSeconds = mode === 'work'
     ? settingsInfo.workMinutes * 60
     : settingsInfo.breakMinutes * 60
@@ -83,71 +99,50 @@ const Timer = () => {
 
   return (
     <>
-      {/* <div className="flex items-center justify-end space-x-4 h-auto bg-gray-500">
-        <ModalTimer />
-        <ModalChangeBackgound />
-      </div> */}
+
       <div className="relative flex items-center justify-center h-100 bg-transparent rounded-full mb-4">
-
-
-        <CircularProgressbar
-          className='h-60 w-60'
-          value={percentage}
-          text={minutes + ':' + seconds}
-          styles={buildStyles({
-            textColor: '#000',
-            pathColor: mode === 'work' ? red : green,
-            trailColor: 'rgba(255,255,255,2)',
-          })}
-        />
-
-
-      </div>
-
-      <div className="relative bg-transparent flex items-center justify-center h-20">
-        {isPaused ?
-          // <div
-          //   className="absolute top-0 left-0 w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-primary to-primary-2 p-4 flex items-center justify-center opacity-80 hover:opacity-100"
-          //   onClick={() => { setIsPaused(false); isPausedRef.current = false }}
-          // >
-          //   Start
-          // </div>
-          // <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Start</button>
-          <button
-            onClick={() => { setIsPaused(false); isPausedRef.current = false }}
-            type="button" class="w-30 text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        <div
+          className='timer group fixed left-1/2 top-[70px] z-[999] -translate-x-1/2 rounded-t-lg text-white bg-black/90 w-[400px]'
+        >
+          <div className='absolute left-1/2 top-8 -translate-x-1/2 -translate-y-full cursor-move'>
+            <img className='w-[100px] h-[100px]' src={Logo} alt="Study Stream Logo" />
+          </div>
+          {mode === 'work' ?
+            <p className='pt-6 text-center text-lg font-medium text-red-400'>Working Session </p>
+            :
+            <p className='pt-6 text-center text-lg font-medium text-green-400'> Relaxing... </p>
+          }
+          <div
+            className='px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4'
           >
-            Start
-          </button>
-          :
-          <button
-            onClick={() => { setIsPaused(true); isPausedRef.current = true }}
-            type="button" class="w-30 text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            <span>{minutes + ':' + seconds}</span>
+          </div>
+        </div>
+        <div className="relative flex w-[400px] top-[268px]">
+          {isPaused ?
+            <div
+              className='w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white'
+              onClick={() => { setIsPaused(false); isPausedRef.current = false }}
+            >
+              Start
+            </div>
+            :
+            <div
+              className='w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white'
+              onClick={() => { setIsPaused(true); isPausedRef.current = true }}
+            >
+              Pause
+            </div>
+          }
+
+          <div
+            className='w-full cursor-pointer overflow-hidden rounded-br bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-90 hover:opacity-100 text-white'
+            onClick={handleReset}
           >
-            Pause
-          </button>
-          // <div
-          //   className="absolute top-0 left-0 w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-primary to-primary-2 p-4 flex items-center justify-center opacity-80 hover:opacity-100"
-          //   onClick={() => { setIsPaused(true); isPausedRef.current = true }}
-          // >
-          //   Pause
-          // </div>
-        }
-
-
-        {/* {isPaused ?
-          <PlayButton
-            className=" flex items-center justify-center"
-            onClick={() => { setIsPaused(false); isPausedRef.current = false }}
-          />
-          : <PauseButton
-            className=" flex items-center justify-center"
-            onClick={() => { setIsPaused(true); isPausedRef.current = true }}
-
-          />
-        } */}
+            Reset
+          </div>
+        </div>
       </div>
-
 
     </>
   )

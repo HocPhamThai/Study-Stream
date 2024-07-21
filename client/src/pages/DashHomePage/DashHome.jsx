@@ -52,8 +52,7 @@ const DashHome = () => {
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
-      {/* {console.log(">>> Daily duration: ", formatDuration(dailyDuration.todayDuration))} */}
-      {/* {console.log(">>> Daily duration: ", dailyDuration?.todayDuration)} */}
+
 
       {/* Top Bar */}
       <div className="flex justify-between items-center bg-transparent p-2 ">
@@ -113,7 +112,7 @@ const DashHome = () => {
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] col-start-2 col-end-3 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D] to-[#FFF161] col-start-2 col-end-3 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">Focus room 2</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
               <button className="bg-[#FFCA48] px-4 py-2 border rounded-xl border-red-100 hover:shadow-md" type="button">

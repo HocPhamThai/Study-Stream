@@ -13,7 +13,7 @@ const LeftSideBar = () => {
   return (
     <div>
       <div className="w-[48px] h-screen flex flex-col items-center py-4 space-y-4 mx-auto ml-5">
-        <span className="flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300">
+        <span className="flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300 blue-700">
           <div style={{ width: '100%', height: '100%' }}>
             <Link to="/dashhome">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 opacity-75">
@@ -25,7 +25,7 @@ const LeftSideBar = () => {
         </span>
         <span className="flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300">
           <div style={{ width: '100%', height: '100%' }}>
-            <Link to="/pomodoro">
+            <Link to="/topic">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 opacity-75">
                 <path
                   fillRule="evenodd"
