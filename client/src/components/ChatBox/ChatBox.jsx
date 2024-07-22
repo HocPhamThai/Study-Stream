@@ -1,82 +1,82 @@
-import React, { useEffect, useRef, useState } from 'react'
-import InputEmoji from 'react-input-emoji'
-import { format } from 'timeago.js'
-import { createMessage, getMessages } from '../../api/MessageRequest'
-import { getUser } from '../../api/UserRequest'
-import './ChatBox.scss'
+import React, { useEffect, useRef, useState } from 'react';
+import InputEmoji from 'react-input-emoji';
+import { format } from 'timeago.js';
+import { createMessage, getMessages } from '../../api/MessageRequest';
+import { getUser } from '../../api/UserRequest';
+import './ChatBox.scss';
 
 const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
-  const [userData, setUserData] = useState(null)
-  const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
-  const scroll = useRef()
+  const [userData, setUserData] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const scroll = useRef();
 
   // receive message from socket server
   useEffect(() => {
     if (receiveMessage !== null && receiveMessage?.chatId === chat._id) {
-      setMessages([...messages, receiveMessage])
+      setMessages([...messages, receiveMessage]);
     }
-  }, [receiveMessage])
+  }, [receiveMessage]);
 
   // fetching data for header
   useEffect(() => {
-    const userId = chat?.members?.find((id) => id !== currentUser)
+    const userId = chat?.members?.find((id) => id !== currentUser);
     const getUserData = async () => {
       try {
-        const { data } = await getUser(userId)
-        setUserData(data)
+        const { data } = await getUser(userId);
+        setUserData(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    };
     if (chat !== null) {
-      getUserData()
+      getUserData();
     }
-  }, [chat, currentUser])
+  }, [chat, currentUser]);
 
   // fetching messages
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const { data } = await getMessages(chat?._id)
-        setMessages(data)
+        const { data } = await getMessages(chat?._id);
+        setMessages(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    };
     if (chat !== null) {
-      fetchMessages()
+      fetchMessages();
     }
-  }, [chat])
+  }, [chat]);
 
   const handleChange = (newMessage) => {
-    setNewMessage(newMessage)
-  }
+    setNewMessage(newMessage);
+  };
 
   const handleSend = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let message = {
       chatId: chat._id,
       senderId: currentUser,
       text: newMessage,
-    }
+    };
     // send message to server
     try {
-      const { data } = await createMessage(message)
-      setMessages([...messages, data])
-      setNewMessage('')
+      const { data } = await createMessage(message);
+      setMessages([...messages, data]);
+      setNewMessage('');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     // send message to socket server
-    const receiveId = chat?.members?.find((member) => member !== currentUser)
-    setSendMessage({ ...message, receiveId })
-  }
+    const receiveId = chat?.members?.find((member) => member !== currentUser);
+    setSendMessage({ ...message, receiveId });
+  };
 
   useEffect(() => {
-    scroll.current?.scrollIntoView({ behavior: 'smooth' })
-  })
+    scroll.current?.scrollIntoView({ behavior: 'smooth' });
+  });
 
   return (
     <div className="ChatBox-container">
@@ -98,7 +98,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
                 </div>
               </div>
             </div>
-            <hr style={{ border: '0.1px solid #ececec', width: '85%' }} />
+            <hr style={{ border: '0.1px solid #ececec', width: '100%', marginTop: '8px' }} />
           </div>
           {/* chatbox message */}
           <div className="chat-body">
@@ -118,7 +118,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
               onChange={handleChange}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  handleSend(e)
+                  handleSend(e);
                 }
               }}
               cleanOnEnter={true}
@@ -134,7 +134,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
         <span className="chatbox-empty-message">Open a conversation to start a chat.</span>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ChatBox
+export default ChatBox;

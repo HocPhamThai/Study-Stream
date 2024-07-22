@@ -39,8 +39,13 @@ const PostShare = () => {
       } catch (error) {
         console.log(error)
       }
+      reset()
+    }
+    try {
       dispatch(uploadPost(newPost))
       reset()
+    } catch (error) {
+      console.log(error)
     }
   }
 
