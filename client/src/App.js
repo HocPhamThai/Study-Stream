@@ -36,6 +36,7 @@ function App() {
           {/* <div className="blur" style={{ top: '-18%', right: '0' }}></div>
           <div className="blur" style={{ top: '36%', left: '-8rem' }}></div> */}
           <Routes>
+            {/* {user.isAdmin ? <Route path="/" element={<Navigate to="/CRUDadminhere" />} /> : <Route path="/" element={<Navigate to="/home" />} />} */}
             <Route path="/" element={user ? <Navigate to="dashhome" /> : <Navigate to="../auth" />} />
             <Route path="/forgot" element={user ? <Navigate to="dashhome" /> : <ForgotPassword />} />
             <Route path="/home" element={user ? <Home /> : <Navigate to="../auth" />} />
@@ -48,7 +49,6 @@ function App() {
             <Route path="/dashhome" element={user ? <DashHome /> : <Navigate to="../auth" />} />
             <Route path="/topic" element={<Topic />} />
             <Route path="/topic/:entry" element={<TopicPomodoro />} />
-
           </Routes>
         </div>
       )}
