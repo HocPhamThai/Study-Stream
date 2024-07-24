@@ -55,6 +55,22 @@
   transition: all 100ms ease-out;
 }
 
+.contrast-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  border-radius: 0.5rem;
+  background: transparent;
+  box-shadow: inset 0 0 0 0.1rem var(--orange);
+}
+
+.contrast-button:hover {
+  color: white;
+  background: var(--buttonBg);
+  transition: all 100ms ease-out;
+}
+
 button:disabled {
   background: silver;
   pointer-events: none;

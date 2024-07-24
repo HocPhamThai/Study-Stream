@@ -52,18 +52,15 @@ const DashHome = () => {
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
-
-
       {/* Top Bar */}
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
           <span className="text-lg">Hi, {user.firstname + ' ' + user.lastname}</span>
         </div>
-        <div className='relative mr-2'>
+        <div className="relative mr-2">
           <AvatarDropdown />
         </div>
-
       </div>
       <div className="flex">
         {/* sidebar */}
@@ -87,13 +84,13 @@ const DashHome = () => {
           </div>
           <div className="grid grid-cols-6  gap-4 ">
             {/* Stats section */}
-            <div className="col-start-1 col-end-5 bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] h-32 flex space-x-4 p-4 rounded-xl">
-              <div className="bg-[#FFF161] flex flex-1 flex-col items-center justify-center p-4 shadow">
-                <div className="text-medium font-semibold md:text-lg"> Your Story:</div>
+            <div className="col-start-1 col-end-5 bg-gradient-to-r bg-white h-32 flex space-x-4 p-4 rounded-xl">
+              <div className=" flex flex-1 flex-col items-center justify-center p-4">
+                <div className="text-medium font-semibold md:text-md"> Your Story:</div>
                 <div>{posts.length}</div>
               </div>
-              <div className="bg-[#FFF161] flex flex-1 flex-col  items-center justify-center p-4 shadow">
-                <div>Total time:</div>
+              <div className=" flex flex-1 flex-col  items-center justify-center p-4">
+                <div className="text-medium font-semibold md:text-md">Total time:</div>
                 <div>{formatDuration(dailyDuration?.todayDuration || 0)}</div>
               </div>
             </div>
@@ -105,31 +102,31 @@ const DashHome = () => {
                 Study Room
               </button>
             </div> */}
-            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] col-start-1 col-end-2 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-start-1 col-end-2 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">Focus room 1</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
-              <button onClick={focusRoom1} className="bg-[#FF9C1D] px-4 py-2 border rounded-xl border-red-100 hover:shadow-md" type="button">
+              <button onClick={focusRoom1} className="contrast-button px-4 py-2 border rounded-xl " type="button">
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D] to-[#FFF161] col-start-2 col-end-3 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-start-2 col-end-3  m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">Focus room 2</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
-              <button className="bg-[#FFCA48] px-4 py-2 border rounded-xl border-red-100 hover:shadow-md" type="button">
+              <button className="button px-4 py-2 border rounded-xl " type="button">
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] col-start-3 col-end-4 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-start-3 col-end-4  m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">Focus room 3</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
-              <button className="bg-[#FF9C1D] px-4 py-2 border rounded-xl border-red-100 hover:shadow-md" type="button">
+              <button className="button px-4 py-2 border rounded-xl  " type="button">
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-gradient-to-r from-[#FF9C1D]  to-[#FFF161] col-start-4 col-end-5 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-start-4 col-end-5 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">Focus room 4</p>
               <p className="mt-4 text-sm">Work balance && Love your work</p>
-              <button className="bg-[#FFCA48] px-4 py-2 border rounded-xl border-red-100 hover:shadow-md" type="button">
+              <button className="button px-4 py-2 border rounded-xl  " type="button">
                 Join now
               </button>
             </div>

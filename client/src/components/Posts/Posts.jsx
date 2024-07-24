@@ -18,6 +18,8 @@ function Posts() {
   if (!posts) return 'No Posts'
   if (params.id) posts = posts.filter((post) => post.userId === params.id)
 
+  // sort posts by date
+  posts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   return loading ? (
     'Fetching Timeline Posts...'
   ) : (
