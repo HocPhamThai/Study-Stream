@@ -8,4 +8,11 @@
   .rhap_main {
     background-color: rgba(211, 194, 238, 0) !important; // Màu nền với độ mờ 0, !important để ghi đè
   }
+
+  .custom-audio-player {
+    border-radius: 30px;
+    /* Bạn có thể thay đổi giá trị này để điều chỉnh độ bo tròn */
+    // overflow: hidden;
+    /* Để đảm bảo các phần tử con không vượt ra ngoài vùng bo tròn */
+  }
 }

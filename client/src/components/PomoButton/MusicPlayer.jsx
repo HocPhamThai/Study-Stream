@@ -3,8 +3,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import music1 from "../../music/music_1.mp3";
 import Modal from 'react-modal';
-import { FaMusic } from 'react-icons/fa';
-import { TbRepeat } from "react-icons/tb";
+
 import './MusicPlayer.scss'
 
 const MusicPlayer = () => {
@@ -19,15 +18,15 @@ const MusicPlayer = () => {
     },
     {
       name: 'Song 2',
-      src: 'path_to_song_2.mp3'
+      src: 'https://firebasestorage.googleapis.com/v0/b/ngontumathuat-d946a.appspot.com/o/mood-audio%2FThe%20Name%20of%20Life.mp3?alt=media&token=0bb73f69-92b7-4bca-9002-3bc4c818429d'
     },
     {
       name: 'Song 3',
-      src: 'path_to_song_3.mp3'
+      src: music1
     },
     {
       name: 'Song 4',
-      src: 'path_to_song_4.mp3'
+      src: music1
     },
     {
       name: 'Song 5 Song 5 Song 5 Song 5',
@@ -79,7 +78,7 @@ const MusicPlayer = () => {
     <div className="flex flex-col items-center justify-center bg-transparent text-black ">
       <div className="w-full max-w-md audio-player-container">
         <AudioPlayer
-          className='bg-transparent'
+          className=' custom-audio-player'
           src={tracks[currentTrack].src}
           onPlay={(e) => console.log('onPlay')}
           showSkipControls={true}
@@ -89,19 +88,18 @@ const MusicPlayer = () => {
           onClickNext={handleClickNext}
           onEnded={handleEnded}
           loop={isRepeat}
-          // customAdditionalControls={[
-          //   <button
-          //     key="repeat-button"
-          //     onClick={toggleRepeat}
-          //     className={`custom-repeat-button ${isRepeat ? 'text-red-500' : 'text-gray-500'}`}
-          //   >
-          //     <TbRepeat className={`text-xl ${isRepeat ? 'text-red-500' : 'text-gray-500'}`} />
-          //   </button>,
-          //   <button onClick={openModal} className="px-4 py-2 text-red-500 rounded-lg flex items-center">
-          //     <FaMusic className="mr-2" />
-          //   </button>
-          // ]}
-          className="custom-audio-player"
+        // customAdditionalControls={[
+        //   <button
+        //     key="repeat-button"
+        //     onClick={toggleRepeat}
+        //     className={`custom-repeat-button ${isRepeat ? 'text-red-500' : 'text-gray-500'}`}
+        //   >
+        //     <TbRepeat className={`text-xl ${isRepeat ? 'text-red-500' : 'text-gray-500'}`} />
+        //   </button>,
+        //   <button onClick={openModal} className="px-4 py-2 text-red-500 rounded-lg flex items-center">
+        //     <FaMusic className="mr-2" />
+        //   </button>
+        // ]}
         />
       </div>
 
