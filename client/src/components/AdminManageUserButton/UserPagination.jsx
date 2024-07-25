@@ -8,12 +8,12 @@ function UserPagination({ currentPage, totalPages, goToNextPage, goToPreviousPag
   }
 
   return (
-    <ul className="inline-flex items-stretch -space-x-px">
+    <ul className=" inline-flex items-stretch -space-x-px justify-end">
       <li>
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
-          className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
         >
           <span className="sr-only">Previous</span>
           <svg
@@ -36,8 +36,8 @@ function UserPagination({ currentPage, totalPages, goToNextPage, goToPreviousPag
           <button
             onClick={() => goToPage(number)}
             className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === number
-              ? 'text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
-              : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+              ? 'text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 '
+              : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 '
               }`}
           >
             {number}
@@ -48,7 +48,7 @@ function UserPagination({ currentPage, totalPages, goToNextPage, goToPreviousPag
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
         >
           <span className="sr-only">Next</span>
           <svg

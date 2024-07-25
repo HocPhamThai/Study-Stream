@@ -15,6 +15,7 @@ const signUp = (formData) => async (dispatch) => {
   try {
     const { data } = await AuthApi.signUp(formData)
     dispatch({ type: 'AUTH_SUCCESS', data: data })
+    return data
   } catch (error) {
     dispatch({ type: 'AUTH_FAIL', error: error.response.data.error })
   }

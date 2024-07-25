@@ -30,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/studyroom" element={<StudyRoom />} />
           </Routes>
+
         </div>
       ) : (
         <div className="App">
