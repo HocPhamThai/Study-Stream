@@ -16,6 +16,7 @@ import PomodoroTopic from './pages/PomodoroTopic/PomodoroTopic'
 import Topic from './pages/Topic/Topic'
 import TopicPomodoro from './pages/TopicPomodoro/TopicPomodoro'
 // import PomodoroTopicBg from './components/PomodoroTopicBg/PomodoroTopicBg'
+import AdminHome from './pages/AdminHome/AdminHome'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/studyroom" element={<StudyRoom />} />
           </Routes>
+
         </div>
       ) : (
         <div className="App">
@@ -49,6 +51,9 @@ function App() {
             <Route path="/dashhome" element={user ? <DashHome /> : <Navigate to="../auth" />} />
             <Route path="/topic" element={<Topic />} />
             <Route path="/topic/:entry" element={<TopicPomodoro />} />
+            <Route path="/adminhome" element={<AdminHome />} />
+
+
           </Routes>
         </div>
       )}

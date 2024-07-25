@@ -79,6 +79,46 @@ const getTodayDate = () => {
   return new Date(today.getFullYear(), today.getMonth(), today.getDate())
 }
 
+// Thêm bản ghi hàng ngày
+export const addDailyRecord = async (req, res) => {
+  const { userId, date, duration } = req.body;
+  const recordDate = new Date(date);
+
+  try {
+    let existingRecord = await TotalWorkingTime.findOne({ userId });
+
+    if (existingRecord) {
+      // Update or add daily record
+      const dailyRecordIndex = existingRecord.dailyRecords.findIndex((record) => record.date.getTime() === recordDate.getTime());
+      if (dailyRecordIndex >= 0) {
+        existingRecord.dailyRecords[dailyRecordIndex].duration += duration;
+      } else {
+        existingRecord.dailyRecords.push({ date: recordDate, duration });
+      }
+
+      // Save the updated record
+      await existingRecord.save();
+      res.status(200).json(existingRecord);
+    } else {
+      // Create new record with daily record
+      const newTotalWorkingTime = new TotalWorkingTime({
+        userId,
+        dailyRecords: [{ date: recordDate, duration }],
+        weeklyTotals: [],
+        monthlyTotals: [],
+        yearlyTotals: [],
+        totalDuration: duration,
+      });
+
+      // Save the new record
+      await newTotalWorkingTime.save();
+      res.status(201).json(newTotalWorkingTime);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getStartOfWeek = () => {
   const today = new Date()
   const startOfWeek = new Date(today)
@@ -92,6 +132,34 @@ const getCurrentMonthAndYear = () => {
   const month = today.getMonth() + 1 // Month is 0-indexed
   const year = today.getFullYear()
   return { month, year }
+}
+
+// Lấy duration cho mỗi ngày trong tuần
+const getWeeklyDailyDurations = async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const record = await TotalWorkingTime.findOne({ userId })
+
+    if (!record) {
+      return res.status(404).json({ message: 'No record found for this user.' })
+    }
+
+    const startOfWeek = getStartOfWeek()
+    const weekDurations = []
+
+    for (let i = 0; i < 7; i++) {
+      const currentDate = new Date(startOfWeek)
+      currentDate.setDate(startOfWeek.getDate() + i)
+
+      const dailyRecord = record.dailyRecords.find((record) => record.date.getTime() === currentDate.getTime())
+      weekDurations.push({ date: currentDate, duration: dailyRecord ? dailyRecord.duration : 0 })
+    }
+
+    res.status(200).json(weekDurations)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
 }
 
 // Lấy duration theo ngày
@@ -196,4 +264,37 @@ const getTotalDuration = async (req, res) => {
   }
 }
 
-export { getDailyDuration, getWeeklyDuration, getMonthlyDuration, getYearlyDuration, getTotalDuration, saveTotalWorkingTime }
+// Lấy tất cả ngày trong tháng
+const getMonthlyDailyDurations = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const record = await TotalWorkingTime.findOne({ userId });
+
+    if (!record) {
+      return res.status(404).json({ message: 'No record found for this user.' });
+    }
+
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth();
+
+    // Tìm ngày đầu tiên và cuối cùng của tháng
+    const startOfMonth = new Date(currentYear, currentMonth, 1);
+    const endOfMonth = new Date(currentYear, currentMonth + 1, 0);
+
+    const monthDurations = [];
+
+    for (let day = startOfMonth.getDate(); day <= endOfMonth.getDate(); day++) {
+      const currentDate = new Date(currentYear, currentMonth, day);
+      const dailyRecord = record.dailyRecords.find((record) => record.date.getTime() === currentDate.getTime());
+      monthDurations.push({ date: currentDate, duration: dailyRecord ? dailyRecord.duration : 0 });
+    }
+
+    res.status(200).json(monthDurations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getDailyDuration, getWeeklyDuration, getMonthlyDuration, getYearlyDuration, getTotalDuration, saveTotalWorkingTime, getWeeklyDailyDurations, getMonthlyDailyDurations }

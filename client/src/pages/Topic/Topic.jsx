@@ -8,6 +8,7 @@ import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
 import { useNavigate } from 'react-router-dom'
+import Chart from '../../components/Chart/Chart'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -66,7 +67,6 @@ const Test = () => {
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
-
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
@@ -99,6 +99,7 @@ const Test = () => {
                 <p className="mt-4 text-sm">Engage in at least one activity every day!</p>
               </div>
             </div>
+            <div className='w-full col-start-1 col-end-4'><Chart /></div>
 
             {topics.map(topic => (
               <div onClick={() => handleOptionSelect(topic.topicName)} className="cursor-pointer">
