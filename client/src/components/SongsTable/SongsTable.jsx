@@ -6,9 +6,7 @@ import { useEffect, useRef, useState, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import AddEntryModal from '../AdminManageEntries/AddEntryModal'
-import UpdateEntryModal from '../AdminManageEntries/UpdateEntryModal'
-import DeleteEntryModal from '../AdminManageEntries/DeleteEntryModal'
+import AddSongModal from '../AdminManageMusic/AddSongsModal'
 
 function SongsTable({ topicIdProps }) {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -66,9 +64,9 @@ function SongsTable({ topicIdProps }) {
     setCurrentPage(pageNumber)
   }
 
-  // const handleSongAdded = (Song) => {
-  //   setSongs((prevSongs) => [...prevSongs, newSong])
-  // }
+  const handleSongAdded = (newSong) => {
+    setSongs((prevSongs) => [...prevSongs, newSong])
+  }
 
   // const handleSongUpdated = (updatedSong) => {
   //   setSongs((prevSongs) =>
@@ -151,8 +149,7 @@ function SongsTable({ topicIdProps }) {
                   </form>
                 </div>
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                  {/* <UserInfoModal onUserAdded={handleUserAdded} /> */}
-                  {/* <AddSongModal topicIdProps={topicIdProps} onSongAdded={handleSongAdded} /> */}
+                  <AddSongModal onSongAdded={handleSongAdded} />
                   <button
                     id="filterDropdownButton"
                     data-dropdown-toggle="filterDropdown"
