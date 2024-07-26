@@ -1,18 +1,147 @@
 .audio-player-container {
-  background-color: rgba(211, 194, 238, 0.7); // Màu nền ban đầu với độ mờ 0.7
 
   .rhap_container {
-    background-color: rgba(211, 194, 238, 0) !important; // Màu nền với độ mờ 0, !important để ghi đè
+    background-color: rgba(211, 194, 238, 0) !important;
+    border-radius: 25px !important;
   }
 
   .rhap_main {
-    background-color: rgba(211, 194, 238, 0) !important; // Màu nền với độ mờ 0, !important để ghi đè
+    background-color: rgba(211, 194, 238, 0) !important;
   }
 
   .custom-audio-player {
-    border-radius: 30px;
-    /* Bạn có thể thay đổi giá trị này để điều chỉnh độ bo tròn */
-    // overflow: hidden;
-    /* Để đảm bảo các phần tử con không vượt ra ngoài vùng bo tròn */
+    background: linear-gradient(to right, rgba(211, 194, 238, 0.7), rgba(153, 173, 234, 0.7)) !important;
+    border-radius: 10px !important;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .rhap_header,
+    .rhap_footer {
+      font-weight: bold !important;
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .rhap_controls {
+      border-top: 1px solid rgba(255, 255, 255, 1) !important;
+    }
+
+    .rhap_main-controls {
+      border-top: none !important;
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .rhap_time {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .rhap_progress-indicator,
+    .rhap_progress-filled {
+      background: linear-gradient(to right, #f9a225, #f95f35);
+    }
+
+    .rhap_button-clear,
+    .rhap_main-controls-button {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .rhap_volume-indicator {
+      background: linear-gradient(to right, #f9a225, #f95f35);
+
+    }
+  }
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+  transform: scale(0.95);
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-content {
+  background: linear-gradient(to right, rgba(211, 194, 238, 0.7), rgba(153, 173, 234, 0.7));
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 200ms ease-in-out;
+  color: white;
+  /* Chữ màu trắng */
+}
+
+.modal-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  /* Chữ màu trắng */
+  transition: background 200ms, transform 200ms;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.modal-close-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f9a225, #f95f35);
+  color: white;
+  transition: background 200ms, transform 200ms;
+
+  &:hover {
+    background: linear-gradient(to right, #f9a225, #f95f35);
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    outline: none;
+    background: linear-gradient(to right, #f9a225, #f95f35);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }

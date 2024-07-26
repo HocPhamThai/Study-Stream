@@ -21,6 +21,7 @@ const PomodoroTopic = () => {
   const [workMinutes, setWorkMinutes] = useState(25)
   const [breakMinutes, setBreakMinutes] = useState(5)
   const [bgColor, setBgColor] = useState('Black')
+  const [mode, setMode] = useState('work')
 
   return (
     <SettingsContext.Provider value={{
@@ -30,6 +31,8 @@ const PomodoroTopic = () => {
       setWorkMinutes,
       setBreakMinutes,
       setBgColor,
+      mode,
+      setMode,
     }} >
       <PomodoroTopicBg />
     </SettingsContext.Provider >

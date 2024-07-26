@@ -10,6 +10,8 @@ import ChatRoute from './Routes/chatRoute.js'
 import MessageRoute from './Routes/messageRoute.js'
 import WorkingTimeRoute from './Routes/workingTimeRoute.js'
 import TopicRoute from './Routes/topicRoute.js'
+import songRoute from './Routes/songRoute.js'
+
 
 import cors from 'cors'
 
@@ -41,3 +43,5 @@ app.use('/chat', ChatRoute)
 app.use('/message', MessageRoute)
 app.use('/workingtime', WorkingTimeRoute)
 app.use('/topic', TopicRoute)
+app.use('/songs', songRoute)
+
