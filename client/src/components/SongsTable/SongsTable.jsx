@@ -7,29 +7,31 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import AddSongModal from '../AdminManageMusic/AddSongsModal'
+import UpdateSongModal from '../AdminManageMusic/UpdateSongModal'
+import DeleteSongModal from '../AdminManageMusic/DeleteSongModal'
 
-function SongsTable({ topicIdProps }) {
+function SongsTable() {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [songs, setSongs] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [modalOpened, setModalOpened] = useState(false)
   const [modalType, setModalType] = useState(null)
-  const [selectedEntry, setSelectedEntry] = useState(null)
+  const [selectedSong, setSelectedSong] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const navigate = useNavigate()
 
-  const openModal = (entry, modalType) => {
+  const openModal = (song, modalType) => {
     setModalType(modalType)
     setIsModalOpen(true)
-    setSelectedEntry(entry)
+    setSelectedSong(song)
   }
   const closeModal = () => {
     setIsModalOpen(false)
   }
 
   const [currentPage, setCurrentPage] = useState(1)
-  const rowsPerPage = 9
+  const rowsPerPage = 7
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -68,22 +70,19 @@ function SongsTable({ topicIdProps }) {
     setSongs((prevSongs) => [...prevSongs, newSong])
   }
 
-  // const handleSongUpdated = (updatedSong) => {
-  //   setSongs((prevSongs) =>
-  //     prevSongs?.map((song) =>
-  //       song._id === updatedSong?._id ? updatedSong : song
-  //     )
-  //   )
-  //   toast.success('Song updated successfully!', { className: 'custom-toast' })
-  // }
-  // const handleSongDeleted = (deletedSongId, songName) => {
-  //   setSongs((prevSong) => prevSong.filter((song) => song._id !== deletedSongId))
-  //   toast.success(`Deleted topic ${songName} successfully!`, { className: 'custom-toast-delete' })
-  // }
+  const handleSongUpdated = (updatedSong) => {
+    setSongs((prevSongs) =>
+      prevSongs?.map((song) =>
+        song._id === updatedSong?._id ? updatedSong : song
+      )
+    )
+    toast.success('Song updated successfully!', { className: 'custom-toast' })
+  }
 
-  // const handleTopicSelected = (topicName) => {
-  //   navigate(`/topic/${topicName}`)
-  // }
+  const handleSongDeleted = (deletedSongId, nameSong) => {
+    setSongs((prevSong) => prevSong.filter((song) => song._id !== deletedSongId))
+    toast.success(`Deleted topic ${nameSong} successfully!`, { className: 'custom-toast-delete' })
+  }
 
   return (
     <div>
@@ -94,21 +93,6 @@ function SongsTable({ topicIdProps }) {
             <div className="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div className="flex items-center justify-between w-full">
-                  <Link to="/admin-topic">
-                    <span className="flex cursor-pointer items-center text-white">
-                      <svg
-                        className="w-6 h-6 text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 256 512"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
-                        />
-                      </svg>
-                      <span className="ml-2 text-lg text-gray-500">Back</span>
-                    </span>
-                  </Link>
                   <h5>
                     <span className="text-gray-500">All Songs: </span>
                     <span className="text-black">{songs?.length}</span>
@@ -239,11 +223,6 @@ function SongsTable({ topicIdProps }) {
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black"
                         >
                           <div className="flex items-center mr-3">
-                            {/* <img
-                              className="w-12 h-12 bg-gray-400 rounded-full mx-4 p-1"
-                              src={topic?.topicImage}
-                              alt="Topic Image"
-                            /> */}
                             <span className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}>
                               {song?.nameSong}
                             </span>
@@ -258,16 +237,16 @@ function SongsTable({ topicIdProps }) {
                         </td>
 
                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black">
-                          {/* <div className="flex items-center space-x-4">
+                          <div className="flex items-center space-x-4">
 
-                            <UpdateEntryModal data={entry} topicIdProps={topicIdProps} entryId={entry.entryId} onEntryUpdated={handleEntryUpdated} />
+                            <UpdateSongModal data={song} onSongUpdated={handleSongUpdated} />
                             <div>
                               <button
                                 type="button"
                                 data-modal-target="delete-modal"
                                 data-modal-toggle="delete-modal"
                                 className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center "
-                                onClick={() => openModal(entry, 'delete')}
+                                onClick={() => openModal(song, 'delete')}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -285,18 +264,17 @@ function SongsTable({ topicIdProps }) {
                                 Delete
                               </button>
                               {isModalOpen && modalType === 'delete' && (
-                                <DeleteEntryModal
+                                <DeleteSongModal
                                   isOpen={isModalOpen}
                                   onClose={closeModal}
-                                  topicIdProps={topicIdProps}
-                                  entryId={selectedEntry?.entryId}
-                                  entryName={selectedEntry?.entryName}
-                                  onEntryDeleted={handleEntryDeleted}
+                                  songId={selectedSong?._id}
+                                  nameSong={selectedSong?.nameSong}
+                                  onSongDeleted={handleSongDeleted}
                                 />
                               )}
                             </div>
 
-                          </div> */}
+                          </div>
                         </td>
                       </tr>
                     ))}
