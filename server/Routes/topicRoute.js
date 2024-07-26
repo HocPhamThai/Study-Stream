@@ -3,6 +3,8 @@ import {
   createTopic,
   getTopics,
   getTopicByName,
+  updateTopic,
+  deleteTopic,
   getEntry,
   createEntry,
   deleteEntry,
@@ -12,10 +14,16 @@ import {
 const router = express.Router();
 
 // Route để tạo một topic mới
-router.post('/api/topics', createTopic);
+router.post('/topics', createTopic);
 
 // Route để lấy tất cả các topic
-router.get('/api/topics', getTopics);
+router.get('/topics', getTopics);
+
+// Cập nhật Topic:
+router.put('/:topicName', updateTopic)
+
+// Xóa Topic:
+router.delete('/:id', deleteTopic);
 
 // Route để lấy một topic theo ID
 router.get('/api/topics/:topicName', getTopicByName);
@@ -23,12 +31,13 @@ router.get('/api/topics/:topicName', getTopicByName);
 //Lấy entry khi có topicName và entryID
 router.get('/:topicName/:entryId', getEntry)
 // Route để tạo một entry mới trong topic
-router.post('/api/topics/:topicId/entries', createEntry);
+router.post('/:topicName/entries', createEntry);
 
 // Route để xóa một entry trong topic
-router.delete('/api/topics/:topicId/entries/:entryId', deleteEntry);
+router.delete('/:topicName/entries/:entryId', deleteEntry);
 
 // Route để cập nhật một entry trong topic
-router.put('/api/topics/:topicId/entries/:entryId', updateEntry);
+router.put('/:topicName/entries/:entryId', updateEntry);
+
 
 export default router;

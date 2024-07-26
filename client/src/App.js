@@ -17,6 +17,9 @@ import Topic from './pages/Topic/Topic'
 import TopicPomodoro from './pages/TopicPomodoro/TopicPomodoro'
 // import PomodoroTopicBg from './components/PomodoroTopicBg/PomodoroTopicBg'
 import AdminHome from './pages/AdminHome/AdminHome'
+import AdminTopic from './pages/AdminTopic/AdminTopic'
+import AdminEntries from './pages/AdminEntries/AdminEntries'
+import AdminSongs from './pages/AdminSongs/AdminSongs'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -52,7 +55,9 @@ function App() {
             <Route path="/topic" element={<Topic />} />
             <Route path="/topic/:entry" element={<TopicPomodoro />} />
             <Route path="/adminhome" element={<AdminHome />} />
-
+            <Route path="/admin-topic" element={<AdminTopic />} />
+            <Route path="/admin-topic/:topicIdProps" element={<AdminEntries />} />
+            <Route path="/admin-songs" element={<AdminSongs />} />
 
           </Routes>
         </div>

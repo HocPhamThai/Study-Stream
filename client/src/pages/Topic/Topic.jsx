@@ -22,38 +22,38 @@ const Test = () => {
 
   const topics = [
     {
-      topicName: 'coding',
+      topicId: 'coding',
       coverImage: 'https://corodomo.com/assets/images/angry.png',
       name: 'Coding',
       description: 'Coding Motivation features inspiring videos to boost your enthusiasm and productivity in programming'
     },
     {
-      topicName: 'lofichill',
+      topicId: 'lofichill',
       coverImage: 'https://corodomo.com/assets/images/squid.png',
       name: 'Lofi',
       description: 'Lofi Chill is relaxing, gentle music, perfect for studying, working,...'
     },
     {
-      topicName: 'city',
+      topicId: 'city',
       coverImage: 'https://corodomo.com/assets/images/frog.png',
       name: 'City',
       description: 'City features videos capturing the vibrant and bustling cityscapes,...'
     },
     {
-      topicName: 'nature',
+      topicId: 'nature',
       coverImage: 'https://corodomo.com/assets/images/hamster.png',
       name: 'Nature',
       description: 'The space brings a sense of tranquility and closeness to nature.'
 
     },
     {
-      topicName: 'cafe',
+      topicId: 'cafe',
       coverImage: 'https://corodomo.com/assets/images/corgi.png',
       name: 'Cafe',
       description: 'The lively and cozy atmosphere of a coffee shop provides an ideal setting for concentration and creativity.'
     },
     {
-      topicName: 'other',
+      topicId: 'other',
       coverImage: 'https://corodomo.com/assets/images/yawn.png',
       name: 'Other',
       description: 'Study with Corodomo'
@@ -63,7 +63,6 @@ const Test = () => {
   const handleOptionSelect = (option) => {
     navigate(`/topic/${option}`);
   }
-
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
@@ -102,7 +101,7 @@ const Test = () => {
             <div className='w-full col-start-1 col-end-4'><Chart /></div>
 
             {topics.map(topic => (
-              <div onClick={() => handleOptionSelect(topic.topicName)} className="cursor-pointer">
+              <div onClick={() => handleOptionSelect(topic.topicId)} className="cursor-pointer">
                 <div className='flex items-center justify-center md:p-4'>
                   <img className='h-[120px] md:h-[150px]' src={topic.coverImage} alt="" />
                 </div>

@@ -70,7 +70,6 @@ function UserTable({ dataAdmin }) {
   }
 
   const handleUserAdded = (newUser) => {
-
     setUser((prevUsers) => [...prevUsers, newUser])
   }
 
