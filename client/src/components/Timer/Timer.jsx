@@ -108,9 +108,9 @@ const Timer = (color) => {
             <img className='w-[100px] h-[100px]' src={Logo} alt="Study Stream Logo" />
           </div>
           {mode === 'work' ?
-            <p className='pt-6 text-center text-lg font-medium text-red-400'>Working Session </p>
+            <p className='pt-6 text-center text-lg font-medium text-red-400 focus:outline-none'>Working Session </p>
             :
-            <p className='pt-6 text-center text-lg font-medium text-green-400'> Relaxing... </p>
+            <p className='pt-6 text-center text-lg font-medium text-green-400 focus:outline-none'> Relaxing... </p>
           }
           <div
             className='px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4'

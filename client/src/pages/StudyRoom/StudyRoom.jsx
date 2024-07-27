@@ -182,10 +182,10 @@ const StudyRoom = () => {
             <div id="stream__box"></div>
             <div id="streams__container">
               <div className="video__container" id="user-container-1">
-                <h1>1</h1>
+                <img src="https://i1.sndcdn.com/artworks-xCH5edddN8ee-0-t500x500.jpg" alt="" />
               </div>
               <div className="video__container" id="user-container-2">
-                <h1>2</h1>
+                <img src="https://s.abcnews.com/images/International/210421_vod_study_hpMain_1x1_992.jpg" alt="" />
               </div>
             </div>
             <div className="stream__actions">

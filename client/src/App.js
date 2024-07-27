@@ -20,6 +20,7 @@ import AdminHome from './pages/AdminHome/AdminHome'
 import AdminTopic from './pages/AdminTopic/AdminTopic'
 import AdminEntries from './pages/AdminEntries/AdminEntries'
 import AdminSongs from './pages/AdminSongs/AdminSongs'
+import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -58,6 +59,8 @@ function App() {
             <Route path="/admin-topic" element={<AdminTopic />} />
             <Route path="/admin-topic/:topicIdProps" element={<AdminEntries />} />
             <Route path="/admin-songs" element={<AdminSongs />} />
+            <Route path="/get-started" element={<GetStartedPage />} />
+
 
           </Routes>
         </div>

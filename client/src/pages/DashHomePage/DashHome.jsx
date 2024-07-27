@@ -57,6 +57,8 @@ const DashHome = () => {
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
           <span className="text-lg">Hi, {user.firstname + ' ' + user.lastname}</span>
+          <img className='h-9 w-9 grayscale' src='https://storageaccountstudy9794.blob.core.windows.net/badge/a6faf8b1-f7ca-4556-a202-dde9473163ce.svg' alt="" />
+
         </div>
         <div className="relative mr-2">
           <AvatarDropdown />
