@@ -3,10 +3,21 @@
   display: grid;
   grid-template-columns: 20rem auto 20rem;
   gap: 1rem;
+  background-color: #f3f3f3;
+  margin: -1rem;
+  padding: 1rem;
 }
 
 .Profile-center {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.LogoSearch {
+  margin-right: auto;
+  margin-left: 3px;
+}
+.Search {
+  margin-left: 4px;
 }

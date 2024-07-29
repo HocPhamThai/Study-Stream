@@ -10,8 +10,8 @@ import ChatRoute from './Routes/chatRoute.js'
 import MessageRoute from './Routes/messageRoute.js'
 import WorkingTimeRoute from './Routes/workingTimeRoute.js'
 import TopicRoute from './Routes/topicRoute.js'
+import ChatBotRoute from './Routes/chatBotRoute.js'
 import songRoute from './Routes/songRoute.js'
-
 
 import cors from 'cors'
 
@@ -40,8 +40,8 @@ app.use('/user', UserRoute)
 app.use('/post', PostRoute)
 app.use('/upload', UploadRoute)
 app.use('/chat', ChatRoute)
+app.use('/chatbot', ChatBotRoute)
 app.use('/message', MessageRoute)
 app.use('/workingtime', WorkingTimeRoute)
 app.use('/topic', TopicRoute)
 app.use('/songs', songRoute)
-

@@ -21,6 +21,7 @@ import AdminTopic from './pages/AdminTopic/AdminTopic'
 import AdminEntries from './pages/AdminEntries/AdminEntries'
 import AdminSongs from './pages/AdminSongs/AdminSongs'
 import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
+import ChatBot from './pages/ChatBot/Chatbot'
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -34,34 +35,62 @@ function App() {
           <Routes>
             <Route path="/studyroom" element={<StudyRoom />} />
           </Routes>
-
         </div>
       ) : (
         <div className="App">
           <Toaster position="top-right" />
-          {/* <div className="blur" style={{ top: '-18%', right: '0' }}></div>
-          <div className="blur" style={{ top: '36%', left: '-8rem' }}></div> */}
           <Routes>
             {/* {user.isAdmin ? <Route path="/" element={<Navigate to="/CRUDadminhere" />} /> : <Route path="/" element={<Navigate to="/home" />} />} */}
-            <Route path="/" element={user ? <Navigate to="dashhome" /> : <Navigate to="../auth" />} />
-            <Route path="/forgot" element={user ? <Navigate to="dashhome" /> : <ForgotPassword />} />
-            <Route path="/home" element={user ? <Home /> : <Navigate to="../auth" />} />
-            <Route path="/auth" element={user ? <Navigate to="../dashhome" /> : <Auth />} />
-            <Route path="/profile/:id" element={user ? <Profile /> : <Navigate to="../auth" />} />
-            <Route path="/chat" element={user ? <Chat /> : <Navigate to="../auth" />} />
+            <Route
+              path="/"
+              element={
+                user ? <Navigate to="dashhome" /> : <Navigate to="../auth" />
+              }
+            />
+            <Route
+              path="/forgot"
+              element={user ? <Navigate to="dashhome" /> : <ForgotPassword />}
+            />
+            <Route
+              path="/home"
+              element={user ? <Home /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/auth"
+              element={user ? <Navigate to="../dashhome" /> : <Auth />}
+            />
+            <Route
+              path="/profile/:id"
+              element={user ? <Profile /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/chat"
+              element={user ? <Chat /> : <Navigate to="../auth" />}
+            />
             <Route path="/rules" element={<Rules />} />
-            <Route path="/pomodoro" element={user ? <Pomodoro /> : <Navigate to="../auth" />} />
-            <Route path="/pomodoro/:topicType/:entryId" element={user ? <PomodoroTopic /> : <Navigate to="../auth" />} />
-            <Route path="/dashhome" element={user ? <DashHome /> : <Navigate to="../auth" />} />
+            <Route
+              path="/pomodoro"
+              element={user ? <Pomodoro /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/pomodoro/:topicType/:entryId"
+              element={user ? <PomodoroTopic /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/dashhome"
+              element={user ? <DashHome /> : <Navigate to="../auth" />}
+            />
             <Route path="/topic" element={<Topic />} />
             <Route path="/topic/:entry" element={<TopicPomodoro />} />
             <Route path="/adminhome" element={<AdminHome />} />
             <Route path="/admin-topic" element={<AdminTopic />} />
-            <Route path="/admin-topic/:topicIdProps" element={<AdminEntries />} />
+            <Route
+              path="/admin-topic/:topicIdProps"
+              element={<AdminEntries />}
+            />
             <Route path="/admin-songs" element={<AdminSongs />} />
             <Route path="/get-started" element={<GetStartedPage />} />
-
-
+            <Route path="/chatbot" element={<ChatBot />} />
           </Routes>
         </div>
       )}
