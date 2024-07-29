@@ -8,7 +8,8 @@ import {
   getEntry,
   createEntry,
   deleteEntry,
-  updateEntry
+  updateEntry,
+  getRandomEntries
 } from '../controllers/topicController.js';
 
 const router = express.Router();
@@ -39,5 +40,7 @@ router.delete('/:topicName/entries/:entryId', deleteEntry);
 // Route để cập nhật một entry trong topic
 router.put('/:topicName/entries/:entryId', updateEntry);
 
+// Lấy ngẫu nhiên 4 entry:
+router.get('/random-entries', getRandomEntries)
 
 export default router;
