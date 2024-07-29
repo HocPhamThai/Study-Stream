@@ -207,4 +207,70 @@ const searchUsers = async (req, res) => {
   }
 }
 
-export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, enterRoom, exitRoom, searchUsers }
+//
+const accessEntry = async (req, res) => {
+  const { entry } = req.body;
+  const { userId } = req.params;
+
+  try {
+    // Tìm người dùng theo userId
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Tìm entry trong favoriteEntries
+    const favoriteEntryIndex = user.favoriteEntries.findIndex(
+      (e) => e.entryId === entry.entryId
+    );
+    console.log("favoriteEntryIndex: ", favoriteEntryIndex)
+
+    if (favoriteEntryIndex === -1) {
+      // Nếu entry chưa tồn tại, thêm mới vào favoriteEntries
+      const newEntry = {
+        ...entry,
+        timeUsed: 1,
+        lastAccessedAt: new Date(),
+      };
+      user.favoriteEntries.push(newEntry);
+    } else {
+      // Nếu entry đã tồn tại, cập nhật timeUsed và lastAccessedAt
+      user.favoriteEntries[favoriteEntryIndex].timeUsed += 1
+      console.log("user.favoriteEntries[favoriteEntryIndex].timeUsed: ", user.favoriteEntries[favoriteEntryIndex].timeUsed)
+      user.favoriteEntries[favoriteEntryIndex].lastAccessedAt = new Date();
+    }
+
+    await user.save();
+    res.status(200).json({ message: 'Access count updated successfully.' });
+  } catch (error) {
+    console.error("Error updating access count:", error);
+    res.status(500).json({ message: 'Error updating access count.' });
+  }
+}
+
+const getTopEntries = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Tìm người dùng theo userId
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Sắp xếp favoriteEntries theo timeUsed giảm dần và lấy 4 entry đầu tiên
+    const topEntries = user.favoriteEntries
+      .sort((a, b) => b.timeUsed - a.timeUsed) // Sắp xếp giảm dần theo timeUsed
+      .slice(0, 4); // Lấy 4 entry đầu tiên
+
+    res.status(200).json(topEntries);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error retrieving top entries.' });
+  }
+}
+
+
+export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, enterRoom, exitRoom, searchUsers, accessEntry, getTopEntries }
