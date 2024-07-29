@@ -80,6 +80,38 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    favoriteEntries: [
+      {
+        topicType: {
+          type: String,
+          required: true,
+        },
+        entryId: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        coverImage: {
+          type: String,
+          required: true,
+        },
+        background: {
+          type: String,
+          required: true,
+        },
+        timeUsed: {
+          type: Number,
+          default: 1,
+        },
+        lastAccessedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     chats: {
       type: [chatSchema],
       default: [],

@@ -35,6 +35,22 @@ function PomodoroTopicBg() {
       try {
         const response = await axios.get(`http://localhost:8001/topic/${topicType}/${entryId}`);
         setEntry(response.data);
+
+        const postResponse = await axios.post(`http://localhost:8001/user/${user._id}/entry/access`, {
+          entry: {
+            topicType: topicType,
+            entryId: response.data.entryId,
+            name: response.data.name,
+            coverImage: response.data.coverImage,
+            background: response.data.background,
+          },
+        });
+
+        if (postResponse.status === 200 || postResponse.status === 201) {
+          console.log("Post request was successful!");
+        } else {
+          console.error("Post request failed with status: ", postResponse.status);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -43,7 +59,8 @@ function PomodoroTopicBg() {
     };
 
     fetchEntry();
-  }, [entryId])
+  }, [entryId, user._id]);
+
 
   return (
     <div>

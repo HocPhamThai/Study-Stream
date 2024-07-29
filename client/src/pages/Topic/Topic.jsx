@@ -9,15 +9,20 @@ import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
 import { useNavigate } from 'react-router-dom'
 import Chart from '../../components/Chart/Chart'
+import Playlist from '../../components/FavoritePlaylist/FavoritePlaylist'
+import { TbRuler2 } from 'react-icons/tb'
+import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
+import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 
-const Test = () => {
+const Topic = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [topic, setTopic] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
   const navigate = useNavigate()
 
   const topics = [
@@ -58,10 +63,10 @@ const Test = () => {
       name: 'Other',
       description: 'Study with Corodomo'
     },
-  ];
+  ]
 
   const handleOptionSelect = (option) => {
-    navigate(`/topic/${option}`);
+    navigate(`/topic/${option}`)
   }
 
   return (
@@ -83,12 +88,9 @@ const Test = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-lg bg-white px-6 py-4">
           <div className='mb-4 '>
             <div className='flex items-center'>
-
               <span className='ml-5 font-bold'>Work Space</span>
             </div>
-
           </div>
-
           <div className='my-2 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3'>
 
             <div className="w-full relative col-start-1 col-end-4 m-auto flex items-center gap-4 rounded-xl text-white shadow-md mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
@@ -98,7 +100,6 @@ const Test = () => {
                 <p className="mt-4 text-sm">Engage in at least one activity every day!</p>
               </div>
             </div>
-            <div className='w-full col-start-1 col-end-4'><Chart /></div>
 
             {topics.map(topic => (
               <div onClick={() => handleOptionSelect(topic.topicId)} className="cursor-pointer">
@@ -120,10 +121,12 @@ const Test = () => {
                 </div>
               </div>
             ))}
+
+            <div className='w-full col-start-1 col-end-4'><Chart /></div>
           </div>
         </div>
         {/* Right bar */}
-        <div className="w-96 mr-5 ">
+        {/* <div className="w-96 mr-5 ">
           <div className="flex flex-col rounded-2xl bg-white p-6">
             <div className="mb-4 flex justify-between">
               <p className="font-bold">Playlists for you</p>
@@ -165,10 +168,15 @@ const Test = () => {
               </div>
             </div>
           </div>
+        </div> */}
+        <div className="w-96 mr-5 ">
+          <FavoritePlaylist />
+          <div className="mt-3 mb-3"></div>
+          <RandomPlaylist />
         </div>
       </div>
     </div>
   )
 }
 
-export default Test;
+export default Topic

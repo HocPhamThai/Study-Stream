@@ -200,3 +200,29 @@ export const updateTopic = async (req, res) => {
   }
 }
 
+// Controller để lấy 4 bài hát ngẫu nhiên
+export const getRandomEntries = async (req, res) => {
+  try {
+    // Tìm tất cả các topics
+    const topics = await TopicModel.find();
+
+    // Lấy tất cả các entries từ tất cả các topics
+    const allEntries = topics.flatMap(topic => topic.entries);
+
+    // Nếu không có entries nào, trả về thông báo lỗi
+    if (allEntries.length === 0) {
+      return res.status(404).json({ message: "No entries found" });
+    }
+
+    // Trộn các entries để chọn ngẫu nhiên
+    const shuffledEntries = allEntries.sort(() => 0.5 - Math.random());
+
+    // Lấy 4 bài hát ngẫu nhiên
+    const randomEntries = shuffledEntries.slice(0, 4);
+
+    res.status(200).json(randomEntries);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+

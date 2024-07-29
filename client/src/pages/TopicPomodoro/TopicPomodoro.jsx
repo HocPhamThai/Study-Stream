@@ -33,7 +33,7 @@ function TopicPomodoro() {
   }, [entry])
 
   const handleOptionSelect = (topicType, entryId) => {
-    navigate(`/pomodoro/${topicType}/${entryId}`);
+    navigate(`/pomodoro/${topicType}/${entryId}`)
   }
 
   return (
