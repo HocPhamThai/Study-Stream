@@ -1,9 +1,9 @@
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import aiImage from '../../img/ai.png'
 import React from 'react'
 import { Box, Avatar, Typography } from '@mui/material'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { useSelector } from 'react-redux'
-// import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-
 function extractCodeFromString(message) {
   if (message.includes('```')) {
     const blocks = message.split('```')
@@ -26,6 +26,7 @@ function isCodeBlock(str) {
 const ChatItem = ({ content, role }) => {
   const messageBlocks = extractCodeFromString(content)
   const user = useSelector((state) => state.authReducer.authData)
+
   return role == 'assistant' ? (
     <Box
       sx={{
@@ -38,21 +39,35 @@ const ChatItem = ({ content, role }) => {
       }}
     >
       <Avatar sx={{ ml: '0' }}>
-        <img src="../../img/ai.png" alt="#" />
+        <img src={aiImage} alt="#" />
       </Avatar>
-      <Box>
+      <Box sx={{ width: '100%' }}>
         {!messageBlocks && (
-          <Typography sx={{ fontSize: '20px' }}>{content}</Typography>
+          <Typography
+            sx={{
+              fontSize: '16px',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+            }}
+          >
+            {content}
+          </Typography>
         )}
-        {messageBlocks &&
-          messageBlocks.length &&
+        {messageBlocks?.length &&
           messageBlocks.map((block) =>
             isCodeBlock(block) ? (
-              <SyntaxHighlighter language="javascript">
+              <SyntaxHighlighter
+                language="javascript"
+                style={darcula}
+                wrapLongLines={true}
+                lineProps={{
+                  style: { whiteSpace: 'pre-wrap', wordBreak: 'break-all' },
+                }}
+              >
                 {block}
               </SyntaxHighlighter>
             ) : (
-              <Typography sx={{ fontSize: '20px' }}>{block}</Typography>
+              <Typography sx={{ fontSize: '16px' }}>{block}</Typography>
             )
           )}
       </Box>
@@ -60,6 +75,7 @@ const ChatItem = ({ content, role }) => {
   ) : (
     <Box
       sx={{
+        width: '100%',
         display: 'flex',
         p: 2,
         bgcolor: '#004d56',
@@ -68,11 +84,11 @@ const ChatItem = ({ content, role }) => {
       }}
     >
       <Avatar sx={{ ml: '0', bgcolor: 'black', color: 'white' }}>
-        {user.firstname + user.lastname}
+        {user?.firstname + user?.lastname}
       </Avatar>
       <Box>
         {!messageBlocks && (
-          <Typography sx={{ fontSize: '20px' }}>{content}</Typography>
+          <Typography sx={{ fontSize: '16px' }}>{content}</Typography>
         )}
         {messageBlocks &&
           messageBlocks.length &&
