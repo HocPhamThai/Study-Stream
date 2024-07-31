@@ -13,9 +13,9 @@ const ProfileLeft = () => {
         <div>
           <LeftSideBar />
         </div>
-        <div>
+        <div style={{ flex: '1' }}>
           <InfoCard />
-          <FollowersCard />
+          {/* <FollowersCard /> */}
         </div>
       </div>
     </div>

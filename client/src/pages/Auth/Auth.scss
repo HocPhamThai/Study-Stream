@@ -1,7 +1,8 @@
 .Auth {
   margin: -1rem;
   padding: 1rem;
-  background-color: #f3f3f3;
+  // background-color: #f3f3f3;
+
   .error {
     color: red;
     font-size: 0.7rem;
@@ -16,7 +17,7 @@
   gap: 4rem;
   position: relative;
 
-  >div {
+  > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,14 +26,14 @@
   .auth-left {
     gap: 2rem;
 
-    >img {
+    > img {
       width: 10rem;
       height: 10rem;
     }
   }
 
   .Webname {
-    >h1 {
+    > h1 {
       font-size: 3rem;
       background-color: red;
 
@@ -50,7 +51,7 @@
       -moz-text-fill-color: transparent;
     }
 
-    >h6 {
+    > h6 {
       font-size: 0.85rem;
     }
   }
@@ -63,7 +64,7 @@
   align-items: center;
   gap: 2rem;
 
-  >div {
+  > div {
     display: flex;
     gap: 1rem;
     height: 2rem;
@@ -91,7 +92,7 @@
   border-radius: 1rem;
   padding: 1rem;
 
-  >div {
+  > div {
     width: 100%;
     align-items: center;
     justify-content: center;

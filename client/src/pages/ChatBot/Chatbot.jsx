@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Box, Avatar, Typography, Button, IconButton } from '@mui/material'
-import red from '@mui/material/colors/red'
 import { IoMdSend } from 'react-icons/io'
 import { toast } from 'sonner'
 import { useSelector } from 'react-redux'
@@ -10,8 +9,11 @@ import {
   getUserChats,
   sendChatRequest,
 } from '../../api/ChatBotRequest'
+import { Link } from 'react-router-dom'
+
 const ChatBot = () => {
   const inputRef = useRef(null)
+  const chatContainerRef = useRef(null)
   const { user } = useSelector((state) => state.authReducer.authData)
   const [chatMessages, setChatMessages] = useState([])
   const handleSubmit = async () => {
@@ -51,16 +53,22 @@ const ChatBot = () => {
         })
     }
   }, [user])
+
+  useEffect(() => {
+    // scroll to bottom
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
+    }
+  }, [chatMessages])
   return (
     <div style={{ background: '#f3f3f3' }}>
       <Box
         sx={{
           display: 'flex',
           flex: 1,
-          color: 'white',
+          color: '#212529',
           width: '100%',
           height: '100vh',
-          bgcolor: 'rgb(17,27,39,0.90)',
           gap: 3,
         }}
       >
@@ -71,16 +79,35 @@ const ChatBot = () => {
             flexDirection: 'column',
           }}
         >
+          <Box sx={{ mt: '12px' }}>
+            <Link to="/dashhome" style={{ display: 'flex' }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                />
+              </svg>
+              <Typography sx={{ ml: 1 }}>Back</Typography>
+            </Link>
+          </Box>
           <Box
             sx={{
               display: 'flex',
               width: '100%',
               height: '60vh',
-              bgcolor: 'rgb(17,29,39)',
+              bgcolor: 'var(--cardColor)',
               borderRadius: 5,
               flexDirection: 'column',
               mx: 3,
-              mt: 3,
+              mt: 5,
             }}
           >
             <Avatar
@@ -118,11 +145,8 @@ const ChatBot = () => {
                 fontWeight: '700',
                 borderRadius: 3,
                 mx: 'auto',
-                bgcolor: red[300],
-                ':hover': {
-                  bgcolor: red.A400,
-                },
               }}
+              className="button"
             >
               Clear Conversation
             </Button>
@@ -145,7 +169,9 @@ const ChatBot = () => {
               fontWeight: '600',
             }}
           >
-            ChatBot Supporter
+            <h1 className="text-[--orange] pt-4 md:pt-0 pb-8 px-4 text-xl  text-center group-[.iframe]:hidden">
+              Fast AI Inference
+            </h1>
           </Typography>
           <Box
             sx={{
@@ -160,6 +186,7 @@ const ChatBot = () => {
               overflowY: 'auto',
               scrollBehavior: 'smooth',
             }}
+            ref={chatContainerRef}
           >
             {chatMessages.map((chat, index) => (
               <ChatItem content={chat.content} role={chat.role} key={index} />
@@ -169,26 +196,24 @@ const ChatBot = () => {
             style={{
               width: '100%',
               borderRadius: 8,
-              backgroundColor: 'rgb(17,27,39)',
               display: 'flex',
               margin: 'auto',
+              border: '12px solid #666',
             }}
           >
-            {' '}
             <input
               ref={inputRef}
               type="text"
               style={{
                 width: '100%',
-                backgroundColor: 'rgb(17,29,39)',
-                padding: '30px',
+                padding: '16px',
                 border: 'none',
                 outline: 'none',
-                color: 'white',
+                borderRadius: '8px 0 0 8px',
                 fontSize: '16px',
               }}
             />
-            <IconButton onClick={handleSubmit} sx={{ color: 'white', mx: 1 }}>
+            <IconButton onClick={handleSubmit} sx={{ color: '#666', mx: 1 }}>
               <IoMdSend />
             </IconButton>
           </div>
