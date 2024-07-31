@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Box, Avatar, Typography, Button, IconButton } from '@mui/material'
+import aiImage from '../../img/ai.png'
 import { IoMdSend } from 'react-icons/io'
 import { toast } from 'sonner'
 import { useSelector } from 'react-redux'
@@ -119,8 +120,7 @@ const ChatBot = () => {
                 fontWeight: 700,
               }}
             >
-              {/* {user?.name[0]}
-            {user?.name.split(' ')[1][0]} */}
+              <img src={aiImage} alt="" />
             </Avatar>
             <Typography sx={{ mx: 'auto', fontFamily: 'work sans' }}>
               You are talking to a ChatBOT
