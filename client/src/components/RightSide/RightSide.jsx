@@ -6,7 +6,10 @@ import Comment from '../../img/comment.png'
 import { UilSetting } from '@iconscout/react-unicons'
 import TrendCard from '../TrendCard/TrendCard'
 import ShareModal from '../ShareModal/ShareModal'
+import ShareModal2 from '../ShareModal/ShareModal2'
+
 import { Link } from 'react-router-dom'
+import RewardCard from '../TrendCard/RewardCard'
 
 const RightSide = () => {
   const [modalOpened, setmodalOpened] = useState(false)
@@ -21,12 +24,13 @@ const RightSide = () => {
           <img src={Comment} alt="" />
         </Link>
       </div> */}
-      <TrendCard />
+      {/* <TrendCard /> */}
+      <RewardCard />
 
       <button className="button right-button" onClick={() => setmodalOpened(true)}>
         Share
       </button>
-      <ShareModal modalOpened={modalOpened} setModalOpened={setmodalOpened} />
+      <ShareModal2 modalOpened={modalOpened} setModalOpened={setmodalOpened} />
     </div>
   )
 }

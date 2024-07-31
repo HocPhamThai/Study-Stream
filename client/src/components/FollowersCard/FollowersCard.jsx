@@ -22,6 +22,7 @@ function FollowersCard() {
 
       {persons.map((person, id) => {
         if (person._id !== user._id) {
+          console.log(">> person: ", person)
           return <User person={person} key={id} />
         }
         return null

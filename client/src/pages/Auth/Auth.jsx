@@ -72,7 +72,7 @@ const Auth = () => {
     window.location.href = '/forgot'
   }
   return (
-    <div className="Auth">
+    <div className="Auth bg-white">
       <div className="auth-left">
         <img src={Logo} alt="" />
         <div className="Webname">

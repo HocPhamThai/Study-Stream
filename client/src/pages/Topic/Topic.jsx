@@ -13,6 +13,8 @@ import Playlist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import { TbRuler2 } from 'react-icons/tb'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
+import motivationIcon from './motivationIcon.png'
+import motivationIcon2 from './motivationIcon2.png'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -98,6 +100,9 @@ const Topic = () => {
                 <div className="mb-4 flex w-fit items-center gap-1 rounded-xl bg-white/20 px-3 py-1 text-xs text-white">Noti</div>
                 <p className="text-medium font-semibold md:text-lg">Investing in self-development enhances mental well-being and quality of life.</p>
                 <p className="mt-4 text-sm">Engage in at least one activity every day!</p>
+              </div>
+              <div className='flex flex-1 justify-center [transform:rotateY(180deg)]'>
+                <img className='w-[120px] h-[120px]' src={motivationIcon2} alt="" />
               </div>
             </div>
 
