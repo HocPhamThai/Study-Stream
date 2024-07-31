@@ -16,26 +16,42 @@ const StudyRoom = () => {
   const [message, setMessage] = useState('')
 
   const expandVideoFrame = (e) => {
-    const displayFrame = document.getElementById('stream__box')
-    const videoFrames = document.getElementsByClassName('video__container')
-    let userIdInDisplayFrame = null
+    const displayFrame = document.getElementById('stream__box');
+    const videoFrames = document.getElementsByClassName('video__container');
+    let userIdInDisplayFrame = null;
 
-    const child = displayFrame.children[0]
-    if (child) {
-      document.getElementById('streams__container').appendChild(child)
-    }
+    // Kiểm tra xem phần tử hiện tại có đang trong displayFrame không
+    if (displayFrame.contains(e.currentTarget)) {
+      // Thu lại video frame
+      document.getElementById('streams__container').appendChild(e.currentTarget);
+      displayFrame.style.display = 'none';
 
-    displayFrame.style.display = 'block'
-    displayFrame.appendChild(e.currentTarget)
-    userIdInDisplayFrame = e.currentTarget.id
+      // Đặt lại kích thước của tất cả video frames
+      for (let i = 0; i < videoFrames.length; i++) {
+        videoFrames[i].style.height = '300px'; // Thay đổi kích thước theo yêu cầu của bạn
+        videoFrames[i].style.width = '300px';  // Thay đổi kích thước theo yêu cầu của bạn
+      }
+    } else {
+      // Mở rộng video frame
+      const child = displayFrame.children[0];
+      if (child) {
+        document.getElementById('streams__container').appendChild(child);
+      }
 
-    for (let i = 0; i < videoFrames.length; i++) {
-      if (videoFrames[i].id !== userIdInDisplayFrame) {
-        videoFrames[i].style.height = '100px'
-        videoFrames[i].style.width = '100px'
+      displayFrame.style.display = 'block';
+      displayFrame.appendChild(e.currentTarget);
+      userIdInDisplayFrame = e.currentTarget.id;
+
+      // Đặt kích thước nhỏ cho các video frames không phải đang hiển thị trong displayFrame
+      for (let i = 0; i < videoFrames.length; i++) {
+        if (videoFrames[i].id !== userIdInDisplayFrame) {
+          videoFrames[i].style.height = '100px';
+          videoFrames[i].style.width = '100px';
+        }
       }
     }
   }
+
 
   useEffect(() => {
     const queryString = window.location.search;
