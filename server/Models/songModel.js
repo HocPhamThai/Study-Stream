@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const songSchema = new mongoose.Schema(
   {
@@ -12,8 +12,8 @@ const songSchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-);
+)
 
-const SongModel = mongoose.model('Song', songSchema);
+const SongModel = mongoose.model('Song', songSchema)
 
-export default SongModel;
+export default SongModel

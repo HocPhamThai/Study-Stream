@@ -1,9 +1,11 @@
 import React from 'react'
 import Logo from '../../img/logo.png'
-
+import StudyStream from './studystream.png'
+import Topic from './topic_img.png'
+import PomodoroBg from './PomodoroBg_img.png'
 function GetStartedPage() {
   return (
-    <div>
+    <div className='bg-white m-[-1rem] p-[1rem]'>
       {/* Navbar  */}
       <div className="sticky top-0 z-20 h-15 bg-white shadow-sm">
         <div className="m-auto flex h-full max-w-[1440px] items-center px-4">
@@ -105,8 +107,26 @@ function GetStartedPage() {
         </div>
       </div>
       <section className='mt-10 px-4 lg:mt-24'>
-        <div className='grid gap-4 lg:grid-cols-2'>
-          <div>
+        <div className='grid items-center gap-4 lg:grid-cols-2'>
+
+          <div className='col-span-1 flex items-center justify-center'>
+            <div className='relative h-[60vw] w-[80vw] lg:h-[35vw] lg:w-[45vw] flex items-center justify-center '>
+              <img src={StudyStream} alt="StudyStream Image" className='rounded-2xl' />
+            </div>
+          </div>
+          <div className='col-span-1'>
+            <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
+              Push your {' '}
+              <span className='bg-gradient-to-r from-[#ff9966] to-[#ff5e62] bg-clip-text text-transparent'>
+                motivation {' '}
+              </span>
+              with the video streaming!
+            </h2>
+            <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
+              Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening.
+            </p>
+          </div>
+          {/* <div>
             <h2 className='col-span-1 text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
               Push your {' '}
               <span className='bg-gradient-to-r from-[#ff9966] to-[#ff5e62] bg-clip-text text-transparent'>
@@ -119,7 +139,35 @@ function GetStartedPage() {
             </p>
           </div>
           <div className='mt-8 grid-cols-2 gap-4 lg:grid'>
-
+            <img className='h-full w-full' src={StudyStream} alt="" />
+          </div> */}
+        </div>
+      </section>
+      <section className='mt-10 px-4 lg:mt-24'>
+        <div className='grid gap-4 lg:grid-cols-2'>
+          <div>
+            <h2 className='col-span-1 text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
+              Enhance your learning {' '}
+              <span className='bg-gradient-to-r from-[#17c964] to-[#6FEE8D] bg-clip-text text-transparent'>
+                efficiency {' '}
+              </span>
+              with StudyStream!
+            </h2>
+            <p className='mt-4 text-center text-lg text-gray-500 lg:text-left'>
+              Don't force yourself if you're not truly ready. Focus deeply for 25 minutes, then take a short 5-minute break
+            </p>
+          </div>
+        </div>
+        <div className='mt-8 grid-cols-2 gap-16 lg:grid'>
+          <div className='col-span-1 flex items-center justify-center'>
+            <div className='relative h-[60vw] w-[80vw] max-w-[600px] lg:h-[30vw] lg:w-[40vw]'>
+              <img src={Topic} alt="" />
+            </div>
+          </div>
+          <div className='col-span-1 flex items-center justify-center'>
+            <div className='relative h-[60vw] w-[80vw] max-w-[600px] lg:h-[30vw] lg:w-[40vw]'>
+              <img src={PomodoroBg} alt="" />
+            </div>
           </div>
         </div>
       </section>

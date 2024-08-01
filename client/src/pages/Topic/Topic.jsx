@@ -15,7 +15,7 @@ import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import motivationIcon from './motivationIcon.png'
 // import motivationIcon from './motivationIcon2.png'
-
+import './Topic.scss'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 
@@ -107,14 +107,21 @@ const Topic = () => {
             </div>
 
             {topics.map(topic => (
-              <div onClick={() => handleOptionSelect(topic.topicId)} className="cursor-pointer">
-                <div className='flex items-center justify-center md:p-4'>
+              <div
+                onClick={() => handleOptionSelect(topic.topicId)}
+                className="cursor-pointer group relative col-span-1 flex cursor-pointer flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
+                style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
+              >
+                <div className='flex items-center justify-center md:p-4' >
                   <img className='h-[120px] md:h-[150px]' src={topic.coverImage} alt="" />
                 </div>
-                <div className='flex flex-1 flex-col p-4'>
+                <div className='flex flex-1 flex-col p-4' style={{ backgroundColor: 'rgba(255, 235, 245)' }}>
                   <p className='font-bold'>{topic.name}</p>
                   <div className='flex h-full flex-col items-end justify-between gap-2 md:flex-row md:items-center'>
-                    <div className='w-full overflow-hidden text-ellipsis'>
+                    <div
+                      className='w-full overflow-hidden text-ellipsis'
+
+                    >
                       <div className='w-full overflow-hidden text-sm line-clamp-3'>
                         {topic.description}
                       </div>
@@ -127,53 +134,10 @@ const Topic = () => {
               </div>
             ))}
 
-            <div className='w-full col-start-1 col-end-4'><Chart /></div>
+            {/* <div className='w-full col-start-1 col-end-4'><Chart /></div> */}
           </div>
         </div>
-        {/* Right bar */}
-        {/* <div className="w-96 mr-5 ">
-          <div className="flex flex-col rounded-2xl bg-white p-6">
-            <div className="mb-4 flex justify-between">
-              <p className="font-bold">Playlists for you</p>
-              <p className="cursor-pointer text-sm font-medium text-cl-1">View Alls</p>
-            </div>
-            <div className="mt-2 flex flex-col gap-7">
-              <div className="flex items-center gap-5">
-                <img src="https://i3.ytimg.com/vi/GLGNGUnlPaU/maxresdefault.jpg" alt="corodomo" className="size-[70px] rounded-xl object-cover" />
-                <div>
-                  <p className="text-sm font-medium">Summer Chill Work 🌿</p>
-                  <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                    <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                      <Link to="/pomodoro">Start</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-5">
-                <img src="https://i3.ytimg.com/vi/GLGNGUnlPaU/maxresdefault.jpg" alt="corodomo" className="size-[70px] rounded-xl object-cover" />
-                <div>
-                  <p className="text-sm font-medium">Summer Chill Work 🌿</p>
-                  <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                    <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                      <Link to="/pomodoro">Start</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-5">
-                <img src="https://i3.ytimg.com/vi/GLGNGUnlPaU/maxresdefault.jpg" alt="corodomo" className="size-[70px] rounded-xl object-cover" />
-                <div>
-                  <p className="text-sm font-medium">Summer Chill Work 🌿</p>
-                  <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                    <div className="mt-2 w-fit cursor-pointer rounded-full px-3 py-1 text-sm text-cl-1">
-                      <Link to="/pomodoro">Start</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+
         <div className="w-96 mr-5 ">
           <FavoritePlaylist />
           <div className="mt-3 mb-3"></div>

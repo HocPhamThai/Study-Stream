@@ -188,9 +188,26 @@ const StudyRoom = () => {
           <section id="members__container">
             <div id="members__header">
               <p>Participants</p>
-              <strong id="members__count">0</strong>
+              <strong id="members__count">5</strong>
             </div>
             <div id="member__list">
+
+              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
+                <span class="green__icon"></span>
+                <p class="member_name">Michael Jordan</p>
+              </div>
+              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
+                <span class="green__icon"></span>
+                <p class="member_name">Quang Hung MasterD</p>
+              </div>
+              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
+                <span class="green__icon"></span>
+                <p class="member_name">Choi Ung</p>
+              </div>
+              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
+                <span class="green__icon"></span>
+                <p class="member_name">De Kento</p>
+              </div>
             </div>
           </section>
 
@@ -202,6 +219,12 @@ const StudyRoom = () => {
               </div>
               <div className="video__container" id="user-container-2">
                 <img src="https://s.abcnews.com/images/International/210421_vod_study_hpMain_1x1_992.jpg" alt="" />
+              </div>
+              <div className="video__container" id="user-container-2">
+                <img src="https://i.pinimg.com/736x/09/b6/ae/09b6aead1489bc2aad500b48c07d35fb.jpg" alt="" />
+              </div>
+              <div className="video__container" id="user-container-2">
+                <img src="https://i.pinimg.com/564x/3e/b2/fd/3eb2fd02578dad9530351d304d2cddd3.jpg" alt="" />
               </div>
             </div>
             <div className="stream__actions">

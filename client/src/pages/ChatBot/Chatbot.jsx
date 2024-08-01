@@ -10,6 +10,8 @@ import {
   getUserChats,
   sendChatRequest,
 } from '../../api/ChatBotRequest'
+import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
+
 const ChatBot = () => {
   const inputRef = useRef(null)
   const { user } = useSelector((state) => state.authReducer.authData)
@@ -53,6 +55,7 @@ const ChatBot = () => {
   }, [user])
   return (
     <div style={{ background: '#f3f3f3' }}>
+
       <Box
         sx={{
           display: 'flex',

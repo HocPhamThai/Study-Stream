@@ -39,7 +39,7 @@ function RandomPlaylist() {
             <div
               key={index}
               className="flex items-center gap-5"
-              onClick={() => handleOptionSelect(entry.topicType, entry.entryId)}
+              onClick={() => handleOptionSelect(entry.topic, entry.entryId)}
             >
               <img
                 src={entry.coverImage}
