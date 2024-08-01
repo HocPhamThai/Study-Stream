@@ -23,6 +23,7 @@ function isCodeBlock(str) {
     str.includes('//')
   )
 }
+
 const ChatItem = ({ content, role }) => {
   const messageBlocks = extractCodeFromString(content)
   const user = useSelector((state) => state.authReducer.authData)
@@ -78,7 +79,7 @@ const ChatItem = ({ content, role }) => {
         width: '100%',
         display: 'flex',
         p: 2,
-        bgcolor: '#004d56',
+        bgcolor: 'var(--cardColor)',
         gap: 2,
         borderRadius: 2,
       }}

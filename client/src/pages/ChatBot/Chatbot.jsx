@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Box, Avatar, Typography, Button, IconButton } from '@mui/material'
-import red from '@mui/material/colors/red'
+import aiImage from '../../img/ai.png'
 import { IoMdSend } from 'react-icons/io'
 import { toast } from 'sonner'
 import { useSelector } from 'react-redux'
@@ -10,10 +10,13 @@ import {
   getUserChats,
   sendChatRequest,
 } from '../../api/ChatBotRequest'
+import { Link } from 'react-router-dom'
+
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 
 const ChatBot = () => {
   const inputRef = useRef(null)
+  const chatContainerRef = useRef(null)
   const { user } = useSelector((state) => state.authReducer.authData)
   const [chatMessages, setChatMessages] = useState([])
   const handleSubmit = async () => {
@@ -53,6 +56,19 @@ const ChatBot = () => {
         })
     }
   }, [user])
+
+  useEffect(() => {
+    // scroll to bottom
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
+    }
+  }, [chatMessages])
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  }
   return (
     <div style={{ background: '#f3f3f3' }}>
 
@@ -60,13 +76,13 @@ const ChatBot = () => {
         sx={{
           display: 'flex',
           flex: 1,
-          color: 'white',
+          color: '#212529',
           width: '100%',
           height: '100vh',
-          bgcolor: 'rgb(17,27,39,0.90)',
           gap: 3,
         }}
       >
+        <Box sx={{ mt: 3 }}><LeftSideBar /></Box>
         <Box
           sx={{
             display: { md: 'flex', xs: 'none', sm: 'none' },
@@ -74,16 +90,17 @@ const ChatBot = () => {
             flexDirection: 'column',
           }}
         >
+
           <Box
             sx={{
               display: 'flex',
               width: '100%',
               height: '60vh',
-              bgcolor: 'rgb(17,29,39)',
+              bgcolor: 'var(--cardColor)',
               borderRadius: 5,
               flexDirection: 'column',
               mx: 3,
-              mt: 3,
+              mt: 5,
             }}
           >
             <Avatar
@@ -95,22 +112,23 @@ const ChatBot = () => {
                 fontWeight: 700,
               }}
             >
-              {/* {user?.name[0]}
-            {user?.name.split(' ')[1][0]} */}
+              <img src={aiImage} alt="" />
             </Avatar>
-            <Typography sx={{ mx: 'auto', fontFamily: 'work sans' }}>
-              You are talking to a ChatBOT
+            <Typography sx={{ mx: 'auto', fontFamily: 'Sans-Serif', fontWeight: 'bold' }}>
+              You are talking to a ChatBot
             </Typography>
             <Typography
               sx={{
                 mx: 'auto',
-                fontFamily: 'work sans',
+                fontFamily: 'Sans-Serif',
                 my: 4,
                 p: 3,
+                textAlign: 'center'
               }}
             >
               You can ask some questions related to Knowledge, Business,
-              Advices, Education, etc. But avoid sharing personal information
+              Advices, Education, etc.
+              <Typography sx={{ color: 'error.main', textAlign: 'center', alignItems: 'center' }}>⚠️ But avoid sharing personal information!</Typography>
             </Typography>
             <Button
               onClick={handleDeleteChats}
@@ -121,11 +139,8 @@ const ChatBot = () => {
                 fontWeight: '700',
                 borderRadius: 3,
                 mx: 'auto',
-                bgcolor: red[300],
-                ':hover': {
-                  bgcolor: red.A400,
-                },
               }}
+              className="button"
             >
               Clear Conversation
             </Button>
@@ -148,7 +163,9 @@ const ChatBot = () => {
               fontWeight: '600',
             }}
           >
-            ChatBot Supporter
+            <h1 className="text-[--orange] pt-4 md:pt-0 pb-8 px-4 text-xl  text-center group-[.iframe]:hidden">
+              Fast AI Inference
+            </h1>
           </Typography>
           <Box
             sx={{
@@ -163,6 +180,7 @@ const ChatBot = () => {
               overflowY: 'auto',
               scrollBehavior: 'smooth',
             }}
+            ref={chatContainerRef}
           >
             {chatMessages.map((chat, index) => (
               <ChatItem content={chat.content} role={chat.role} key={index} />
@@ -172,32 +190,31 @@ const ChatBot = () => {
             style={{
               width: '100%',
               borderRadius: 8,
-              backgroundColor: 'rgb(17,27,39)',
               display: 'flex',
               margin: 'auto',
+              border: '12px solid #666',
             }}
           >
-            {' '}
             <input
               ref={inputRef}
               type="text"
+              onKeyPress={handleKeyPress}
               style={{
                 width: '100%',
-                backgroundColor: 'rgb(17,29,39)',
-                padding: '30px',
+                padding: '16px',
                 border: 'none',
                 outline: 'none',
-                color: 'white',
+                borderRadius: '8px 0 0 8px',
                 fontSize: '16px',
               }}
             />
-            <IconButton onClick={handleSubmit} sx={{ color: 'white', mx: 1 }}>
+            <IconButton onClick={handleSubmit} sx={{ color: '#666', mx: 1 }}>
               <IoMdSend />
             </IconButton>
           </div>
         </Box>
       </Box>
-    </div>
+    </div >
   )
 }
 

@@ -31,10 +31,10 @@ function ProfileCard({ location }) {
 
       <div className="ProfileName">
         <span>{user.firstname + ' ' + user.lastname}</span>
-        <span>{user.workAt ? user.workAt : 'Write about yourself'}</span>
+        <span>{user.workAt ? user.workAt : 'Your Work'}</span>
       </div>
 
-      <div className="followStatus">
+      {/* <div className="followStatus">
         <hr />
         <div>
           <div className="follow">
@@ -59,7 +59,7 @@ function ProfileCard({ location }) {
           )}
         </div>
         <hr />
-      </div>
+      </div> */}
 
       {location === 'ProfilePage' ? (
         ''

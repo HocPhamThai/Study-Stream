@@ -3,6 +3,7 @@ import Logo from '../../img/logo.png'
 import StudyStream from './studystream.png'
 import Topic from './topic_img.png'
 import PomodoroBg from './PomodoroBg_img.png'
+import aiImg from './ai.png'
 function GetStartedPage() {
   return (
     <div className='bg-white m-[-1rem] p-[1rem]'>
@@ -126,21 +127,6 @@ function GetStartedPage() {
               Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening.
             </p>
           </div>
-          {/* <div>
-            <h2 className='col-span-1 text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Push your {' '}
-              <span className='bg-gradient-to-r from-[#ff9966] to-[#ff5e62] bg-clip-text text-transparent'>
-                motivation {' '}
-              </span>
-              with the video streaming!
-            </h2>
-            <p className='mt-4 text-center text-lg text-gray-500 lg:text-left'>
-              StudyStream provide realtime video to help you meet other people and push your motivation.
-            </p>
-          </div>
-          <div className='mt-8 grid-cols-2 gap-4 lg:grid'>
-            <img className='h-full w-full' src={StudyStream} alt="" />
-          </div> */}
         </div>
       </section>
       <section className='mt-10 px-4 lg:mt-24'>
@@ -161,13 +147,35 @@ function GetStartedPage() {
         <div className='mt-8 grid-cols-2 gap-16 lg:grid'>
           <div className='col-span-1 flex items-center justify-center'>
             <div className='relative h-[60vw] w-[80vw] max-w-[600px] lg:h-[30vw] lg:w-[40vw]'>
-              <img src={Topic} alt="" />
+              <img src={Topic} alt="Topic Image" className='rounded-2xl' />
             </div>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
             <div className='relative h-[60vw] w-[80vw] max-w-[600px] lg:h-[30vw] lg:w-[40vw]'>
-              <img src={PomodoroBg} alt="" />
+              <img src={PomodoroBg} alt="Pomodoro Image" className='rounded-2xl' />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className='mt-10 px-4 lg:mt-24'>
+        <div className='grid items-center gap-4 lg:grid-cols-2'>
+          <div className='col-span-1 flex items-center justify-center'>
+            <div className='relative h-[60vw] w-[80vw] lg:h-[35vw] lg:w-[45vw] flex items-center justify-center '>
+              <img src={aiImg} alt="StudyStream Image" className='rounded-2xl' />
+            </div>
+          </div>
+          <div className='col-span-1'>
+            <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
+              Answer   {' '}
+              <span className='bg-gradient-to-r from-[#ff9966] to-[#ff5e62] bg-clip-text text-transparent'>
+                questions {' '}
+              </span>
+              with our chatbot.
+            </h2>
+            <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
+              Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance.
+            </p>
           </div>
         </div>
       </section>
