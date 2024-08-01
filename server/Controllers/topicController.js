@@ -206,8 +206,10 @@ export const getRandomEntries = async (req, res) => {
     // Tìm tất cả các topics
     const topics = await TopicModel.find();
 
-    // Lấy tất cả các entries từ tất cả các topics
-    const allEntries = topics.flatMap(topic => topic.entries);
+    // Tạo một mảng chứa tất cả các entries kèm thông tin topic tương ứng
+    const allEntries = topics.flatMap(topic =>
+      topic.entries.map(entry => ({ ...entry.toObject(), topic: topic.topicName }))
+    );
 
     // Nếu không có entries nào, trả về thông báo lỗi
     if (allEntries.length === 0) {
@@ -225,4 +227,5 @@ export const getRandomEntries = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
 

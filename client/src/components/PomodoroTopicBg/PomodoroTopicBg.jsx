@@ -101,7 +101,7 @@ function PomodoroTopicBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <LeftSideBar />
+          <div className='text-white'><LeftSideBar /></div>
           <div className="flex-1 p-4 relative">
             {/* <!-- Main Section --> */}
             <div className="fixed top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">

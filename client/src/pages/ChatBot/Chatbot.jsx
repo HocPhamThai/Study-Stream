@@ -12,6 +12,8 @@ import {
 } from '../../api/ChatBotRequest'
 import { Link } from 'react-router-dom'
 
+import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
+
 const ChatBot = () => {
   const inputRef = useRef(null)
   const chatContainerRef = useRef(null)
@@ -61,8 +63,15 @@ const ChatBot = () => {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
   }, [chatMessages])
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmit();
+    }
+  }
   return (
     <div style={{ background: '#f3f3f3' }}>
+
       <Box
         sx={{
           display: 'flex',
@@ -73,6 +82,7 @@ const ChatBot = () => {
           gap: 3,
         }}
       >
+        <Box sx={{ mt: 3 }}><LeftSideBar /></Box>
         <Box
           sx={{
             display: { md: 'flex', xs: 'none', sm: 'none' },
@@ -80,25 +90,7 @@ const ChatBot = () => {
             flexDirection: 'column',
           }}
         >
-          <Box sx={{ mt: '12px' }}>
-            <Link to="/dashhome" style={{ display: 'flex' }}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                />
-              </svg>
-              <Typography sx={{ ml: 1 }}>Back</Typography>
-            </Link>
-          </Box>
+
           <Box
             sx={{
               display: 'flex',
@@ -122,19 +114,21 @@ const ChatBot = () => {
             >
               <img src={aiImage} alt="" />
             </Avatar>
-            <Typography sx={{ mx: 'auto', fontFamily: 'work sans' }}>
-              You are talking to a ChatBOT
+            <Typography sx={{ mx: 'auto', fontFamily: 'Sans-Serif', fontWeight: 'bold' }}>
+              You are talking to a ChatBot
             </Typography>
             <Typography
               sx={{
                 mx: 'auto',
-                fontFamily: 'work sans',
+                fontFamily: 'Sans-Serif',
                 my: 4,
                 p: 3,
+                textAlign: 'center'
               }}
             >
               You can ask some questions related to Knowledge, Business,
-              Advices, Education, etc. But avoid sharing personal information
+              Advices, Education, etc.
+              <Typography sx={{ color: 'error.main', textAlign: 'center', alignItems: 'center' }}>⚠️ But avoid sharing personal information!</Typography>
             </Typography>
             <Button
               onClick={handleDeleteChats}
@@ -204,6 +198,7 @@ const ChatBot = () => {
             <input
               ref={inputRef}
               type="text"
+              onKeyPress={handleKeyPress}
               style={{
                 width: '100%',
                 padding: '16px',
@@ -219,7 +214,7 @@ const ChatBot = () => {
           </div>
         </Box>
       </Box>
-    </div>
+    </div >
   )
 }
 

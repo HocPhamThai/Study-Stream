@@ -32,13 +32,13 @@ function PomodoroBg() {
 
           <div className="w-auto h-9 relative ml-5 flex items-center space-x-5 ">
             <img className="h-full" src={Logo} alt="Logo" />
-            <span className='text-lg'>Hi, {user.firstname + ' ' + user.lastname}</span>
+            <span className='text-lg text-white'>Hi, {user.firstname + ' ' + user.lastname}</span>
             <Link to="/dashhome">
-              <span className='flex cursor-pointer flex-center '>
+              <span className='flex cursor-pointer flex-center text-white'>
                 <svg
-                  className='size-[30px] '
+                  className='size-[30px] text-white'
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-                  <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+                  <path fill="currentColor" d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
                   />
                 </svg>
                 <span className='text-lg'>Back</span>
@@ -52,7 +52,7 @@ function PomodoroBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <LeftSideBar />
+          <div className='text-white'><LeftSideBar /></div>
           <div className="flex-1 p-4 relative">
             {/* <!-- Main Section --> */}
             <div className="fixed top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">

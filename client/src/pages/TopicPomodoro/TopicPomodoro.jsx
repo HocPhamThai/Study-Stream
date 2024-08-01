@@ -72,8 +72,10 @@ function TopicPomodoro() {
               <input type="text" placeholder='Type to search...' />
             </div>
           </div>
-          <div className='my-2 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          <div
+            className='my-2 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
 
+          >
             {topic?.entries.map(entry => (
               <OptionList
                 key={entry.entryId}

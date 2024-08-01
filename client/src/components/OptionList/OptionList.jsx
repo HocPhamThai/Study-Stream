@@ -3,7 +3,11 @@ import React from 'react'
 function OptionList({ topic, onClick }) {
   return (
     <>
-      <div className='group relative col-span-1 cursor-pointer overflow-hidden rounded-lg bg-cl-bg-icon shadow-sm' onClick={onClick}>
+      <div
+        className='group relative col-span-1 cursor-pointer overflow-hidden rounded-lg bg-cl-bg-icon shadow-sm'
+        onClick={onClick}
+        style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
+      >
         <div className=''>
           <img
             className='rounded-lg'
