@@ -105,35 +105,35 @@ const Chat = () => {
           <div className="Chat-list hover-scrollbar">
             {showChat
               ? chats.map((chat) => (
-                  <div
-                    key={chat._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setCurrentChat(chat)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        setCurrentChat(chat)
-                      }
-                    }}
-                  >
-                    <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
-                  </div>
-                ))
+                <div
+                  key={chat._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setCurrentChat(chat)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      setCurrentChat(chat)
+                    }
+                  }}
+                >
+                  <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
+                </div>
+              ))
               : userSearchs.map((user) => (
-                  <div
-                    key={user._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleUserClick(user._id)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleUserClick(user._id)
-                      }
-                    }}
-                  >
-                    <ConversationInSearch data={user} setShowChat={setShowChat} />
-                  </div>
-                ))}
+                <div
+                  key={user._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleUserClick(user._id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleUserClick(user._id)
+                    }
+                  }}
+                >
+                  <ConversationInSearch data={user} setShowChat={setShowChat} />
+                </div>
+              ))}
           </div>
         </div>
       </div>

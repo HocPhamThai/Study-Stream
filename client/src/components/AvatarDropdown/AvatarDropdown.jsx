@@ -57,7 +57,7 @@ function AvatarDropdown() {
               </a>
             </li>
             <li>
-              <a href="#" className="flex px-4 py-2 hover:bg-gray-100">
+              <a href="https://insigh.to/b/studystream" target="_blank" className="flex px-4 py-2 hover:bg-gray-100">
                 <img src="https://corodomo.com/assets/images/email.png" alt="" className='w-[18px] h-[18px]' />
                 <span className='ml-2'>Help center</span>
               </a>
