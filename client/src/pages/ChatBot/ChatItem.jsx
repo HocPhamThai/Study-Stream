@@ -23,6 +23,7 @@ function isCodeBlock(str) {
     str.includes('//')
   )
 }
+
 const ChatItem = ({ content, role }) => {
   const messageBlocks = extractCodeFromString(content)
   const user = useSelector((state) => state.authReducer.authData)

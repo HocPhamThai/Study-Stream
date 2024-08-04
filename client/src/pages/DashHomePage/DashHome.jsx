@@ -218,10 +218,10 @@ const DashHome = () => {
               </p>
               <p className="mt-4 text-sm">
                 {' '}
-                Your personal study haven for ultimate focus
+                Your studying heavan for ultimate focus
               </p>
               <button
-                className="button px-4 py-2 border rounded-xl"
+                className="contrast-button px-4 py-2 border rounded-xl"
                 type="button"
               >
                 Join now
@@ -232,7 +232,7 @@ const DashHome = () => {
                 💡 Creative room
               </p>
               <p className="mt-4 text-sm">
-                Unleash your creativity, one study session at a time
+                Unleash creativity, one study session at a time
               </p>
               <button
                 className="button px-4 py-2 border rounded-xl"
