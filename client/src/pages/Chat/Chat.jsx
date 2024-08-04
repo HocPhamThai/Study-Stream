@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { io } from 'socket.io-client'
-import { createChat, userChats } from '../../api/ChatRequest'
+import { createChat, userChats, deleteChatRequest } from '../../api/ChatRequest'
 import ChatBox from '../../components/ChatBox/ChatBox'
 import Conversation from '../../components/Conversation/Conversation'
 import Comment from '../../img/comment.png'
@@ -14,7 +14,6 @@ import './Chat.scss'
 import SearchForm from '../../components/SearchForm/SearchForm'
 import ConversationInSearch from '../../components/ConversationInSearch/ConversationInSearch'
 import { searchUsers } from '../../api/UserRequest'
-
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [chats, setChats] = useState([])
@@ -92,6 +91,16 @@ const Chat = () => {
     }
   }
 
+  const deleteChat = async (chatId) => {
+    try {
+      await deleteChatRequest(chatId)
+      setChats((prevChats) => prevChats.filter((chat) => chat._id !== chatId))
+      setCurrentChat(null)
+    } catch (error) {
+      console.error('Failed to delete chat', error)
+    }
+  }
+
   return (
     <div className="Chat">
       {/* Left side */}
@@ -115,8 +124,21 @@ const Chat = () => {
                         setCurrentChat(chat)
                       }
                     }}
+                    className="Conversation"
                   >
-                    <Conversation data={chat} currentUserId={user._id} online={checkOnlineStatus(chat)} />
+                    <Conversation
+                      data={chat}
+                      currentUserId={user._id}
+                      online={checkOnlineStatus(chat)}
+                    />
+                    <button
+                      className="delete-button"
+                      onClick={() => {
+                        deleteChat(chat._id)
+                      }}
+                    >
+                      X
+                    </button>
                   </div>
                 ))
               : userSearchs.map((user) => (
@@ -131,7 +153,10 @@ const Chat = () => {
                       }
                     }}
                   >
-                    <ConversationInSearch data={user} setShowChat={setShowChat} />
+                    <ConversationInSearch
+                      data={user}
+                      setShowChat={setShowChat}
+                    />
                   </div>
                 ))}
           </div>
@@ -152,7 +177,12 @@ const Chat = () => {
           </div>
         </div>
         {/* Chat body */}
-        <ChatBox chat={currentChat} currentUser={user._id} setSendMessage={setSendMessage} receiveMessage={receiveMessage} />
+        <ChatBox
+          chat={currentChat}
+          currentUser={user._id}
+          setSendMessage={setSendMessage}
+          receiveMessage={receiveMessage}
+        />
       </div>
     </div>
   )

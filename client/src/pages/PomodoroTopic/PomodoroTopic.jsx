@@ -36,7 +36,6 @@ const PomodoroTopic = () => {
     }} >
       <PomodoroTopicBg />
     </SettingsContext.Provider >
-
   )
 }
 

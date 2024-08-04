@@ -108,3 +108,19 @@
 .hover-scrollbar:hover {
   overflow: auto; /* Hiển thị scrollbar khi hover */
 }
+
+.delete-button {
+  color: orange;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.Conversation {
+  position: relative;
+}

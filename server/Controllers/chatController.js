@@ -10,11 +10,23 @@ const userChats = async (req, res) => {
 }
 
 const createChat = async (req, res) => {
-  const newChat = new ChatModel({
-    members: [req.body.senderId, req.body.receiverId],
-  })
+  const { senderId, receiverId } = req.body
 
   try {
+    // Check if the chat already exists
+    const existingChat = await ChatModel.findOne({
+      members: { $all: [senderId, receiverId] },
+    })
+
+    if (existingChat) {
+      return res.status(200).json({ chat: existingChat })
+    }
+
+    // Create a new chat
+    const newChat = new ChatModel({
+      members: [senderId, receiverId],
+    })
+
     const savedChat = await newChat.save()
     res.status(200).json(savedChat)
   } catch (error) {
@@ -33,4 +45,13 @@ const findChat = async (req, res) => {
   }
 }
 
-export { findChat, userChats, createChat }
+const deleteChat = async (req, res) => {
+  try {
+    await ChatModel.deleteOne({ _id: req.params.chatId })
+    res.status(200).json({ message: 'Chat deleted successfully' })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export { findChat, userChats, createChat, deleteChat }

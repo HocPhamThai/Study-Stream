@@ -32,7 +32,11 @@ const ConversationInSearch = ({ data, setShowChat }) => {
       >
         <div>
           <img
-            src={userData?.profilePicture ? serverPublic + userData.profilePicture : serverPublic + 'defaultProfile.jpg'}
+            src={
+              userData?.profilePicture
+                ? serverPublic + userData.profilePicture
+                : serverPublic + 'defaultProfile.jpg'
+            }
             className="followerImage"
             style={{ width: '50px', height: '50px' }}
             alt="failed to load"
