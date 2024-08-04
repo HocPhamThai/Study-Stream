@@ -6,7 +6,7 @@
   background-color: #f3f3f3;
   margin: -1rem;
   padding: 1rem 1rem;
-  overflow: auto;
+  overflow: visible;
 }
 
 .Left-side-chat {
@@ -24,7 +24,7 @@
   padding: 1rem;
   height: auto;
   min-height: 80vh;
-  overflow: scroll;
+  overflow: auto;
   margin-top: -3px;
 }
 
@@ -34,10 +34,6 @@
   gap: 1rem;
   height: 620px;
   overflow-y: auto;
-}
-
-.Chat-list::-webkit-scrollbar {
-  width: 12px; /* Độ rộng của thanh cuộn */
 }
 
 .Chat-list::-webkit-scrollbar-track {
