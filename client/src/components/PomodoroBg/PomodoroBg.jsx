@@ -14,6 +14,7 @@ import MusicPlayer from '../../components/PomoButton/MusicPlayer'
 import { logOut } from '../../actions/AuthAction'
 import LeftSideBar from '../LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../AvatarDropdown/AvatarDropdown'
+import TaskModal from '../TaskModal/TaskModal'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function PomodoroBg() {
@@ -69,7 +70,7 @@ function PomodoroBg() {
             <div className=" bg-gray-900 p-3 space-y-4 rounded-lg">
               <ModalTimer />
               <ModalChangeBackgound />
-
+              <TaskModal />
             </div>
           </div>
         </div>

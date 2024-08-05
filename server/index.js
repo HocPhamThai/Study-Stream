@@ -13,6 +13,7 @@ import TopicRoute from './Routes/topicRoute.js'
 import ChatBotRoute from './Routes/chatBotRoute.js'
 import songRoute from './Routes/songRoute.js'
 import rewardsRoute from './Routes/rewardsRoute.js'
+import taskRoute from './Routes/taskRoute.js'
 import cors from 'cors'
 
 const app = express()
@@ -46,4 +47,4 @@ app.use('/workingtime', WorkingTimeRoute)
 app.use('/topic', TopicRoute)
 app.use('/songs', songRoute)
 app.use('/rewards', rewardsRoute)
-
+app.use('/tasks', taskRoute)

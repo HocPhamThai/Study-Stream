@@ -206,7 +206,7 @@ const DashHome = () => {
               </p>
               <p className="mt-4 text-sm">Boost your productivity with us</p>
               <button
-                className="button px-4 py-2 border rounded-xl"
+                className="button px-4 py-2 border rounded-xl	"
                 type="button"
               >
                 Join now

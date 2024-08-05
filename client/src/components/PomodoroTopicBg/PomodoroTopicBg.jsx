@@ -15,6 +15,7 @@ import { logOut } from '../../actions/AuthAction'
 import LeftSideBar from '../LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../AvatarDropdown/AvatarDropdown'
 import axios from 'axios'
+import TaskModal from '../TaskModal/TaskModal'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -117,6 +118,7 @@ function PomodoroTopicBg() {
           <div className=" w-[56px] mr-5 bg-transparent flex flex-col items-center py-4 space-y-4 ">
             <div className="fixed top-80 z-10 bg-gray-900 p-3 space-y-4 rounded-lg">
               <ModalTimer />
+              <TaskModal />
               {/* <ModalChangeBackgound /> */}
             </div>
           </div>

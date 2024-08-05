@@ -15,7 +15,7 @@ function UpdateSongModal({ data, onSongUpdated }) {
   // Hàm so sánh dữ liệu
   const isDataChanged = (newData, oldData) => {
     return JSON.stringify(newData) !== JSON.stringify(oldData);
-  };
+  }
 
   useEffect(() => {
     // Cập nhật formData khi data thay đổi thực sự
