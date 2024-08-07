@@ -24,7 +24,9 @@ import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
 import ChatBot from './pages/ChatBot/Chatbot'
 
 function App() {
-  const user = useSelector((state) => state.authReducer.authData)
+  const { user } = useSelector((state) => state.authReducer.authData) || {
+    user: null,
+  }
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
 
@@ -40,12 +42,9 @@ function App() {
         <div className="App">
           <Toaster position="top-right" />
           <Routes>
-            {/* {user.isAdmin ? <Route path="/" element={<Navigate to="/CRUDadminhere" />} /> : <Route path="/" element={<Navigate to="/home" />} />} */}
             <Route
               path="/"
-              element={
-                user ? <Navigate to="dashhome" /> : <Navigate to="../auth" />
-              }
+              element={user ? <Navigate to="dashhome" /> : <Auth />}
             />
             <Route
               path="/forgot"
@@ -67,7 +66,10 @@ function App() {
               path="/chat"
               element={user ? <Chat /> : <Navigate to="../auth" />}
             />
-            <Route path="/rules" element={<Rules />} />
+            <Route
+              path="/rules"
+              element={user ? <Rules /> : <Navigate to="../auth" />}
+            />
             <Route
               path="/pomodoro"
               element={user ? <Pomodoro /> : <Navigate to="../auth" />}
@@ -78,11 +80,32 @@ function App() {
             />
             <Route
               path="/dashhome"
-              element={user ? <DashHome /> : <Navigate to="../auth" />}
+              element={
+                user ? (
+                  user.isAdmin ? (
+                    <Navigate to="/adminhome" />
+                  ) : (
+                    <DashHome />
+                  )
+                ) : (
+                  <Navigate to="/auth" />
+                )
+              }
             />
-            <Route path="/topic" element={<Topic />} />
-            <Route path="/topic/:entry" element={<TopicPomodoro />} />
-            <Route path="/adminhome" element={<AdminHome />} />
+            <Route
+              path="/topic"
+              element={user ? <Topic /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/topic/:entry"
+              element={user ? <TopicPomodoro /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/adminhome"
+              element={
+                user?.isAdmin ? <AdminHome /> : <Navigate to="../auth" />
+              }
+            />
             <Route path="/admin-topic" element={<AdminTopic />} />
             <Route
               path="/admin-topic/:topicIdProps"
@@ -90,7 +113,10 @@ function App() {
             />
             <Route path="/admin-songs" element={<AdminSongs />} />
             <Route path="/get-started" element={<GetStartedPage />} />
-            <Route path="/chatbot" element={<ChatBot />} />
+            <Route
+              path="/chatbot"
+              element={user ? <ChatBot /> : <Navigate to="../auth" />}
+            />
           </Routes>
         </div>
       )}
