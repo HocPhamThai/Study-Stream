@@ -66,12 +66,11 @@ const ChatBot = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleSubmit();
+      handleSubmit()
     }
   }
   return (
     <div style={{ background: '#f3f3f3' }}>
-
       <Box
         sx={{
           display: 'flex',
@@ -82,7 +81,9 @@ const ChatBot = () => {
           gap: 3,
         }}
       >
-        <Box sx={{ mt: 3 }}><LeftSideBar /></Box>
+        <Box sx={{ ml: '-1rem', mt: '44px' }}>
+          <LeftSideBar />
+        </Box>
         <Box
           sx={{
             display: { md: 'flex', xs: 'none', sm: 'none' },
@@ -90,7 +91,6 @@ const ChatBot = () => {
             flexDirection: 'column',
           }}
         >
-
           <Box
             sx={{
               display: 'flex',
@@ -114,7 +114,9 @@ const ChatBot = () => {
             >
               <img src={aiImage} alt="" />
             </Avatar>
-            <Typography sx={{ mx: 'auto', fontFamily: 'Sans-Serif', fontWeight: 'bold' }}>
+            <Typography
+              sx={{ mx: 'auto', fontFamily: 'Sans-Serif', fontWeight: 'bold' }}
+            >
               You are talking to a ChatBot
             </Typography>
             <Typography
@@ -123,12 +125,20 @@ const ChatBot = () => {
                 fontFamily: 'Sans-Serif',
                 my: 4,
                 p: 3,
-                textAlign: 'center'
+                textAlign: 'center',
               }}
             >
               You can ask some questions related to Knowledge, Business,
               Advices, Education, etc.
-              <Typography sx={{ color: 'error.main', textAlign: 'center', alignItems: 'center' }}>⚠️ But avoid sharing personal information!</Typography>
+              <Typography
+                sx={{
+                  color: 'error.main',
+                  textAlign: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                ⚠️ But avoid sharing personal information!
+              </Typography>
             </Typography>
             <Button
               onClick={handleDeleteChats}
@@ -214,7 +224,7 @@ const ChatBot = () => {
           </div>
         </Box>
       </Box>
-    </div >
+    </div>
   )
 }
 

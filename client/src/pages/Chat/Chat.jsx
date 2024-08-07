@@ -14,6 +14,7 @@ import './Chat.scss'
 import SearchForm from '../../components/SearchForm/SearchForm'
 import ConversationInSearch from '../../components/ConversationInSearch/ConversationInSearch'
 import { searchUsers } from '../../api/UserRequest'
+import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [chats, setChats] = useState([])
@@ -103,6 +104,9 @@ const Chat = () => {
 
   return (
     <div className="Chat">
+      <div className="left-sidebar">
+        <LeftSideBar />
+      </div>
       {/* Left side */}
       <div className="Left-side-chat">
         <LogoSearch />
