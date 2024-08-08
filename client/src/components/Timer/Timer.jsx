@@ -55,7 +55,7 @@ const Timer = (color) => {
       }
       tick()
 
-    }, 10) // Fixed the interval function
+    }, 10)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])

@@ -8,6 +8,14 @@
   padding: 1rem;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Profile {
+    grid-template-columns: 1fr;
+    /* Single column layout for small screens */
+  }
+}
+
 .Profile-center {
   display: flex;
   flex-direction: column;
@@ -18,6 +26,7 @@
   margin-right: auto;
   margin-left: 3px;
 }
+
 .Search {
   margin-left: 4px;
 }

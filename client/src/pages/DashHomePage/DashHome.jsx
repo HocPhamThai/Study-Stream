@@ -10,7 +10,6 @@ import Posts from './../../components/Posts/Posts'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
-import workingIcon from './workingIcon.png'
 import postIcon from './postIcon.png'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -89,7 +88,7 @@ const DashHome = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-2xl bg-white px-6 py-4">
           {/* Start now */}
           <div className="relative m-auto flex items-center gap-4 rounded-xl text-white shadow-md mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-            <div className="w-3/5 p-8">
+            <div className="w-3/5 p-8 ">
               <div className="mb-4 flex w-fit items-center gap-1 rounded-xl bg-white/20 px-3 py-1 text-xs text-white">
                 Noti
               </div>
@@ -108,8 +107,9 @@ const DashHome = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-1 justify-center [transform:rotateY(180deg)]">
-              <img className="w-[120px] h-[120px]" src={workingIcon} alt="" />
+            <div className="flex flex-1 justify-center ">
+              <img className="w-[140px] h-[140px]" src='https://i.imgur.com/NT2ubq7.png' alt="" />
+
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">
