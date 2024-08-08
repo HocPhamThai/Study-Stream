@@ -11,7 +11,7 @@ const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 function AvatarDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch()
-
+  const { user } = useSelector((state) => state.authReducer.authData)
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
@@ -20,7 +20,7 @@ function AvatarDropdown() {
     dispatch(logOut())
   }
 
-  const { user } = useSelector((state) => state.authReducer.authData)
+
 
   return (
     <div>

@@ -1,10 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import UserTable from '../../components/UserTable/UserTable'
 import AdminSidebar from '../../components/AdminSidebar/AdminSidebar'
-import Logo from '../../img/logo.png'
-import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
-import TopicTable from '../../components/TopicTable/TopicTable'
 import EntriesTable from '../../components/EntriesTable/EntriesTable'
 import { Link, useParams } from 'react-router-dom'
 
@@ -14,7 +10,6 @@ function AdminEntries() {
 
   return (
     <div>
-      {console.log('topicIdProps: ', topicIdProps)}
       <div className='grid grid-cols-6 p-0'>
         <div className='col-start-1 col-end-2 '>
           <AdminSidebar />

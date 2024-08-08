@@ -240,7 +240,7 @@ const TaskModal = () => {
               {isViewingTaskDetail && currentTask && (
                 <>
                   <span className="text-gray-300 cursor-pointer" onClick={() => setIsViewingTaskDetail(false)}>
-                    Upcoming
+                    {currentTask.completed ? 'Completed' : 'Upcoming'}
                   </span>
                   <span className="text-gray-300 mx-2"> &gt; </span>
                   <span className="text-gray-300">

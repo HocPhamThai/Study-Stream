@@ -118,51 +118,51 @@ const Chat = () => {
           <div className="Chat-list hover-scrollbar">
             {showChat
               ? chats.map((chat) => (
-                  <div
-                    key={chat._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setCurrentChat(chat)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        setCurrentChat(chat)
-                      }
+                <div
+                  key={chat._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setCurrentChat(chat)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      setCurrentChat(chat)
+                    }
+                  }}
+                  className="Conversation"
+                >
+                  <Conversation
+                    data={chat}
+                    currentUserId={user._id}
+                    online={checkOnlineStatus(chat)}
+                  />
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      deleteChat(chat._id)
                     }}
-                    className="Conversation"
                   >
-                    <Conversation
-                      data={chat}
-                      currentUserId={user._id}
-                      online={checkOnlineStatus(chat)}
-                    />
-                    <button
-                      className="delete-button"
-                      onClick={() => {
-                        deleteChat(chat._id)
-                      }}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))
+                    X
+                  </button>
+                </div>
+              ))
               : userSearchs.map((user) => (
-                  <div
-                    key={user._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleUserClick(user._id)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleUserClick(user._id)
-                      }
-                    }}
-                  >
-                    <ConversationInSearch
-                      data={user}
-                      setShowChat={setShowChat}
-                    />
-                  </div>
-                ))}
+                <div
+                  key={user._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleUserClick(user._id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleUserClick(user._id)
+                    }
+                  }}
+                >
+                  <ConversationInSearch
+                    data={user}
+                    setShowChat={setShowChat}
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>

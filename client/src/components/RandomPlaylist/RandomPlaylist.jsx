@@ -26,7 +26,7 @@ function RandomPlaylist() {
     navigate(`/pomodoro/${topicType}/${entryId}`)
   }
   return (
-    <div className="w-96 mr-5 ">
+    <div className="w-full lg:w-96 lg:mr-5 mt-5 lg:mt-0 ">
       <div className="flex flex-col rounded-2xl bg-white p-6 mt-[14px]">
         <div className="mb-4 flex justify-between">
           <p className="font-bold">Random Playlist</p>

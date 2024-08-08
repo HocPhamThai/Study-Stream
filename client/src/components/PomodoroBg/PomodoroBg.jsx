@@ -15,6 +15,7 @@ import { logOut } from '../../actions/AuthAction'
 import LeftSideBar from '../LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../AvatarDropdown/AvatarDropdown'
 import TaskModal from '../TaskModal/TaskModal'
+import HorizontalNavBar from '../HorizontalNavbar/HorizontalNavbar'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function PomodoroBg() {
@@ -53,7 +54,10 @@ function PomodoroBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <div className='text-white'><LeftSideBar /></div>
+          <div className="invisible lg:visible text-white">
+            <LeftSideBar />
+          </div>
+
           <div className="flex-1 p-4 relative">
             {/* <!-- Main Section --> */}
             <div className="fixed top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">
@@ -63,6 +67,9 @@ function PomodoroBg() {
             {/* <!-- Bottom Section --> */}
             <div className="absolute w-full bottom-20 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
+              <div className="block sm:hidden mt-2 mx-auto w-max">
+                <HorizontalNavBar />
+              </div>
             </div>
           </div>
           {/* Right bar */}
@@ -74,6 +81,7 @@ function PomodoroBg() {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   )

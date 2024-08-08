@@ -3,9 +3,9 @@ import PostSide from '../../components/PostSide/PostSide'
 import ProfileCard from '../../components/ProfileCard/ProfileCard'
 import ProfileLeft from '../../components/ProfileLeft/ProfileLeft'
 import RightSide from '../../components/RightSide/RightSide'
-import TaskModal from '../../components/TaskModal/TaskModal'
 import { useState } from 'react'
 import './Profile.scss'
+import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 const Profile = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -14,18 +14,20 @@ const Profile = () => {
   const handleClose = () => setModalOpen(false);
   return (
     <div className="Profile">
-      <ProfileLeft />
-
+      <div className="hidden sm:block">
+        <ProfileLeft />
+      </div>
       <div className="Profile-center">
+        <div className="fixed top-2 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+          <HorizontalNavBar />
+        </div>
         <ProfileCard location="ProfilePage" />
         <PostSide />
-        <div>
-          <TaskModal />
-        </div>
       </div>
 
-      <RightSide />
-
+      <div className="hidden md:block">
+        <RightSide />
+      </div>
     </div>
   )
 }
