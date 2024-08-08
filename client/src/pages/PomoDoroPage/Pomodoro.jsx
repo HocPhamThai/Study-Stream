@@ -22,6 +22,8 @@ const Pomodoro = () => {
   const [breakMinutes, setBreakMinutes] = useState(5)
   const [bgColor, setBgColor] = useState('linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)')
   const [mode, setMode] = useState('work')
+  const [isPaused, setIsPaused] = useState(true)
+  const [isNoti, setIsNoti] = useState(false)
   return (
     <SettingsContext.Provider value={{
       workMinutes,
@@ -29,6 +31,10 @@ const Pomodoro = () => {
       bgColor,
       setWorkMinutes,
       setBreakMinutes,
+      isPaused,
+      setIsPaused,
+      isNoti,
+      setIsNoti,
       setBgColor,
       mode,
       setMode,

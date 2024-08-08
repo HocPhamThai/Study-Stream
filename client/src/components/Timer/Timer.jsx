@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import './Timer.scss'
 import Logo from '../../img/logo.png'
-const red = '#f54e4e';
-const green = '#4aec8c';
+import notificationSound from './timeup.mp3'
 
 const Timer = (color) => {
   const settingsInfo = useContext(SettingsContext)
@@ -18,7 +17,7 @@ const Timer = (color) => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
-
+  const audioRef = useRef(new Audio(notificationSound))
   function tick() {
     secondsLeftRef.current--
     setSecondsLeft(secondsLeftRef.current)
@@ -33,11 +32,16 @@ const Timer = (color) => {
 
       setSecondsLeft(nextSeconds)
       secondsLeftRef.current = nextSeconds
+      if (settingsInfo.isNoti) {
+        audioRef.current.play()
+      }
     }
+
     setTempWorkMinutes(settingsInfo.workMinutes)
     setTempBreakMinutes(settingsInfo.breakMinutes)
     setMode(settingsInfo.mode)
-
+    isPausedRef.current = settingsInfo.isPaused
+    setIsPaused(settingsInfo.isPaused)
     secondsLeftRef.current = settingsInfo.workMinutes * 60
     setSecondsLeft(secondsLeftRef.current)
 
@@ -45,6 +49,9 @@ const Timer = (color) => {
       if (isPausedRef.current) {
         return
       }
+      // if (settingsInfo.isPaused) {
+      //   return
+      // }
       if (secondsLeftRef.current === 0) {
 
         if (modeRef.current === 'work') {
@@ -55,7 +62,7 @@ const Timer = (color) => {
       }
       tick()
 
-    }, 10)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])

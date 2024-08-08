@@ -64,7 +64,7 @@ const TaskModal = () => {
 
   useEffect(() => {
     fetchTasks()
-  }, [tasks?.length])
+  }, [])
 
   const openModal = (task) => {
     setIsModalOpen(true)
@@ -97,12 +97,13 @@ const TaskModal = () => {
       setTasks(tasks => [...tasks, newTask]) // Cập nhật luôn tasks để đảm bảo tính nhất quán
       return updatedTasks
     })
+    fetchTasks()
     setAddNoteOpen(false)
   }
 
   useEffect(() => {
     fetchTasks()
-  }, [upcomingTasks])
+  }, [])
 
   const handleEditClick = (task) => {
     setEditTask(task)
@@ -160,11 +161,13 @@ const TaskModal = () => {
         task._id === updatedTask?._id ? updatedTask : task
       )
     )
+    fetchTasks()
     toast.success('Task updated successfully!', { className: 'custom-toast' })
   }
 
   const handleTaskDeleted = (deletedTaskId) => {
     setTasks((prevTask) => prevTask.filter((task) => task._id !== deletedTaskId))
+    fetchTasks()
     toast.success(`Deleted task successfully!`, { className: 'custom-toast-delete' })
   }
 
