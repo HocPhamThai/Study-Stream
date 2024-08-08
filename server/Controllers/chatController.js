@@ -1,4 +1,5 @@
 import ChatModel from '../Models/chatModel.js'
+import MessageModel from '../Models/messageModel.js'
 
 const userChats = async (req, res) => {
   try {
@@ -48,6 +49,7 @@ const findChat = async (req, res) => {
 const deleteChat = async (req, res) => {
   try {
     await ChatModel.deleteOne({ _id: req.params.chatId })
+    await MessageModel.deleteMany({ chatId: req.params.chatId })
     res.status(200).json({ message: 'Chat deleted successfully' })
   } catch (error) {
     res.status(500).json({ message: error.message })

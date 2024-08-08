@@ -9,10 +9,10 @@ const enterRoom = async (req, res) => {
       { _id: req.params.id },
       { enterTime: new Date() },
       { new: true } // Để trả về tài liệu đã được cập nhật
-    );
+    )
 
     if (user) {
-      res.status(200).json({ message: 'User entered the room' });
+      res.status(200).json({ message: 'User entered the room' })
     } else {
       res.status(404).json({ message: 'User not found' })
     }
@@ -20,7 +20,6 @@ const enterRoom = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
-
 
 // Hàm xử lý khi người dùng thoát phòng
 const exitRoom = async (req, res) => {
@@ -32,30 +31,27 @@ const exitRoom = async (req, res) => {
         {
           $inc: {
             duration: {
-              $divide: [{ $subtract: [new Date(), "$enterTime"] }, 1000],
+              $divide: [{ $subtract: [new Date(), '$enterTime'] }, 1000],
             },
           },
         },
       ],
       { new: true }
-    );
+    )
 
     if (user) {
       res
         .status(200)
-        .json({ message: 'User exited the room', duration: user.duration });
+        .json({ message: 'User exited the room', duration: user.duration })
     } else {
-      res
-        .status(404)
-        .json({
-          message: 'User not found or has not entered the room',
-        });
+      res.status(404).json({
+        message: 'User not found or has not entered the room',
+      })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 }
-
 
 //get all User
 const getAllUser = async (req, res) => {
@@ -120,7 +116,9 @@ const updateUser = async (req, res) => {
       res.status(500).json({ message: error.message })
     }
   } else {
-    res.status(403).json({ message: 'Access denied! You can update only your account!' })
+    res
+      .status(403)
+      .json({ message: 'Access denied! You can update only your account!' })
   }
 }
 
@@ -209,22 +207,22 @@ const searchUsers = async (req, res) => {
 
 //
 const accessEntry = async (req, res) => {
-  const { entry } = req.body;
-  const { userId } = req.params;
+  const { entry } = req.body
+  const { userId } = req.params
 
   try {
     // Tìm người dùng theo userId
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId)
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
+      return res.status(404).json({ message: 'User not found.' })
     }
 
     // Tìm entry trong favoriteEntries
     const favoriteEntryIndex = user.favoriteEntries.findIndex(
       (e) => e.entryId === entry.entryId
-    );
-    console.log("favoriteEntryIndex: ", favoriteEntryIndex)
+    )
+    console.log('favoriteEntryIndex: ', favoriteEntryIndex)
 
     if (favoriteEntryIndex === -1) {
       // Nếu entry chưa tồn tại, thêm mới vào favoriteEntries
@@ -232,45 +230,59 @@ const accessEntry = async (req, res) => {
         ...entry,
         timeUsed: 1,
         lastAccessedAt: new Date(),
-      };
-      user.favoriteEntries.push(newEntry);
+      }
+      user.favoriteEntries.push(newEntry)
     } else {
       // Nếu entry đã tồn tại, cập nhật timeUsed và lastAccessedAt
       user.favoriteEntries[favoriteEntryIndex].timeUsed += 1
-      console.log("user.favoriteEntries[favoriteEntryIndex].timeUsed: ", user.favoriteEntries[favoriteEntryIndex].timeUsed)
-      user.favoriteEntries[favoriteEntryIndex].lastAccessedAt = new Date();
+      console.log(
+        'user.favoriteEntries[favoriteEntryIndex].timeUsed: ',
+        user.favoriteEntries[favoriteEntryIndex].timeUsed
+      )
+      user.favoriteEntries[favoriteEntryIndex].lastAccessedAt = new Date()
     }
 
-    await user.save();
-    res.status(200).json({ message: 'Access count updated successfully.' });
+    await user.save()
+    res.status(200).json({ message: 'Access count updated successfully.' })
   } catch (error) {
-    console.error("Error updating access count:", error);
-    res.status(500).json({ message: 'Error updating access count.' });
+    console.error('Error updating access count:', error)
+    res.status(500).json({ message: 'Error updating access count.' })
   }
 }
 
 const getTopEntries = async (req, res) => {
-  const { userId } = req.params;
+  const { userId } = req.params
 
   try {
     // Tìm người dùng theo userId
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId)
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
+      return res.status(404).json({ message: 'User not found.' })
     }
 
     // Sắp xếp favoriteEntries theo timeUsed giảm dần và lấy 4 entry đầu tiên
     const topEntries = user.favoriteEntries
       .sort((a, b) => b.timeUsed - a.timeUsed) // Sắp xếp giảm dần theo timeUsed
-      .slice(0, 4); // Lấy 4 entry đầu tiên
+      .slice(0, 4) // Lấy 4 entry đầu tiên
 
-    res.status(200).json(topEntries);
+    res.status(200).json(topEntries)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error retrieving top entries.' });
+    console.error(error)
+    res.status(500).json({ message: 'Error retrieving top entries.' })
   }
 }
 
-
-export { getUser, getAllUser, updateUser, deleteUser, followUser, unFollowUser, enterRoom, exitRoom, searchUsers, accessEntry, getTopEntries }
+export {
+  getUser,
+  getAllUser,
+  updateUser,
+  deleteUser,
+  followUser,
+  unFollowUser,
+  enterRoom,
+  exitRoom,
+  searchUsers,
+  accessEntry,
+  getTopEntries,
+}

@@ -7,7 +7,7 @@ import {
   likePost,
   getTimelinePosts,
   getAllPost,
-} from '../Controllers/postController.js'
+} from '../controllers/postController.js'
 
 const router = express.Router()
 

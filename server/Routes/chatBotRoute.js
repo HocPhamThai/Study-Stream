@@ -4,7 +4,7 @@ import {
   deleteChats,
   generateChatCompletion,
   sendChatsToUser,
-} from '../Controllers/chatbotController.js'
+} from '../controllers/chatbotController.js'
 
 //Protected API
 const router = express.Router()

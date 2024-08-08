@@ -7,8 +7,8 @@ import {
   getYearlyDuration,
   getTotalDuration,
   getWeeklyDailyDurations,
-  getMonthlyDailyDurations
-} from '../Controllers/workingTimeController.js'
+  getMonthlyDailyDurations,
+} from '../controllers/workingTimeController.js'
 
 const router = express.Router()
 

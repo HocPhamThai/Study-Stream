@@ -1,4 +1,4 @@
-import SongModel from '../models/songModel.js'
+import SongModel from '../Models/songModel.js'
 
 // Tạo một bài hát mới
 export const createSong = async (req, res) => {

@@ -1,11 +1,17 @@
-import TopicModel from '../models/topicModel.js'
+import TopicModel from '../Models/topicModel.js'
 
 export const createTopic = async (req, res) => {
   try {
-    const { topicName, nameOfTopic, topicImage, topicDescription, entries } = req.body
+    const { topicName, nameOfTopic, topicImage, topicDescription, entries } =
+      req.body
 
     if (!topicName || !nameOfTopic || !topicImage || !topicDescription) {
-      return res.status(400).json({ message: "All fields are required: topicName, nameOfTopic, topicImage, topicDescription" })
+      return res
+        .status(400)
+        .json({
+          message:
+            'All fields are required: topicName, nameOfTopic, topicImage, topicDescription',
+        })
     }
 
     const newTopic = new TopicModel({
@@ -13,7 +19,7 @@ export const createTopic = async (req, res) => {
       nameOfTopic,
       topicImage,
       topicDescription,
-      entries: entries || []
+      entries: entries || [],
     })
 
     const savedTopic = await newTopic.save()
@@ -39,7 +45,7 @@ export const getTopicByName = async (req, res) => {
     const topic = await TopicModel.findOne({ topicName })
 
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
     res.status(200).json(topic)
@@ -55,10 +61,10 @@ export const deleteTopic = async (req, res) => {
     const topic = await TopicModel.findByIdAndDelete(id)
 
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
-    res.status(200).json({ message: "Topic deleted successfully" })
+    res.status(200).json({ message: 'Topic deleted successfully' })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -71,12 +77,12 @@ export const getEntry = async (req, res) => {
 
     const topic = await TopicModel.findOne({ topicName })
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
-    const entry = topic.entries.find(entry => entry.entryId === entryId)
+    const entry = topic.entries.find((entry) => entry.entryId === entryId)
     if (!entry) {
-      return res.status(404).json({ message: "Entry not found" })
+      return res.status(404).json({ message: 'Entry not found' })
     }
 
     res.status(200).json(entry)
@@ -93,12 +99,12 @@ export const createEntry = async (req, res) => {
     const { entryId, name, background, coverImage } = req.body // Thêm coverImage vào đây
 
     if (!coverImage) {
-      return res.status(400).json({ message: "coverImage is required" })
+      return res.status(400).json({ message: 'coverImage is required' })
     }
 
     const topic = await TopicModel.findOne({ topicName: topicName })
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
     const newEntry = { entryId, name, background, coverImage } // Thêm coverImage vào đây
@@ -111,23 +117,20 @@ export const createEntry = async (req, res) => {
   }
 }
 
-
-
-
 export const deleteEntry = async (req, res) => {
   try {
     const { topicName, entryId } = req.params
 
     const topic = await TopicModel.findOne({ topicName: topicName })
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
     const initialLength = topic.entries.length
-    topic.entries = topic.entries.filter(entry => entry.entryId !== entryId)
+    topic.entries = topic.entries.filter((entry) => entry.entryId !== entryId)
 
     if (initialLength === topic.entries.length) {
-      return res.status(404).json({ message: "Entry not found" })
+      return res.status(404).json({ message: 'Entry not found' })
     }
 
     await topic.save()
@@ -138,7 +141,6 @@ export const deleteEntry = async (req, res) => {
   }
 }
 
-
 export const updateEntry = async (req, res) => {
   try {
     const { topicName, entryId } = req.params
@@ -147,13 +149,13 @@ export const updateEntry = async (req, res) => {
     // Tìm kiếm topic bằng topicName
     const topic = await TopicModel.findOne({ topicName: topicName })
     if (!topic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
     // Tìm kiếm entry bằng entryId trong danh sách entries của topic
-    const entry = topic.entries.find(entry => entry.entryId === entryId)
+    const entry = topic.entries.find((entry) => entry.entryId === entryId)
     if (!entry) {
-      return res.status(404).json({ message: "Entry not found" })
+      return res.status(404).json({ message: 'Entry not found' })
     }
 
     // Cập nhật các thuộc tính nếu chúng được cung cấp trong request body
@@ -176,7 +178,6 @@ export const updateEntry = async (req, res) => {
   }
 }
 
-
 // Update Topic:
 // Update Topic
 export const updateTopic = async (req, res) => {
@@ -186,7 +187,7 @@ export const updateTopic = async (req, res) => {
 
     const updatedTopic = await TopicModel.findOne({ topicName })
     if (!updatedTopic) {
-      return res.status(404).json({ message: "Topic not found" })
+      return res.status(404).json({ message: 'Topic not found' })
     }
 
     if (nameOfTopic) updatedTopic.nameOfTopic = nameOfTopic
@@ -204,28 +205,29 @@ export const updateTopic = async (req, res) => {
 export const getRandomEntries = async (req, res) => {
   try {
     // Tìm tất cả các topics
-    const topics = await TopicModel.find();
+    const topics = await TopicModel.find()
 
     // Tạo một mảng chứa tất cả các entries kèm thông tin topic tương ứng
-    const allEntries = topics.flatMap(topic =>
-      topic.entries.map(entry => ({ ...entry.toObject(), topic: topic.topicName }))
-    );
+    const allEntries = topics.flatMap((topic) =>
+      topic.entries.map((entry) => ({
+        ...entry.toObject(),
+        topic: topic.topicName,
+      }))
+    )
 
     // Nếu không có entries nào, trả về thông báo lỗi
     if (allEntries.length === 0) {
-      return res.status(404).json({ message: "No entries found" });
+      return res.status(404).json({ message: 'No entries found' })
     }
 
     // Trộn các entries để chọn ngẫu nhiên
-    const shuffledEntries = allEntries.sort(() => 0.5 - Math.random());
+    const shuffledEntries = allEntries.sort(() => 0.5 - Math.random())
 
     // Lấy 4 bài hát ngẫu nhiên
-    const randomEntries = shuffledEntries.slice(0, 4);
+    const randomEntries = shuffledEntries.slice(0, 4)
 
-    res.status(200).json(randomEntries);
+    res.status(200).json(randomEntries)
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message })
   }
 }
-
-
