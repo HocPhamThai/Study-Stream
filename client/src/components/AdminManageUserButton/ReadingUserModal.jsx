@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const ReadingUserModal = ({ isOpen, onClose, topicData }) => {
+const ReadingUserModal = ({ isOpen, onClose, userData }) => {
 
   if (!isOpen) return null
 
@@ -17,14 +17,10 @@ const ReadingUserModal = ({ isOpen, onClose, topicData }) => {
         <div className="relative p-4 bg-white rounded-lg shadow ">
           {/* Modal header */}
           <div className="flex justify-between mb-4 rounded-t sm:mb-5">
-            <div className="flex items-center mr-3">
-              <img
-                className="w-12 h-12 bg-gray-400 rounded-full mx-4 p-1"
-                src={topicData?.topicImage}
-                alt="Topic Image"
-              />
+            <div className="text-lg text-gray-900 md:text-xl ">
+              <h3 className="font-semibold">{userData.firstname} {userData.lastname}</h3>
+              <p className="font-bold">{userData.username}</p>
             </div>
-
             <div>
               <button
                 type="button"
@@ -48,12 +44,12 @@ const ReadingUserModal = ({ isOpen, onClose, topicData }) => {
               </button>
             </div>
           </div>
-
           <dl>
-            <dt className="mb-2 font-semibold leading-none text-gray-900 ">Topic Name:</dt>
-            <dd className="mb-4 font-light text-gray-500 sm:mb-5 break-words">{topicData?.nameOfTopic}</dd>
-            <dt className="mb-2 font-semibold leading-none text-gray-900 ">Description:</dt>
-            <dd className="mb-4 font-light text-gray-500 sm:mb-5 whitespace-pre-wrap break-words">{topicData?.topicDescription === undefined ? 'Not updated' : topicData?.topicDescription}</dd>
+            <dt className="mb-2 font-semibold leading-none text-gray-900 ">Live in:</dt>
+            <dd className="mb-4 font-light text-gray-500 sm:mb-5 ">{userData?.liveIn === undefined ? 'Not updated' : userData?.liveIn}</dd>
+            <dt className="mb-2 font-semibold leading-none text-gray-900 ">Relationship: </dt>
+            <dd className="mb-4 font-light text-gray-500 sm:mb-5 ">{userData?.relationship === undefined ? 'Not updated' : userData?.relationship}</dd>
+            {console.log('userData?.relationship: ', userData?.relationship)}
           </dl>
           <div className="flex justify-end space-x-2">
 
@@ -70,5 +66,4 @@ const ReadingUserModal = ({ isOpen, onClose, topicData }) => {
     </div>
   )
 }
-
 export default ReadingUserModal
