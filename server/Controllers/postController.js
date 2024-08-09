@@ -1,6 +1,6 @@
-import PostModel from '../Models/postModel.js'
+import PostModel from '../models/postModel.js'
 import mongoose from 'mongoose'
-import UserModel from '../Models/userModel.js'
+import UserModel from '../models/userModel.js'
 
 // get all posts
 const getAllPost = async (req, res) => {

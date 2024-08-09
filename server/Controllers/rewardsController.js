@@ -1,4 +1,4 @@
-import RewardsModel from '../Models/rewardsModel.js'
+import RewardsModel from '../models/rewardsModel.js'
 
 // Thêm mới reward
 export const addReward = async (req, res) => {

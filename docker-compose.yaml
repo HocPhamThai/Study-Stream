@@ -1,6 +1,6 @@
 services:
-  StudyStream-be:
-    image: StudyStream/be
+  studystream-be:
+    image: studystream-be
     ports:
       - 8001:8001
     environment:
@@ -8,15 +8,15 @@ services:
       EMAIL_PASSWORD: 'hmwo wuaw ilqy kqmu'
       GROQ_API_KEY: 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
 
-  StudyStream-realtime:
-    image: StudyStream/realtime
+  studystream-realtime:
+    image: studystream-realtime
     ports:
       - 8800:8800
 
   nginx:
-    image: StudyStream/fe
+    image: studystream-fe
     ports:
       - 80:80
     depends_on:
-      - StudyStream-be
-      - StudyStream-realtime
+      - studystream-be
+      - studystream-realtime

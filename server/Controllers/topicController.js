@@ -1,4 +1,4 @@
-import TopicModel from '../Models/topicModel.js'
+import TopicModel from '../models/topicModel.js'
 
 export const createTopic = async (req, res) => {
   try {
@@ -6,12 +6,10 @@ export const createTopic = async (req, res) => {
       req.body
 
     if (!topicName || !nameOfTopic || !topicImage || !topicDescription) {
-      return res
-        .status(400)
-        .json({
-          message:
-            'All fields are required: topicName, nameOfTopic, topicImage, topicDescription',
-        })
+      return res.status(400).json({
+        message:
+          'All fields are required: topicName, nameOfTopic, topicImage, topicDescription',
+      })
     }
 
     const newTopic = new TopicModel({

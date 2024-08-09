@@ -40,7 +40,7 @@ function App() {
         </div>
       ) : (
         <div className="App">
-          <Toaster position="top-right" />
+          <Toaster position="top-right" duration={1000} />
           <Routes>
             <Route
               path="/"

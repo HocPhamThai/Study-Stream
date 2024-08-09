@@ -1,4 +1,4 @@
-import TotalWorkingTime from '../Models/workingTimeModel.js'
+import TotalWorkingTime from '../models/workingTimeModel.js'
 
 const saveTotalWorkingTime = async (req, res) => {
   const { userId, duration } = req.body

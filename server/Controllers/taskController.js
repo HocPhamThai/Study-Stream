@@ -1,5 +1,5 @@
-import TaskModel from '../Models/taskModel.js' // Cập nhật đường dẫn nếu cần
-import UserModel from '../Models/userModel.js' // Cập nhật đường dẫn nếu cần
+import TaskModel from '../models/taskModel.js' // Cập nhật đường dẫn nếu cần
+import UserModel from '../models/userModel.js' // Cập nhật đường dẫn nếu cần
 
 // Thêm task mới
 export const addTask = async (req, res) => {

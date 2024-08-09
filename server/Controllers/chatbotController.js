@@ -1,5 +1,5 @@
 import Groq from 'groq-sdk'
-import UserModel from '../Models/userModel.js'
+import UserModel from '../models/userModel.js'
 
 export const generateChatCompletion = async (req, res, next) => {
   const { message, id } = req.body
