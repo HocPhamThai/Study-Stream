@@ -64,7 +64,7 @@ function ModalChangeBackgound() {
                 <h3 className="mb-1 text-xl font-bold text-gray-900 text flex items-center justify-center ">
                   Set color
                 </h3>
-                <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="p-4 grid grid-cols-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-4">
                   {colorOptions.map((colors, index) => (
                     <div
                       key={index}

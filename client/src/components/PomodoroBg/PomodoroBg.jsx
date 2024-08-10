@@ -33,10 +33,15 @@ function PomodoroBg() {
         <div className="flex justify-between items-center bg-transparent p-2 ">
 
           <div className="w-auto h-9 relative ml-5 flex items-center space-x-5 ">
-            <img className="h-full" src={Logo} alt="Logo" />
-            <span className='text-lg text-white'>Hi, {user.firstname + ' ' + user.lastname}</span>
+            <img className="h-full hidden sm:flex" src={Logo} alt="Logo" />
+            <div className='flex gap-3 z-10 mt-2 sm:hidden'>
+              <ModalTimer />
+              <ModalChangeBackgound />
+              <TaskModal />
+            </div>
+            <span className='text-lg text-white hidden sm:flex'>Hi, {user.firstname + ' ' + user.lastname}</span>
             <Link to="/dashhome">
-              <span className='flex cursor-pointer flex-center text-white'>
+              <span className='flex cursor-pointer flex-center text-white hidden sm:flex'>
                 <svg
                   className='size-[30px] text-white'
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
@@ -54,7 +59,7 @@ function PomodoroBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <div className="invisible lg:visible text-white">
+          <div className="invisible lg:visible">
             <LeftSideBar />
           </div>
 
@@ -65,7 +70,7 @@ function PomodoroBg() {
               <Timer />
             </div>
             {/* <!-- Bottom Section --> */}
-            <div className="absolute w-full bottom-20 left-1/2 transform -translate-x-1/2 bg-transparent ">
+            <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
               <div className="block sm:hidden mt-2 mx-auto w-max">
                 <HorizontalNavBar />
@@ -74,7 +79,7 @@ function PomodoroBg() {
           </div>
           {/* Right bar */}
           <div className="w-[56px] mr-5 bg-transparent flex flex-col items-center py-4 space-y-4 ">
-            <div className=" bg-gray-900 p-3 space-y-4 rounded-lg">
+            <div className=" bg-gray-900 p-3 space-y-4 rounded-lg hidden md:block">
               <ModalTimer />
               <ModalChangeBackgound />
               <TaskModal />

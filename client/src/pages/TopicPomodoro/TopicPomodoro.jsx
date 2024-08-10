@@ -6,6 +6,7 @@ import Logo from '../../img/logo.png'
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
+import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 function TopicPomodoro() {
   const { user } = useSelector((state) => state.authReducer.authData)
@@ -60,9 +61,15 @@ function TopicPomodoro() {
       </div>
       <div className="flex">
         {/* sidebar */}
-        <LeftSideBar />
+        <div className="hidden lg:block z-50">
+          <LeftSideBar />
+        </div>
+
         {/* Main content */}
         <div className="flex-1 p-4 m-auto my-4 max-w-7xl rounded-lg bg-white px-6 py-4">
+          <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+            <HorizontalNavBar />
+          </div>
           <div className="mb-4 ">
             <div className="flex items-center gap-8">
               <Link to="/topic">

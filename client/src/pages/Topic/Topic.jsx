@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import Chart from '../../components/Chart/Chart'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
+import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 import './Topic.scss'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -62,7 +63,7 @@ const Topic = () => {
       topicId: 'other',
       coverImage: 'https://i.imgur.com/UKeWvvz.png',
       name: 'Other',
-      description: 'Study with Corodomo',
+      description: 'Study with StudyStream',
     },
   ]
 
@@ -155,6 +156,9 @@ const Topic = () => {
           <FavoritePlaylist />
           <div className="mt-3 mb-3"></div>
           <RandomPlaylist />
+        </div>
+        <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+          <HorizontalNavbar />
         </div>
       </div>
     </div>
