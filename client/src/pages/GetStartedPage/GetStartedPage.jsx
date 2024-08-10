@@ -67,10 +67,10 @@ function GetStartedPage() {
               <span className='bg-gradient-to-r from-[#f9a225] to-[#f95f35] bg-clip-text text-transparent'>
                 Hack {' '}
               </span>
-              and boost your study motivation with Corodomo!
+              and boost your study motivation with StudyStream!
             </h1>
             <p className='mt-6 text-center text-lg text-gray-500 lg:text-left'>
-              Self-study becomes more enjoyable than ever with Corodomo.
+              Self-study becomes more enjoyable than ever with StudyStream.
             </p>
             <div className='flex justify-center lg:justify-start'>
               <Link to={user ? '/dashhome' : '/auth'}>

@@ -18,7 +18,7 @@ const Profile = () => {
         <ProfileLeft />
       </div>
       <div className="Profile-center">
-        <div className="fixed top-2 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+        <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
           <HorizontalNavBar />
         </div>
         <ProfileCard location="ProfilePage" />

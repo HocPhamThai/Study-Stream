@@ -6,6 +6,8 @@ import Logo from "../../img/logo.png";
 import { joinRoomInit, sendMessage } from '../../actions/StudyRoom_rtc';
 import { useDispatch, useSelector } from 'react-redux'
 import { enterRoom, exitRoom } from '../../api/UserRequest'
+import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const StudyRoom = () => {
   const [activeMemberContainer, setActiveMemberContainer] = useState(false)
@@ -14,6 +16,26 @@ const StudyRoom = () => {
   const authData = useSelector((state) => state.authReducer.authData);
   const user = authData ? authData.user : null
   const [message, setMessage] = useState('')
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const roomNumber = parseInt(query.get('room'), 10)
+
+  let roomType
+  switch (roomNumber) {
+    case 1:
+      roomType = 'Study Room';
+      break;
+    case 2:
+      roomType = 'Working Room';
+      break;
+    case 3:
+      roomType = 'Quiet Room';
+      break;
+    case 4:
+      roomType = 'Creative room';
+      break;
+  }
 
   const expandVideoFrame = (e) => {
     const displayFrame = document.getElementById('stream__box');
@@ -28,8 +50,8 @@ const StudyRoom = () => {
 
       // Đặt lại kích thước của tất cả video frames
       for (let i = 0; i < videoFrames.length; i++) {
-        videoFrames[i].style.height = '300px'; // Thay đổi kích thước theo yêu cầu của bạn
-        videoFrames[i].style.width = '300px';  // Thay đổi kích thước theo yêu cầu của bạn
+        videoFrames[i].style.height = '200px'; // Thay đổi kích thước theo yêu cầu của bạn
+        videoFrames[i].style.width = '200px';  // Thay đổi kích thước theo yêu cầu của bạn
       }
     } else {
       // Mở rộng video frame
@@ -146,6 +168,7 @@ const StudyRoom = () => {
 
   return (
     <div className="studyroom">
+      {console.log("Room ID: ", roomNumber)}
       <header id="nav">
         <div className="nav--list">
           <button id="members__button">
@@ -158,7 +181,7 @@ const StudyRoom = () => {
           <a href="lobby.html">
             <h3 id="logo">
               <img src={Logo} alt="Site Logo" />
-              <span>Study Stream</span>
+              <span>{roomType}</span>
             </h3>
           </a>
         </div>
@@ -192,40 +215,14 @@ const StudyRoom = () => {
             </div>
             <div id="member__list">
 
-              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
-                <span class="green__icon"></span>
-                <p class="member_name">Michael Jordan</p>
-              </div>
-              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
-                <span class="green__icon"></span>
-                <p class="member_name">Quang Hung MasterD</p>
-              </div>
-              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
-                <span class="green__icon"></span>
-                <p class="member_name">Choi Ung</p>
-              </div>
-              <div class="member__wrapper" id="member__c0aaa6a9-630d-4348-a858-ebf4d8970ed6__wrapper">
-                <span class="green__icon"></span>
-                <p class="member_name">De Kento</p>
-              </div>
+
             </div>
           </section>
 
           <section id="stream__container">
             <div id="stream__box"></div>
             <div id="streams__container">
-              <div className="video__container" id="user-container-1">
-                <img src="https://i1.sndcdn.com/artworks-xCH5edddN8ee-0-t500x500.jpg" alt="" />
-              </div>
-              <div className="video__container" id="user-container-2">
-                <img src="https://s.abcnews.com/images/International/210421_vod_study_hpMain_1x1_992.jpg" alt="" />
-              </div>
-              <div className="video__container" id="user-container-2">
-                <img src="https://i.pinimg.com/736x/09/b6/ae/09b6aead1489bc2aad500b48c07d35fb.jpg" alt="" />
-              </div>
-              <div className="video__container" id="user-container-2">
-                <img src="https://i.pinimg.com/564x/3e/b2/fd/3eb2fd02578dad9530351d304d2cddd3.jpg" alt="" />
-              </div>
+
             </div>
             <div className="stream__actions">
               <button id="camera-btn" className="active">
@@ -243,11 +240,14 @@ const StudyRoom = () => {
                   <path d="M0 1v17h24v-17h-24zm22 15h-20v-13h20v13zm-6.599 4l2.599 3h-12l2.599-3h6.802z" />
                 </svg>
               </button>
-              <button id="leave-btn">
+              <Link
+                to="/dashhome"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
                   <path d="M16 10v-5l8 7-8 7v-5h-8v-4h8zm-16-8v20h14v-2h-12v-16h12v-2h-14z" />
                 </svg>
-              </button>
+
+              </Link>
             </div>
           </section>
 

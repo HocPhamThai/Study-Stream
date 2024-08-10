@@ -23,6 +23,7 @@ const PomodoroTopic = () => {
   const [bgColor, setBgColor] = useState('Black')
   const [mode, setMode] = useState('work')
   const [isPaused, setIsPaused] = useState(true)
+  const [isNoti, setIsNoti] = useState(false)
 
   return (
     <SettingsContext.Provider value={{
@@ -34,6 +35,8 @@ const PomodoroTopic = () => {
       setBgColor,
       isPaused,
       setIsPaused,
+      isNoti,
+      setIsNoti,
       mode,
       setMode,
     }} >

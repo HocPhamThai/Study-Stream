@@ -11,7 +11,7 @@ import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import postIcon from './postIcon.png'
-
+import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
@@ -22,6 +22,15 @@ const DashHome = () => {
 
   const focusRoom1 = () => {
     window.location = `studyroom?room=${1}`
+  }
+  const focusRoom2 = () => {
+    window.location = `studyroom?room=${2}`
+  }
+  const focusRoom3 = () => {
+    window.location = `studyroom?room=${3}`
+  }
+  const focusRoom4 = () => {
+    window.location = `studyroom?room=${4}`
   }
   const formatDuration = (seconds) => {
     const hours = Math.floor(seconds / 3600)
@@ -58,22 +67,21 @@ const DashHome = () => {
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
+      {/* <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+        <HorizontalNavbar />
+      </div> */}
       {/* Top Bar */}
       <div className="flex justify-between items-center bg-transparent p-2">
-        <div className="w-auto h-9 relative ml-3 flex items-center space-x-5">
+        <div className="w-auto h-9 relative ml-3 flex items-center space-x-5 ">
           <img
             style={{ width: '50px', height: '38px' }}
             src={Logo}
             alt="Logo"
           />
-          <span className="text-lg">
+          <span className="text-lg hidden sm:flex">
             Hi, {user.firstname + ' ' + user.lastname}
           </span>
-          <img
-            className="h-8 w-8"
-            src="https://storageaccountstudy9794.blob.core.windows.net/badge/a6faf8b1-f7ca-4556-a202-dde9473163ce.svg"
-            alt=""
-          />
+
         </div>
         <div className="relative mr-2">
           <AvatarDropdown />
@@ -209,6 +217,7 @@ const DashHome = () => {
               </p>
               <p className="mt-4 text-sm">Boost your productivity with us</p>
               <button
+                onClick={focusRoom2}
                 className="button px-4 py-2 border rounded-xl	"
                 type="button"
               >
@@ -224,6 +233,7 @@ const DashHome = () => {
                 Your studying heavan for ultimate focus
               </p>
               <button
+                onClick={focusRoom3}
                 className="contrast-button px-4 py-2 border rounded-xl"
                 type="button"
               >
@@ -238,6 +248,7 @@ const DashHome = () => {
                 Unleash creativity, one study session at a time
               </p>
               <button
+                onClick={focusRoom4}
                 className="button px-4 py-2 border rounded-xl"
                 type="button"
               >
@@ -258,6 +269,9 @@ const DashHome = () => {
         <FavoritePlaylist />
         <div className="mt-3 mb-3"></div>
         <RandomPlaylist />
+      </div>
+      <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+        <HorizontalNavbar />
       </div>
     </div>
   )

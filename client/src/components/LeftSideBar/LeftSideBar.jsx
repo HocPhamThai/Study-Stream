@@ -24,8 +24,7 @@ const LeftSideBar = () => {
 
   return (
     <div>
-      {console.log("selected: ", selected)}
-      <div className="w-[48px] h-screen flex flex-col items-center py-4 space-y-4 mx-auto ml-5">
+      <div className="w-[56px] flex flex-col items-center py-4 space-y-4 mx-auto ml-5 bg-white/70 shadow-lg rounded-lg mt-4">
         <span className="relative flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300 group">
           <div style={{ width: '100%', height: '100%' }}>
             <Link to="/dashhome" onClick={() => handleClick('dashhome')}>
