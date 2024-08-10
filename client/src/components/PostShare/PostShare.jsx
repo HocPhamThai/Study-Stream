@@ -1,4 +1,10 @@
-import { UilLocationPoint, UilPlayCircle, UilScenery, UilSchedule, UilTimes } from '@iconscout/react-unicons'
+import {
+  UilLocationPoint,
+  UilPlayCircle,
+  UilScenery,
+  UilSchedule,
+  UilTimes,
+} from '@iconscout/react-unicons'
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../actions/uploadAction'
@@ -55,11 +61,27 @@ const PostShare = () => {
   }
   return (
     <div className="PostShare">
-      <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + 'defaultProfile.jpg'} alt="" />
+      <img
+        src={
+          user.profilePicture
+            ? serverPublic + user.profilePicture
+            : serverPublic + 'defaultProfile.jpg'
+        }
+        alt=""
+      />
       <div>
-        <input ref={desc} type="text" placeholder="Share your story for people!!!" required />
+        <input
+          ref={desc}
+          type="text"
+          placeholder="Share your story for yourself!!!"
+          required
+        />
         <div className="postOptions">
-          <div className="option" style={{ color: 'var(--photo)' }} onClick={() => imageRef.current.click()}>
+          <div
+            className="option"
+            style={{ color: 'var(--photo)' }}
+            onClick={() => imageRef.current.click()}
+          >
             <UilScenery />
             Photo
           </div>
@@ -75,18 +97,31 @@ const PostShare = () => {
             <UilSchedule />
             Schedule
           </div>
-          <button className="button post-share-button" onClick={handleSubmit} disabled={loading}>
+          <button
+            className="button post-share-button"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
             {loading ? 'Posting...' : 'Share'}
           </button>
         </div>
         <div style={{ display: 'none' }}>
-          <input type="file" name="myImage" ref={imageRef} onChange={onImageChange} />
+          <input
+            type="file"
+            name="myImage"
+            ref={imageRef}
+            onChange={onImageChange}
+          />
         </div>
 
         {image && (
           <div className="previewImage">
             <UilTimes onClick={() => setImage(null)} />
-            <img src={URL.createObjectURL(image)} alt="" style={{ borderRadius: '0.5rem' }} />
+            <img
+              src={URL.createObjectURL(image)}
+              alt=""
+              style={{ borderRadius: '0.5rem' }}
+            />
           </div>
         )}
       </div>

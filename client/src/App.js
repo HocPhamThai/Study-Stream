@@ -24,9 +24,11 @@ import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
 import ChatBot from './pages/ChatBot/Chatbot'
 
 function App() {
-  const { user } = useSelector((state) => state.authReducer.authData) || {
+  const authData = useSelector((state) => state.authReducer.authData) || {
     user: null,
   }
+  const { user } = authData
+
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
 
