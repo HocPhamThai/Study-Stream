@@ -34,20 +34,28 @@ function UpdateEntryModal({ data, topicIdProps, entryId, onEntryUpdated }) {
 
     try {
       // Gửi yêu cầu POST tới API
-      const response = await axios.put(`http://localhost:8001/topic/${topicIdProps}/entries/${entryId}`, formData)
+      const response = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/topic/${topicIdProps}/entries/${entryId}`,
+        formData
+      )
       // Xử lý phản hồi từ API
-      console.log("updatedTopic.topic: ", response.data.entries)
+      console.log('updatedTopic.topic: ', response.data.entries)
       const updatedEntries = response.data.entries
-      const updatedEntry = updatedEntries.find(entry => entry.entryId === entryId)
+      const updatedEntry = updatedEntries.find(
+        (entry) => entry.entryId === entryId
+      )
       if (updatedEntry) {
-        console.log("Updated entry: ", updatedEntry)
+        console.log('Updated entry: ', updatedEntry)
         // Gọi hàm onEntryUpdated với entry đã được cập nhật
         onEntryUpdated(updatedEntry)
       } else {
-        console.error("Updated entry not found")
+        console.error('Updated entry not found')
       }
     } catch (error) {
-      console.error("Error updating topic: ", error.response ? error.response.data : error.message)
+      console.error(
+        'Error updating topic: ',
+        error.response ? error.response.data : error.message
+      )
     } finally {
       // Đóng modal sau khi cập nhật thành công hoặc thất bại
       setIsModalOpen(false)
@@ -87,8 +95,10 @@ function UpdateEntryModal({ data, topicIdProps, entryId, onEntryUpdated }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Update new entry</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Update new entry
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -164,7 +174,6 @@ function UpdateEntryModal({ data, topicIdProps, entryId, onEntryUpdated }) {
                     required
                   />
                 </div>
-
               </div>
               <div className="flex justify-end space-x-2">
                 <button

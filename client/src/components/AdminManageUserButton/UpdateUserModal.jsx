@@ -15,44 +15,50 @@ function UpdateUserModal({ data, onUserUpdated }) {
   const [coverImg, setCoverImg] = useState(null)
   const [confirmpass, setConfirmpass] = useState(true)
   const [formErrors, setFormErrors] = useState([])
-  const initialData = useRef(data); // Lưu trữ dữ liệu ban đầu
+  const initialData = useRef(data) // Lưu trữ dữ liệu ban đầu
 
   // Hàm so sánh dữ liệu
   const isDataChanged = (newData, oldData) => {
-    return JSON.stringify(newData) !== JSON.stringify(oldData);
-  };
+    return JSON.stringify(newData) !== JSON.stringify(oldData)
+  }
 
   useEffect(() => {
     // Cập nhật formData khi data thay đổi thực sự
     if (isDataChanged(data, initialData.current)) {
-      setFormData(data);
-      initialData.current = data; // Cập nhật dữ liệu ban đầu
+      setFormData(data)
+      initialData.current = data // Cập nhật dữ liệu ban đầu
     }
-  }, [data]);
+  }, [data])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       // Gửi yêu cầu POST tới API
-      const response = await axios.put(`http://localhost:8001/user/${data._id}`, formData);
+      const response = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/user/${data._id}`,
+        formData
+      )
 
       // Xử lý phản hồi từ API
-      console.log("updatedUser.user: ", response.data.user);
+      console.log('updatedUser.user: ', response.data.user)
 
       // Gọi hàm onUserUpdated với dữ liệu người dùng đã cập nhật
-      onUserUpdated(response.data.user);
+      onUserUpdated(response.data.user)
     } catch (error) {
-      console.error("Error updating user: ", error.response ? error.response.data : error.message);
+      console.error(
+        'Error updating user: ',
+        error.response ? error.response.data : error.message
+      )
     } finally {
       // Đóng modal sau khi cập nhật thành công hoặc thất bại
-      setIsModalOpen(false);
+      setIsModalOpen(false)
     }
-  };
+  }
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
   return (
@@ -86,8 +92,10 @@ function UpdateUserModal({ data, onUserUpdated }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Update User</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Update User
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -178,7 +186,9 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     value={formData.password}
                     autoComplete="off"
                   />
-                  {formErrors.password && <span className="error">{formErrors.password}</span>}
+                  {formErrors.password && (
+                    <span className="error">{formErrors.password}</span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -196,7 +206,9 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     onChange={handleChange}
                     value={formData.confirmpass}
                   />
-                  {formErrors.confirmpass && <span className="error">{formErrors.confirmpass}</span>}
+                  {formErrors.confirmpass && (
+                    <span className="error">{formErrors.confirmpass}</span>
+                  )}
                   {!formErrors.password && !confirmpass && (
                     <span style={{ color: 'red', fontSize: '0.7rem' }}>
                       * The confirm password is not match!!!

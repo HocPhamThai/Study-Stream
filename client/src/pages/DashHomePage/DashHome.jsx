@@ -38,7 +38,7 @@ const DashHome = () => {
     const fetchDuration = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8001/workingtime/${user._id}/daily`
+          `${process.env.REACT_APP_SERVER_URL}/workingtime/${user._id}/daily`
         )
         if (response.data) {
           setDailyDuration(response.data)
@@ -108,8 +108,11 @@ const DashHome = () => {
               </div>
             </div>
             <div className="flex flex-1 justify-center ">
-              <img className="w-[140px] h-[140px]" src='https://i.imgur.com/NT2ubq7.png' alt="" />
-
+              <img
+                className="w-[140px] h-[140px]"
+                src="https://i.imgur.com/NT2ubq7.png"
+                alt=""
+              />
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">

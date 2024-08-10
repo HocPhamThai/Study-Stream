@@ -31,7 +31,7 @@ function App() {
 
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
-
+  console.log(process.env.REACT_APP_PUBLIC_FOLDER)
   return (
     <>
       {renderStudyRoom ? (

@@ -34,38 +34,48 @@ function PomodoroTopicBg() {
   useEffect(() => {
     const fetchEntry = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/topic/${topicType}/${entryId}`);
-        setEntry(response.data);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/topic/${topicType}/${entryId}`
+        )
+        setEntry(response.data)
 
-        const postResponse = await axios.post(`http://localhost:8001/user/${user._id}/entry/access`, {
-          entry: {
-            topicType: topicType,
-            entryId: response.data.entryId,
-            name: response.data.name,
-            coverImage: response.data.coverImage,
-            background: response.data.background,
-          },
-        });
+        const postResponse = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/user/${user._id}/entry/access`,
+          {
+            entry: {
+              topicType: topicType,
+              entryId: response.data.entryId,
+              name: response.data.name,
+              coverImage: response.data.coverImage,
+              background: response.data.background,
+            },
+          }
+        )
 
         if (postResponse.status === 200 || postResponse.status === 201) {
-          console.log("Post request was successful!");
+          console.log('Post request was successful!')
         } else {
-          console.error("Post request failed with status: ", postResponse.status);
+          console.error(
+            'Post request failed with status: ',
+            postResponse.status
+          )
         }
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchEntry();
-  }, [entryId, user._id]);
-
+    fetchEntry()
+  }, [entryId, user._id])
 
   return (
     <div>
-      <div className="z-40 -m-4 min-h-screen overflow-hidden flex flex-col h-screen " style={style}>
+      <div
+        className="z-40 -m-4 min-h-screen overflow-hidden flex flex-col h-screen "
+        style={style}
+      >
         <iframe
           className="pointer-events-none fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           src={entry?.background}
@@ -79,19 +89,24 @@ function PomodoroTopicBg() {
 
         {/* Top Bar */}
         <div className="flex justify-between items-center bg-transparent p-2 ">
-
           <div className="w-auto h-9 relative ml-5 flex items-center space-x-5 ">
             <img className="h-full" src={Logo} alt="Logo" />
-            <span className='text-lg text-white'>Hi, {user.firstname + ' ' + user.lastname}</span>
+            <span className="text-lg text-white">
+              Hi, {user.firstname + ' ' + user.lastname}
+            </span>
             <Link to="/dashhome">
-              <span className='flex cursor-pointer flex-center text-white'>
+              <span className="flex cursor-pointer flex-center text-white">
                 <svg
-                  className='size-[30px] text-white'
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
-                  <path fill="currentColor" d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
+                  className="size-[30px] text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 256 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
                   />
                 </svg>
-                <span className='text-lg'>Back</span>
+                <span className="text-lg">Back</span>
               </span>
             </Link>
           </div>
@@ -102,7 +117,9 @@ function PomodoroTopicBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <div className='text-white'><LeftSideBar /></div>
+          <div className="text-white">
+            <LeftSideBar />
+          </div>
           <div className="flex-1 p-4 relative">
             {/* <!-- Main Section --> */}
             <div className="fixed top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">
@@ -124,7 +141,6 @@ function PomodoroTopicBg() {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

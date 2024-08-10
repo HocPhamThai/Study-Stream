@@ -36,7 +36,9 @@ function EntriesTable({ topicIdProps }) {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/topic/api/topics/${topicIdProps}`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/topic/api/topics/${topicIdProps}`
+        )
         setEntries(response.data.entries)
       } catch (err) {
         console.log(err)
@@ -79,8 +81,12 @@ function EntriesTable({ topicIdProps }) {
     toast.success('Entry updated successfully!', { className: 'custom-toast' })
   }
   const handleEntryDeleted = (deletedEntryId, entryName) => {
-    setEntries((prevEntry) => prevEntry.filter((entry) => entry.entryId !== deletedEntryId))
-    toast.success(`Deleted topic ${entryName} successfully!`, { className: 'custom-toast-delete' })
+    setEntries((prevEntry) =>
+      prevEntry.filter((entry) => entry.entryId !== deletedEntryId)
+    )
+    toast.success(`Deleted topic ${entryName} successfully!`, {
+      className: 'custom-toast-delete',
+    })
   }
 
   // const handleTopicSelected = (topicName) => {
@@ -112,11 +118,12 @@ function EntriesTable({ topicIdProps }) {
                     </span>
                   </Link>
                   <h5>
-                    <span className="text-gray-500">All Entries of topic: </span>
+                    <span className="text-gray-500">
+                      All Entries of topic:{' '}
+                    </span>
                     <span className="text-black">{entries?.length}</span>
                   </h5>
                 </div>
-
               </div>
               <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t border-gray-700">
                 <div className="w-full md:w-1/2">
@@ -152,7 +159,10 @@ function EntriesTable({ topicIdProps }) {
                 </div>
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                   {/* <UserInfoModal onUserAdded={handleUserAdded} /> */}
-                  <AddEntryModal topicIdProps={topicIdProps} onEntryAdded={handleEnntryAdded} />
+                  <AddEntryModal
+                    topicIdProps={topicIdProps}
+                    onEntryAdded={handleEnntryAdded}
+                  />
                   <button
                     id="filterDropdownButton"
                     data-dropdown-toggle="filterDropdown"
@@ -209,7 +219,6 @@ function EntriesTable({ topicIdProps }) {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -249,7 +258,9 @@ function EntriesTable({ topicIdProps }) {
                               src={topic?.topicImage}
                               alt="Topic Image"
                             /> */}
-                            <span className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}>
+                            <span
+                              className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}
+                            >
                               {entry?.entryId}
                             </span>
                           </div>
@@ -262,15 +273,17 @@ function EntriesTable({ topicIdProps }) {
                           />
                         </td>
                         <td className="px-4 py-3 font-medium text-gray-500 whitespace-nowrap text-black">
-                          <div className="flex items-center">
-                            {entry.name}
-                          </div>
+                          <div className="flex items-center">{entry.name}</div>
                         </td>
 
                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black">
                           <div className="flex items-center space-x-4">
-
-                            <UpdateEntryModal data={entry} topicIdProps={topicIdProps} entryId={entry.entryId} onEntryUpdated={handleEntryUpdated} />
+                            <UpdateEntryModal
+                              data={entry}
+                              topicIdProps={topicIdProps}
+                              entryId={entry.entryId}
+                              onEntryUpdated={handleEntryUpdated}
+                            />
                             {/* <UpdateTopicModal data={topic} onTopicUpdated={handleTopicUpdated} /> */}
                             {/* <div>
                               <button
@@ -336,7 +349,6 @@ function EntriesTable({ topicIdProps }) {
                                 />
                               )}
                             </div>
-
                           </div>
                         </td>
                       </tr>
@@ -354,8 +366,6 @@ function EntriesTable({ topicIdProps }) {
             goToPage={goToPage}
           />
         </section>
-
-
       </>
     </div>
   )

@@ -39,7 +39,9 @@ function UserTable({ dataAdmin }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/user`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/user`
+        )
         setUser(response.data)
       } catch (err) {
         console.log(err)
@@ -83,15 +85,17 @@ function UserTable({ dataAdmin }) {
   }
 
   const handleUserDeleted = (deletedUserId, userFullName) => {
-    setUser((prevUsers) => prevUsers.filter((user) => user._id !== deletedUserId))
-    toast.success(`Deleted user ${userFullName} successfully!`, { className: 'custom-toast-delete' })
-
+    setUser((prevUsers) =>
+      prevUsers.filter((user) => user._id !== deletedUserId)
+    )
+    toast.success(`Deleted user ${userFullName} successfully!`, {
+      className: 'custom-toast-delete',
+    })
   }
 
   return (
     <div>
       <>
-
         {/* Start block */}
         <section className="userTable bg-gray-50 p-3 sm:p-5 antialiased h-[700px]">
           <div className="mx-auto max-w-screen-2xl px-4 lg:px-12 mb-3">
@@ -134,7 +138,6 @@ function UserTable({ dataAdmin }) {
                     <div className="tooltip-arrow" data-popper-arrow="" />
                   </div>
                 </div>
-
               </div>
               <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t border-gray-700">
                 <div className="w-full md:w-1/2">
@@ -226,7 +229,6 @@ function UserTable({ dataAdmin }) {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -266,7 +268,10 @@ function UserTable({ dataAdmin }) {
                   </thead>
                   <tbody>
                     {currentData?.map((user, index) => (
-                      <tr key={index} className="border-b border-gray-400 hover:bg-gray-100 ">
+                      <tr
+                        key={index}
+                        className="border-b border-gray-400 hover:bg-gray-100 "
+                      >
                         <td className="p-4 w-4">
                           <div className="flex items-center">
                             <input
@@ -301,7 +306,9 @@ function UserTable({ dataAdmin }) {
                           </div>
                         </th>
                         <td className="px-4 py-3">
-                          <span className={`bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded900 text-blue-500`}>
+                          <span
+                            className={`bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded900 text-blue-500`}
+                          >
                             {user?.isAdmin ? 'Admin' : 'User'}
                           </span>
                         </td>
@@ -315,9 +322,11 @@ function UserTable({ dataAdmin }) {
                         </td>
                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black">
                           <div className="flex items-center space-x-4">
-
                             {/* <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} data={user} /> */}
-                            <UpdateUserModal data={user} onUserUpdated={handleUserUpdated} />
+                            <UpdateUserModal
+                              data={user}
+                              onUserUpdated={handleUserUpdated}
+                            />
                             {/* <button
                               type="button"
                               data-drawer-target="drawer-read-product-advanced"
@@ -344,7 +353,9 @@ function UserTable({ dataAdmin }) {
                             <div>
                               <button
                                 type="button"
-                                onClick={() => openModal(user._id, user, 'preview')}
+                                onClick={() =>
+                                  openModal(user._id, user, 'preview')
+                                }
                                 className="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 text-black"
                               >
                                 <svg
@@ -377,7 +388,9 @@ function UserTable({ dataAdmin }) {
                                 data-modal-target="delete-modal"
                                 data-modal-toggle="delete-modal"
                                 className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center "
-                                onClick={() => openModal(user._id, user, 'delete')}
+                                onClick={() =>
+                                  openModal(user._id, user, 'delete')
+                                }
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -406,7 +419,6 @@ function UserTable({ dataAdmin }) {
                                 />
                               )}
                             </div>
-
                           </div>
                         </td>
                       </tr>
@@ -414,9 +426,7 @@ function UserTable({ dataAdmin }) {
                   </tbody>
                 </table>
               </div>
-
             </div>
-
           </div>
           <UserPagination
             currentPage={currentPage}
@@ -426,8 +436,6 @@ function UserTable({ dataAdmin }) {
             goToPage={goToPage}
           />
         </section>
-
-
       </>
     </div>
   )

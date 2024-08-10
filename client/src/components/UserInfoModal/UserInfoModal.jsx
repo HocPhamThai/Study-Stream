@@ -32,9 +32,14 @@ function UserInfoModal({ onUserAdded }) {
     if (Object.keys(errors).length === 0) {
       if (data.password === data.confirmpass) {
         try {
-          const response = await axios.post('http://localhost:8001/auth/register', data)
+          const response = await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/auth/register`,
+            data
+          )
           setIsModalOpen(false)
-          toast.success('User added successfully!', { className: 'custom-toast' })
+          toast.success('User added successfully!', {
+            className: 'custom-toast',
+          })
           onUserAdded(response.data.user)
           resetForm()
 
@@ -110,8 +115,10 @@ function UserInfoModal({ onUserAdded }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Add new user</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Add new user
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -203,7 +210,9 @@ function UserInfoModal({ onUserAdded }) {
                     autoComplete="off"
                     required
                   />
-                  {formErrors.password && <span className="error">{formErrors.password}</span>}
+                  {formErrors.password && (
+                    <span className="error">{formErrors.password}</span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -222,7 +231,9 @@ function UserInfoModal({ onUserAdded }) {
                     value={data.confirmpass}
                     required
                   />
-                  {formErrors.confirmpass && <span className="error">{formErrors.confirmpass}</span>}
+                  {formErrors.confirmpass && (
+                    <span className="error">{formErrors.confirmpass}</span>
+                  )}
                   {!formErrors.password && !confirmpass && (
                     <span style={{ color: 'red', fontSize: '0.7rem' }}>
                       * The confirm password is not match!!!

@@ -1,25 +1,34 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import '../UserTable/UserTable.scss'
 import { toast } from 'sonner'
 
-const DeleteEntryModal = ({ isOpen, onClose, topicIdProps, entryId, entryName, onEntryDeleted }) => {
-  if (!isOpen) return null;
+const DeleteEntryModal = ({
+  isOpen,
+  onClose,
+  topicIdProps,
+  entryId,
+  entryName,
+  onEntryDeleted,
+}) => {
+  if (!isOpen) return null
   const handleDelete = async () => {
     try {
-      console.log("topicIdProps: ", topicIdProps)
-      console.log("entryId: ", entryId)
+      console.log('topicIdProps: ', topicIdProps)
+      console.log('entryId: ', entryId)
 
-      const response = await axios.delete(`http://localhost:8001/topic/${topicIdProps}/entries/${entryId}`)
-      console.log(response.data.message); // Xử lý thông báo thành công
+      const response = await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/topic/${topicIdProps}/entries/${entryId}`
+      )
+      console.log(response.data.message) // Xử lý thông báo thành công
 
       onEntryDeleted(entryId, entryName)
-      onClose(); // Đóng modal sau khi xóa thành công
+      onClose() // Đóng modal sau khi xóa thành công
     } catch (error) {
       if (error.response) {
-        console.error(error.response.data.message); // Xử lý thông báo lỗi từ server
+        console.error(error.response.data.message) // Xử lý thông báo lỗi từ server
       } else {
-        console.error('An error occurred:', error.message); // Xử lý lỗi không liên quan đến server
+        console.error('An error occurred:', error.message) // Xử lý lỗi không liên quan đến server
       }
     }
   }
@@ -89,7 +98,7 @@ const DeleteEntryModal = ({ isOpen, onClose, topicIdProps, entryId, entryName, o
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default DeleteEntryModal

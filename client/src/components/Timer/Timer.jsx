@@ -26,7 +26,10 @@ const Timer = (color) => {
   useEffect(() => {
     function switchMode() {
       const nextMode = modeRef.current === 'work' ? ' break' : 'work'
-      const nextSeconds = (nextMode === 'work' ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60
+      const nextSeconds =
+        (nextMode === 'work'
+          ? settingsInfo.workMinutes
+          : settingsInfo.breakMinutes) * 60
       setMode(nextMode)
       modeRef.current = nextMode
 
@@ -53,15 +56,12 @@ const Timer = (color) => {
       //   return
       // }
       if (secondsLeftRef.current === 0) {
-
         if (modeRef.current === 'work') {
-
           saveWorkSession()
         }
         return switchMode()
       }
       tick()
-
     }, 100)
 
     return () => clearInterval(interval)
@@ -69,9 +69,9 @@ const Timer = (color) => {
 
   const saveWorkSession = async () => {
     try {
-      await axios.post('http://localhost:8001/workingtime/save', {
-        userId: user._id,  // Thay bằng ID của người dùng thực tế
-        duration: settingsInfo.workMinutes * 60,  // Sử dụng workMinutes để tính duration
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/workingtime/save`, {
+        userId: user._id, // Thay bằng ID của người dùng thực tế
+        duration: settingsInfo.workMinutes * 60, // Sử dụng workMinutes để tính duration
       })
 
       console.log('Thời gian làm việc đã được lưu thành công.')
@@ -89,16 +89,18 @@ const Timer = (color) => {
 
     setMode('work')
     const newMode = modeRef.current
-    const newSeconds = (newMode === 'work' ? tempWorkMinutes : tempBreakMinutes) * 60
+    const newSeconds =
+      (newMode === 'work' ? tempWorkMinutes : tempBreakMinutes) * 60
     setSecondsLeft(newSeconds)
     secondsLeftRef.current = newSeconds
   }
 
-  const totalSeconds = mode === 'work'
-    ? settingsInfo.workMinutes * 60
-    : settingsInfo.breakMinutes * 60
+  const totalSeconds =
+    mode === 'work'
+      ? settingsInfo.workMinutes * 60
+      : settingsInfo.breakMinutes * 60
 
-  const percentage = Math.round(secondsLeft / totalSeconds * 100)
+  const percentage = Math.round((secondsLeft / totalSeconds) * 100)
 
   const minutes = Math.floor(secondsLeft / 60)
   let seconds = secondsLeft % 60
@@ -106,51 +108,60 @@ const Timer = (color) => {
 
   return (
     <>
-
       <div className="relative flex items-center justify-center h-100 bg-transparent rounded-full mb-4">
-        <div
-          className='timer group fixed left-1/2 top-[70px] z-[999] -translate-x-1/2 rounded-t-lg text-white bg-black/90 w-[400px]'
-        >
-          <div className='absolute left-1/2 top-8 -translate-x-1/2 -translate-y-full cursor-move'>
-            <img className='w-[100px] h-[100px]' src={Logo} alt="Study Stream Logo" />
+        <div className="timer group fixed left-1/2 top-[70px] z-[999] -translate-x-1/2 rounded-t-lg text-white bg-black/90 w-[400px]">
+          <div className="absolute left-1/2 top-8 -translate-x-1/2 -translate-y-full cursor-move">
+            <img
+              className="w-[100px] h-[100px]"
+              src={Logo}
+              alt="Study Stream Logo"
+            />
           </div>
-          {mode === 'work' ?
-            <p className='pt-6 text-center text-lg font-medium text-red-400 focus:outline-none'>Working Session </p>
-            :
-            <p className='pt-6 text-center text-lg font-medium text-green-400 focus:outline-none'> Relaxing... </p>
-          }
-          <div
-            className='px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4'
-          >
+          {mode === 'work' ? (
+            <p className="pt-6 text-center text-lg font-medium text-red-400 focus:outline-none">
+              Working Session{' '}
+            </p>
+          ) : (
+            <p className="pt-6 text-center text-lg font-medium text-green-400 focus:outline-none">
+              {' '}
+              Relaxing...{' '}
+            </p>
+          )}
+          <div className="px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4">
             <span>{minutes + ':' + seconds}</span>
           </div>
         </div>
         <div className="relative flex w-[400px] top-[268px]">
-          {isPaused ?
+          {isPaused ? (
             <div
-              className='w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white'
-              onClick={() => { setIsPaused(false); isPausedRef.current = false }}
+              className="w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white"
+              onClick={() => {
+                setIsPaused(false)
+                isPausedRef.current = false
+              }}
             >
               Start
             </div>
-            :
+          ) : (
             <div
-              className='w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white'
-              onClick={() => { setIsPaused(true); isPausedRef.current = true }}
+              className="w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white"
+              onClick={() => {
+                setIsPaused(true)
+                isPausedRef.current = true
+              }}
             >
               Pause
             </div>
-          }
+          )}
 
           <div
-            className='w-full cursor-pointer overflow-hidden rounded-br bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-90 hover:opacity-100 text-white'
+            className="w-full cursor-pointer overflow-hidden rounded-br bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-90 hover:opacity-100 text-white"
             onClick={handleReset}
           >
             Reset
           </div>
         </div>
       </div>
-
     </>
   )
 }

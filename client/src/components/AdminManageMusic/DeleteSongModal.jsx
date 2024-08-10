@@ -1,22 +1,30 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import '../UserTable/UserTable.scss'
 import { toast } from 'sonner'
 
-const DeleteSongModal = ({ isOpen, onClose, songId, nameSong, onSongDeleted }) => {
-  if (!isOpen) return null;
+const DeleteSongModal = ({
+  isOpen,
+  onClose,
+  songId,
+  nameSong,
+  onSongDeleted,
+}) => {
+  if (!isOpen) return null
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8001/songs/${songId}`)
-      console.log(response.data.message); // Xử lý thông báo thành công
+      const response = await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/songs/${songId}`
+      )
+      console.log(response.data.message) // Xử lý thông báo thành công
 
       onSongDeleted(songId, nameSong)
-      onClose(); // Đóng modal sau khi xóa thành công
+      onClose() // Đóng modal sau khi xóa thành công
     } catch (error) {
       if (error.response) {
-        console.error(error.response.data.message); // Xử lý thông báo lỗi từ server
+        console.error(error.response.data.message) // Xử lý thông báo lỗi từ server
       } else {
-        console.error('An error occurred:', error.message); // Xử lý lỗi không liên quan đến server
+        console.error('An error occurred:', error.message) // Xử lý lỗi không liên quan đến server
       }
     }
   }
@@ -86,7 +94,7 @@ const DeleteSongModal = ({ isOpen, onClose, songId, nameSong, onSongDeleted }) =
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default DeleteSongModal

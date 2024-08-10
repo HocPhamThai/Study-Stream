@@ -5,7 +5,9 @@ const DeleteTaskModal = ({ isOpen, onClose, taskId, onTaskDeleted }) => {
   if (!isOpen) return null
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8001/tasks/${taskId}`)
+      const response = await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/tasks/${taskId}`
+      )
       onTaskDeleted(taskId)
       onClose() // Đóng modal sau khi xóa thành công
     } catch (error) {

@@ -16,7 +16,6 @@ import { Link } from 'react-router-dom'
 import RewardCard from '../TrendCard/RewardCard'
 
 const RightSide = () => {
-
   const [modalOpened, setmodalOpened] = useState(false)
   const [rewards, setRewards] = useState([])
   const [totalDuration, setTotalDuration] = useState(0)
@@ -24,7 +23,9 @@ const RightSide = () => {
   useEffect(() => {
     const fetchRewards = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/rewards')
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/rewards`
+        )
         setRewards(response.data)
       } catch (err) {
         console.log(err)
@@ -33,9 +34,10 @@ const RightSide = () => {
 
     const fetchTotalDuration = async (id) => {
       try {
-        const response = await axios.get(`http://localhost:8001/workingtime/${user._id}/total`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/workingtime/${user._id}/total`
+        )
         setTotalDuration(response.data.totalDuration / 3600)
-
       } catch (err) {
         console.log(err)
       }
@@ -47,12 +49,12 @@ const RightSide = () => {
 
   return (
     <div className="RightSide">
-      <RewardCard
-        rewards={rewards}
-        totalDuration={totalDuration}
-      />
+      <RewardCard rewards={rewards} totalDuration={totalDuration} />
 
-      <button className="button right-button" onClick={() => setmodalOpened(true)}>
+      <button
+        className="button right-button"
+        onClick={() => setmodalOpened(true)}
+      >
         Share
       </button>
       <ShareModal2

@@ -36,7 +36,9 @@ function SongsTable() {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/songs`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/songs`
+        )
         setSongs(response.data)
       } catch (err) {
         console.log(err)
@@ -80,8 +82,12 @@ function SongsTable() {
   }
 
   const handleSongDeleted = (deletedSongId, nameSong) => {
-    setSongs((prevSong) => prevSong.filter((song) => song._id !== deletedSongId))
-    toast.success(`Deleted topic ${nameSong} successfully!`, { className: 'custom-toast-delete' })
+    setSongs((prevSong) =>
+      prevSong.filter((song) => song._id !== deletedSongId)
+    )
+    toast.success(`Deleted topic ${nameSong} successfully!`, {
+      className: 'custom-toast-delete',
+    })
   }
 
   return (
@@ -98,7 +104,6 @@ function SongsTable() {
                     <span className="text-black">{songs?.length}</span>
                   </h5>
                 </div>
-
               </div>
               <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t border-gray-700">
                 <div className="w-full md:w-1/2">
@@ -190,7 +195,6 @@ function SongsTable() {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -223,14 +227,20 @@ function SongsTable() {
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black"
                         >
                           <div className="flex items-center mr-3">
-                            <span className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}>
+                            <span
+                              className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}
+                            >
                               {song?.nameSong}
                             </span>
                           </div>
                         </th>
                         <td className="cursor-pointer px-4 py-3 font-medium text-gray-500 whitespace-nowrap text-black">
                           <div className="flex items-center">
-                            <a href={song?.linkStored} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={song?.linkStored}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               Link
                             </a>
                           </div>
@@ -238,8 +248,10 @@ function SongsTable() {
 
                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black">
                           <div className="flex items-center space-x-4">
-
-                            <UpdateSongModal data={song} onSongUpdated={handleSongUpdated} />
+                            <UpdateSongModal
+                              data={song}
+                              onSongUpdated={handleSongUpdated}
+                            />
                             <div>
                               <button
                                 type="button"
@@ -273,7 +285,6 @@ function SongsTable() {
                                 />
                               )}
                             </div>
-
                           </div>
                         </td>
                       </tr>
@@ -291,8 +302,6 @@ function SongsTable() {
             goToPage={goToPage}
           />
         </section>
-
-
       </>
     </div>
   )

@@ -10,41 +10,47 @@ function UpdateSongModal({ data, onSongUpdated }) {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
   const error = useSelector((state) => state.authReducer.error)
-  const initialData = useRef(data);
+  const initialData = useRef(data)
 
   // Hàm so sánh dữ liệu
   const isDataChanged = (newData, oldData) => {
-    return JSON.stringify(newData) !== JSON.stringify(oldData);
+    return JSON.stringify(newData) !== JSON.stringify(oldData)
   }
 
   useEffect(() => {
     // Cập nhật formData khi data thay đổi thực sự
     if (isDataChanged(data, initialData.current)) {
-      setFormData(data);
-      initialData.current = data; // Cập nhật dữ liệu ban đầu
+      setFormData(data)
+      initialData.current = data // Cập nhật dữ liệu ban đầu
     }
-  }, [data]);
+  }, [data])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       // Gửi yêu cầu POST tới API
-      const response = await axios.put(`http://localhost:8001/songs/${data._id}`, formData);
+      const response = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/songs/${data._id}`,
+        formData
+      )
 
       // Gọi hàm onSongUpdated với dữ liệu người dùng đã cập nhật
       onSongUpdated(response.data)
     } catch (error) {
-      console.error("Error updating song: ", error.response ? error.response.data : error.message);
+      console.error(
+        'Error updating song: ',
+        error.response ? error.response.data : error.message
+      )
     } finally {
       // Đóng modal sau khi cập nhật thành công hoặc thất bại
-      setIsModalOpen(false);
+      setIsModalOpen(false)
     }
-  };
+  }
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
@@ -79,8 +85,10 @@ function UpdateSongModal({ data, onSongUpdated }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Add new song</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Add new song
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -119,7 +127,6 @@ function UpdateSongModal({ data, onSongUpdated }) {
                     required
                   />
                 </div>
-
               </div>
               <div className="flex justify-end space-x-2">
                 <button

@@ -12,7 +12,7 @@ function AddSongModal({ onSongAdded }) {
 
   const [data, setData] = useState({
     nameSong: '',
-    linkStored: ''
+    linkStored: '',
   })
 
   const handleChange = (e) => {
@@ -23,7 +23,10 @@ function AddSongModal({ onSongAdded }) {
     e.preventDefault()
 
     try {
-      const response = await axios.post('http://localhost:8001/songs', data)
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/songs`,
+        data
+      )
       setIsModalOpen(false)
       toast.success('Song added successfully!', { className: 'custom-toast' })
       onSongAdded(response.data)
@@ -36,13 +39,12 @@ function AddSongModal({ onSongAdded }) {
       console.error('Error creating song:', error)
       // Handle other errors
     }
-
   }
 
   const resetForm = () => {
     setData({
       nameSong: '',
-      linkStored: ''
+      linkStored: '',
     })
   }
 
@@ -75,8 +77,10 @@ function AddSongModal({ onSongAdded }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Add new song</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Add new song
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -115,7 +119,6 @@ function AddSongModal({ onSongAdded }) {
                     required
                   />
                 </div>
-
               </div>
               <div className="flex justify-end space-x-2">
                 <button

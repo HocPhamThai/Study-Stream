@@ -17,7 +17,7 @@ function AddEntryModal({ topicIdProps, onEntryAdded }) {
     background: '',
   })
 
-  console.log("topicIdProps: ", topicIdProps)
+  console.log('topicIdProps: ', topicIdProps)
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
@@ -26,7 +26,10 @@ function AddEntryModal({ topicIdProps, onEntryAdded }) {
     e.preventDefault()
 
     try {
-      const response = await axios.post(`http://localhost:8001/topic/${topicIdProps}/entries`, data)
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/topic/${topicIdProps}/entries`,
+        data
+      )
       setIsModalOpen(false)
       toast.success('Entry added successfully!', { className: 'custom-toast' })
       onEntryAdded(response.data.entries)
@@ -79,8 +82,10 @@ function AddEntryModal({ topicIdProps, onEntryAdded }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Add new entry</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Add new entry
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -155,7 +160,6 @@ function AddEntryModal({ topicIdProps, onEntryAdded }) {
                     required
                   />
                 </div>
-
               </div>
               <div className="flex justify-end space-x-2">
                 <button

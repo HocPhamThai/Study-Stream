@@ -25,7 +25,10 @@ function AddTopicModal({ onTopicAdded }) {
     e.preventDefault()
 
     try {
-      const response = await axios.post('http://localhost:8001/topic/topics', data)
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/topic/topics`,
+        data
+      )
       setIsModalOpen(false)
       toast.success('Topic added successfully!', { className: 'custom-toast' })
       onTopicAdded(response.data.topic)
@@ -38,7 +41,6 @@ function AddTopicModal({ onTopicAdded }) {
       console.error('Error creating topic:', error)
       // Handle other errors
     }
-
   }
 
   const resetForm = () => {
@@ -79,8 +81,10 @@ function AddTopicModal({ onTopicAdded }) {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
-            <h1 className='font-bold text-[20px] mb-5 text-white'>Add new topic</h1>
-            <hr className='mb-5' />
+            <h1 className="font-bold text-[20px] mb-5 text-white">
+              Add new topic
+            </h1>
+            <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
@@ -155,7 +159,6 @@ function AddTopicModal({ onTopicAdded }) {
                     required
                   />
                 </div>
-
               </div>
               <div className="flex justify-end space-x-2">
                 <button

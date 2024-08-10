@@ -38,7 +38,9 @@ function TopicTable() {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        const response = await axios.get(`http://localhost:8001/topic/topics`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/topic/topics`
+        )
         setTopics(response.data)
       } catch (err) {
         console.log(err)
@@ -81,8 +83,12 @@ function TopicTable() {
     toast.success('User updated successfully!', { className: 'custom-toast' })
   }
   const handleTopicDeleted = (deletedTopicId, topicName) => {
-    setTopics((prevTopics) => prevTopics.filter((topic) => topic._id !== deletedTopicId))
-    toast.success(`Deleted topic ${topicName} successfully!`, { className: 'custom-toast-delete' })
+    setTopics((prevTopics) =>
+      prevTopics.filter((topic) => topic._id !== deletedTopicId)
+    )
+    toast.success(`Deleted topic ${topicName} successfully!`, {
+      className: 'custom-toast-delete',
+    })
   }
 
   const handleTopicSelected = (topicName) => {
@@ -91,7 +97,7 @@ function TopicTable() {
 
   return (
     <div>
-      {console.log("Topics: ", topics)}
+      {console.log('Topics: ', topics)}
       <>
         {/* Start block */}
         <section className=" bg-gray-50 p-3 sm:p-5 antialiased h-[700px]">
@@ -135,7 +141,6 @@ function TopicTable() {
                     <div className="tooltip-arrow" data-popper-arrow="" />
                   </div>
                 </div>
-
               </div>
               <div className="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t border-gray-700">
                 <div className="w-full md:w-1/2">
@@ -228,7 +233,6 @@ function TopicTable() {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -277,7 +281,9 @@ function TopicTable() {
                           className="px-4 py-3 cursor-pointer	"
                           onClick={() => handleTopicSelected(topic.topicName)}
                         >
-                          <span className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}>
+                          <span
+                            className={`bg-primary-100 text-primary-800 text-sm font-medium px-2 py-0.5 rounded900 text-blue-500`}
+                          >
                             {topic?.nameOfTopic}
                           </span>
                         </td>
@@ -294,15 +300,23 @@ function TopicTable() {
                           onClick={() => handleTopicSelected(topic.topicName)}
                         >
                           {topic?.topicDescription
-                            ? topic.topicDescription.split(' ').slice(0, 4).join(' ') + (topic.topicDescription.split(' ').length > 5 ? '...' : '')
+                            ? topic.topicDescription
+                                .split(' ')
+                                .slice(0, 4)
+                                .join(' ') +
+                              (topic.topicDescription.split(' ').length > 5
+                                ? '...'
+                                : '')
                             : ''}
                         </td>
                         <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap text-black">
                           <div className="flex items-center space-x-4">
-
                             {/* <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} data={user} /> */}
                             {/* <UpdateUserModal data={user} onUserUpdated={handleUserUpdated} /> */}
-                            <UpdateTopicModal data={topic} onTopicUpdated={handleTopicUpdated} />
+                            <UpdateTopicModal
+                              data={topic}
+                              onTopicUpdated={handleTopicUpdated}
+                            />
                             <div>
                               <button
                                 type="button"
@@ -366,7 +380,6 @@ function TopicTable() {
                                 />
                               )}
                             </div>
-
                           </div>
                         </td>
                       </tr>
@@ -374,9 +387,7 @@ function TopicTable() {
                   </tbody>
                 </table>
               </div>
-
             </div>
-
           </div>
           <UserPagination
             currentPage={currentPage}
@@ -386,8 +397,6 @@ function TopicTable() {
             goToPage={goToPage}
           />
         </section>
-
-
       </>
     </div>
   )
