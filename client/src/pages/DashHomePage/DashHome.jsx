@@ -182,7 +182,7 @@ const DashHome = () => {
                 </svg>
               </div>
               <div>
-                <div className="text-gray-500">Total Hours</div>
+                <div className="text-gray-500">Focused Time Today</div>
                 <div className="mt-3 text-3xl font-bold">
                   + {formatDuration(dailyDuration?.todayDuration || 0)}
                 </div>
