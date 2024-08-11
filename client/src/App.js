@@ -22,6 +22,7 @@ import AdminEntries from './pages/AdminEntries/AdminEntries'
 import AdminSongs from './pages/AdminSongs/AdminSongs'
 import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
 import ChatBot from './pages/ChatBot/Chatbot'
+import Analytics from './pages/Analytics/Analytics'
 
 function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
@@ -79,6 +80,10 @@ function App() {
             <Route
               path="/pomodoro/:topicType/:entryId"
               element={user ? <PomodoroTopic /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/analytics"
+              element={user ? <Analytics /> : <Navigate to="../auth" />}
             />
             <Route
               path="/dashhome"

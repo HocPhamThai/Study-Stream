@@ -62,7 +62,7 @@ const Timer = (color) => {
         return switchMode()
       }
       tick()
-    }, 100)
+    }, 10)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])
@@ -88,9 +88,7 @@ const Timer = (color) => {
     isPausedRef.current = true
 
     setMode('work')
-    const newMode = modeRef.current
-    const newSeconds =
-      (newMode === 'work' ? tempWorkMinutes : tempBreakMinutes) * 60
+    const newSeconds = tempWorkMinutes * 60 // Always use work minutes
     setSecondsLeft(newSeconds)
     secondsLeftRef.current = newSeconds
   }
@@ -99,8 +97,6 @@ const Timer = (color) => {
     mode === 'work'
       ? settingsInfo.workMinutes * 60
       : settingsInfo.breakMinutes * 60
-
-  const percentage = Math.round((secondsLeft / totalSeconds) * 100)
 
   const minutes = Math.floor(secondsLeft / 60)
   let seconds = secondsLeft % 60

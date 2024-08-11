@@ -85,7 +85,7 @@ const PostShare = () => {
             <UilScenery />
             Photo
           </div>
-          <div className="option" style={{ color: 'var(--video)' }}>
+          <div className="option " style={{ color: 'var(--video)' }}>
             <UilPlayCircle />
             Video
           </div>
