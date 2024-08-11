@@ -10,7 +10,7 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
     if (showChat) {
       setQuery('')
       setShowIcon(false)
-    } else {
+  } else {
       setShowIcon(true)
     }
   }, [showChat])
