@@ -194,17 +194,17 @@ function GetStartedPage() {
       </section>
 
       <section className='mt-10 px-4 lg:mt-24'>
-        <div className='grid items-center gap-4 lg:grid-cols-2'>
-          <div className='col-span-1 flex items-center justify-center'>
-            <div className='relative h-[60vw] w-[80vw] lg:h-[35vw] lg:w-[45vw] flex items-center justify-center '>
+        <div className='flex flex-col-reverse lg:flex-row items-center gap-4'>
+          <div className='flex-1 flex items-center justify-center'>
+            <div className='relative h-[60vw] w-[80vw] lg:h-[35vw] lg:w-[45vw] flex items-center justify-center'>
               <img src={aiImg} alt="StudyStream Image" className='rounded-2xl' />
             </div>
           </div>
-          <div className='col-span-1'>
+          <div className='flex-1'>
             <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Answer   {' '}
+              Answer{' '}
               <span className='bg-gradient-to-r from-[#F54C7A] to-[#FF72E1] bg-clip-text text-transparent'>
-                questions {' '}
+                questions{' '}
               </span>
               with our chatbot.
             </h2>
@@ -212,8 +212,10 @@ function GetStartedPage() {
               Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance.
             </p>
           </div>
+
         </div>
       </section>
+
 
       <section className='mt-10 px-4 lg:mt-24'>
         <div className='grid items-center gap-4 lg:grid-cols-2'>

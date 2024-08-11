@@ -199,7 +199,7 @@ function Analytics() {
                 </svg>
               </div>
               <div>
-                <div className="text-gray-500">Total Hours</div>
+                <div className="text-gray-500">Total Focused Time</div>
                 <div className="mt-3 text-3xl font-bold">
                   + {formatDuration(totalDuration || 0)}
                 </div>
