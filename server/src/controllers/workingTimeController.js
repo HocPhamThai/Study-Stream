@@ -14,7 +14,7 @@ const saveTotalWorkingTime = async (req, res) => {
     let existingRecord = await TotalWorkingTime.findOne({ userId })
 
     if (existingRecord) {
-      // Update or add daily record
+      // Cập nhật hoặc thêm bản ghi
       const dailyRecordIndex = existingRecord.dailyRecords.findIndex(
         (record) => record.date.getTime() === date.getTime()
       )
@@ -24,7 +24,7 @@ const saveTotalWorkingTime = async (req, res) => {
         existingRecord.dailyRecords.push({ date, duration })
       }
 
-      // Update weekly totals based on new daily record
+      // Cập nhật tuần dữa trên bản ghi ngày
       const weeklyRecordIndex = existingRecord.weeklyTotals.findIndex(
         (record) => record.weekStart.getTime() === startOfWeek.getTime()
       )
@@ -34,8 +34,8 @@ const saveTotalWorkingTime = async (req, res) => {
         existingRecord.weeklyTotals.push({ weekStart: startOfWeek, duration })
       }
 
-      // Update monthly totals based on new daily record
-      const month = today.getMonth() + 1 // Month is 0-indexed
+      // Cập nhật tháng dựa trên bản ghi mới của ngày
+      const month = today.getMonth() + 1 // Tháng được lập chỉ mục là 0
       const year = today.getFullYear()
       const monthlyRecordIndex = existingRecord.monthlyTotals.findIndex(
         (record) => record.month === month && record.year === year
@@ -46,7 +46,7 @@ const saveTotalWorkingTime = async (req, res) => {
         existingRecord.monthlyTotals.push({ month, year, duration })
       }
 
-      // Update yearly totals based on new daily record
+      // Cập nhật tổng hàng năm dựa trên ngày
       const yearlyRecordIndex = existingRecord.yearlyTotals.findIndex(
         (record) => record.year === year
       )
@@ -56,14 +56,14 @@ const saveTotalWorkingTime = async (req, res) => {
         existingRecord.yearlyTotals.push({ year, duration })
       }
 
-      // Update total duration
+      // Cập nhật tổng duration
       existingRecord.totalDuration += duration
 
-      // Save the updated record
+      // Lưu cập nhật bản ghi
       await existingRecord.save()
       res.status(200).json(existingRecord)
     } else {
-      // Create new record with daily record
+      // Tạo bản ghi ngày mới
       const newTotalWorkingTime = new TotalWorkingTime({
         userId,
         dailyRecords: [{ date, duration }],
@@ -75,7 +75,7 @@ const saveTotalWorkingTime = async (req, res) => {
         totalDuration: duration,
       })
 
-      // Save the new record
+      // Lưu bản ghi mới
       await newTotalWorkingTime.save()
       res.status(201).json(newTotalWorkingTime)
     }
@@ -327,6 +327,29 @@ const getMonthlyDailyDurations = async (req, res) => {
   }
 }
 
+const getAverageDailyDuration = async (req, res) => {
+  const { userId } = req.params
+
+  try {
+    const record = await TotalWorkingTime.findOne({ userId })
+
+    if (!record) {
+      return res.status(404).json({ message: 'No record found for this user.' })
+    }
+
+    // Tính số ngày có bản ghi trong dailyRecords
+    const numberOfDays = record.dailyRecords.length
+    // Tính thời gian trung bình
+    const averageDuration = numberOfDays > 0 ? Math.floor(record.totalDuration / numberOfDays) : 0
+
+    // Trả về cả số ngày và thời gian trung bình
+    res.status(200).json({ averageDuration, numberOfDays })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
 export {
   getDailyDuration,
   getWeeklyDuration,
@@ -336,4 +359,5 @@ export {
   saveTotalWorkingTime,
   getWeeklyDailyDurations,
   getMonthlyDailyDurations,
+  getAverageDailyDuration,
 }

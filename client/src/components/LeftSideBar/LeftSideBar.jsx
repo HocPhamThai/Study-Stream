@@ -208,8 +208,6 @@ const LeftSideBar = () => {
                     d="m130.285 431.124c-2.378 3.392-1.557 8.069 1.834 10.447 16.475 11.553 35.869 17.659 56.086 17.659h105.41c54.086 0 97.85-43.755 97.85-97.85 0-53.955-43.896-97.85-97.85-97.85h-105.41c-26.136 0-50.712 10.177-69.204 28.657-33.594 33.595-37.228 84.639-13.164 122.051 2.241 3.484 6.882 4.491 10.365 2.25s4.491-6.881 2.25-10.365c-20.406-31.723-17.228-74.945 11.154-103.327 15.657-15.647 36.468-24.265 58.599-24.265h105.41c45.684 0 82.85 37.167 82.85 82.85 0 45.795-37.047 82.85-82.85 82.85h-105.41c-17.12 0-33.536-5.167-47.474-14.94-3.392-2.38-8.068-1.558-10.446 1.833z"
                     clipRule="evenodd"
                     fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
-
-
                   />
                   <path
                     fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
@@ -229,6 +227,38 @@ const LeftSideBar = () => {
           </div>
           <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
             Chatbot
+          </div>
+        </span>
+        <span className="relative flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300 group">
+          <div style={{ width: '100%', height: '100%' }}>
+            <Link to="/analytics" onClick={() => handleClick('analytics')}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill={selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'}
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-8 h-8 opacity-75"
+              >
+                <defs>
+                  <linearGradient
+                    id="analyticsGradient"
+                    gradientTransform="rotate(106.23)"
+                  >
+                    <stop offset="0%" stopColor="#f99827" />
+                    <stop offset="100%" stopColor="#f95f35" />
+                  </linearGradient>
+                </defs>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"
+                />
+              </svg>
+            </Link>
+          </div>
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
+            Analytics
           </div>
         </span>
 
