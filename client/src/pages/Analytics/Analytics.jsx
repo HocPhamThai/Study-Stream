@@ -1,36 +1,62 @@
 import React from 'react'
-import './DashHome.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
+import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import Logo from '../../img/logo.png'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
-import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
-import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
-import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import postIcon from './postIcon.png'
-import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import dayIcon from './dayIcon.png'
+import averageIcon from './averageIcon.png'
+import Chart from '../../components/Chart/Chart'
+import RightSide from '../../components/RightSide/RightSide'
+import motivationImg from './motivationImg.png'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
-const DashHome = () => {
-  const dispatch = useDispatch()
+function Analytics() {
   const { user } = useSelector((state) => state.authReducer.authData)
-  const { posts } = useSelector((state) => state.postReducer)
-  const [dailyDuration, setDailyDuration] = useState(null)
+  const [duration, setDuration] = useState({})
+  const [totalDuration, setTotalDuration] = useState(null)
 
-  const focusRoom1 = () => {
-    window.location = `studyroom?room=${1}`
-  }
-  const focusRoom2 = () => {
-    window.location = `studyroom?room=${2}`
-  }
-  const focusRoom3 = () => {
-    window.location = `studyroom?room=${3}`
-  }
-  const focusRoom4 = () => {
-    window.location = `studyroom?room=${4}`
-  }
+  useEffect(() => {
+    const fetchDuration = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/workingtime/${user._id}/average`
+        )
+        if (response.data) {
+          setDuration(response.data)
+        } else {
+          setDuration(0) // Giá trị mặc định khi không có dữ liệu
+        }
+      } catch (error) {
+        console.error('Lỗi khi lấy thông tin duration:', error)
+        setDuration(0) // Giá trị mặc định khi có lỗi
+      }
+    }
+
+    const fetchTotalDuration = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/workingtime/${user._id}/total`
+        )
+        if (response.data) {
+          setTotalDuration(response.data.totalDuration)
+        } else {
+          setTotalDuration(0) // Giá trị mặc định khi không có dữ liệu
+        }
+      } catch (error) {
+        console.error('Lỗi khi lấy thông tin duration:', error)
+        setTotalDuration(0) // Giá trị mặc định khi có lỗi
+      }
+    }
+
+    fetchDuration()
+    fetchTotalDuration()
+  }, [user])
+
   const formatDuration = (seconds) => {
     const hours = Math.floor(seconds / 3600)
     const minutes = Math.floor((seconds % 3600) / 60)
@@ -41,28 +67,6 @@ const DashHome = () => {
     //   return `${minutes} `
     // }
   }
-
-  useEffect(() => {
-    const fetchDuration = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/workingtime/${user._id}/daily`
-        )
-        if (response.data) {
-          setDailyDuration(response.data)
-        } else {
-          setDailyDuration(0) // Giá trị mặc định khi không có dữ liệu
-        }
-      } catch (error) {
-        console.error('Lỗi khi lấy thông tin duration:', error)
-        setDailyDuration(0) // Giá trị mặc định khi có lỗi
-      }
-    }
-
-    if (user && user._id) {
-      fetchDuration()
-    }
-  }, [user])
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
@@ -83,22 +87,22 @@ const DashHome = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        {/* Sidebar */}
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
+          {/* Sidebar */}
           <LeftSideBar />
         </div>
         {/* Main content */}
-        <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-2xl bg-white px-6 py-4">
-          {/* Start now */}
+        <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-2xl px-6 py-4 bg-white">
+          {/* Check now */}
           <div className="relative m-auto flex items-center gap-4 rounded-xl text-white shadow-md mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             <div className="w-3/5 p-8 ">
               <div className="mb-4 flex w-fit items-center gap-1 rounded-xl bg-white/20 px-3 py-1 text-xs text-white">
                 Noti
               </div>
               <p className="text-medium font-semibold md:text-lg">
-                Make your work chilling with my app
+                Maximize your productivity with every Pomodoro!
               </p>
-              <p className="mt-4 text-sm">Work balance & Love your work</p>
+              <p className="mt-4 text-sm">Track your progress and unlock insights into your time management.</p>
               <div className="mt-4">
                 <Link to="/pomodoro">
                   <button
@@ -112,8 +116,8 @@ const DashHome = () => {
             </div>
             <div className="flex flex-1 justify-center ">
               <img
-                className="w-[140px] h-[140px]"
-                src="https://i.imgur.com/NT2ubq7.png"
+                className="w-[180px] h-[180px]"
+                src={motivationImg}
                 alt=""
               />
             </div>
@@ -121,17 +125,30 @@ const DashHome = () => {
           <div className="mb-2 mt-5 flex justify-between">
             <p className="font-bold">Your activities</p>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-sm">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
               <div className="rounded-full p-3">
-                <img className="w-[40px] h-[40px]" src={postIcon} alt="" />
+                <img className="w-[40px] h-[40px]" src={averageIcon} alt="" />
               </div>
               <div>
-                <div className="text-gray-500">Total Story</div>
-                <div className="mt-3 text-3xl font-bold">+ {posts.length}</div>
+                <div className="text-gray-500">Average hours per day</div>
+                <div className="mt-3 text-3xl font-bold">
+                  + {formatDuration(duration?.averageDuration || 0)}
+                </div>
               </div>
             </div>
-            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-sm">
+            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
+              <div className="rounded-full p-3">
+                <img className="w-[40px] h-[40px]" src={dayIcon} alt="" />
+              </div>
+              <div>
+                <div className="text-gray-500">Total Days Use</div>
+                <div className="mt-3 text-3xl font-bold">
+                  + {duration?.numberOfDays}
+                </div>
+              </div>
+            </div>
+            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
               <div className="rounded-full p-3">
                 <svg
                   id="Capa_1"
@@ -184,87 +201,29 @@ const DashHome = () => {
               <div>
                 <div className="text-gray-500">Total Hours</div>
                 <div className="mt-3 text-3xl font-bold">
-                  + {formatDuration(dailyDuration?.todayDuration || 0)}
+                  + {formatDuration(totalDuration || 0)}
                 </div>
               </div>
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">
-            <p className="font-bold">Study stream rooms</p>
+            <p className="font-bold">Analytics Chart</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
-              <p className="text-medium font-semibold md:text-lg">
-                ✍️ Study room
-              </p>
-              <p className="mt-4 text-sm">Study together, stress less</p>
-              <button
-                onClick={focusRoom1}
-                className="contrast-button px-4 py-2 border rounded-xl"
-                type="button"
-              >
-                Join now
-              </button>
-            </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
-              <p className="text-medium font-semibold md:text-lg">
-                🧑🏻‍💻 Working room
-              </p>
-              <p className="mt-4 text-sm">Boost your productivity with us</p>
-              <button
-                onClick={focusRoom2}
-                className="button px-4 py-2 border rounded-xl	"
-                type="button"
-              >
-                Join now
-              </button>
-            </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
-              <p className="text-medium font-semibold md:text-lg">
-                ⏳ Quite room{' '}
-              </p>
-              <p className="mt-4 text-sm">
-                {' '}
-                Your studying heavan for ultimate focus
-              </p>
-              <button
-                onClick={focusRoom3}
-                className="contrast-button px-4 py-2 border rounded-xl"
-                type="button"
-              >
-                Join now
-              </button>
-            </div>
-            <div className="p-8 w-full bg-white col-span-1 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
-              <p className="text-medium font-semibold md:text-lg">
-                💡 Creative room
-              </p>
-              <p className="mt-4 text-sm">
-                Unleash creativity, one study session at a time
-              </p>
-              <button
-                onClick={focusRoom4}
-                className="button px-4 py-2 border rounded-xl"
-                type="button"
-              >
-                Join now
-              </button>
-            </div>
+          <div className="w-full col-span-2 md:col-span-2 lg:col-span-3 rounded-2xl shadow-lg border border-gray-200">
+            <Chart />
           </div>
         </div>
-        {/* Right sidebar */}
-        <div className="hidden xl:block w-96 mr-5">
-          <FavoritePlaylist />
-          <div className="mt-3 mb-3"></div>
-          <RandomPlaylist />
+        {/* Right Side  */}
+        <div className="hidden xl:block w-80 mr-5 mt-4">
+          <RightSide />
+        </div>
+        <div className="fixed bottom-3 left-0 right-0 md:hidden mt-2 mx-auto w-max z-50">
+          <HorizontalNavbar />
         </div>
       </div>
 
-      <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
-        <HorizontalNavbar />
-      </div>
     </div>
   )
 }
 
-export default DashHome
+export default Analytics

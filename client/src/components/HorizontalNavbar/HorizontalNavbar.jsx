@@ -201,6 +201,40 @@ const HorizontalNavBar = () => {
           </span>
         </span>
       </Link>
+
+      {/* Analytics */}
+      <Link to="/analytics">
+        <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-8 h-8 opacity-75"
+          >
+            <defs>
+              <linearGradient
+                id="analyticsGradient"
+                gradientTransform="rotate(106.23)"
+              >
+                <stop offset="0%" stopColor="#f99827" />
+                <stop offset="100%" stopColor="#f95f35" />
+              </linearGradient>
+            </defs>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"
+              fill={selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'}
+            />
+          </svg>
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
+            Analytics
+          </span>
+        </span>
+      </Link>
+
     </div>
   );
 };

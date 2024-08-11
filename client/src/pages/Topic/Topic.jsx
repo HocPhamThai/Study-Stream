@@ -8,7 +8,6 @@ import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
 import { useNavigate } from 'react-router-dom'
-import Chart from '../../components/Chart/Chart'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
@@ -91,7 +90,7 @@ const Topic = () => {
       </div>
       <div className="flex flex-col lg:flex-row">
         {/* sidebar */}
-        <div className='hidden md:block'>
+        <div className='hidden lg:block'>
           <LeftSideBar />
         </div>
 
@@ -144,20 +143,16 @@ const Topic = () => {
                 </div>
               </div>
             ))}
-
-            <div className="w-full col-span-2 md:col-span-2 lg:col-span-3">
-              <Chart />
-            </div>
           </div>
         </div>
 
 
-        <div className="w-full lg:w-96 lg:mr-5 mt-5 lg:mt-0">
+        <div className="hidden xl:block w-96 mr-5 lg:mr-5 mt-5 lg:mt-0">
           <FavoritePlaylist />
           <div className="mt-3 mb-3"></div>
           <RandomPlaylist />
         </div>
-        <div className="fixed bottom-3 left-0 right-0 sm:hidden mt-2 mx-auto w-max z-50">
+        <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
           <HorizontalNavbar />
         </div>
       </div>

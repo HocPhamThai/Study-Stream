@@ -48,7 +48,7 @@ const RightSide = () => {
   }, [])
 
   return (
-    <div className="RightSide">
+    <div className="RightSide ">
       <RewardCard rewards={rewards} totalDuration={totalDuration} />
 
       <button
