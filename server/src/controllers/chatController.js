@@ -20,7 +20,7 @@ const createChat = async (req, res) => {
     })
 
     if (existingChat) {
-      return res.status(200).json({ chat: existingChat })
+      return res.status(200).json({ existingChat, isExist: true })
     }
 
     // Create a new chat
@@ -31,7 +31,10 @@ const createChat = async (req, res) => {
     const savedChat = await newChat.save()
     res.status(200).json(savedChat)
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    // Return a specific response when an error occurs
+    res
+      .status(500)
+      .json({ message: 'An error occurred while creating the chat.' })
   }
 }
 

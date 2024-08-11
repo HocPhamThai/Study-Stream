@@ -14,10 +14,14 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
 
   // receive message from socket server
   useEffect(() => {
-    if (receiveMessage !== null && receiveMessage?.chatId === chat._id) {
+    if (
+      chat &&
+      receiveMessage !== null &&
+      receiveMessage?.chatId === chat._id
+    ) {
       setMessages([...messages, receiveMessage])
     }
-  }, [receiveMessage])
+  }, [chat, messages, receiveMessage])
 
   // fetching data for header
   useEffect(() => {

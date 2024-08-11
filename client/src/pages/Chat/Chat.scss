@@ -25,7 +25,6 @@
   padding: 1rem;
   height: auto;
   min-height: 80vh;
-  // overflow: auto;
   margin-top: -3px;
 }
 
@@ -44,6 +43,7 @@
   gap: 1rem;
   scrollbar-width: none;
 }
+
 .conversation:hover {
   background: #80808038;
   cursor: pointer;
@@ -74,12 +74,71 @@
   font-size: 20px;
 }
 
+@media screen and (max-width: 1024px) {
+  .Chat {
+    grid-template-columns: 10% 25% auto;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .Chat {
     grid-template-columns: 16% auto;
   }
   .follower.conversation > div > .name {
     display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Chat {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .Left-side-chat,
+  .Right-side-chat {
+    display: none;
+  }
+  .Chat-container {
+    min-height: 60vh;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .Chat {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .Left-side-chat,
+  .Right-side-chat {
+    display: none;
+  }
+  .Chat-container {
+    min-height: 50vh;
+  }
+  .delete-button {
+    padding: 3px 5px;
+    right: 5px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .Chat {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .Left-side-chat,
+  .Right-side-chat {
+    display: none;
+  }
+  .Chat-container {
+    min-height: 50vh;
+  }
+  .delete-button {
+    padding: 3px 5px;
+    right: 5px;
   }
 }
 
@@ -108,4 +167,24 @@
   margin-left: -1rem;
   left: 0;
   align-self: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .responsive-sidebar {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Adjust as needed */
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .responsive-sidebar .hidden.md\\:block {
+    display: block;
+  }
+
+  .Left-side-chat {
+    display: none;
+  }
 }

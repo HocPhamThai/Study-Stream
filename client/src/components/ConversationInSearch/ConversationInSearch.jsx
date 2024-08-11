@@ -6,7 +6,7 @@ const ConversationInSearch = ({ data, setShowChat }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [userData, setUserData] = useState(null)
 
-  const userId = data._id
+  const userId = data._id || null
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -19,16 +19,21 @@ const ConversationInSearch = ({ data, setShowChat }) => {
     getUserData()
   }, [userId])
 
+  const handleClick = () => {
+    setShowChat(true)
+  }
+
   return (
     <>
       <div
         className="conversation"
-        onClick={() =>
-          setTimeout(() => {
-            setShowChat(true)
-            window.location.reload()
-          }, 1000)
-        }
+        onClick={handleClick}
+        // onClick={() =>
+        //   setTimeout(() => {
+        //     setShowChat(true)
+        //     window.location.reload()
+        //   }, 1000)
+        // }
       >
         <div>
           <img

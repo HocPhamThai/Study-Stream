@@ -6,6 +6,7 @@ import {
 
 import { thunk } from 'redux-thunk'
 import { reducers } from '../reducers'
+import socketMiddleware from '../middleware/socketMiddleware'
 
 // saveToLocalStorage is a function that saves the Redux store to the browser's local storage
 function saveToLocalStorage(store) {
@@ -37,7 +38,7 @@ const persistedState = loadFromLocalStorage()
 const store = createStore(
   reducers,
   persistedState,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk, socketMiddleware))
 )
 
 // The store.subscribe() method is used to save the Redux store to the browser's local storage whenever the store changes

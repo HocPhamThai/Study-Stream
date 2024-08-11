@@ -22,3 +22,46 @@ input:focus {
   outline: none;
   border: none;
 }
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 1024px) {
+  .btnBack {
+    width: 25px;
+  }
+
+  input {
+    padding: 0.4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btnBack {
+    width: 20px;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .btnBack {
+    width: 15px;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.2rem;
+  }
+}
