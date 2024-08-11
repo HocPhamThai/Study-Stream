@@ -8,6 +8,7 @@ import {
   createChat,
   deleteChat,
   setOnlineUsers,
+  setCurrentChat,
 } from '../actions/socketAction'
 
 const socketMiddleware = (store) => {
@@ -32,6 +33,7 @@ const socketMiddleware = (store) => {
         })
         socket.on('chat-deleted', (deletedChatId) => {
           store.dispatch(deleteChat(deletedChatId))
+          store.dispatch(setCurrentChat(null))
         })
         break
       case DISCONNECT_SOCKET:

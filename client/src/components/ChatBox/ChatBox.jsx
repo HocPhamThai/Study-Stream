@@ -19,9 +19,9 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
       receiveMessage !== null &&
       receiveMessage?.chatId === chat._id
     ) {
-      setMessages([...messages, receiveMessage])
+      setMessages((prevMessages) => [...prevMessages, receiveMessage])
     }
-  }, [chat, messages, receiveMessage])
+  }, [chat, receiveMessage])
 
   // fetching data for header
   useEffect(() => {

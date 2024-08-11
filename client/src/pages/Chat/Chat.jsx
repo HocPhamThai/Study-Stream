@@ -119,7 +119,6 @@ const Chat = () => {
         socket.current.emit('delete-chat', {
           chatData: chatToDelete,
         })
-        dispatch(setCurrentChat(null))
         dispatch(clearMessages())
       }
     } catch (error) {
@@ -129,7 +128,7 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <div className="left-sidebar responsive-sidebar">
+      <div className="left-sidebar">
         <div className="hidden md:block">
           <LeftSideBar />
         </div>
@@ -139,7 +138,11 @@ const Chat = () => {
         <div className="Chat-container">
           <h2>Chats</h2>
           <div>
-            <SearchForm onSearch={onSearch} setShowChat={setShowChat} />
+            <SearchForm
+              onSearch={onSearch}
+              showChat={showChat}
+              setShowChat={setShowChat}
+            />
           </div>
           <div className="Chat-list hover-scrollbar">
             {showChat
