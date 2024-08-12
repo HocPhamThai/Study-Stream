@@ -74,30 +74,31 @@ const Auth = () => {
     window.location.href = '/forgot'
   }
   return (
-    <div className="Auth bg-white flex items-center justify-center min-h-screen">
+    <div className="Auth bg-gray-100 flex items-center justify-center min-h-screen">
       <div className="auth-left hidden md:block ">
-        <img className='hidden md:block ' src={Logo} alt="" />
+        <img className="hidden md:block " src={Logo} alt="" />
         <div className="Webname hidden md:block ">
           <h1>Study Stream</h1>
           <h6>Stay focused - Be present</h6>
         </div>
       </div>
 
-      <div
-        className="auth-right "
-      >
-
+      <div className="auth-right bg-white rounded-2xl">
         <form
           className={
             !isSignUp ? 'infoForm authForm widthLoginForm' : 'infoForm authForm'
           }
           onSubmit={handleSubmit}
         >
-          <div className='block md:hidden'>
-            <img className='block md:hidden text-lg	w-[60px] h-[60px]' src={Logo} alt="" />
-            <h1 className=' block md:hidden textTitle '>Study Stream</h1>
+          <div className="block md:hidden">
+            <img
+              className="block md:hidden text-lg	w-[60px] h-[60px]"
+              src={Logo}
+              alt=""
+            />
+            <h1 className=" block md:hidden textTitle ">Study Stream</h1>
           </div>
-          <h3 className='font-bold'>{isSignUp ? 'Sign Up' : 'Login'}</h3>
+          <h3 className="font-bold">{isSignUp ? 'Sign Up' : 'Login'}</h3>
           {isSignUp && (
             <div>
               <input

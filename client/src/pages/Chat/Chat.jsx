@@ -11,6 +11,7 @@ import {
   setChats,
   setCurrentChat,
 } from '../../actions/socketAction'
+import './Chat.scss'
 import {
   userChats,
   createChat as createChatRequest,
@@ -20,7 +21,6 @@ import ChatBox from '../../components/ChatBox/ChatBox'
 import Conversation from '../../components/Conversation/Conversation'
 import Home from '../../img/home.png'
 import LogoSearch from './../../components/LogoSearch/LogoSearch'
-import './Chat.scss'
 import SearchForm from '../../components/SearchForm/SearchForm'
 import ConversationInSearch from '../../components/ConversationInSearch/ConversationInSearch'
 import { searchUsers } from '../../api/UserRequest'
@@ -127,15 +127,15 @@ const Chat = () => {
   }
 
   return (
-    <div className="Chat">
-      <div className="left-sidebar">
+    <div className="relative bg-gray-200 grid grid-cols-[5%,20%,auto] gap-4 m-[-1rem] p-4 overflow-visible md:grid-cols-[5%,25%,auto] sm:grid-cols-[16%,auto] xs:grid-cols-1 xs:gap-2 xs:p-2">
+      <div className="left-sidebar mt-11 ml-[-1rem] self-start">
         <div className="hidden md:block">
           <LeftSideBar />
         </div>
       </div>
-      <div className="Left-side-chat">
+      <div className="flex flex-col gap-4 ml-[-20px] xs:hidden">
         <LogoSearch />
-        <div className="Chat-container">
+        <div className="flex flex-col gap-4 bg-white rounded-lg mt-[2px] p-4 min-h-[80vh] xs:min-h-[60vh]">
           <h2>Chats</h2>
           <div>
             <SearchForm
@@ -144,7 +144,7 @@ const Chat = () => {
               setShowChat={setShowChat}
             />
           </div>
-          <div className="Chat-list hover-scrollbar">
+          <div className="flex flex-col gap-4 min-h-[605px] overflow-y-auto hover:scrollbar-none">
             {showChat
               ? chats.map((chat) => (
                   <div
@@ -157,7 +157,7 @@ const Chat = () => {
                         dispatch(setCurrentChat(chat))
                       }
                     }}
-                    className="Conversation"
+                    className="relative p-2 rounded-lg hover:bg-gray-300 cursor-pointer"
                   >
                     <Conversation
                       data={chat}
@@ -165,7 +165,7 @@ const Chat = () => {
                       online={checkOnlineStatus(chat)}
                     />
                     <button
-                      className="delete-button"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-orange-500 border-none p-1.5 rounded-md cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation()
                         handleDeleteChat(chat._id)
@@ -196,10 +196,10 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className="Right-side-chat">
-        <div style={{ width: '8rem', alignSelf: 'flex-end' }}>
-          <div className="navIcons">
-            <Link to="/dashhome">
+      <div className="flex flex-col gap-4 xs:hidden">
+        <div className="w-32 h-11 self-end flex items-center">
+          <div className="flex gap-4 flex-1 justify-between">
+            <Link to="/dashhome" style={{ width: '24px', height: 'auto' }}>
               <img src={Home} alt="" />
             </Link>
             <Link to={`/profile/${user._id}`}>

@@ -62,7 +62,7 @@ const Timer = (color) => {
         return switchMode()
       }
       tick()
-    }, 10)
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])

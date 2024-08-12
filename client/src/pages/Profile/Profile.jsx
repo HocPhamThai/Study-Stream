@@ -8,12 +8,12 @@ import './Profile.scss'
 import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 const Profile = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
+  const handleOpen = () => setModalOpen(true)
+  const handleClose = () => setModalOpen(false)
   return (
-    <div className="Profile flex flex-col lg:flex-row">
+    <div className="Profile flex flex-col lg:flex-row bg-gray-200">
       <div className="hidden lg:block lg:w-1/4">
         <ProfileLeft />
       </div>
