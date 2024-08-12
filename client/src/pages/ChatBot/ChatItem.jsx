@@ -4,6 +4,8 @@ import React from 'react'
 import { Box, Avatar, Typography } from '@mui/material'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { useSelector } from 'react-redux'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 function extractCodeFromString(message) {
   if (message.includes('```')) {
     const blocks = message.split('```')
@@ -68,7 +70,7 @@ const ChatItem = ({ content, role }) => {
                 {block}
               </SyntaxHighlighter>
             ) : (
-              <Typography sx={{ fontSize: '16px' }}>{block}</Typography>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{block}</ReactMarkdown>
             )
           )}
       </Box>
@@ -89,7 +91,7 @@ const ChatItem = ({ content, role }) => {
       </Avatar>
       <Box>
         {!messageBlocks && (
-          <Typography sx={{ fontSize: '16px' }}>{content}</Typography>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         )}
         {messageBlocks &&
           messageBlocks.length &&
@@ -102,7 +104,9 @@ const ChatItem = ({ content, role }) => {
                 {block}
               </SyntaxHighlighter>
             ) : (
-              <Typography sx={{ fontSize: '20px' }}>{block}</Typography>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {content}
+              </ReactMarkdown>
             )
           )}
       </Box>
