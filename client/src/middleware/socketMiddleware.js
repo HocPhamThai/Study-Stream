@@ -20,7 +20,7 @@ const socketMiddleware = (store) => {
         if (socket !== null) {
           socket.disconnect()
         }
-        socket = io('ws://localhost:8800')
+        socket = io(process.env.REACT_APP_SOCKET_URL)
         socket.emit('new-user-add', action.payload)
         socket.on('get-users', (users) => {
           store.dispatch(setOnlineUsers(users))

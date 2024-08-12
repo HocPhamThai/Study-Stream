@@ -44,7 +44,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (user) {
-      socket.current = io('ws://localhost:8800')
+      socket.current = io(process.env.REACT_APP_SOCKET_URL)
       dispatch(connectSocket(user._id))
     }
     return () => {
