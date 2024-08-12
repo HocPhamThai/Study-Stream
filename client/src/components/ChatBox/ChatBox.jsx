@@ -83,7 +83,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
   })
 
   return (
-    <div className="bg-white rounded-lg grid grid-rows-[14vh_60vh_13vh] min-h-[80vh] xs:min-h-[60vh] p-4">
+    <div className="bg-white rounded-lg grid grid-rows-[14vh_60vh_13vh] min-h-[60vh] xs:min-h-[60vh] p-4">
       {chat ? (
         <>
           <div className="flex flex-col p-4">

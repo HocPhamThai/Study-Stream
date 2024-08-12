@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { getUser } from '../../api/UserRequest'
-import './ConversationInSearch.scss'
 
 const ConversationInSearch = ({ data, setShowChat }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -25,35 +24,25 @@ const ConversationInSearch = ({ data, setShowChat }) => {
 
   return (
     <>
-      <div
-        className="conversation"
-        onClick={handleClick}
-        // onClick={() =>
-        //   setTimeout(() => {
-        //     setShowChat(true)
-        //     window.location.reload()
-        //   }, 1000)
-        // }
-      >
-        <div>
+      <div className="cursor-pointer" onClick={handleClick}>
+        <div className="flex gap-2.5">
           <img
             src={
               userData?.profilePicture
                 ? serverPublic + userData.profilePicture
                 : serverPublic + 'defaultProfile.jpg'
             }
-            className="followerImage"
-            style={{ width: '50px', height: '50px' }}
+            className="rounded-full w-12 h-12 object-cover"
             alt="failed to load"
           />
-          <div className="name" style={{ fontSize: '0.8rem' }}>
-            <span>
+          <div className="flex flex-col items-start justify-center text-xs">
+            <span className="font-bold">
               {userData?.firstname} {userData?.lastname}
             </span>
           </div>
         </div>
       </div>
-      <hr style={{ width: '85%', border: '0.1px solid #ececec' }} />
+      <hr className="w-[90%] border border-gray-200" />
     </>
   )
 }

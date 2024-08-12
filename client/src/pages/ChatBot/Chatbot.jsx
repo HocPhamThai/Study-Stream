@@ -13,6 +13,7 @@ import {
 import { Link } from 'react-router-dom'
 
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
+import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 const ChatBot = () => {
   const inputRef = useRef(null)
@@ -70,7 +71,7 @@ const ChatBot = () => {
     }
   }
   return (
-    <div style={{ background: '#f3f3f3' }}>
+    <div className="bg-gray-200">
       <Box
         sx={{
           display: 'flex',
@@ -81,7 +82,7 @@ const ChatBot = () => {
           gap: 3,
         }}
       >
-        <Box sx={{ ml: '-1rem', mt: '44px' }}>
+        <Box sx={{ ml: '-1rem', mt: '56px' }} className="hidden lg:block">
           <LeftSideBar />
         </Box>
         <Box
@@ -96,11 +97,11 @@ const ChatBot = () => {
               display: 'flex',
               width: '100%',
               height: '60vh',
-              bgcolor: 'var(--cardColor)',
+              bgcolor: 'white',
               borderRadius: 5,
               flexDirection: 'column',
               mx: 3,
-              mt: 5,
+              mt: 9,
             }}
           >
             <Avatar
@@ -178,9 +179,10 @@ const ChatBot = () => {
             </h1>
           </Typography>
           <Box
+            className="h-[60vh] md:h-[75vh]"
             sx={{
               width: '100%',
-              height: '60vh',
+              // height: '75vh',
               borderRadius: 3,
               mx: 'auto',
               display: 'flex',
@@ -224,6 +226,9 @@ const ChatBot = () => {
           </div>
         </Box>
       </Box>
+      <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
+        <HorizontalNavBar />
+      </div>
     </div>
   )
 }

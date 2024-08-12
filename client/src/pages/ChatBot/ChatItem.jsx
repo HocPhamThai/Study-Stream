@@ -79,7 +79,7 @@ const ChatItem = ({ content, role }) => {
         width: '100%',
         display: 'flex',
         p: 2,
-        bgcolor: 'var(--cardColor)',
+        bgcolor: 'white',
         gap: 2,
         borderRadius: 2,
       }}

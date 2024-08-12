@@ -22,18 +22,20 @@ const Conversation = ({ data, currentUserId, online }) => {
     <>
       <div className="flex flex-col items-start">
         <div className="flex items-center gap-2.5">
-          {online && (
-            <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
-          )}
-          <img
-            src={
-              userData?.profilePicture
-                ? serverPublic + userData.profilePicture
-                : serverPublic + 'defaultProfile.jpg'
-            }
-            className="w-12 h-12 object-cover rounded-full"
-            alt="failed to load"
-          />
+          <div className="relative">
+            <img
+              src={
+                userData?.profilePicture
+                  ? serverPublic + userData.profilePicture
+                  : serverPublic + 'defaultProfile.jpg'
+              }
+              className="w-12 h-12 object-cover rounded-full"
+              alt="failed to load"
+            />
+            {online && (
+              <div className="w-3 h-3 bg-green-400 rounded-full absolute top-[1px] right-[2px] transform border-[1px]"></div>
+            )}
+          </div>
           <div className="flex flex-col items-start justify-center text-xs">
             <span className="font-bold">
               {userData?.firstname} {userData?.lastname}
@@ -42,7 +44,7 @@ const Conversation = ({ data, currentUserId, online }) => {
           </div>
         </div>
       </div>
-      <hr className="w-[85%] border border-gray-200" />
+      <hr className="w-[90%] border border-gray-200" />
     </>
   )
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import io from 'socket.io-client'
 import { Link } from 'react-router-dom'
+import './Chat.scss'
 import {
   clearMessages,
   connectSocket,
@@ -11,7 +12,6 @@ import {
   setChats,
   setCurrentChat,
 } from '../../actions/socketAction'
-import './Chat.scss'
 import {
   userChats,
   createChat as createChatRequest,
@@ -26,6 +26,7 @@ import ConversationInSearch from '../../components/ConversationInSearch/Conversa
 import { searchUsers } from '../../api/UserRequest'
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import { UilSetting } from '@iconscout/react-unicons'
+import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 
 const Chat = () => {
   const dispatch = useDispatch()
@@ -129,12 +130,14 @@ const Chat = () => {
   return (
     <div className="relative bg-gray-200 grid grid-cols-[5%,20%,auto] gap-4 m-[-1rem] p-4 overflow-visible md:grid-cols-[5%,25%,auto] sm:grid-cols-[16%,auto] xs:grid-cols-1 xs:gap-2 xs:p-2">
       <div className="left-sidebar mt-11 ml-[-1rem] self-start">
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <LeftSideBar />
         </div>
       </div>
-      <div className="flex flex-col gap-4 ml-[-20px] xs:hidden">
-        <LogoSearch />
+      <div className="flex flex-col gap-4 ml-[-20px] xs:hidden h-96 ">
+        <div className="hidden md:block">
+          <LogoSearch />
+        </div>
         <div className="flex flex-col gap-4 bg-white rounded-lg mt-[2px] p-4 min-h-[80vh] xs:min-h-[60vh]">
           <h2>Chats</h2>
           <div>
@@ -144,7 +147,7 @@ const Chat = () => {
               setShowChat={setShowChat}
             />
           </div>
-          <div className="flex flex-col gap-4 min-h-[605px] overflow-y-auto hover:scrollbar-none">
+          <div className="flex flex-col gap-2 overflow-auto scrollbar-none">
             {showChat
               ? chats.map((chat) => (
                   <div
@@ -197,7 +200,7 @@ const Chat = () => {
         </div>
       </div>
       <div className="flex flex-col gap-4 xs:hidden">
-        <div className="w-32 h-11 self-end flex items-center">
+        <div className="w-32 h-11 self-end flex items-center hidden md:block">
           <div className="flex gap-4 flex-1 justify-between">
             <Link to="/dashhome" style={{ width: '24px', height: 'auto' }}>
               <img src={Home} alt="" />
@@ -213,6 +216,9 @@ const Chat = () => {
           setSendMessage={(message) => dispatch(sendMessage(message))}
           receiveMessage={receiveMessage}
         />
+      </div>
+      <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
+        <HorizontalNavBar />
       </div>
     </div>
   )

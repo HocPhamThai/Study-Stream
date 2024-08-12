@@ -1,6 +1,4 @@
-// components/SearchForm/SearchForm.js
 import React, { useEffect, useState } from 'react'
-import './SearchFrom.scss'
 
 const SearchForm = ({ onSearch, showChat, setShowChat }) => {
   const [query, setQuery] = useState('')
@@ -10,7 +8,7 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
     if (showChat) {
       setQuery('')
       setShowIcon(false)
-  } else {
+    } else {
       setShowIcon(true)
     }
   }, [showChat])
@@ -31,17 +29,21 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
     setShowChat(true)
     setShowIcon(false)
   }
+
   return (
-    <div className="searchContainer">
+    <div className="relative flex items-center">
       {showIcon && (
-        <button className="btnBack" onClick={handleIconClick}>
+        <button
+          className="absolute left-0 w-8 md:w-6 sm:w-5 xs:w-4"
+          onClick={handleIconClick}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
@@ -51,16 +53,19 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
           </svg>
         </button>
       )}
-      <form onSubmit={handleSubmit} className="">
+      <form onSubmit={handleSubmit} className="flex items-center w-full">
         <input
           onFocus={handleFocus}
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Seach for users..."
-          style={{ marginLeft: '30px' }}
+          placeholder="Search for users..."
+          className="ml-8 pl-8 pr-2 py-2 w-full sm:pl-4 sm:pr-1 sm:py-1 focus:outline-none focus:border-none"
         />
-        <button type="submit" style={{ marginLeft: '10px' }}>
+        <button
+          type="submit"
+          className="ml-2 px-4 py-2 hidden sm:block sm:ml-1 sm:px-2 sm:py-1 button text-white rounded"
+        >
           Search
         </button>
       </form>
