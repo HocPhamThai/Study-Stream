@@ -11,16 +11,6 @@ function AdminHome() {
 
   return (
     <div>
-      {/* <div className="flex justify-between items-center bg-transparent p-2 ">
-        <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
-          <img className="h-full" src={Logo} alt="Logo" />
-          <span className="text-lg">Hi, {user.firstname + ' ' + user.lastname}</span>
-        </div>
-        <div className="relative mr-2">
-          <AvatarDropdown />
-        </div>
-      </div> */}
-
       <div className='grid grid-cols-6 p-0'>
         <div className='col-start-1 col-end-2 '>
           <AdminSidebar />

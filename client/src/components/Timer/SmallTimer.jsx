@@ -6,7 +6,7 @@ import './Timer.scss'
 import Logo from '../../img/logo.png'
 import notificationSound from './timeup.mp3'
 
-const Timer = (color) => {
+const SmallTimer = ({ onTimerEnd }) => {
   const settingsInfo = useContext(SettingsContext)
   const [isPaused, setIsPaused] = useState(true)
   const [mode, setMode] = useState('work')
@@ -18,6 +18,7 @@ const Timer = (color) => {
   const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
   const audioRef = useRef(new Audio(notificationSound))
+
   function tick() {
     secondsLeftRef.current--
     setSecondsLeft(secondsLeftRef.current)
@@ -32,12 +33,18 @@ const Timer = (color) => {
           : settingsInfo.breakMinutes) * 60
       setMode(nextMode)
       modeRef.current = nextMode
-
       setSecondsLeft(nextSeconds)
       secondsLeftRef.current = nextSeconds
+      // if (onTimerEnd) {
+      //   onTimerEnd() 
+      // }
       if (settingsInfo.isNoti) {
         audioRef.current.play()
       }
+
+      // if (settingsInfo.onTimerEnd) {
+      //   settingsInfo.onTimerEnd();
+      // }
     }
 
     setTempWorkMinutes(settingsInfo.workMinutes)
@@ -47,6 +54,10 @@ const Timer = (color) => {
     setIsPaused(settingsInfo.isPaused)
     secondsLeftRef.current = settingsInfo.workMinutes * 60
     setSecondsLeft(secondsLeftRef.current)
+
+    if (onTimerEnd) {
+      onTimerEnd();
+    }
 
     const interval = setInterval(() => {
       if (isPausedRef.current) {
@@ -58,14 +69,18 @@ const Timer = (color) => {
       if (secondsLeftRef.current === 0) {
         if (modeRef.current === 'work') {
           saveWorkSession()
+          if (onTimerEnd) {
+            onTimerEnd();
+          }
         }
+        // settingsInfo.onTimerEnd()
         return switchMode()
       }
       tick()
-    }, 10)
+    }, 50)
 
     return () => clearInterval(interval)
-  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])
+  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes, onTimerEnd])
 
   useEffect(() => {
     modeRef.current = mode;
@@ -92,6 +107,7 @@ const Timer = (color) => {
     isPausedRef.current = true
 
     setMode('work')
+    modeRef.current = 'work'
     const newSeconds = tempWorkMinutes * 60 // Always use work minutes
     setSecondsLeft(newSeconds)
     secondsLeftRef.current = newSeconds
@@ -108,62 +124,59 @@ const Timer = (color) => {
 
   return (
     <>
-      <div className="relative flex items-center justify-center h-100 bg-transparent rounded-full mb-4">
-        <div className="timer group fixed left-1/2 top-[70px] z-[999] -translate-x-1/2 rounded-t-lg text-white bg-black/90 w-[400px]">
-          <div className="absolute left-1/2 top-8 -translate-x-1/2 -translate-y-full cursor-move">
-            <img
-              className="w-[100px] h-[100px]"
-              src={Logo}
-              alt="Study Stream Logo"
-            />
-          </div>
-          {mode === 'work' ? (
-            <p className="pt-6 text-center text-lg font-medium text-red-400 focus:outline-none">
-              Working Session{' '}
-            </p>
-          ) : (
-            <p className="pt-6 text-center text-lg font-medium text-green-400 focus:outline-none">
-              {' '}
-              Relaxing...{' '}
-            </p>
-          )}
-          <div className="px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4">
-            <span>{minutes + ':' + seconds}</span>
-          </div>
-        </div>
-        <div className="relative flex w-[400px] top-[268px]">
-          {isPaused ? (
-            <div
-              className="w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white"
-              onClick={() => {
-                setIsPaused(false)
-                isPausedRef.current = false
-              }}
-            >
-              Start
+      <div className="relative flex items-center justify-center bg-transparent rounded-full mb-2">
+        <div className="flex items-center justify-center">
+          <div className="timer group relative z-[999] rounded-l-lg text-white bg-black/90 w-[180px] flex items-center py-[0.86rem]">
+            {mode === 'work' ? (
+              <p className="text-sm font-medium text-red-400 focus:outline-none ml-3">
+                Focusing
+              </p>
+            ) : (
+              <p className="text-sm font-medium text-green-400 focus:outline-none ml-3">
+                Relaxing...
+              </p>
+            )}
+            <div className="ml-1 text-center font-extrabold text-lg tracking-[0.05em] w-full">
+              <span>{minutes + ':' + seconds}</span>
             </div>
-          ) : (
-            <div
-              className="w-full cursor-pointer overflow-hidden rounded-bl bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-80 hover:opacity-100 text-white"
-              onClick={() => {
-                setIsPaused(true)
-                isPausedRef.current = true
-              }}
-            >
-              Pause
-            </div>
-          )}
+          </div>
 
-          <div
-            className="w-full cursor-pointer overflow-hidden rounded-br bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-90 hover:opacity-100 text-white"
-            onClick={handleReset}
-          >
-            Reset
+          <div className="flex flex-col">
+            {isPaused ? (
+              <div
+                className="cursor-pointer overflow-hidden rounded-tr-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-80 hover:opacity-100 text-white text-sm w-[66px]"
+                onClick={() => {
+                  setIsPaused(false);
+                  isPausedRef.current = false;
+                }}
+              >
+                Start
+              </div>
+            ) : (
+              <div
+                className="cursor-pointer overflow-hidden rounded-tr-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-80 hover:opacity-100 text-white text-sm w-[66px]"
+                onClick={() => {
+                  setIsPaused(true);
+                  isPausedRef.current = true;
+                }}
+              >
+                Pause
+              </div>
+            )}
+
+            <div
+              className="cursor-pointer overflow-hidden rounded-br-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-90 hover:opacity-100 text-white text-sm w-[66px]"
+              onClick={handleReset}
+            >
+              Reset
+            </div>
           </div>
         </div>
       </div>
+
+
     </>
   )
 }
 
-export default Timer
+export default SmallTimer

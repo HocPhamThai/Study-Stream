@@ -43,7 +43,6 @@ const TaskModal = () => {
       )
 
       setTasks(response.data)
-      console.log('>>> Tasks: ', tasks)
       const upcomingTasks = []
       const completedTasks = []
 
@@ -57,8 +56,6 @@ const TaskModal = () => {
 
       setUpcomingTasks(upcomingTasks)
       setCompletedTasks(completedTasks)
-      console.log('>>> upcomingTasks: ', upcomingTasks)
-      console.log('>>> completedTasks: ', completedTasks)
     } catch (err) {
       console.log(err)
     }
@@ -378,9 +375,8 @@ const TaskModal = () => {
                       <div className="col-span-7 flex items-center gap-2">
                         <div
                           onClick={() => handleCompleteTask(task)}
-                          className={`size-4 cursor-pointer rounded-full border border-gray-600 hover:border-green-500 flex items-center justify-center transition duration-300 ${
-                            loadingTaskId === task._id ? 'animate-spin' : ''
-                          }`}
+                          className={`size-4 cursor-pointer rounded-full border border-gray-600 hover:border-green-500 flex items-center justify-center transition duration-300 ${loadingTaskId === task._id ? 'animate-spin' : ''
+                            }`}
                         >
                           {loadingTaskId === task._id && (
                             <svg
