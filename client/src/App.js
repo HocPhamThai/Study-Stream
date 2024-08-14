@@ -23,6 +23,10 @@ import AdminSongs from './pages/AdminSongs/AdminSongs'
 import GetStartedPage from './pages/GetStartedPage/GetStartedPage'
 import ChatBot from './pages/ChatBot/Chatbot'
 import Analytics from './pages/Analytics/Analytics'
+import StudyPage from './pages/StudyPage/StudyPage'
+import CoursesTopic from './pages/CoursesTopic/CoursesTopic'
+import Courses from './pages/Courses/Courses'
+import Lessons from './pages/Lessons/Lessons'
 
 function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
@@ -85,6 +89,24 @@ function App() {
               path="/analytics"
               element={user ? <Analytics /> : <Navigate to="../auth" />}
             />
+            <Route
+              path="/studypage/:courseTopicId/:courseId/:lessonId"
+              element={user ? <StudyPage /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/courses-topic"
+              element={user ? <CoursesTopic /> : <Navigate to="../auth" />}
+            />
+            <Route
+              path="/courses-topic/:courseTopicId"
+              element={user ? <Courses /> : <Navigate to="../auth" />}
+            />
+
+            <Route
+              path="/courses-topic/:courseTopicId/:courseId"
+              element={user ? <Lessons /> : <Navigate to="../auth" />}
+            />
+
             <Route
               path="/dashhome"
               element={

@@ -1,21 +1,19 @@
 import React from 'react'
 import Logo from '../../img/logo.png'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState, useContext } from 'react'
 import axios from 'axios'
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
-import { useNavigate } from 'react-router-dom'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
-import './Topic.scss'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
-const Topic = () => {
+const CoursesTopic = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [topic, setTopic] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -24,50 +22,50 @@ const Topic = () => {
 
   const topics = [
     {
-      topicId: 'coding',
-      coverImage: 'https://i.imgur.com/laAuG61.png',
-      name: 'Coding',
+      courseId: 'programing',
+      coverImage: 'https://i.imgur.com/t9BglJf.png',
+      name: 'Programing',
       description:
-        'Coding Motivation features inspiring videos to boost your enthusiasm and productivity in programming',
+        'Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games.',
     },
     {
-      topicId: 'lofichill',
-      coverImage: 'https://i.imgur.com/yuhXDtl.png',
-      name: 'Lofi',
+      courseId: 'design',
+      coverImage: 'https://i.imgur.com/v2Qw3CA.png',
+      name: 'Design',
       description:
-        'Lofi Chill is relaxing, gentle music, perfect for studying, working,...',
+        'Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life.',
     },
     {
-      topicId: 'city',
-      coverImage: 'https://i.imgur.com/A6gLFEQ.png',
-      name: 'City',
+      courseId: 'language',
+      coverImage: 'https://i.imgur.com/xoMwF4C.png',
+      name: 'Language',
       description:
-        'City features videos capturing the vibrant and bustling cityscapes,...',
+        'Break language barriers: Explore a world of languages, connect with diverse cultures, and expand your horizons.',
     },
     {
-      topicId: 'nature',
-      coverImage: 'https://i.imgur.com/daGBlbw.png',
-      name: 'Nature',
+      courseId: 'photograph',
+      coverImage: 'https://i.imgur.com/j4KNcsb.png',
+      name: 'Photograph',
       description:
-        'The space brings a sense of tranquility and closeness to nature.',
+        'Capture the world through your lens: Photography courses teach you the art of capturing moments, emotions, and stories through stunning images. Learn composition, lighting, and editing techniques to create photographs that leave a lasting impression.',
     },
     {
-      topicId: 'cafe',
-      coverImage: 'https://i.imgur.com/vZHIwfs.png',
-      name: 'Cafe',
+      courseId: 'softskills',
+      coverImage: 'https://i.imgur.com/sqAYYS1.png',
+      name: 'Soft Skills',
       description:
-        'The lively and cozy atmosphere of a coffee shop provides an ideal setting for concentration and creativity.',
+        'Master essential life skills: Soft skills courses help you develop effective communication, leadership, and teamwork abilities, crucial for success in any field.',
     },
     {
-      topicId: 'other',
-      coverImage: 'https://i.imgur.com/UKeWvvz.png',
-      name: 'Other',
-      description: 'Study with StudyStream',
+      courseId: 'subject',
+      coverImage: 'https://i.imgur.com/cpxscI0.png',
+      name: 'Subject',
+      description: 'Explore & Expand: Dive into diverse subjects, gain new insights, and unlock your potential.',
     },
   ]
 
   const handleOptionSelect = (option) => {
-    navigate(`/topic/${option}`)
+    navigate(`/courses-topic/${option}`)
   }
 
   return (
@@ -98,7 +96,7 @@ const Topic = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-lg bg-white px-6 py-4">
           <div className="mb-4">
             <div className="flex items-center">
-              <span className="ml-5 font-bold">Work Space</span>
+              <span className="ml-5 font-bold">Learning Space</span>
             </div>
           </div>
           <div className="my-2 grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -109,19 +107,19 @@ const Topic = () => {
                   Noti
                 </div>
                 <p className="text-medium font-semibold md:text-lg">
-                  Investing in self-development enhances mental well-being and quality of life.
+                  Learn something new every day to enrich your mind and elevate your life.
                 </p>
-                <p className="mt-4 text-sm">Engage in at least one activity every day!</p>
+                <p className="mt-4 text-sm">Commit to exploring at least one new concept daily!</p>
               </div>
               <div className="flex flex-1 justify-center">
-                <img className="w-[140px] h-[140px]" src='https://i.imgur.com/Cn4kCmx.png' alt="" />
+                <img className="w-[160px] h-[121px]" src='https://i.imgur.com/K9Oow0V.png' alt="" />
               </div>
             </div>
 
             {topics.map(topic => (
               <div
-                key={topic.topicId}
-                onClick={() => handleOptionSelect(topic.topicId)}
+                key={topic.courseId}
+                onClick={() => handleOptionSelect(topic.courseId)}
                 className="cursor-pointer group relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
                 style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
               >
@@ -161,4 +159,4 @@ const Topic = () => {
   )
 }
 
-export default Topic
+export default CoursesTopic

@@ -15,7 +15,6 @@ const ModalTimer = () => {
   }
   const handleCheckboxChange = (event) => {
     setAllowNotifications(event.target.checked)
-    console.log("allowNotifications: ", allowNotifications)
   }
   const handleSetTime = () => {
     settingsInfo.setWorkMinutes(tempWorkMinutes)
@@ -27,8 +26,6 @@ const ModalTimer = () => {
   }
 
   const toggleModalCancel = () => {
-    // settingsInfo.setWorkMinutes(25)
-    // settingsInfo.setBreakMinutes(5)
     setIsOpen(!isOpen)
   }
 

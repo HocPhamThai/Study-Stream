@@ -7,47 +7,66 @@ import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
 import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import CourseOptionList from '../../components/CourseOptionList/CourseOptionList'
 
-function TopicPomodoro() {
+function Lessons() {
   const { user } = useSelector((state) => state.authReducer.authData)
-  const [topic, setTopic] = useState(null)
+  const [lessons, setLessons] = useState(null)
+  const [courses, setCourses] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const { entry } = useParams()
+  const { lesson } = useParams()
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
+  const { courseTopicId, courseId } = useParams()
 
   useEffect(() => {
-    const fetchTopic = async () => {
+    const fetchLessons = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/topic/api/topics/${entry}`
+          `${process.env.REACT_APP_SERVER_URL}/courseTopics/${courseTopicId}/courses/${courseId}/lessons`
         )
-        setTopic(response.data)
+        setLessons(response.data)
       } catch (err) {
         setError(err.message)
       } finally {
         setLoading(false)
       }
     }
+    fetchLessons()
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/courseTopics/${courseTopicId}/courses/${courseId}`
+        )
+        setCourses(response.data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchCourses()
+  }, [courseTopicId, courseId])
 
-    fetchTopic()
-  }, [entry])
-
-  const handleOptionSelect = (topicType, entryId) => {
-    navigate(`/pomodoro/${topicType}/${entryId}`)
+  const handleOptionSelect = (lessonId) => {
+    navigate(`/studypage/${courseTopicId}/${courseId}/${lessonId}`)
   }
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)
   }
 
-  const filteredEntries = topic?.entries.filter((entry) =>
-    entry.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredLessons = lessons?.filter((lesson) =>
+    lesson?.lessonName.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   return (
-    <div className="bg-gray-200 z-50 -m-4">
+    <div className="bg-gray-200 z-50 -m-4 h-screen">
+      {console.log("Lessons: ", lessons)}
+      {console.log("Courses: ", courses)}
+
+
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
@@ -72,7 +91,7 @@ function TopicPomodoro() {
           </div>
           <div className="mb-4 ">
             <div className="flex items-center gap-8">
-              <Link to="/topic">
+              <Link to={`/courses-topic/${courseTopicId}`}>
                 <span className="flex cursor-pointer flex-center">
                   <svg
                     className="size-[25px] "
@@ -85,7 +104,7 @@ function TopicPomodoro() {
                 </span>
               </Link>
               <span className="ml-5 text-xl font-bold">
-                {topic?.nameOfTopic} workspace
+                {courses?.courseName}
               </span>
             </div>
             <div className="inline-flex w-full items-center h-full box-border pl-6 py-3 mt-2">
@@ -119,12 +138,12 @@ function TopicPomodoro() {
             </div>
           </div>
           <div className="my-2 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredEntries?.map((entry) => (
-              <OptionList
-                key={entry.entryId}
-                topic={entry}
+            {filteredLessons?.map((lesson) => (
+              <CourseOptionList
+                key={lesson.lessonId}
+                course={lesson}
                 onClick={() =>
-                  handleOptionSelect(topic.topicName, entry.entryId)
+                  handleOptionSelect(lesson.lessonId)
                 }
               />
             ))}
@@ -135,4 +154,4 @@ function TopicPomodoro() {
   )
 }
 
-export default TopicPomodoro
+export default Lessons

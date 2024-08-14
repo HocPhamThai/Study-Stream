@@ -23,6 +23,8 @@ const Profile = () => {
         </div>
         <ProfileCard location="ProfilePage" />
         <PostSide />
+
+
       </div>
       <div className="hidden lg:block lg:w-1/4">
         <RightSide />
