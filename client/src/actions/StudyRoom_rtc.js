@@ -51,7 +51,6 @@ const joinRoomInit = async (roomId, expandVideoFrame, username) => {
   client.on('user-left', handleUserLeft)
 
   document.getElementById('camera-btn').addEventListener('click', toggleCamera)
-  document.getElementById('mic-btn').addEventListener('click', toggleMic)
 
   joinStream(expandVideoFrame)
 }

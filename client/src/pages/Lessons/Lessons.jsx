@@ -62,11 +62,7 @@ function Lessons() {
   )
 
   return (
-    <div className="bg-gray-200 z-50 -m-4 h-screen">
-      {console.log("Lessons: ", lessons)}
-      {console.log("Courses: ", courses)}
-
-
+    <div className="bg-gray-200 z-50 -m-4">
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />

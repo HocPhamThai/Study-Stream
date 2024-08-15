@@ -68,7 +68,6 @@ function ListLesson({ courseTopicId, courseId, lessonId }) {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   )
