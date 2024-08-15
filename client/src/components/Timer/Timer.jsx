@@ -62,13 +62,13 @@ const Timer = (color) => {
         return switchMode()
       }
       tick()
-    }, 10)
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])
 
   useEffect(() => {
-    modeRef.current = mode;
+    modeRef.current = mode
   }, [mode])
 
   const saveWorkSession = async () => {

@@ -36,7 +36,7 @@ const SmallTimer = ({ onTimerEnd }) => {
       setSecondsLeft(nextSeconds)
       secondsLeftRef.current = nextSeconds
       // if (onTimerEnd) {
-      //   onTimerEnd() 
+      //   onTimerEnd()
       // }
       if (settingsInfo.isNoti) {
         audioRef.current.play()
@@ -56,7 +56,7 @@ const SmallTimer = ({ onTimerEnd }) => {
     setSecondsLeft(secondsLeftRef.current)
 
     if (onTimerEnd) {
-      onTimerEnd();
+      onTimerEnd()
     }
 
     const interval = setInterval(() => {
@@ -70,20 +70,20 @@ const SmallTimer = ({ onTimerEnd }) => {
         if (modeRef.current === 'work') {
           saveWorkSession()
           if (onTimerEnd) {
-            onTimerEnd();
+            onTimerEnd()
           }
         }
         // settingsInfo.onTimerEnd()
         return switchMode()
       }
       tick()
-    }, 50)
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [settingsInfo.workMinutes, settingsInfo.breakMinutes, onTimerEnd])
 
   useEffect(() => {
-    modeRef.current = mode;
+    modeRef.current = mode
   }, [mode])
 
   const saveWorkSession = async () => {
@@ -146,8 +146,8 @@ const SmallTimer = ({ onTimerEnd }) => {
               <div
                 className="cursor-pointer overflow-hidden rounded-tr-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-80 hover:opacity-100 text-white text-sm w-[66px]"
                 onClick={() => {
-                  setIsPaused(false);
-                  isPausedRef.current = false;
+                  setIsPaused(false)
+                  isPausedRef.current = false
                 }}
               >
                 Start
@@ -156,8 +156,8 @@ const SmallTimer = ({ onTimerEnd }) => {
               <div
                 className="cursor-pointer overflow-hidden rounded-tr-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-80 hover:opacity-100 text-white text-sm w-[66px]"
                 onClick={() => {
-                  setIsPaused(true);
-                  isPausedRef.current = true;
+                  setIsPaused(true)
+                  isPausedRef.current = true
                 }}
               >
                 Pause
@@ -173,8 +173,6 @@ const SmallTimer = ({ onTimerEnd }) => {
           </div>
         </div>
       </div>
-
-
     </>
   )
 }

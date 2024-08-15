@@ -153,5 +153,3 @@ function StudyPageBg() {
 
 
 export default StudyPageBg
-
-
