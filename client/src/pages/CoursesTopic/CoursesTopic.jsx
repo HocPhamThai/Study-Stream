@@ -23,43 +23,43 @@ const CoursesTopic = () => {
   const topics = [
     {
       courseId: 'programing',
-      coverImage: 'https://i.imgur.com/5USqLWX.png',
-      name: 'Programing',
+      coverImage: 'https://i.imgur.com/WhanzfL.png',
+      name: 'Programming',
       description:
         'Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games.',
     },
     {
       courseId: 'design',
-      coverImage: 'https://i.imgur.com/WGM9xJY.png',
+      coverImage: 'https://i.imgur.com/JX0QuCS.png',
       name: 'Design',
       description:
         'Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life.',
     },
     {
       courseId: 'language',
-      coverImage: 'https://i.imgur.com/o3wmbi6.png',
+      coverImage: 'https://i.imgur.com/bsJY58d.png',
       name: 'Language',
       description:
         'Break language barriers: Explore a world of languages, connect with diverse cultures, and expand your horizons.',
     },
     {
       courseId: 'photograph',
-      coverImage: 'https://i.imgur.com/K3vr37b.png',
-      name: 'Photograph',
+      coverImage: 'https://i.imgur.com/5iAUMio.png',
+      name: 'Photography',
       description:
         'Capture the world through your lens: Photography courses teach you the art of capturing moments, emotions, and stories through stunning images. Learn composition, lighting, and editing techniques to create photographs that leave a lasting impression.',
     },
     {
       courseId: 'softskills',
-      coverImage: 'https://i.imgur.com/e5ZQrFV.png',
+      coverImage: 'https://i.imgur.com/pKls9Z2.png',
       name: 'Soft Skills',
       description:
         'Master essential life skills: Soft skills courses help you develop effective communication, leadership, and teamwork abilities, crucial for success in any field.',
     },
     {
       courseId: 'subject',
-      coverImage: 'https://i.imgur.com/p33T3mE.png',
-      name: 'Subject',
+      coverImage: 'https://i.imgur.com/JyPt1cJ.png',
+      name: 'Subjects',
       description: 'Explore & Expand: Dive into diverse subjects, gain new insights, and unlock your potential.',
     },
   ]
@@ -123,7 +123,6 @@ const CoursesTopic = () => {
                 className="cursor-pointer group relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
                 style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
               >
-                {console.log('topic image: ', topic?.coverImage)}
                 <div className='flex items-center justify-center md:p-4'>
                   <img className='h-[120px] md:h-[150px]' src={topic.coverImage} alt="" />
                 </div>
