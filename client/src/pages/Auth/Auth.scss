@@ -71,6 +71,22 @@
   }
 }
 
+// .infoForm {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 2rem;
+
+//   >div {
+//     display: flex;
+//     gap: 1rem;
+//     height: 2rem;
+//     width: 90%;
+//   }
+
+// }
+
 .infoForm {
   display: flex;
   flex-direction: column;
@@ -80,12 +96,57 @@
 
   >div {
     display: flex;
+    flex-direction: column;
+    /* Đặt theo hàng dọc cho màn hình nhỏ */
     gap: 1rem;
-    height: 2rem;
+    height: auto;
+    /* Cập nhật chiều cao để phù hợp với nội dung */
     width: 90%;
   }
-
 }
+
+@media (min-width: 640px) {
+
+  /* sm: màn hình nhỏ hơn 640px */
+  .infoForm {
+
+    >div {
+      flex-direction: row;
+      /* Đặt theo hàng ngang cho màn hình lớn hơn */
+      height: 2rem;
+      /* Chiều cao cố định cho màn hình lớn hơn */
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .infoForm {
+    gap: 1rem;
+    /* Giảm khoảng cách giữa các phần tử trên màn hình nhỏ hơn */
+  }
+}
+
+@media (max-width: 639px) {
+  .infoForm {
+    gap: 1rem;
+    height: auto;
+    /* Giảm khoảng cách giữa các phần tử trên màn hình nhỏ hơn */
+  }
+
+  .infoForm .block {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    /* Khoảng cách giữa hình ảnh và tiêu đề khi nằm ngang */
+  }
+
+  .infoForm .block img,
+  .infoForm .block h1 {
+    margin-bottom: 0;
+    /* Xóa khoảng cách dưới hình ảnh và tiêu đề khi nằm ngang */
+  }
+}
+
 
 .infoInput {
   border: none;

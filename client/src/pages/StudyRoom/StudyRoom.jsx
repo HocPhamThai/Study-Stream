@@ -50,8 +50,8 @@ const StudyRoom = () => {
 
       // Đặt lại kích thước của tất cả video frames
       for (let i = 0; i < videoFrames.length; i++) {
-        videoFrames[i].style.height = '200px'; // Thay đổi kích thước theo yêu cầu của bạn
-        videoFrames[i].style.width = '200px';  // Thay đổi kích thước theo yêu cầu của bạn
+        videoFrames[i].style.height = '300px'; // Thay đổi kích thước theo yêu cầu của bạn
+        videoFrames[i].style.width = '300px';  // Thay đổi kích thước theo yêu cầu của bạn
       }
     } else {
       // Mở rộng video frame

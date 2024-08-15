@@ -23,42 +23,42 @@ const CoursesTopic = () => {
   const topics = [
     {
       courseId: 'programing',
-      coverImage: 'https://i.imgur.com/t9BglJf.png',
+      coverImage: 'https://i.imgur.com/5USqLWX.png',
       name: 'Programing',
       description:
         'Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games.',
     },
     {
       courseId: 'design',
-      coverImage: 'https://i.imgur.com/v2Qw3CA.png',
+      coverImage: 'https://i.imgur.com/WGM9xJY.png',
       name: 'Design',
       description:
         'Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life.',
     },
     {
       courseId: 'language',
-      coverImage: 'https://i.imgur.com/xoMwF4C.png',
+      coverImage: 'https://i.imgur.com/o3wmbi6.png',
       name: 'Language',
       description:
         'Break language barriers: Explore a world of languages, connect with diverse cultures, and expand your horizons.',
     },
     {
       courseId: 'photograph',
-      coverImage: 'https://i.imgur.com/j4KNcsb.png',
+      coverImage: 'https://i.imgur.com/K3vr37b.png',
       name: 'Photograph',
       description:
         'Capture the world through your lens: Photography courses teach you the art of capturing moments, emotions, and stories through stunning images. Learn composition, lighting, and editing techniques to create photographs that leave a lasting impression.',
     },
     {
       courseId: 'softskills',
-      coverImage: 'https://i.imgur.com/sqAYYS1.png',
+      coverImage: 'https://i.imgur.com/e5ZQrFV.png',
       name: 'Soft Skills',
       description:
         'Master essential life skills: Soft skills courses help you develop effective communication, leadership, and teamwork abilities, crucial for success in any field.',
     },
     {
       courseId: 'subject',
-      coverImage: 'https://i.imgur.com/cpxscI0.png',
+      coverImage: 'https://i.imgur.com/p33T3mE.png',
       name: 'Subject',
       description: 'Explore & Expand: Dive into diverse subjects, gain new insights, and unlock your potential.',
     },
