@@ -1,6 +1,8 @@
 import { Server } from 'socket.io'
 import { createServer } from 'http'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const port = process.env.SOCKET_PORT || 8800
 
 const httpServer = createServer()
