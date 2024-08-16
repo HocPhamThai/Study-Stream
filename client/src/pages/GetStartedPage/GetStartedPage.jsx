@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import Logo from '../../img/logo.png'
-import StudyStream from './studystream_img.png'
-import Topic from './topic_img.png'
-import PomodoroBg from './PomodoroBg_img.png'
-import aiImg from './ai.png'
-import homepage from './homepage_img.png'
-import chat from './chat_img.png'
+import StudyStream from '../../img/get_started_page/studystream_img.png'
+import Topic from '../../img/get_started_page/topic.png'
+import PomodoroBg from '../../img/get_started_page/pomodoro.png'
+import aiImg from '../../img/get_started_page/ai.png'
+import homepage from '../../img/get_started_page/homepage.png'
+import learning from '../../img/get_started_page/learning.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './GetStarted.scss'
@@ -130,15 +130,13 @@ function GetStartedPage() {
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
           <div className='flex items-center gap-2'>
             <span className='rounded-full bg-cl-bg-icon p-2'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-              </svg>
+              <svg id="Capa_1" enable-background="new 0 0 512 512" height="24" viewBox="0 0 512 512" width="24" xmlns="http://www.w3.org/2000/svg"><g><path d="m504.5 433.613h-13.27v-269.446c0-19.735-16.06-35.79-35.8-35.79h-17.617c1.926-4.03 2.988-8.5 2.988-13.145 0-11.31-6.207-21.626-16.2-26.923l-98.07-51.95c-3.66-1.94-8.2-.544-10.138 3.117-1.939 3.66-.543 8.199 3.117 10.138l98.068 51.949c5.149 2.729 8.223 7.839 8.223 13.669s-3.074 10.939-8.221 13.667l-95.332 50.502-60.608-69.114c-2.731-3.115-7.47-3.425-10.584-.694s-3.425 7.47-.694 10.584l58.264 66.441-36.072 19.109c-10.365 5.483-22.74 5.483-33.102.002l-145.03-76.828c-5.148-2.729-8.223-7.839-8.223-13.668s3.074-10.939 8.221-13.668l145.027-76.828c10.365-5.484 22.74-5.484 33.101-.002l20.76 11c3.66 1.94 8.2.545 10.139-3.115s.544-8.2-3.115-10.139l-20.764-11.002c-14.758-7.809-32.38-7.809-47.139.001l-145.032 76.831c-9.991 5.296-16.197 15.612-16.197 26.922 0 4.645 1.062 9.114 2.988 13.145h-17.618c-19.74 0-35.8 16.055-35.8 35.79v269.446h-13.27c-4.142 0-7.5 3.358-7.5 7.5v16.623c0 26.821 21.82 48.642 48.641 48.642h414.717c26.821 0 48.642-21.82 48.642-48.642v-16.623c0-4.143-3.358-7.501-7.5-7.501zm-183.984-130.116 9.779 16.938c2.021 3.501.673 6.592 0 7.758s-2.676 3.879-6.719 3.879h-6.121c-4.043 0-6.045-2.713-6.719-3.879-.674-1.167-2.021-4.257 0-7.758zm7.5-110.176 31.034-16.44v29.783c0 21.39-12.088 40.566-31.034 49.672zm-72.017 31.521c8.095 0 16.192-1.953 23.572-5.857l33.445-17.717v60.871c-40.978 13.574-86.315 12.05-126.312-4.574-20.505-8.522-33.754-28.502-33.754-50.9v-29.785l79.483 42.106c7.378 3.905 15.471 5.856 23.566 5.856zm-220.229-60.675c0-11.464 9.331-20.79 20.8-20.79h33.137l37.753 20h-64.19c-4.142 0-7.5 3.358-7.5 7.5v235.24c0 4.142 3.358 7.5 7.5 7.5h39.59c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-32.09v-220.24h67.18v28.287c0 28.479 16.877 53.895 42.998 64.752 23.848 9.912 49.45 14.868 75.053 14.868 19.254 0 38.507-2.805 57.016-8.411v8.614l-15.27 26.448c-4.114 7.125-4.114 15.633 0 22.758s11.481 11.379 19.709 11.379h6.121c8.228 0 15.595-4.254 19.709-11.379s4.114-15.633 0-22.758l-15.27-26.448v-13.854c1.014-.401 2.029-.798 3.037-1.217 26.12-10.857 42.997-36.273 42.997-64.752v-28.287h67.18v220.24h-308.37c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h315.87c4.142 0 7.5-3.358 7.5-7.5v-235.24c0-4.142-3.358-7.5-7.5-7.5h-64.191l37.753-20h33.137c11.469 0 20.8 9.326 20.8 20.79v269.446h-440.459zm266.61 284.45c-2.771 8.065-10.434 13.878-19.427 13.878h-53.905c-8.994 0-16.656-5.813-19.428-13.878zm194.62 9.119c0 18.55-15.092 33.642-33.642 33.642h-414.717c-18.55 0-33.641-15.092-33.641-33.642v-9.123h13.193c.026 0 .051.004.077.004h165.877c3.126 16.422 17.582 28.878 34.901 28.878h53.905c17.318 0 31.774-12.457 34.9-28.878h165.877c.026 0 .051-.004.077-.004h13.193z" /><path d="m258.268 371.117c0-4.142-3.358-7.5-7.5-7.5h-150.145c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h150.146c4.141 0 7.499-3.358 7.499-7.5z" /><path d="m100.623 347.073h100.39c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-100.39c-4.142 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5z" /></g></svg>
             </span>
-            <p className='font-medium'>Chatting</p>
+            <p className='font-medium'>Pomodoro Learning</p>
           </div>
           <p className='mt-2 text-gray-500'>
 
-            Connect with friends for effective learning. Share knowledge, resources, and discuss study topics instantly, anytime, anywhere.
+            Enhance your learning experience with personalized video sessions. Track your progress, minimize distractions, and achieve your study goals.
           </p>
         </div>
       </div>
@@ -215,25 +213,23 @@ function GetStartedPage() {
 
         </div>
       </section>
-
-
       <section className='mt-10 px-4 lg:mt-24'>
         <div className='grid items-center gap-4 lg:grid-cols-2'>
           <div className='col-span-1'>
             <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Connect with     {' '}
+              Learn with     {' '}
               <span className='bg-gradient-to-r from-[#FF705B] to-[#FFB457] bg-clip-text text-transparent'>
-                friends {' '}
+                Pomodoro {' '}
               </span>
-              for effective learning.
+              and track progress
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Share knowledge, resources, and discuss study topics instantly, anytime, anywhere.
+              Choose a course and start learning something new to improve yourself every day.
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
             <div className='relative h-[60vw] w-[80vw] lg:h-[35vw] lg:w-[45vw] flex items-center justify-center '>
-              <img src={chat} alt="Chat Image" className='rounded-2xl' />
+              <img src={learning} alt="Chat Image" className='rounded-2xl' />
             </div>
           </div>
         </div>
