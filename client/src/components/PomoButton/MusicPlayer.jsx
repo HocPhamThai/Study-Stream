@@ -92,14 +92,12 @@ const MusicPlayer = () => {
               <button
                 key="repeat-button"
                 onClick={toggleRepeat}
-                className={`custom-repeat-button ${
-                  isRepeat ? 'text-[#f95f35]' : 'text-white'
-                }`}
+                className={`custom-repeat-button ${isRepeat ? 'text-[#f95f35]' : 'text-white'
+                  }`}
               >
                 <TbRepeat
-                  className={`text-xl ${
-                    isRepeat ? 'text-[#f95f35]' : 'text-white'
-                  }`}
+                  className={`text-xl ${isRepeat ? 'text-[#f95f35]' : 'text-white'
+                    }`}
                 />
               </button>,
               <button
@@ -127,11 +125,10 @@ const MusicPlayer = () => {
             <button
               key={index}
               onClick={() => handleSongSelection(index)}
-              className={`modal-button ${
-                index === currentSong
+              className={`modal-button ${index === currentSong
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-300 text-black'
-              }`}
+                }`}
             >
               {song?.nameSong}
               {/* console.log("Song name: ", song) */}

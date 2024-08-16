@@ -97,7 +97,7 @@ function StudyPageBg() {
         {/* <!-- Main Content --> */}
         <div className="flex-1 flex">
           {/* sidebar */}
-          <div className="invisible lg:visible">
+          <div className="hidden lg:block">
             <LeftSideBar />
           </div>
 
@@ -107,7 +107,7 @@ function StudyPageBg() {
               {/* <!-- Timers Section --> */}
             </div>
             {/* <div className='fixed top-20 left-1/2 transform -translate-x-1/2 '> */}
-            <div className='fixed top-22 left-24 transform  '>
+            {/* <div className='fixed top-22 left-24 transform  '>
               <iframe
                 ref={iframeRef}
                 width="890"  // Kích thước tăng thêm 10%
@@ -121,8 +121,30 @@ function StudyPageBg() {
                 className="rounded-lg border-4 border-gray-500"
               ></iframe>
               <h1 className='text-white text-xl font-bold mt-2'>{lesson?.lessonName}</h1>
+            </div> */}
+            <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:top-[104px] xl:left-24 xl:-translate-x-0 xl:-translate-y-0'>
+              <iframe
+                ref={iframeRef}
+                src={`${lesson?.lessonLink}&enablejsapi=1`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="
+                  w-[400px] h-[225px]   // Tăng kích thước cho màn hình nhỏ hơn sm
+                  sm:w-[500px] sm:h-[281px]   // Kích thước cho màn hình sm
+                  md:w-[640px] md:h-[360px]   // Kích thước cho màn hình md
+                  lg:w-[720px] lg:h-[405px]   // Kích thước cho màn hình lg
+                  xl:w-[800px] xl:h-[450px]   // Kích thước cho màn hình xl
+                  2xl:w-[890px] 2xl:h-[501px] // Kích thước cho màn hình 2xl
+                  rounded-lg border-4 border-gray-500
+                "
+              ></iframe>
+              <h1 className='text-white text-lg sm:text-base md:text-xl font-bold mt-2 text-center sm:text-left'>
+                {lesson?.lessonName}
+              </h1>
             </div>
-            <div className='fixed top-[90px] right-24 hidden 2xl:block'>
+            <div className='fixed top-[90px] right-24 hidden lg:block'>
               <ListLesson
                 courseTopicId={courseTopicId}
                 courseId={courseId}
@@ -131,13 +153,13 @@ function StudyPageBg() {
             </div>
             {/* <!-- Bottom Section --> */}
             <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
-              <div className="block sm:hidden mt-2 mx-auto w-max">
+              <div className="block lg:hidden mt-2 mx-auto w-max">
                 <HorizontalNavBar />
               </div>
             </div>
           </div>
           {/* Right bar */}
-          <div className="w-[56px] mr-5 bg-transparent flex flex-col items-center py-4 space-y-4 ">
+          <div className="w-[56px] mr-5 bg-transparent flex flex-col items-center py-4 space-y-4 hidden lg:block">
             <div className=" bg-gray-900 p-3 space-y-4 rounded-lg hidden md:block">
               <ModalTimer />
               <ModalChangeBackgound />

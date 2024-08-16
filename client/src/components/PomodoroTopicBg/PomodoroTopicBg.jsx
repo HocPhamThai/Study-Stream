@@ -135,9 +135,9 @@ function PomodoroTopicBg() {
             {/* <!-- Bottom Section --> */}
             <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
-              <div className="block sm:hidden mt-2 mx-auto w-max">
+              {/* <div className="block sm:hidden mt-2 mx-auto w-max">
                 <HorizontalNavBar />
-              </div>
+              </div> */}
             </div>
           </div>
           {/* Right bar */}
@@ -145,9 +145,11 @@ function PomodoroTopicBg() {
             <div className="fixed top-80 z-10 bg-gray-900 p-3 space-y-4 rounded-lg hidden md:block">
               <ModalTimer />
               <TaskModal />
-              {/* <ModalChangeBackgound /> */}
             </div>
           </div>
+        </div>
+        <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
+          <HorizontalNavBar />
         </div>
       </div>
     </div>

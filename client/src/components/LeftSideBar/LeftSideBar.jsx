@@ -101,7 +101,7 @@ const LeftSideBar = () => {
             </Link>
           </div>
           <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Learning
+            Learning space
           </div>
         </span>
 

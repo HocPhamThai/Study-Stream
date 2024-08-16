@@ -24,7 +24,7 @@ const CoursesTopic = () => {
     {
       courseId: 'programing',
       coverImage: 'https://i.imgur.com/WhanzfL.png',
-      name: 'Programming',
+      name: 'Programing',
       description:
         'Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games.',
     },
@@ -36,7 +36,7 @@ const CoursesTopic = () => {
         'Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life.',
     },
     {
-      courseId: 'language',
+      courseId: 'languages',
       coverImage: 'https://i.imgur.com/bsJY58d.png',
       name: 'Language',
       description:
@@ -123,6 +123,7 @@ const CoursesTopic = () => {
                 className="cursor-pointer group relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
                 style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
               >
+                {console.log('topic image: ', topic?.coverImage)}
                 <div className='flex items-center justify-center md:p-4'>
                   <img className='h-[120px] md:h-[150px]' src={topic.coverImage} alt="" />
                 </div>

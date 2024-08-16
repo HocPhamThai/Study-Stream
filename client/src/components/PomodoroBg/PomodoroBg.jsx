@@ -72,9 +72,7 @@ function PomodoroBg() {
             {/* <!-- Bottom Section --> */}
             <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
-              <div className="block sm:hidden mt-2 mx-auto w-max">
-                <HorizontalNavBar />
-              </div>
+
             </div>
           </div>
           {/* Right bar */}
@@ -86,7 +84,9 @@ function PomodoroBg() {
             </div>
           </div>
         </div>
-
+        <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
+          <HorizontalNavBar />
+        </div>
       </div>
     </div>
   )

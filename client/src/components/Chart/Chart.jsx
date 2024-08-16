@@ -81,7 +81,7 @@ const getInitialChartConfig = () => ({
 })
 
 const Chart = () => {
-  const [timeFrame, setTimeFrame] = useState('monthly')
+  const [timeFrame, setTimeFrame] = useState('weekly')
   const [series, setSeries] = useState(getInitialChartConfig().series)
   const [options, setOptions] = useState(getInitialChartConfig)
   const [weekRange, setWeekRange] = useState('')
@@ -171,7 +171,7 @@ const Chart = () => {
     // Lấy các ngày 1, 3, 5, ...
     const specificDays = data.filter((item) => {
       const date = new Date(item.date).getDate()
-      return date // Lấy ngày lẻ
+      return date % 2 === 1
     })
 
     return specificDays.map((item) => {
