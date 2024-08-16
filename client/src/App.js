@@ -27,6 +27,7 @@ import StudyPage from './pages/StudyPage/StudyPage'
 import CoursesTopic from './pages/CoursesTopic/CoursesTopic'
 import Courses from './pages/Courses/Courses'
 import Lessons from './pages/Lessons/Lessons'
+import { useEffect, useState } from 'react'
 
 function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
@@ -36,7 +37,21 @@ function App() {
 
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
-  console.log(process.env.REACT_APP_PUBLIC_FOLDER)
+
+  const [hasVistiedGetStarted, setHasVistiedGetStarted] = useState(false)
+
+  useEffect(() => {
+    const visited = localStorage.getItem('hasVistiedGetStarted')
+    if (visited) {
+      setHasVistiedGetStarted(true)
+    }
+  }, [])
+
+  const handleGetStartedVisit = () => {
+    localStorage.setItem('hasVisitedGetStarted', 'true')
+    setHasVistiedGetStarted(true)
+  }
+
   return (
     <>
       {renderStudyRoom ? (
@@ -51,7 +66,17 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <Navigate to="dashhome" /> : <Auth />}
+              element={
+                user ? (
+                  <Navigate to="/dashhome" />
+                ) : hasVistiedGetStarted ? (
+                  <Navigate to="/get-started" />
+                ) : (
+                  <GetStartedPage
+                    handleGetStartedVisit={handleGetStartedVisit}
+                  />
+                )
+              }
             />
             <Route
               path="/forgot"
@@ -83,7 +108,9 @@ function App() {
             />
             <Route
               path="/pomodoro/:topicType/:entryId"
-              element={user ? <PomodoroTopic /> : <Navigate to="../get-started" />}
+              element={
+                user ? <PomodoroTopic /> : <Navigate to="../get-started" />
+              }
             />
             <Route
               path="/analytics"
@@ -95,7 +122,9 @@ function App() {
             />
             <Route
               path="/courses-topic"
-              element={user ? <CoursesTopic /> : <Navigate to="../get-started" />}
+              element={
+                user ? <CoursesTopic /> : <Navigate to="../get-started" />
+              }
             />
             <Route
               path="/courses-topic/:courseTopicId"
@@ -127,7 +156,9 @@ function App() {
             />
             <Route
               path="/topic/:entry"
-              element={user ? <TopicPomodoro /> : <Navigate to="../get-started" />}
+              element={
+                user ? <TopicPomodoro /> : <Navigate to="../get-started" />
+              }
             />
             <Route
               path="/adminhome"
