@@ -68,6 +68,9 @@ const joinStream = async (expandVideoFrame) => {
 
   localTracks[1].play(`user-${uid}`)
   await client.publish([localTracks[0], localTracks[1]])
+
+  await localTracks[0].close();
+  localTracks[0] = null;
 }
 
 const handleUserPublished = async (user, mediaType, expandVideoFrame) => {

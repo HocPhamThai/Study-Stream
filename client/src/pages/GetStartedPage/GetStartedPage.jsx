@@ -70,7 +70,7 @@ function GetStartedPage() {
               and boost your study motivation with StudyStream!
             </h1>
             <p className='mt-6 text-center text-lg text-gray-500 lg:text-left'>
-              Self-study becomes more enjoyable than ever with StudyStream.
+              Self-study becomes more enjoyable than ever with StudyStream
             </p>
             <div className='flex justify-center lg:justify-start'>
               <Link to={user ? '/dashhome' : '/auth'}>
@@ -113,7 +113,7 @@ function GetStartedPage() {
             <p className='font-medium'>Pomodoro Working</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            🍅 Easy to use and enhances study efficiency with the Pomodoro method. Focus deeply for 25 minutes, then take a short 5-minute break.
+            Easy to use and enhances study efficiency with the Pomodoro method. Focus deeply for 25 minutes, then take a short 5-minute break
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
@@ -124,7 +124,7 @@ function GetStartedPage() {
             <p className='font-medium'>AI Chat</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            Experience seamless interactions with our AI chat feature, providing instant support and answers on our website.
+            Experience seamless interactions with our AI chat feature, providing instant support and answers on our website
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
@@ -136,7 +136,7 @@ function GetStartedPage() {
           </div>
           <p className='mt-2 text-gray-500'>
 
-            Enhance your learning experience with personalized video sessions. Track your progress, minimize distractions, and achieve your study goals.
+            Enhance your learning experience with personalized video sessions. Track your progress, minimize distractions, and achieve your study goals
           </p>
         </div>
       </div>
@@ -152,7 +152,7 @@ function GetStartedPage() {
               with the video streaming!
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening.
+              Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
@@ -207,7 +207,7 @@ function GetStartedPage() {
               with our chatbot.
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance.
+              Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance
             </p>
           </div>
 
@@ -224,7 +224,7 @@ function GetStartedPage() {
               and track progress
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Choose a course and start learning something new to improve yourself every day.
+              Choose a course and start learning something new to improve yourself every day
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
