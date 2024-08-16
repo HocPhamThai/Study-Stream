@@ -100,7 +100,7 @@ function GetStartedPage() {
             <p className='font-medium'>Video Streaming</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            We provide video stream to help you avoid from distraction, helping you focus and enhance your study performance.
+            We provide video stream to help you avoid from distraction, helping you focus and enhance your study performance
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
@@ -152,7 +152,7 @@ function GetStartedPage() {
               with the video streaming!
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening
+              To-do list helps you organize and manage tasks effectively. Always list your tasks for the next day every evening
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
