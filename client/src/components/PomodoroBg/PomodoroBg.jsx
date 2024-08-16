@@ -65,12 +65,12 @@ function PomodoroBg() {
 
           <div className="flex-1 p-4 relative">
             {/* <!-- Main Section --> */}
-            <div className="fixed top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">
+            <div className="fixed top-40 md:top-28 left-1/2 transform -translate-x-1/2 w-auto h-auto items-center space-x-4">
               {/* <!-- Timers Section --> */}
               <Timer />
             </div>
             {/* <!-- Bottom Section --> */}
-            <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
+            <div className="absolute w-full bottom-20 lg:bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
 
             </div>

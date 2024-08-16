@@ -70,11 +70,6 @@ function StudyPageBg() {
 
           <div className="w-auto h-9 relative ml-5 flex items-center space-x-5 ">
             <img className="h-full hidden sm:flex" src={Logo} alt="Logo" />
-            <div className='flex gap-3 z-10 mt-2 sm:hidden'>
-              <ModalTimer />
-              <ModalChangeBackgound />
-              <TaskModal />
-            </div>
             <span className='text-lg text-white hidden sm:flex'>Hi, {user.firstname + ' ' + user.lastname}</span>
             <Link to={`/courses-topic/${courseTopicId}/${courseId}`}>
               <span className='flex cursor-pointer flex-center text-white hidden sm:flex'>
@@ -144,7 +139,7 @@ function StudyPageBg() {
                 {lesson?.lessonName}
               </h1>
             </div>
-            <div className='fixed top-[90px] right-24 hidden lg:block'>
+            <div className='fixed top-[90px] right-24 hidden xl:block'>
               <ListLesson
                 courseTopicId={courseTopicId}
                 courseId={courseId}
@@ -152,11 +147,18 @@ function StudyPageBg() {
               />
             </div>
             {/* <!-- Bottom Section --> */}
+            <div className='flex gap-3 z-10 mt-2 block md:hidden justify-center'>
+              <ModalTimer />
+              <ModalChangeBackgound />
+              <TaskModal />
+            </div>
             <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
+
               <div className="block lg:hidden mt-2 mx-auto w-max">
                 <HorizontalNavBar />
               </div>
             </div>
+
           </div>
           {/* Right bar */}
           <div className="w-[56px] mr-5 bg-transparent flex flex-col items-center py-4 space-y-4 hidden lg:block">

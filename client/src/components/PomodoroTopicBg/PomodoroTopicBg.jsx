@@ -133,11 +133,8 @@ function PomodoroTopicBg() {
               <Timer color="white" />
             </div>
             {/* <!-- Bottom Section --> */}
-            <div className="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
+            <div className="absolute w-full bottom-20 lg:bottom-10 left-1/2 transform -translate-x-1/2 bg-transparent ">
               <MusicPlayer />
-              {/* <div className="block sm:hidden mt-2 mx-auto w-max">
-                <HorizontalNavBar />
-              </div> */}
             </div>
           </div>
           {/* Right bar */}
