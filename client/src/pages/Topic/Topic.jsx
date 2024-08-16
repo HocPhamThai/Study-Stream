@@ -98,7 +98,7 @@ const Topic = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-lg bg-white px-6 py-4">
           <div className="mb-4">
             <div className="flex items-center">
-              <span className="ml-5 font-bold">Work Space</span>
+              <span className="ml-5 font-bold">Focusing Space</span>
             </div>
           </div>
           <div className="my-2 grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -109,9 +109,9 @@ const Topic = () => {
                   Noti
                 </div>
                 <p className="text-medium font-semibold md:text-lg">
-                  Investing in self-development enhances mental well-being and quality of life.
+                  Enhance your focus and achieve greater productivity with the Pomodoro Technique
                 </p>
-                <p className="mt-4 text-sm">Engage in at least one activity every day!</p>
+                <p className="mt-4 text-sm">Choose a video and start your Pomodoro session!</p>
               </div>
               <div className="flex flex-1 justify-center">
                 <img className="w-[140px] h-[140px]" src='https://i.imgur.com/Cn4kCmx.png' alt="" />

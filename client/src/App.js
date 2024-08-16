@@ -59,7 +59,7 @@ function App() {
             />
             <Route
               path="/home"
-              element={user ? <Home /> : <Navigate to="../auth" />}
+              element={user ? <Home /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/auth"
@@ -67,44 +67,44 @@ function App() {
             />
             <Route
               path="/profile/:id"
-              element={user ? <Profile /> : <Navigate to="../auth" />}
+              element={user ? <Profile /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/chat"
-              element={user ? <Chat /> : <Navigate to="../auth" />}
+              element={user ? <Chat /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/rules"
-              element={user ? <Rules /> : <Navigate to="../auth" />}
+              element={user ? <Rules /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/pomodoro"
-              element={user ? <Pomodoro /> : <Navigate to="../auth" />}
+              element={user ? <Pomodoro /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/pomodoro/:topicType/:entryId"
-              element={user ? <PomodoroTopic /> : <Navigate to="../auth" />}
+              element={user ? <PomodoroTopic /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/analytics"
-              element={user ? <Analytics /> : <Navigate to="../auth" />}
+              element={user ? <Analytics /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/studypage/:courseTopicId/:courseId/:lessonId"
-              element={user ? <StudyPage /> : <Navigate to="../auth" />}
+              element={user ? <StudyPage /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/courses-topic"
-              element={user ? <CoursesTopic /> : <Navigate to="../auth" />}
+              element={user ? <CoursesTopic /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/courses-topic/:courseTopicId"
-              element={user ? <Courses /> : <Navigate to="../auth" />}
+              element={user ? <Courses /> : <Navigate to="../get-started" />}
             />
 
             <Route
               path="/courses-topic/:courseTopicId/:courseId"
-              element={user ? <Lessons /> : <Navigate to="../auth" />}
+              element={user ? <Lessons /> : <Navigate to="../get-started" />}
             />
 
             <Route
@@ -117,17 +117,17 @@ function App() {
                     <DashHome />
                   )
                 ) : (
-                  <Navigate to="/auth" />
+                  <Navigate to="/get-started" />
                 )
               }
             />
             <Route
               path="/topic"
-              element={user ? <Topic /> : <Navigate to="../auth" />}
+              element={user ? <Topic /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/topic/:entry"
-              element={user ? <TopicPomodoro /> : <Navigate to="../auth" />}
+              element={user ? <TopicPomodoro /> : <Navigate to="../get-started" />}
             />
             <Route
               path="/adminhome"
@@ -144,7 +144,7 @@ function App() {
             <Route path="/get-started" element={<GetStartedPage />} />
             <Route
               path="/chatbot"
-              element={user ? <ChatBot /> : <Navigate to="../auth" />}
+              element={user ? <ChatBot /> : <Navigate to="../get-started" />}
             />
           </Routes>
         </div>

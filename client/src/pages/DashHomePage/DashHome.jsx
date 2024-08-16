@@ -97,9 +97,9 @@ const DashHome = () => {
                 Noti
               </div>
               <p className="text-medium font-semibold md:text-lg">
-                Make your work chilling with my app
+                Enhance Focus & Boost Productivity
               </p>
-              <p className="mt-4 text-sm">Work balance & Love your work</p>
+              <p className="mt-4 text-sm">Begin Your Pomodoro Journey Now</p>
               <div className="mt-4">
                 <Link to="/pomodoro">
                   <button
