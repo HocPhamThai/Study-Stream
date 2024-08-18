@@ -27,6 +27,7 @@ import StudyPage from './pages/StudyPage/StudyPage'
 import CoursesTopic from './pages/CoursesTopic/CoursesTopic'
 import Courses from './pages/Courses/Courses'
 import Lessons from './pages/Lessons/Lessons'
+import StudyPageWithYoutube from './pages/StudyPageWithYoutube/StudyPageWithYoutube'
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -135,6 +136,11 @@ function App() {
               path="/courses-topic/:courseTopicId/:courseId"
               element={user ? <Lessons /> : <Navigate to="../get-started" />}
             />
+            <Route
+              path="/study_pagewith_youtube"
+              element={user ? <StudyPageWithYoutube /> : <Navigate to="../get-started" />}
+            />
+
 
             <Route
               path="/dashhome"

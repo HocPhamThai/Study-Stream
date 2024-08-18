@@ -63,6 +63,9 @@ const Timer = (color) => {
       }
       tick()
       document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
+      return () => {
+        document.title = 'Study Stream'; // Đặt lại tiêu đề mặc định ở đây
+      }
     }, 1000)
 
     return () => clearInterval(interval)
