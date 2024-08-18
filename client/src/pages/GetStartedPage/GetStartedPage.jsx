@@ -152,7 +152,7 @@ function GetStartedPage() {
               with the video streaming!
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Todo List helps you organize and manage tasks effectively. Always list your tasks for the next day every evening
+              Join the room, witness everyone's focus, and boost your motivation
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
