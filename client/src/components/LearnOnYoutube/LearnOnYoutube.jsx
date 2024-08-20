@@ -34,7 +34,10 @@ const LearnOnYoutube = () => {
 
   return (
     <div className="learn-on-youtube-container mt-4 flex flex-col bg-white rounded-lg p-4">
-      <h1 className="text-md text-gray-800 font-bold">Learn on YouTube</h1>
+      <h1 className="text-md text-gray-800 font-bold">Learn Effectively on YouTube</h1>
+      <p className='text-gray-500 text-xs my-2'>
+        You can choose a video you want to study on Youtube, drop it here, and start studying with the Pomodoro method, take notes, and more
+      </p>
       <input
         type="text"
         value={inputValue}
