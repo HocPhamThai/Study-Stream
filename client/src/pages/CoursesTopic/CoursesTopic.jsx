@@ -145,8 +145,6 @@ const CoursesTopic = () => {
             ))}
           </div>
         </div>
-
-
         <div className="hidden xl:block w-96 mr-5 lg:mr-5 mt-5 lg:mt-0">
           <LearnOnYoutube />
         </div>

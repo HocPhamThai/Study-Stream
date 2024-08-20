@@ -68,11 +68,11 @@ function ModalChangeBackgound() {
                   {colorOptions.map((colors, index) => (
                     <div
                       key={index}
-                      className="flex cursor-pointer items-center gap-2"
+                      className={`flex cursor-pointer items-center gap-2 `}
                       onClick={() => handleClick(colors)}
                     >
                       <div
-                        className="w-12 h-12 rounded-full shadow hover:opacity-90 border border-default-100"
+                        className={`w-12 h-12 rounded-full shadow hover:opacity-90 border border-default-100 ${tempColor === `linear-gradient(53deg, ${colors.join(', ')})` ? 'opacity-70 border-4 rounded-2xl border-blue-500' : ''}`}
                         style={{ background: `linear-gradient(53deg, ${colors.join(', ')})` }}
                       />
                     </div>

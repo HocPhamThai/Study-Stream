@@ -10,6 +10,7 @@ import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import LearnOnYoutube from '../../components/LearnOnYoutube/LearnOnYoutube'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -132,12 +133,8 @@ const CoursesTopic = () => {
             ))}
           </div>
         </div>
-
-
         <div className="hidden xl:block w-96 mr-5 lg:mr-5 mt-5 lg:mt-0">
-          <FavoritePlaylist />
-          <div className="mt-3 mb-3"></div>
-          <RandomPlaylist />
+          <LearnOnYoutube />
         </div>
         <div className="fixed bottom-3 left-0 right-0 lg:hidden mt-2 mx-auto w-max z-50">
           <HorizontalNavbar />
