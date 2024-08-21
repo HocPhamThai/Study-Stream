@@ -17,6 +17,7 @@ const Timer = (color) => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
+  const [repeat, setRepeat] = useState()
   const audioRef = useRef(new Audio(notificationSound))
   function tick() {
     secondsLeftRef.current--
@@ -25,18 +26,28 @@ const Timer = (color) => {
 
   useEffect(() => {
     function switchMode() {
+      setRepeat(settingsInfo.isRepeat)
       const nextMode = modeRef.current === 'work' ? ' break' : 'work'
       const nextSeconds =
         (nextMode === 'work'
           ? settingsInfo.workMinutes
           : settingsInfo.breakMinutes) * 60
-      setMode(nextMode)
-      modeRef.current = nextMode
 
-      setSecondsLeft(nextSeconds)
-      secondsLeftRef.current = nextSeconds
+      if (repeat) {
+        // Tiếp tục lặp lại nếu repeat = true
+        setMode(nextMode);
+        modeRef.current = nextMode;
+
+        setSecondsLeft(nextSeconds);
+        secondsLeftRef.current = nextSeconds;
+      } else {
+        // Dừng lại nếu repeat = false
+        setIsPaused(true);
+        isPausedRef.current = true;
+      }
+
       if (settingsInfo.isNoti) {
-        audioRef.current.play()
+        audioRef.current.play();
       }
     }
 
@@ -64,13 +75,13 @@ const Timer = (color) => {
       tick()
       document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
 
-    }, 1000)
+    }, 100)
 
     return () => {
-      clearInterval(interval);
-      document.title = 'Study Stream'; // Đặt lại tiêu đề mặc định khi component unmount
+      clearInterval(interval)
+      document.title = 'Study Stream' // Đặt lại tiêu đề mặc định khi component unmount
     }
-  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes])
+  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes, repeat])
 
   useEffect(() => {
     modeRef.current = mode

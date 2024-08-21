@@ -10,24 +10,44 @@ const ModalTimer = () => {
   const settingsInfo = useContext(SettingsContext)
   const [allowNotifications, setAllowNotifications] = useState(false)
 
+  const [isChecked, setIsChecked] = useState(false)
+  const [isCheckedNoti, setIsCheckedNoti] = useState(false)
+  const [allowNoti, setAllowNoti] = useState(false)
+
+
+  const handleNotificationToggle = (event) => {
+    // setIsChecked(event.target.checked)
+    setAllowNotifications(event.target.checked)
+
+  }
+
+  const handleCheckboxChange2 = () => {
+    setIsChecked(!isChecked)
+    setAllowNoti(isChecked)
+  }
+
   const toggleModal = () => {
     setIsOpen(!isOpen)
   }
   const handleCheckboxChange = (event) => {
     setAllowNotifications(event.target.checked)
   }
+
   const handleSetTime = () => {
     settingsInfo.setWorkMinutes(tempWorkMinutes)
     settingsInfo.setBreakMinutes(tempBreakMinutes)
     settingsInfo.setMode('work')
     settingsInfo.setIsPaused(true)
-    settingsInfo.setIsNoti(allowNotifications)
+    settingsInfo.setIsNoti(isCheckedNoti)
+    settingsInfo.setIsRepeat(allowNoti)
+    console.log("settingsInfo Is Repeat: ", settingsInfo.isRepeat)
     toggleModal()
   }
 
   const toggleModalCancel = () => {
     setIsOpen(!isOpen)
   }
+
 
   return (
     <>
@@ -79,16 +99,46 @@ const ModalTimer = () => {
                     type="number"
                   />
                 </div>
-                <div className='mt-4 flex items-center gap-6'>
+                <div className='mt-4 flex items-center justify-between'>
                   <p className='font-medium'>Allow Notifications when time is up</p>
-                  <p className='w-[100px]'>
+                  <div
+                    className='relative cursor-pointer'
+                    onClick={() => setIsCheckedNoti(!isCheckedNoti)}
+                  >
                     <input
-                      type="checkbox"
-                      className="mt-2 scale-150 cursor-pointer border border-gray-400 text-left checkbox"
-                      onChange={handleCheckboxChange}
+                      type='checkbox'
+                      checked={isCheckedNoti}
+                      onChange={handleNotificationToggle}
+                      className='sr-only'
                     />
-                  </p>
+                    <div
+                      className={`box block h-8 w-14 rounded-full ${isCheckedNoti ? 'bg-blue-500' : 'bg-gray-400'}`}
+                    ></div>
+                    <div
+                      className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${isCheckedNoti ? 'translate-x-full' : ''}`}
+                    ></div>
+                  </div>
                 </div>
+                {console.log("AllowNotifications: ", isChecked)}
+                <label className='flex justify-between cursor-pointer select-none items-center mt-4'>
+                  <span className='font-medium mr-10'>Auto start</span>
+                  <div className='relative'>
+                    <input
+                      type='checkbox'
+                      checked={isChecked}
+                      onChange={handleCheckboxChange2}
+                      className='sr-only'
+                    />
+                    <div
+                      className={`box block h-8 w-14 rounded-full ${isChecked ? 'bg-blue-500' : 'bg-gray-400'
+                        }`}
+                    ></div>
+                    <div
+                      className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${isChecked ? 'translate-x-full' : ''
+                        }`}
+                    ></div>
+                  </div>
+                </label>
                 <div className="flex items-center mt-6 space-x-4">
                   <button
                     onClick={handleSetTime}
