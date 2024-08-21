@@ -31,10 +31,6 @@ const MusicPlayer = () => {
     }
     fetchSongs()
   }, [])
-  console.log('Song: ', songs)
-  console.log('Song 1: ', songs[1])
-  console.log('Song link: ', songs[1]?.linkStored)
-  console.log('currentSong: ', currentSong)
 
   const handleClickPrevious = () => {
     setCurrentSong((prev) => (prev - 1 + songs?.length) % songs?.length)
@@ -126,12 +122,11 @@ const MusicPlayer = () => {
               key={index}
               onClick={() => handleSongSelection(index)}
               className={`modal-button ${index === currentSong
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-300 text-black'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-300 text-black'
                 }`}
             >
               {song?.nameSong}
-              {/* console.log("Song name: ", song) */}
             </button>
           ))}
         </div>

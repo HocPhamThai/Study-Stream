@@ -24,6 +24,7 @@ const PomodoroTopic = () => {
   const [mode, setMode] = useState('work')
   const [isPaused, setIsPaused] = useState(true)
   const [isNoti, setIsNoti] = useState(false)
+  const [isRepeat, setIsRepeat] = useState(false)
 
   return (
     <SettingsContext.Provider value={{
@@ -39,6 +40,8 @@ const PomodoroTopic = () => {
       setIsNoti,
       mode,
       setMode,
+      isRepeat,
+      setIsRepeat,
     }} >
       <PomodoroTopicBg />
     </SettingsContext.Provider >
