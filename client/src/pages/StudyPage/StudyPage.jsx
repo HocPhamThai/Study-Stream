@@ -23,6 +23,7 @@ const StudyPage = () => {
   const [isPaused, setIsPaused] = useState(true)
   const [isNoti, setIsNoti] = useState(false)
   const [onTimerEnd, setOnTimerEnd] = useState(() => () => { })
+  const [isRepeat, setIsRepeat] = useState(false)
 
   return (
     <SettingsContext.Provider value={{
@@ -40,6 +41,8 @@ const StudyPage = () => {
       setMode,
       onTimerEnd,
       setOnTimerEnd,
+      isRepeat,
+      setIsRepeat,
     }} >
       <StudyPageBg />
     </SettingsContext.Provider >
