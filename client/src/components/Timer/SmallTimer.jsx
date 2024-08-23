@@ -18,6 +18,7 @@ const SmallTimer = ({ onTimerEnd }) => {
   const [tempWorkMinutes, setTempWorkMinutes] = useState(25)
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
   const audioRef = useRef(new Audio(notificationSound))
+  const [repeat, setRepeat] = useState()
 
   function tick() {
     secondsLeftRef.current--
@@ -26,25 +27,28 @@ const SmallTimer = ({ onTimerEnd }) => {
 
   useEffect(() => {
     function switchMode() {
+      setRepeat(settingsInfo.isRepeat)
       const nextMode = modeRef.current === 'work' ? ' break' : 'work'
       const nextSeconds =
         (nextMode === 'work'
           ? settingsInfo.workMinutes
           : settingsInfo.breakMinutes) * 60
-      setMode(nextMode)
-      modeRef.current = nextMode
-      setSecondsLeft(nextSeconds)
-      secondsLeftRef.current = nextSeconds
-      // if (onTimerEnd) {
-      //   onTimerEnd()
-      // }
-      if (settingsInfo.isNoti) {
-        audioRef.current.play()
+      if (repeat) {
+        // Tiếp tục lặp lại nếu repeat = true
+        setMode(nextMode);
+        modeRef.current = nextMode;
+
+        setSecondsLeft(nextSeconds);
+        secondsLeftRef.current = nextSeconds;
+      } else {
+        // Dừng lại nếu repeat = false
+        setIsPaused(true);
+        isPausedRef.current = true;
       }
 
-      // if (settingsInfo.onTimerEnd) {
-      //   settingsInfo.onTimerEnd();
-      // }
+      if (settingsInfo.isNoti) {
+        audioRef.current.play();
+      }
     }
 
     setTempWorkMinutes(settingsInfo.workMinutes)
@@ -80,7 +84,7 @@ const SmallTimer = ({ onTimerEnd }) => {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes, onTimerEnd])
+  }, [settingsInfo.workMinutes, settingsInfo.breakMinutes, onTimerEnd, repeat])
 
   useEffect(() => {
     modeRef.current = mode

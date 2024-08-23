@@ -11,6 +11,15 @@ import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import postIcon from './postIcon.png'
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import Tooltip from '@mui/material/Tooltip'
+import Dialog from '@mui/material/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
@@ -18,7 +27,15 @@ const DashHome = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const { posts } = useSelector((state) => state.postReducer)
   const [dailyDuration, setDailyDuration] = useState(null)
+  const [open, setOpen] = useState(false)
 
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
   const focusRoom1 = () => {
     window.location = `studyroom?room=${1}`
   }
@@ -63,6 +80,17 @@ const DashHome = () => {
       fetchDuration()
     }
   }, [user])
+  const StyledDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialog-paper': {
+      borderRadius: '20px',
+      width: '500px', // You can adjust the width as needed
+      height: '230px', // You can adjust the height as needed
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  }))
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
@@ -190,9 +218,115 @@ const DashHome = () => {
               </div>
             </div>
           </div>
-          <div className="mb-2 mt-5 flex justify-between">
-            <p className="font-bold">Study stream rooms</p>
+          {/* <div className="mb-2 mt-5 flex items-center">
+            <p className="font-bold mr-2">Study stream rooms</p>
+            <Tooltip
+              title={
+                <div>
+                  <Typography variant="subtitle2" gutterBottom>
+                    How to use:
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
+                  </Typography>
+                  <Typography variant="body2">
+                    <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
+                  </Typography>
+                </div>
+              }
+              arrow
+            >
+              <IconButton>
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">More info</span>
+              </IconButton>
+            </Tooltip>
+          </div> */}
+          {/* <div className="mb-2 mt-5 flex items-center">
+            <p className="font-bold mr-2">Study stream rooms</p>
+            <IconButton onClick={handleClickOpen}>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">More info</span>
+            </IconButton>
+
+            <Dialog sx={{ borderRadius: '50%' }} open={open} onClose={handleClose} aria-labelledby="dialog-title" >
+              <DialogTitle id="dialog-title">How to use</DialogTitle>
+              <DialogContent>
+                <Typography variant="body2" gutterBottom>
+                  <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
+                </Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div> */}
+          <div className="mb-2 mt-5 flex items-center">
+            <p className="font-bold mr-2">Study stream rooms</p>
+            <IconButton onClick={handleClickOpen}>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">More info</span>
+            </IconButton>
+
+            <StyledDialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
+              <DialogTitle id="dialog-title">How to use</DialogTitle>
+              <DialogContent>
+                <Typography variant="body2" gutterBottom sx={{ marginBottom: '10px' }}>
+                  <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
+                </Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Close
+                </Button>
+              </DialogActions>
+            </StyledDialog>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
             <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
               <p className="text-medium font-semibold md:text-lg">
