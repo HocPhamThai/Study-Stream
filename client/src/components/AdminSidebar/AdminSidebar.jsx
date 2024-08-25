@@ -107,7 +107,7 @@ const AdminSidebar = () => {
             </li>
             <li
               onClick={handleLogOut}
-              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

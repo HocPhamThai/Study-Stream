@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import UserTable from '../../components/UserTable/UserTable'
 import AdminSidebar from '../../components/AdminSidebar/AdminSidebar'
 import Logo from '../../img/logo.png'
@@ -7,7 +8,18 @@ import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import TopicTable from '../../components/TopicTable/TopicTable'
 
 function AdminTopic() {
-  const { user } = useSelector((state) => state.authReducer.authData)
+  const { user } = useSelector((state) => state.authReducer.authData || {})
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth')
+    }
+  }, [user, navigate])
+
+  if (!user) {
+    return null
+  }
 
   return (
     <div>
