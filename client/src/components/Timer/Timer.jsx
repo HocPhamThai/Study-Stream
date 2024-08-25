@@ -75,7 +75,7 @@ const Timer = (color) => {
       tick()
       document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
 
-    }, 100)
+    }, 1000)
 
     return () => {
       clearInterval(interval)
