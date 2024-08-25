@@ -16,6 +16,8 @@ import rewardsRoute from './routes/rewardsRoute.js'
 import taskRoute from './routes/taskRoute.js'
 import courseTopicRoute from './routes/courseTopicRoute.js'
 import cors from 'cors'
+import xss from 'xss-clean'
+import helmet from 'helmet'
 
 const app = express()
 // set up public folder
@@ -26,6 +28,9 @@ app.use('/images', express.static('images'))
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
+app.use(xss())
+app.use(helmet())
+
 dotenv.config()
 
 mongoose
@@ -50,4 +55,3 @@ app.use('/songs', songRoute)
 app.use('/rewards', rewardsRoute)
 app.use('/tasks', taskRoute)
 app.use('/courseTopics', courseTopicRoute)
-

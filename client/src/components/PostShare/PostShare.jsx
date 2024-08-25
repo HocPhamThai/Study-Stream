@@ -9,6 +9,7 @@ import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../actions/uploadAction'
 import './PostShare.scss'
+import { toast } from 'sonner'
 
 const PostShare = () => {
   const loading = useSelector((state) => state.postReducer.uploading)
@@ -28,6 +29,12 @@ const PostShare = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const descCheck = desc.current.value.trim()
+
+    if (!descCheck) {
+      toast.error('Please enter a description before posting.')
+      return
+    }
     const newPost = {
       userId: user._id,
       desc: desc.current.value,

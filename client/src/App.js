@@ -34,7 +34,7 @@ function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
     user: null,
   }
-  const { user } = authData
+  const { user } = authData ? authData : null
 
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
@@ -63,7 +63,13 @@ function App() {
         </div>
       ) : (
         <div className="App">
-          <Toaster position="top-right" duration={1000} />
+          <Toaster
+            position="top-right"
+            duration={1000}
+            toastOptions={{
+              className: 'p-4',
+            }}
+          />
           <Routes>
             <Route
               path="/"
@@ -138,9 +144,14 @@ function App() {
             />
             <Route
               path="/study_pagewith_youtube"
-              element={user ? <StudyPageWithYoutube /> : <Navigate to="../get-started" />}
+              element={
+                user ? (
+                  <StudyPageWithYoutube />
+                ) : (
+                  <Navigate to="../get-started" />
+                )
+              }
             />
-
 
             <Route
               path="/dashhome"
