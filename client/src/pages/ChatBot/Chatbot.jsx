@@ -71,7 +71,7 @@ const ChatBot = () => {
     }
   }
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 m-[-16px] p-[16px]">
       <Box
         sx={{
           display: 'flex',

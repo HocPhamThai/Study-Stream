@@ -34,7 +34,7 @@ function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
     user: null,
   }
-  const { user } = authData
+  const { user } = authData ? authData : null
 
   const location = useLocation()
   const renderStudyRoom = location.pathname === '/studyroom'
