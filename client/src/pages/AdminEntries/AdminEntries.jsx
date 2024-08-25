@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import AdminSidebar from '../../components/AdminSidebar/AdminSidebar'
 import EntriesTable from '../../components/EntriesTable/EntriesTable'
 import { Link, useParams } from 'react-router-dom'
 
 function AdminEntries() {
-  const { user } = useSelector((state) => state.authReducer.authData)
   const { topicIdProps } = useParams()
+  const { user } = useSelector((state) => state.authReducer.authData || {})
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth')
+    }
+  }, [user, navigate])
+
+  if (!user) {
+    return null
+  }
 
   return (
     <div>

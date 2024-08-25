@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import AddSongModal from '../AdminManageMusic/AddSongsModal'
 import UpdateSongModal from '../AdminManageMusic/UpdateSongModal'
 import DeleteSongModal from '../AdminManageMusic/DeleteSongModal'
+import { useSelector } from 'react-redux'
 
 function SongsTable() {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -20,7 +21,10 @@ function SongsTable() {
   const [selectedSong, setSelectedSong] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const navigate = useNavigate()
-
+  const authData = useSelector((state) => state.authReducer.authData) || {
+    user: null,
+  }
+  const { user } = authData ? authData : null
   const openModal = (song, modalType) => {
     setModalType(modalType)
     setIsModalOpen(true)
