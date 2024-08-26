@@ -151,7 +151,9 @@ const DashHome = () => {
             <p className="font-bold">Your activities</p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-sm">
+            {/* <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200"> */}
+
+            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
               <div className="rounded-full p-3">
                 <img className="w-[40px] h-[40px]" src={postIcon} alt="" />
               </div>
@@ -160,7 +162,7 @@ const DashHome = () => {
                 <div className="mt-3 text-3xl font-bold">+ {posts.length}</div>
               </div>
             </div>
-            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-sm">
+            <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
               <div className="rounded-full p-3">
                 <svg
                   id="Capa_1"
@@ -218,78 +220,6 @@ const DashHome = () => {
               </div>
             </div>
           </div>
-          {/* <div className="mb-2 mt-5 flex items-center">
-            <p className="font-bold mr-2">Study stream rooms</p>
-            <Tooltip
-              title={
-                <div>
-                  <Typography variant="subtitle2" gutterBottom>
-                    How to use:
-                  </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
-                  </Typography>
-                  <Typography variant="body2">
-                    <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
-                  </Typography>
-                </div>
-              }
-              arrow
-            >
-              <IconButton>
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="sr-only">More info</span>
-              </IconButton>
-            </Tooltip>
-          </div> */}
-          {/* <div className="mb-2 mt-5 flex items-center">
-            <p className="font-bold mr-2">Study stream rooms</p>
-            <IconButton onClick={handleClickOpen}>
-              <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="sr-only">More info</span>
-            </IconButton>
-
-            <Dialog sx={{ borderRadius: '50%' }} open={open} onClose={handleClose} aria-labelledby="dialog-title" >
-              <DialogTitle id="dialog-title">How to use</DialogTitle>
-              <DialogContent>
-                <Typography variant="body2" gutterBottom>
-                  <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
-                </Typography>
-                <Typography variant="body2">
-                  <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
-                </Typography>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Close
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div> */}
           <div className="mb-2 mt-5 flex items-center">
             <p className="font-bold mr-2">Study stream rooms</p>
             <IconButton onClick={handleClickOpen}>
@@ -328,7 +258,7 @@ const DashHome = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
                 ✍️ Study room
               </p>
@@ -341,7 +271,7 @@ const DashHome = () => {
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
                 🧑🏻‍💻 Working room
               </p>
@@ -354,7 +284,7 @@ const DashHome = () => {
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
                 ⏳ Quite room{' '}
               </p>
@@ -370,7 +300,7 @@ const DashHome = () => {
                 Join now
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-md">
+            <div className="p-8 w-full bg-white col-span-1 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
                 💡 Creative room
               </p>

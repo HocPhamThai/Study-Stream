@@ -102,7 +102,7 @@ const CoursesTopic = () => {
                 <p className="mt-4 text-sm">{courses?.courseTopicDescription}</p>
               </div>
               <div className="flex flex-1 justify-center">
-                <img className="w-[200px] h-[140px]" src={courses?.courseTopicImage} alt="" />
+                <img className="w-[200px] h-[115px]" src={courses?.courseTopicImage} alt="" />
               </div>
             </div>
 
