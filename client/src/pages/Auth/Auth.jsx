@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logIn, signUp } from '../../actions/AuthAction'
 import Logo from '../../img/logo.png'
@@ -9,6 +9,16 @@ const Auth = () => {
   const loading = useSelector((state) => state.authReducer.loading)
   const error = useSelector((state) => state.authReducer.error)
   const [isSignUp, SetIsSignup] = useState(false)
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        dispatch({ type: 'CLEAR_ERROR' })
+      }, 2000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [dispatch, error])
 
   const [data, setData] = useState({
     firstname: '',
@@ -187,6 +197,9 @@ const Auth = () => {
             </>
           )}
           {!isSignUp && error && <span className="error">{error}</span>}
+          {!isSignUp && formErrors.password && (
+            <span className="error">{formErrors.password}</span>
+          )}
           {isSignUp && error && <span className="error">{error}</span>}
           <div>
             <a
