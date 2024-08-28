@@ -28,6 +28,7 @@ import CoursesTopic from './pages/CoursesTopic/CoursesTopic'
 import Courses from './pages/Courses/Courses'
 import Lessons from './pages/Lessons/Lessons'
 import StudyPageWithYoutube from './pages/StudyPageWithYoutube/StudyPageWithYoutube'
+import NotFound from './pages/NotFound/NotFound'
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -194,6 +195,7 @@ function App() {
               path="/chatbot"
               element={user ? <ChatBot /> : <Navigate to="../get-started" />}
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       )}
