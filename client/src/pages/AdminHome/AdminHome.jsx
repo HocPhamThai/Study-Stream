@@ -8,7 +8,6 @@ import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 function AdminHome() {
   const { user } = useSelector((state) => state.authReducer.authData)
 
-
   return (
     <div>
       <div className='grid grid-cols-6 p-0'>

@@ -19,6 +19,8 @@ function EntriesTable({ topicIdProps }) {
   const [modalType, setModalType] = useState(null)
   const [selectedEntry, setSelectedEntry] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+
   const navigate = useNavigate()
 
   const openModal = (entry, modalType) => {
@@ -51,7 +53,12 @@ function EntriesTable({ topicIdProps }) {
 
   const totalPages = Math.ceil(entries?.length / rowsPerPage)
 
-  const currentData = entries?.slice(
+  const filteredEntries = entries?.filter((entry) => {
+    const entryName = entry.name.toLowerCase()
+    return entryName.includes(searchQuery.toLowerCase())
+  })
+
+  const currentData = filteredEntries?.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   )
@@ -88,10 +95,6 @@ function EntriesTable({ topicIdProps }) {
       className: 'custom-toast-delete',
     })
   }
-
-  // const handleTopicSelected = (topicName) => {
-  //   navigate(`/topic/${topicName}`)
-  // }
 
   return (
     <div>
@@ -150,9 +153,10 @@ function EntriesTable({ topicIdProps }) {
                       <input
                         type="text"
                         id="simple-search"
-                        placeholder="Search for products"
-                        required=""
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
+                        placeholder="Search for entry"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                       />
                     </div>
                   </form>
@@ -163,63 +167,6 @@ function EntriesTable({ topicIdProps }) {
                     topicIdProps={topicIdProps}
                     onEntryAdded={handleEnntryAdded}
                   />
-                  <button
-                    id="filterDropdownButton"
-                    data-dropdown-toggle="filterDropdown"
-                    className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-400 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200  text-black  "
-                    type="button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      className="h-4 w-4 mr-1.5 -ml-1 text-black-500"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Filter options
-                    <svg
-                      className="-mr-1 ml-1.5 w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        clipRule="evenodd"
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      />
-                    </svg>
-                  </button>
-                  <div className="flex items-center space-x-3 w-full md:w-auto">
-                    <button
-                      id="actionsDropdownButton"
-                      data-dropdown-toggle="actionsDropdown"
-                      className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-400  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 "
-                      type="button"
-                    >
-                      Actions
-                      <svg
-                        className="-mr-1 ml-1.5 w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                      >
-                        <path
-                          clipRule="evenodd"
-                          fillRule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
                 </div>
               </div>
 
