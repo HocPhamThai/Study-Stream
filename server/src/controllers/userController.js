@@ -222,7 +222,6 @@ const accessEntry = async (req, res) => {
     const favoriteEntryIndex = user.favoriteEntries.findIndex(
       (e) => e.entryId === entry.entryId
     )
-    console.log('favoriteEntryIndex: ', favoriteEntryIndex)
 
     if (favoriteEntryIndex === -1) {
       // Nếu entry chưa tồn tại, thêm mới vào favoriteEntries
@@ -235,10 +234,6 @@ const accessEntry = async (req, res) => {
     } else {
       // Nếu entry đã tồn tại, cập nhật timeUsed và lastAccessedAt
       user.favoriteEntries[favoriteEntryIndex].timeUsed += 1
-      console.log(
-        'user.favoriteEntries[favoriteEntryIndex].timeUsed: ',
-        user.favoriteEntries[favoriteEntryIndex].timeUsed
-      )
       user.favoriteEntries[favoriteEntryIndex].lastAccessedAt = new Date()
     }
 
