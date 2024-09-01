@@ -30,6 +30,7 @@ import Lessons from './pages/Lessons/Lessons'
 import StudyPageWithYoutube from './pages/StudyPageWithYoutube/StudyPageWithYoutube'
 import NotFound from './pages/NotFound/NotFound'
 import { useEffect, useState } from 'react'
+import './i18n/i18n'
 
 function App() {
   const authData = useSelector((state) => state.authReducer.authData) || {
