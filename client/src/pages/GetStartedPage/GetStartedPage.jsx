@@ -10,10 +10,12 @@ import learning from '../../img/get_started_page/learning.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './GetStarted.scss'
+import { useTranslation } from 'react-i18next'
+
 function GetStartedPage() {
   const state = useSelector(state => state)
   const [isOpen, setIsOpen] = useState(false)
-
+  const { t } = useTranslation()
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
@@ -49,12 +51,12 @@ function GetStartedPage() {
             className={`absolute right-0 top-full mt-2 w-full bg-white shadow-lg rounded-lg lg:static lg:ml-10 lg:flex lg:items-center lg:gap-6 lg:bg-transparent lg:shadow-none ${isOpen ? 'block' : 'hidden'} lg:block`}
           >
             <Link to={user ? '/dashhome' : '/auth'}>
-              <li className="p-4 lg:p-0"><a className="text-black font-medium">Get Started</a></li>
+              <li className="p-4 lg:p-0"><a className="text-black font-medium">{t('header.get started')}</a></li>
             </Link>
-            <li className="p-4 lg:p-0"><a href="#features" className="text-black font-medium">Features</a></li>
-            <li className="p-4 lg:p-0"><a href="#community" className="text-black font-medium">Community</a></li>
-            <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">Rule</a></li>
-            <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">About</a></li>
+            <li className="p-4 lg:p-0"><a href="#features" className="text-black font-medium">{t('header.features')}</a></li>
+            <li className="p-4 lg:p-0"><a href="#community" className="text-black font-medium">{t('header.community')}</a></li>
+            <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">{t('header.rule')}</a></li>
+            <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">{t('header.about')}</a></li>
           </ul>
         </div>
       </div>
@@ -63,19 +65,19 @@ function GetStartedPage() {
         <div className='grid grid-cols-2 items-center gap-4 p-2 lg:h-[calc(100vh-120px)] lg:px-4 lg:pb-4'>
           <div className='col-span-2 lg:col-span-1'>
             <h1 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Challenge yourself, {' '}
+              {t('intro.challenge')}, {' '}
               <span className='bg-gradient-to-r from-[#f9a225] to-[#f95f35] bg-clip-text text-transparent'>
                 Hack {' '}
               </span>
-              and boost your study motivation with StudyStream!
+              {t('intro.boost')}
             </h1>
             <p className='mt-6 text-center text-lg text-gray-500 lg:text-left'>
-              Self-study becomes more enjoyable than ever with StudyStream
+              {t('intro.description')}
             </p>
             <div className='flex justify-center lg:justify-start'>
               <Link to={user ? '/dashhome' : '/auth'}>
                 <button className="z-0 border border-gray-300 text-white text-medium mt-6 px-6 min-w-24 h-12 rounded-xl hover:opacity-80 bg-gradient-to-r from-[#f9a225] to-[#f95f35] select-none whitespace-nowrap overflow-hidden outline-none gap-3 hover:bg-blue-600">
-                  Get Started
+                  {t('header.get started')}
                 </button>
               </Link>
             </div>
@@ -87,7 +89,7 @@ function GetStartedPage() {
       </div>
       <div id='features'></div>
       <div className='my-4 text-center text-2xl font-medium lg:mt-[60px]'>
-        Features
+        {t('features.features')}
       </div>
       <div className='grid auto-rows-fr grid-cols-4 items-center gap-4 p-2 lg:p-0 '>
         <div className="col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1">
@@ -97,10 +99,10 @@ function GetStartedPage() {
                 <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
               </svg>
             </span>
-            <p className='font-medium'>Video Streaming</p>
+            <p className='font-medium'>{t('features.focus')}</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            We provide video stream to help you avoid from distraction, helping you focus and enhance your study performance.
+            {t('features.focusDescription')}
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>

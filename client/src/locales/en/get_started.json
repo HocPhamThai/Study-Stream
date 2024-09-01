@@ -1,0 +1,19 @@
+{
+  "header": {
+    "get started": "Get started",
+    "features": "Features",
+    "community": "Community",
+    "rule": "Rule",
+    "about": "About"
+  },
+  "intro": {
+    "challenge": "Challenge yourself",
+    "boost": "and boost your study motivation with StudyStream!",
+    "description": "Self-study becomes more enjoyable than ever with StudyStream"
+  },
+  "features": {
+    "features": "Features",
+    "focus": "Focus live room",
+    "focusDescription": "Study with the large community of students live"
+  }
+}

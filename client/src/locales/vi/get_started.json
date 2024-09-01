@@ -1,0 +1,19 @@
+{
+  "header": {
+    "get started": "Bắt đầu",
+    "features": "Tính năng",
+    "community": "Cộng đồng",
+    "rule": "Quy định",
+    "about": "Về chúng tôi"
+  },
+  "intro": {
+    "challenge": "Thử thách bản thân",
+    "boost": "động lực học tập cùng StudyStream!",
+    "description": "Tự học trở nên thú vị hơn bao giờ hết với StudyStream"
+  },
+  "features": {
+    "features": "Tính năng",
+    "focus": "Phòng tập trung",
+    "focusDescription": "Học tập với cộng đồng sinh viên đông đảo trực tiếp"
+  }
+}
