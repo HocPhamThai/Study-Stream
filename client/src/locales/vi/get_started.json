@@ -14,6 +14,40 @@
   "features": {
     "features": "Tính năng",
     "focus": "Phòng tập trung",
-    "focusDescription": "Học tập với cộng đồng sinh viên đông đảo trực tiếp"
+    "focusDescription": "Giữ tập trung, học thông minh hơn. Video stream của chúng tôi giúp bạn loại bỏ phiền nhiễu và tăng cường khả năng học tập",
+    "pomoDescription": "Dễ dùng nâng cao hiệu quả học tập với phương pháp Corodomo. Tập trung sâu trong 25 phút sau đó nghỉ ngắn trong 5 phút",
+    "aiChat": "Trò chuyện cùng AI",
+    "aiDescription": "Trải nghiệm tương tác liền mạch với tính năng chat AI của chúng tôi, cung cấp hỗ trợ và câu trả lời tức thì trên trang web của chúng tôi",
+    "learningDescription": "Tăng cường trải nghiệm học tập của bạn với các bài học video được cá nhân hóa. Theo dõi tiến độ của bạn, giảm thiểu sự phân tâm và đạt được mục tiêu học tập của bạn"
+  },
+  "video": {
+    "push": "Tăng",
+    "motivation": "động lực",
+    "video streaming": "với video streaming!",
+    "description": "Tham gia phòng học, chứng kiến sự tập trung của mọi người và tăng cường động lực của bạn"
+  },
+  "pomodoro working": {
+    "enhance": "Nâng cao",
+    "efficiency": "hiệu suất ",
+    "with": "học tập với StudyStream!",
+    "description": "Đừng ép bản thân nếu bạn không thật sự sẵn sàng. Tập trung sâu trong 25 phút sau đó nghỉ ngắn trong 5 phút."
+  },
+  "ai chat": {
+    "answer": "Trả lời",
+    "questions": "câu hỏi",
+    "chatbot": "với chatbot của chúng tôi",
+    "description": "Chatbot AI của chúng tôi được thiết kế để trả lời mọi câu hỏi của bạn một cách hiệu quả và chính xác, cung cấp hỗ trợ nhanh chóng và đáng tin cậy"
+  },
+  "learning": {
+    "learn": "Học tập hiệu quả với",
+    "track": "và theo dõi tiến độ",
+    "description": "Chọn một khóa học và bắt đầu học điều gì đó mới để nâng cao bản thân mỗi ngày"
+  },
+  "community": {
+    "community": "Cộng đồng",
+    "involved": "Hãy tham gia cộng đồng của chúng tôi. Mọi người đều được chào đón!",
+    "facebook": "Tham gia Facebook của chúng tôi để nhận hỗ trợ và cập nhật thông tin.",
+    "twitter": "Để tham gia cộng đồng, hãy đặt câu hỏi và chia sẻ những mẹo hữu ích.",
+    "tiktok": "Theo dõi chúng tôi trên TikTok để xem video và nội dung mới."
   }
 }

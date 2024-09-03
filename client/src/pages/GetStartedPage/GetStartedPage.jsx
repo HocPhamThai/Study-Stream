@@ -115,7 +115,7 @@ function GetStartedPage() {
             <p className='font-medium'>Pomodoro Working</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            Easy to use and enhances study efficiency with the Pomodoro method. Focus deeply for 25 minutes, then take a short 5-minute break
+            {t('features.pomoDescription')}
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
@@ -126,7 +126,7 @@ function GetStartedPage() {
             <p className='font-medium'>AI Chat</p>
           </div>
           <p className='mt-2 text-gray-500'>
-            Experience seamless interactions with our AI chat feature, providing instant support and answers on our website
+            {t('features.aiDescription')}
           </p>
         </div>
         <div className='col-span-2 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow md:col-span-1'>
@@ -137,8 +137,7 @@ function GetStartedPage() {
             <p className='font-medium'>Pomodoro Learning</p>
           </div>
           <p className='mt-2 text-gray-500'>
-
-            Enhance your learning experience with personalized video sessions. Track your progress, minimize distractions, and achieve your study goals
+            {t('features.learningDescription')}
           </p>
         </div>
       </div>
@@ -147,14 +146,14 @@ function GetStartedPage() {
 
           <div className='col-span-1'>
             <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Push your {' '}
+              {t('video.push')} {' '}
               <span className='bg-gradient-to-r from-[#ff9966] to-[#ff5e62] bg-clip-text text-transparent'>
-                motivation {' '}
+                {t('video.motivation')} {' '}
               </span>
-              with the video streaming!
+              {t('video.video streaming')} {' '}
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Join the room, witness everyone's focus, and boost your motivation
+              {t('video.description')}
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
@@ -168,14 +167,14 @@ function GetStartedPage() {
         <div className='grid gap-4 lg:grid-cols-2'>
           <div>
             <h2 className='col-span-1 text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Enhance your learning {' '}
+              {t('pomodoro working.enhance')} {' '}
               <span className='bg-gradient-to-r from-[#17c964] to-[#6FEE8D] bg-clip-text text-transparent'>
-                efficiency {' '}
+                {t('pomodoro working.efficiency')} {' '}
               </span>
-              with StudyStream!
+              {t('pomodoro working.with')}
             </h2>
             <p className='mt-4 text-center text-lg text-gray-500 lg:text-left'>
-              Don't force yourself if you're not truly ready. Focus deeply for 25 minutes, then take a short 5-minute break
+              {t('pomodoro working.description')}
             </p>
           </div>
         </div>
@@ -202,14 +201,14 @@ function GetStartedPage() {
           </div>
           <div className='flex-1'>
             <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Answer{' '}
+              {t('ai chat.answer')} {' '}
               <span className='bg-gradient-to-r from-[#F54C7A] to-[#FF72E1] bg-clip-text text-transparent'>
-                questions{' '}
+                {t('ai chat.questions')} {' '}
               </span>
-              with our chatbot.
+              {t('ai chat.chatbot')}
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance
+              {t('ai chat.description')}
             </p>
           </div>
 
@@ -219,14 +218,14 @@ function GetStartedPage() {
         <div className='grid items-center gap-4 lg:grid-cols-2'>
           <div className='col-span-1'>
             <h2 className='text-center text-4xl font-bold !leading-tight lg:text-left lg:text-5xl'>
-              Learn with     {' '}
+              {t('learning.learn')} {' '}
               <span className='bg-gradient-to-r from-[#FF705B] to-[#FFB457] bg-clip-text text-transparent'>
                 Pomodoro {' '}
               </span>
-              and track progress
+              {t('learning.track')}
             </h2>
             <p className='mt-4 text-center text-xl text-gray-500 lg:text-left'>
-              Choose a course and start learning something new to improve yourself every day
+              {t('learning.description')}
             </p>
           </div>
           <div className='col-span-1 flex items-center justify-center'>
@@ -238,9 +237,9 @@ function GetStartedPage() {
       </section>
 
       {/* Community */}
-      <div id='community' className='mb-4 mt-20 text-center text-2xl font-bold'>Community</div>
+      <div id='community' className='mb-4 mt-20 text-center text-2xl font-bold'>{t('community.community')}</div>
       <div>
-        <p className='text-center text-xl text-gray-500'>Get involved in our community. Everyone is welcome!</p>
+        <p className='text-center text-xl text-gray-500'>{t('community.involved')}</p>
         <div className='mt-4 grid grid-cols-2 items-center justify-center gap-4 p-2 md:flex'>
           <a href="" className='col-span-1 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow'>
             <div className='flex items-center gap-2'>
@@ -249,7 +248,7 @@ function GetStartedPage() {
               </span>
               <p className='font-medium'>Facebook</p>
             </div>
-            <p className='mt-2 text-gray-500'>Join our Facebook for support and updates.</p>
+            <p className='mt-2 text-gray-500'>{t('community.facebook')}</p>
           </a>
           <a href="" className='col-span-1 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow'>
             <div className='flex items-center gap-2'>
@@ -258,7 +257,7 @@ function GetStartedPage() {
               </span>
               <p className='font-medium'>X</p>
             </div>
-            <p className='mt-2 text-gray-500'>To get involved in the community, ask questions and share tips.</p>
+            <p className='mt-2 text-gray-500'>{t('community.twitter')}</p>
           </a>
           <a href="" className='col-span-1 h-full max-w-80 rounded-lg border border-gray-50 p-3 shadow'>
             <div className='flex items-center gap-2'>
@@ -267,7 +266,7 @@ function GetStartedPage() {
               </span>
               <p className='font-medium'>Tiktok</p>
             </div>
-            <p className='mt-2 text-gray-500'>Follow us on Tiktok for videos and contents.</p>
+            <p className='mt-2 text-gray-500'>{t('community.tiktok')}</p>
           </a>
         </div>
       </div>
