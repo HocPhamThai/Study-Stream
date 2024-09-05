@@ -21,6 +21,8 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
+import { useTranslation } from 'react-i18next'
+
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
@@ -29,6 +31,7 @@ const DashHome = () => {
   const { posts } = useSelector((state) => state.postReducer)
   const [dailyDuration, setDailyDuration] = useState(null)
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation('dashhome')
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -103,7 +106,7 @@ const DashHome = () => {
             alt="Logo"
           />
           <span className="text-lg hidden sm:flex">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {t('header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
 
         </div>
@@ -129,16 +132,16 @@ const DashHome = () => {
                 Noti
               </div>
               <p className="text-medium font-semibold md:text-lg">
-                Enhance Focus & Boost Productivity
+                {t('start.enhance')}
               </p>
-              <p className="mt-4 text-sm">Begin Your Pomodoro Journey Now</p>
+              <p className="mt-4 text-sm">{t('start.begin')}</p>
               <div className="mt-4">
                 <Link to="/pomodoro">
                   <button
                     className="bg-transparent px-4 py-2 border border-red-100 hover:shadow-md rounded-xl"
                     type="button"
                   >
-                    Start now
+                    {t('start.start now')}
                   </button>
                 </Link>
               </div>
@@ -152,7 +155,7 @@ const DashHome = () => {
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">
-            <p className="font-bold">Your activities</p>
+            <p className="font-bold">{t('your activities')}</p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200"> */}
@@ -162,7 +165,7 @@ const DashHome = () => {
                 <img className="w-[40px] h-[40px]" src={postIcon} alt="" />
               </div>
               <div>
-                <div className="text-gray-500">Total Story</div>
+                <div className="text-gray-500">{t('total story')}</div>
                 <div className="mt-3 text-3xl font-bold">+ {posts.length}</div>
               </div>
             </div>
@@ -217,7 +220,7 @@ const DashHome = () => {
                 </svg>
               </div>
               <div>
-                <div className="text-gray-500">Focused Time Today</div>
+                <div className="text-gray-500">{t('focused time')}</div>
                 <div className="mt-3 text-3xl font-bold">
                   + {formatDuration(dailyDuration?.todayDuration || 0)}
                 </div>
@@ -225,7 +228,7 @@ const DashHome = () => {
             </div>
           </div>
           <div className="mb-2 mt-5 flex items-center">
-            <p className="font-bold mr-2">Study stream rooms</p>
+            <p className="font-bold mr-2">{t('stream room')}</p>
             <IconButton onClick={handleClickOpen}>
               <svg
                 aria-hidden="true"
@@ -244,79 +247,80 @@ const DashHome = () => {
             </IconButton>
 
             <StyledDialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
-              <DialogTitle id="dialog-title">How to use</DialogTitle>
+              <DialogTitle id="dialog-title">{t('guide.title')}</DialogTitle>
               <DialogContent>
                 <Typography variant="body2" gutterBottom sx={{ marginBottom: '10px' }}>
-                  <strong>Select a room:</strong> Each room represents a specific study or work environment. Click "Join now" to enter the room of your choice.
+                  <strong>{t('guide.step_1')}</strong> {t('guide.step_1_des')}
                 </Typography>
                 <Typography variant="body2">
-                  <strong>Join the community:</strong> Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.
+                  <strong>{t('guide.step_2')}</strong> {t('guide.step_2_des')}
                 </Typography>
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">
-                  Close
+                  {t('guide.close')}
                 </Button>
               </DialogActions>
             </StyledDialog>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
+            <div className="p-8 w-full h-64 bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
-                ✍️ Study room
+                {t('study room.title')}
               </p>
-              <p className="mt-4 text-sm">Study together, stress less</p>
+              <p className="mt-4 text-sm">{t('study room.description')}</p>
               <button
                 onClick={focusRoom1}
                 className="contrast-button px-4 py-2 border rounded-xl"
                 type="button"
               >
-                Join now
+                {t('join now')}
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
+            <div className="p-8 w-full h-64 bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
-                🧑🏻‍💻 Working room
+                {t('working room.title')}
               </p>
-              <p className="mt-4 text-sm">Boost your productivity with us</p>
+              <p className="mt-4 text-sm">{t('working room.description')}</p>
               <button
                 onClick={focusRoom2}
                 className="button px-4 py-2 border rounded-xl	"
                 type="button"
               >
-                Join now
+                {t('join now')}
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
+            <div className="p-8 w-full h-64 bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
-                ⏳ Quite room{' '}
+                {t('quite room.title')}{' '}
               </p>
               <p className="mt-4 text-sm">
                 {' '}
-                Your studying heavan for ultimate focus
+                {t('quite room.description')}
               </p>
               <button
                 onClick={focusRoom3}
                 className="contrast-button px-4 py-2 border rounded-xl"
                 type="button"
               >
-                Join now
+                {t('join now')}
               </button>
             </div>
-            <div className="p-8 w-full bg-white col-span-1 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
+            <div className="p-8 w-full h-64 bg-white col-span-1 bg-gray-300 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
-                💡 Creative room
+                {t('creative room.title')}
               </p>
               <p className="mt-4 text-sm">
-                Unleash creativity, one study session at a time
+                {t('creative room.description')}
               </p>
               <button
                 onClick={focusRoom4}
                 className="button px-4 py-2 border rounded-xl"
                 type="button"
               >
-                Join now
+                {t('join now')}
+
               </button>
             </div>
           </div>
