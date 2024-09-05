@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './GetStarted.scss'
 import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 function GetStartedPage() {
   const state = useSelector(state => state)
@@ -58,6 +59,7 @@ function GetStartedPage() {
             <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">{t('header.rule')}</a></li>
             <li className="p-4 lg:p-0"><a href="/" className="text-black font-medium">{t('header.about')}</a></li>
           </ul>
+          <ChangeLanguage />
         </div>
       </div>
 
@@ -273,5 +275,4 @@ function GetStartedPage() {
     </div>
   )
 }
-
 export default GetStartedPage
