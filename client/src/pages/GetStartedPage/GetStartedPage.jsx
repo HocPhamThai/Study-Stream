@@ -275,5 +275,4 @@ function GetStartedPage() {
     </div>
   )
 }
-
 export default GetStartedPage
