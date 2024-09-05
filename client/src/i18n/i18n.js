@@ -2,7 +2,8 @@ import i18n from "i18next"
 import { initReactI18next } from "react-i18next"
 import GET_STARTED_EN from '../locales/en/get_started.json'
 import GET_STARTED_VI from '../locales/vi/get_started.json'
-
+import DASHHOME_EN from '../locales/en/dashome.json'
+import DASHHOME_VI from '../locales/vi/dashome.json'
 
 export const locales = {
   en: 'English',
@@ -11,10 +12,12 @@ export const locales = {
 
 const resources = {
   en: {
-    getStarted: GET_STARTED_EN
+    getStarted: GET_STARTED_EN,
+    dashhome: DASHHOME_EN
   },
   vi: {
-    getStarted: GET_STARTED_VI
+    getStarted: GET_STARTED_VI,
+    dashhome: DASHHOME_VI
   }
 }
 

@@ -1,0 +1,39 @@
+{
+  "header": {
+    "hi": "Hi"
+  },
+  "start": {
+    "enhance": "Enhance Focus & Boost Productivity",
+    "begin": "Begin Your Pomodoro Journey Now",
+    "start now": "Start now"
+  },
+  "your activities": "Your activities",
+  "total story": "Total Story",
+  "focused time": "Focused Time Today",
+  "stream room": "Stream room",
+  "study room": {
+    "title": "✍️ Study room",
+    "description": "Study together, stress less"
+  },
+  "working room": {
+    "title": "🧑🏻‍💻 Working room",
+    "description": "Boost your productivity with us"
+  },
+  "quite room": {
+    "title": "⏳ Quite room",
+    "description": "Your studying heavan for ultimate focus"
+  },
+  "creative room": {
+    "title": "💡 Creative room",
+    "description": "Unleash creativity, one study session at a time"
+  },
+  "guide": {
+    "title": "How to use",
+    "step_1": "Select a room: ",
+    "step_1_des": " Each room represents a specific study or work environment. Click 'Join now' to enter the room of your choice.",
+    "step_2": "Join the community: ",
+    "step_2_des": "Once inside, you'll see others who are focused on the same topic. Use this space to boost your productivity.",
+    "close": "Close"
+  },
+  "join now": "Join now"
+}
