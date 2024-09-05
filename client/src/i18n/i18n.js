@@ -19,10 +19,11 @@ const resources = {
 }
 
 const defaultNS = 'getStarted'
+const savedLanguage = (localStorage.getItem('language') || 'vi').toLowerCase();
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: savedLanguage,
   ns: ['getStarted'],
   fallbackLng: 'en',
   defaultNS,

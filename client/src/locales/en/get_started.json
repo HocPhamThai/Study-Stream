@@ -14,6 +14,40 @@
   "features": {
     "features": "Features",
     "focus": "Focus live room",
-    "focusDescription": "Study with the large community of students live"
+    "focusDescription": "Stay focused, study smarter. Our video streams help you eliminate distractions and boost your learning",
+    "pomoDescription": "Easy to use and enhances study efficiency with the Pomodoro method. Focus deeply for 25 minutes, then take a short 5-minute break",
+    "aiChat": "AI Chat",
+    "aiDescription": "Experience seamless interactions with our AI chat feature, providing instant support and answers on our website",
+    "learningDescription": "Enhance your learning experience with personalized video sessions. Track your progress, minimize distractions, and achieve your study goals"
+  },
+  "video": {
+    "push": "Push your",
+    "motivation": "motivation",
+    "video streaming": "with the video streaming!",
+    "description": "Join the room, witness everyone's focus, and boost your motivation"
+  },
+  "pomodoro working": {
+    "enhance": "Enhance your learning",
+    "efficiency": "efficiency ",
+    "with": "with StudyStream!",
+    "description": "Don't force yourself if you're not truly ready. Focus deeply for 25 minutes, then take a short 5-minute break"
+  },
+  "ai chat": {
+    "answer": "Answer",
+    "questions": "questions",
+    "chatbot": "chatbot",
+    "description": "Our AI chatbot is designed to efficiently and accurately answer all your questions, providing quick and reliable assistance"
+  },
+  "learning": {
+    "learn": "Learn with",
+    "track": "and track progress",
+    "description": "Choose a course and start learning something new to improve yourself every day"
+  },
+  "community": {
+    "community": "Community",
+    "involved": "Get involved in our community. Everyone is welcome!",
+    "facebook": "Join our Facebook for support and updates.",
+    "twitter": "To get involved in the community, ask questions and share tips.",
+    "tiktok": "Follow us on Tiktok for videos and contents. "
   }
 }

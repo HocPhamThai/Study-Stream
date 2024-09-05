@@ -20,6 +20,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 const DashHome = () => {
@@ -105,6 +106,9 @@ const DashHome = () => {
             Hi, {user.firstname + ' ' + user.lastname}
           </span>
 
+        </div>
+        <div className='relative mr-2'>
+          <ChangeLanguage />
         </div>
         <div className="relative mr-2">
           <AvatarDropdown />
