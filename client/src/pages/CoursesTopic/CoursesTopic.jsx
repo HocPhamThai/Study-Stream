@@ -11,6 +11,8 @@ import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import LearnOnYoutube from '../../components/LearnOnYoutube/LearnOnYoutube'
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -20,49 +22,15 @@ const CoursesTopic = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const { t } = useTranslation(['learning', 'dashhome'])
 
   const topics = [
-    {
-      courseId: 'programing',
-      coverImage: 'https://i.imgur.com/WhanzfL.png',
-      name: 'Programing',
-      description:
-        'Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games.',
-    },
-    {
-      courseId: 'design',
-      coverImage: 'https://i.imgur.com/JX0QuCS.png',
-      name: 'Design',
-      description:
-        'Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life.',
-    },
-    {
-      courseId: 'languages',
-      coverImage: 'https://i.imgur.com/bsJY58d.png',
-      name: 'Language',
-      description:
-        'Break language barriers: Explore a world of languages, connect with diverse cultures, and expand your horizons.',
-    },
-    {
-      courseId: 'photograph',
-      coverImage: 'https://i.imgur.com/5iAUMio.png',
-      name: 'Photography',
-      description:
-        'Capture the world through your lens: Photography courses teach you the art of capturing moments, emotions, and stories through stunning images. Learn composition, lighting, and editing techniques to create photographs that leave a lasting impression.',
-    },
-    {
-      courseId: 'softskills',
-      coverImage: 'https://i.imgur.com/pKls9Z2.png',
-      name: 'Soft Skills',
-      description:
-        'Master essential life skills: Soft skills courses help you develop effective communication, leadership, and teamwork abilities, crucial for success in any field.',
-    },
-    {
-      courseId: 'subject',
-      coverImage: 'https://i.imgur.com/JyPt1cJ.png',
-      name: 'Subjects',
-      description: 'Explore & Expand: Dive into diverse subjects, gain new insights, and unlock your potential.',
-    },
+    { courseId: 'programing', coverImage: 'https://i.imgur.com/WhanzfL.png' },
+    { courseId: 'design', coverImage: 'https://i.imgur.com/JX0QuCS.png' },
+    { courseId: 'languages', coverImage: 'https://i.imgur.com/bsJY58d.png' },
+    { courseId: 'photograph', coverImage: 'https://i.imgur.com/5iAUMio.png' },
+    { courseId: 'softskills', coverImage: 'https://i.imgur.com/pKls9Z2.png' },
+    { courseId: 'subject', coverImage: 'https://i.imgur.com/JyPt1cJ.png' },
   ]
 
   const handleOptionSelect = (option) => {
@@ -80,10 +48,13 @@ const CoursesTopic = () => {
           />
           {console.log("User: ", user)}
           <span className="text-lg">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
-        <div className="relative mr-2">
+
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
+
           <AvatarDropdown />
         </div>
       </div>
@@ -97,7 +68,7 @@ const CoursesTopic = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-lg bg-white px-6 py-4">
           <div className="mb-4">
             <div className="flex items-center">
-              <span className="ml-5 font-bold">Learning Space</span>
+              <span className="ml-5 font-bold">{t('title')}</span>
             </div>
           </div>
           <div className="my-2 grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -108,9 +79,10 @@ const CoursesTopic = () => {
                   Noti
                 </div>
                 <p className="text-medium font-semibold md:text-lg">
-                  Learn something new every day to enrich your mind and elevate your life.
+                  {t('noti.title')}
+
                 </p>
-                <p className="mt-4 text-sm">Commit to exploring at least one new concept daily!</p>
+                <p className="mt-4 text-sm">{t('noti.description')}</p>
               </div>
               <div className="flex flex-1 justify-center">
                 <img className="w-[160px] h-[121px]" src='https://i.imgur.com/K9Oow0V.png' alt="" />
@@ -124,20 +96,19 @@ const CoursesTopic = () => {
                 className="cursor-pointer group relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
                 style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
               >
-                {console.log('topic image: ', topic?.coverImage)}
                 <div className='flex items-center justify-center md:p-4'>
                   <img className='h-[120px] md:h-[150px]' src={topic.coverImage} alt="" />
                 </div>
                 <div className='flex flex-1 flex-col p-4' style={{ backgroundColor: 'rgba(255, 235, 245)' }}>
-                  <p className='font-bold'>{topic.name}</p>
+                  <p className='font-bold'>{t(`topics.${topic.courseId}.name`)}</p>
                   <div className='flex h-full flex-col items-end justify-between gap-2 md:flex-row md:items-center'>
                     <div className='w-full overflow-hidden text-ellipsis'>
                       <div className='w-full overflow-hidden text-sm line-clamp-3'>
-                        {topic.description}
+                        <p>{t(`topics.${topic.courseId}.description`)}</p>
                       </div>
                     </div>
                     <button className="bg-gradient-to-r from-[#f9a225] to-[#f95f35] z-0 px-4 py-2 rounded-lg text-white">
-                      Start
+                      {t('start')}
                     </button>
                   </div>
                 </div>

@@ -1,0 +1,43 @@
+{
+  "title": "Learning Space",
+  "noti": {
+    "title": "Learn something new every day to enrich your mind and elevate your life.",
+    "description": "Commit to exploring at least one new concept daily!"
+  },
+  "youtube": {
+    "title": "Learn Effectively on YouTube",
+    "description": "You can choose a video you want to study on Youtube, drop it here, and start studying with the Pomodoro method, take notes, and more",
+    "guide": "Enter YouTube URL",
+    "button": "Convert & Study"
+  },
+  "topics": {
+    "programing": {
+      "name": "Programming",
+      "description": "Unlock the digital world: Embark on a programming journey, learn coding languages, and build your own websites, apps, or even games."
+    },
+    "design": {
+      "name": "Design",
+      "description": "Unleash your creativity: Explore a world of design courses, from graphic design to UX/UI, and bring your ideas to life."
+    },
+    "languages": {
+      "name": "Language",
+      "description": "Break language barriers: Explore a world of languages, connect with diverse cultures, and expand your horizons."
+    },
+    "photograph": {
+      "name": "Photography",
+      "description": "Capture the world through your lens: Photography courses teach you the art of capturing moments, emotions, and stories through stunning images."
+    },
+    "softskills": {
+      "name": "Soft Skills",
+      "description": "Master essential life skills: Soft skills courses help you develop effective communication, leadership, and teamwork abilities."
+    },
+    "subject": {
+      "name": "Subjects",
+      "description": "Explore & Expand: Dive into diverse subjects, gain new insights, and unlock your potential."
+    }
+  },
+  "start": "Start",
+  "space": "Space of",
+  "back": "Back",
+  "search": "Type to search..."
+}

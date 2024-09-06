@@ -8,6 +8,8 @@ import AvatarDropdown from '../../components/AvatarDropdown/AvatarDropdown'
 import OptionList from '../../components/OptionList/OptionList'
 import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
 import CourseOptionList from '../../components/CourseOptionList/CourseOptionList'
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 function Lessons() {
   const { user } = useSelector((state) => state.authReducer.authData)
@@ -19,6 +21,7 @@ function Lessons() {
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
   const { courseTopicId, courseId } = useParams()
+  const { t } = useTranslation(['learning', 'dashhome'])
 
   useEffect(() => {
     const fetchLessons = async () => {
@@ -67,10 +70,11 @@ function Lessons() {
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
           <span className="text-lg">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
-        <div className="relative mr-2">
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
           <AvatarDropdown />
         </div>
       </div>
@@ -96,7 +100,7 @@ function Lessons() {
                   >
                     <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" />
                   </svg>
-                  <span className="text-lg">Back</span>
+                  <span className="text-lg">{t('back')}</span>
                 </span>
               </Link>
               <span className="ml-5 text-xl font-bold">
@@ -126,7 +130,7 @@ function Lessons() {
               </svg>
               <input
                 type="text"
-                placeholder="Type to search..."
+                placeholder={t('search')}
                 value={searchQuery}
                 onChange={handleSearchChange}
                 className="ml-3 p-1 focus:outline-none"

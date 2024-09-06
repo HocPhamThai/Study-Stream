@@ -11,6 +11,8 @@ import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import LearnOnYoutube from '../../components/LearnOnYoutube/LearnOnYoutube'
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
@@ -18,11 +20,11 @@ const CoursesTopic = () => {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [courses, setCourses] = useState(null)
   const [listCourses, setListCourses] = useState([])
-
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
   const { courseTopicId } = useParams()
+  const { t } = useTranslation(['learning', 'dashhome'])
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -48,10 +50,6 @@ const CoursesTopic = () => {
 
   return (
     <div className="bg-gray-200 z-50 -m-4">
-      {console.log("Courses: ", courses)}
-      {console.log(">> listCourses: ", listCourses)}
-
-
       <div className="flex justify-between items-center bg-transparent p-2">
         <div className="w-auto h-9 relative ml-3 flex items-center space-x-5">
           <img
@@ -61,10 +59,11 @@ const CoursesTopic = () => {
           />
           {console.log("User: ", user)}
           <span className="text-lg">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
-        <div className="relative mr-2">
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
           <AvatarDropdown />
         </div>
       </div>
@@ -86,7 +85,7 @@ const CoursesTopic = () => {
                 >
                   <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" />
                 </svg>
-                <span className="text-lg">Back</span>
+                <span className="text-lg">{t('back')}</span>
               </span>
             </Link>
           </div>
@@ -97,9 +96,9 @@ const CoursesTopic = () => {
                   Noti
                 </div>
                 <p className="text-medium font-semibold md:text-lg">
-                  {courses?.courseTopicName} Space
+                  {t('space')} {t(`topics.${courseTopicId}.name`)}
                 </p>
-                <p className="mt-4 text-sm">{courses?.courseTopicDescription}</p>
+                <p className="mt-4 text-sm">{t(`topics.${courseTopicId}.description`)}</p>
               </div>
               <div className="flex flex-1 justify-center">
                 <img className="w-[200px] h-[115px]" src={courses?.courseTopicImage} alt="" />
@@ -125,7 +124,7 @@ const CoursesTopic = () => {
                       </div>
                     </div>
                     <button className="bg-gradient-to-r from-[#f9a225] to-[#f95f35] z-0 px-4 py-2 rounded-lg text-white">
-                      Start
+                      {t('start')}
                     </button>
                   </div>
                 </div>
