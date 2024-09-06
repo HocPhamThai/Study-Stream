@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const LearnOnYoutube = () => {
   const [inputValue, setInputValue] = useState('')
   const navigate = useNavigate()
+  const { t } = useTranslation('learning')
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
@@ -34,19 +36,19 @@ const LearnOnYoutube = () => {
 
   return (
     <div className="learn-on-youtube-container mt-4 flex flex-col bg-white rounded-lg p-4">
-      <h1 className="text-md text-gray-800 font-bold">Learn Effectively on YouTube</h1>
+      <h1 className="text-md text-gray-800 font-bold">{t('youtube.title')}</h1>
       <p className='text-gray-500 text-xs my-2'>
-        You can choose a video you want to study on Youtube, drop it here, and start studying with the Pomodoro method, take notes, and more
+        {t('youtube.description')}
       </p>
       <input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Enter YouTube URL"
+        placeholder={t('youtube.guide')}
         className="input-field p-3 rounded-lg mt-2"
       />
       <button onClick={handleSubmit} className="submit-button button mt-2 p-2">
-        Convert & Study
+        {t('youtube.button')}
       </button>
     </div>
   )

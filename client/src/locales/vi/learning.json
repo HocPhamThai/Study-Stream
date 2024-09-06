@@ -1,0 +1,43 @@
+{
+  "title": "Không gian học tập",
+  "noti": {
+    "title": "Học hỏi điều mới mỗi ngày để làm giàu tâm trí và nâng cao cuộc sống của bạn",
+    "description": "Cam kết khám phá ít nhất một khái niệm mới mỗi ngày!"
+  },
+  "youtube": {
+    "title": "Học hiệu quả trên YouTube",
+    "description": "Bạn có thể chọn một video bạn muốn học trên YouTube, thả nó vào đây à bắt đầu học với phương pháp Pomodoro, ghi chú và nhiều hơn nữa",
+    "guide": "Nhập URL của YouTube",
+    "button": "Chuyển đổi & Học"
+  },
+  "topics": {
+    "programing": {
+      "name": "Lập trình",
+      "description": "Mở khóa thế giới kỹ thuật số: Bắt đầu hành trình lập trình, học ngôn ngữ mã hóa và xây dựng trang web, ứng dụng hoặc thậm chí là trò chơi của riêng bạn."
+    },
+    "design": {
+      "name": "Thiết kế",
+      "description": "Giải phóng sự sáng tạo: Khám phá thế giới của các khóa học thiết kế, từ thiết kế đồ họa đến UX/UI, và mang ý tưởng của bạn vào cuộc sống."
+    },
+    "languages": {
+      "name": "Ngôn ngữ",
+      "description": "Phá bỏ rào cản ngôn ngữ: Khám phá thế giới ngôn ngữ, kết nối với các nền văn hóa khác nhau và mở rộng tầm nhìn của bạn."
+    },
+    "photograph": {
+      "name": "Nhiếp ảnh",
+      "description": "Bắt lấy thế giới qua ống kính của bạn: Các khóa học nhiếp ảnh dạy bạn nghệ thuật bắt giữ khoảnh khắc, cảm xúc và câu chuyện thông qua hình ảnh tuyệt đẹp. Học kỹ thuật bố cục, ánh sáng và chỉnh sửa để tạo ra những bức ảnh ấn tượng."
+    },
+    "softskills": {
+      "name": "Kỹ năng mềm",
+      "description": "Làm chủ những kỹ năng sống cần thiết: Các khóa học kỹ năng mềm giúp bạn phát triển kỹ năng giao tiếp, lãnh đạo và làm việc nhóm hiệu quả, rất quan trọng để thành công trong bất kỳ lĩnh vực nào."
+    },
+    "subject": {
+      "name": "Môn học",
+      "description": "Khám phá và mở rộng: Lặn sâu vào các môn học đa dạng, tiếp thu những hiểu biết mới và phát huy tiềm năng của bạn."
+    }
+  },
+  "start": "Bắt đầu",
+  "space": "Không gian",
+  "back": "Quay lại",
+  "search": "Nhập để tìm kiếm..."
+}
