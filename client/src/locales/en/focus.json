@@ -1,0 +1,37 @@
+{
+  "hi": "Hi",
+  "title": "Focusing Space",
+  "back": "Back",
+  "search": "Type to search",
+  "noti": {
+    "title": "Enhance your focus and achieve greater productivity with the Pomodoro Technique",
+    "description": "Choose a video and start your Pomodoro session!"
+  },
+  "button": "Start",
+  "topics": {
+    "coding": {
+      "name": "Coding",
+      "description": "Coding Motivation features inspiring videos to boost your enthusiasm and productivity in programming."
+    },
+    "lofichill": {
+      "name": "Lofi",
+      "description": "Lofi Chill is relaxing, gentle music, perfect for studying, working,..."
+    },
+    "city": {
+      "name": "City",
+      "description": "City features videos capturing the vibrant and bustling cityscapes,..."
+    },
+    "nature": {
+      "name": "Nature",
+      "description": "The space brings a sense of tranquility and closeness to nature."
+    },
+    "cafe": {
+      "name": "Cafe",
+      "description": "The lively and cozy atmosphere of a coffee shop provides an ideal setting for concentration and creativity."
+    },
+    "other": {
+      "name": "Other",
+      "description": "Study with StudyStream"
+    }
+  }
+}

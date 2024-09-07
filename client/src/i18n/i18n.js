@@ -6,6 +6,8 @@ import DASHHOME_EN from '../locales/en/dashome.json'
 import DASHHOME_VI from '../locales/vi/dashome.json'
 import LEARNING_EN from '../locales/en/learning.json'
 import LEARNING_VI from '../locales/vi/learning.json'
+import FOCUS_EN from '../locales/en/focus.json'
+import FOCUS_VI from '../locales/vi/focus.json'
 
 export const locales = {
   en: 'English',
@@ -17,11 +19,13 @@ const resources = {
     getStarted: GET_STARTED_EN,
     dashhome: DASHHOME_EN,
     learning: LEARNING_EN,
+    focus: FOCUS_EN
   },
   vi: {
     getStarted: GET_STARTED_VI,
     dashhome: DASHHOME_VI,
     learning: LEARNING_VI,
+    focus: FOCUS_VI
   }
 }
 
