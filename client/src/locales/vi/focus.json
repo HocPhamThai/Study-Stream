@@ -1,0 +1,37 @@
+{
+  "hi": "Xin chào",
+  "title": "Không gian tập trung",
+  "back": "Quay lại",
+  "search": "Nhập để tìm kiếm",
+  "noti": {
+    "title": "Tăng cường khả năng tập trung và đạt được năng suất cao hơn với kỹ thuật Pomodoro",
+    "description": "Chọn một video và bắt đầu phiên Pomodoro của bạn!"
+  },
+  "button": "Bắt đầu",
+  "topics": {
+    "coding": {
+      "name": "Coding",
+      "description": "Coding Motivation cung cấp các video truyền cảm hứng giúp tăng cường động lực và hiệu quả trong lập trình."
+    },
+    "lofichill": {
+      "name": "Lofi",
+      "description": "Lofi Chill là âm nhạc nhẹ nhàng và thư giãn, lý tưởng để học tập, làm việc, hoặc thư giãn."
+    },
+    "city": {
+      "name": "City",
+      "description": "City là thể loại video ghi lại cảnh quan sống động và nhộn nhịp của thành phố, mang đến nguồn cảm hứng và thư giãn."
+    },
+    "nature": {
+      "name": "Nature",
+      "description": "Không gian mang lại cảm giác yên bình và gần gũi với thiên nhiên"
+    },
+    "cafe": {
+      "name": "Cafe",
+      "description": "Không gian đầy sôi động và ấm áp của quán cà phê, tạo điểm tựa lý tưởng cho sự tập trung và sự sáng tạo"
+    },
+    "other": {
+      "name": "Other",
+      "description": "Học với StudyStream"
+    }
+  }
+}

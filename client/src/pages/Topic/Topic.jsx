@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom'
 import RandomPlaylist from '../../components/RandomPlaylist/RandomPlaylist'
 import FavoritePlaylist from '../../components/FavoritePlaylist/FavoritePlaylist'
 import HorizontalNavbar from '../../components/HorizontalNavbar/HorizontalNavbar'
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 import './Topic.scss'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -21,6 +23,7 @@ const Topic = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const { t } = useTranslation(['focus'])
 
   const topics = [
     {
@@ -81,10 +84,11 @@ const Topic = () => {
           />
           {console.log("User: ", user)}
           <span className="text-lg">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {t('hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
-        <div className="relative mr-2">
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
           <AvatarDropdown />
         </div>
       </div>
@@ -98,7 +102,7 @@ const Topic = () => {
         <div className="flex-1 p-4 m-auto my-4 max-w-5xl rounded-lg bg-white px-6 py-4">
           <div className="mb-4">
             <div className="flex items-center">
-              <span className="ml-5 font-bold">Focusing Space</span>
+              <span className="ml-5 font-bold">{t('title')}</span>
             </div>
           </div>
           <div className="my-2 grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -109,9 +113,9 @@ const Topic = () => {
                   Noti
                 </div>
                 <p className="text-medium font-semibold md:text-lg">
-                  Enhance your focus and achieve greater productivity with the Pomodoro Technique
+                  {t('noti.title')}
                 </p>
-                <p className="mt-4 text-sm">Choose a video and start your Pomodoro session!</p>
+                <p className="mt-4 text-sm">{t('noti.description')}</p>
               </div>
               <div className="flex flex-1 justify-center">
                 <img className="w-[140px] h-[140px]" src='https://i.imgur.com/Cn4kCmx.png' alt="" />
@@ -134,11 +138,11 @@ const Topic = () => {
                   <div className='flex h-full flex-col items-end justify-between gap-2 md:flex-row md:items-center'>
                     <div className='w-full overflow-hidden text-ellipsis'>
                       <div className='w-full overflow-hidden text-sm line-clamp-3'>
-                        {topic.description}
+                        {t(`topics.${topic.topicId}.description`)}
                       </div>
                     </div>
                     <button className="bg-gradient-to-r from-[#f9a225] to-[#f95f35] z-0 px-4 py-2 rounded-lg text-white">
-                      Start
+                      {t('button')}
                     </button>
                   </div>
                 </div>
