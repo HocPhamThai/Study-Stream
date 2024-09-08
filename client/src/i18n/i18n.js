@@ -12,6 +12,8 @@ import PROFILE_EN from '../locales/en/profile.json'
 import PROFILE_VI from '../locales/vi/profile.json'
 import CHAT_EN from '../locales/en/chat.json'
 import CHAT_VI from '../locales/vi/chat.json'
+import CHATBOT_EN from '../locales/en/chatbot.json'
+import CHATBOT_VI from '../locales/vi/chatbot.json'
 
 export const locales = {
   en: 'English',
@@ -25,7 +27,8 @@ const resources = {
     learning: LEARNING_EN,
     focus: FOCUS_EN,
     profile: PROFILE_EN,
-    chat: CHAT_EN
+    chat: CHAT_EN,
+    chatbot: CHATBOT_EN
   },
   vi: {
     getStarted: GET_STARTED_VI,
@@ -33,7 +36,8 @@ const resources = {
     learning: LEARNING_VI,
     focus: FOCUS_VI,
     profile: PROFILE_VI,
-    chat: CHAT_VI
+    chat: CHAT_VI,
+    chatbot: CHATBOT_VI
   }
 }
 

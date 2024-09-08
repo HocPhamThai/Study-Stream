@@ -11,6 +11,7 @@ import {
   sendChatRequest,
 } from '../../api/ChatBotRequest'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
@@ -20,6 +21,8 @@ const ChatBot = () => {
   const chatContainerRef = useRef(null)
   const { user } = useSelector((state) => state.authReducer.authData)
   const [chatMessages, setChatMessages] = useState([])
+  const { t } = useTranslation('chatbot')
+
   const handleSubmit = async () => {
     const content = inputRef.current?.value
     if (inputRef && inputRef.current) {
@@ -118,7 +121,7 @@ const ChatBot = () => {
             <Typography
               sx={{ mx: 'auto', fontFamily: 'Sans-Serif', fontWeight: 'bold' }}
             >
-              You are talking to a ChatBot
+              {t('You are talking to a ChatBot')}
             </Typography>
             <Typography
               sx={{
@@ -129,8 +132,8 @@ const ChatBot = () => {
                 textAlign: 'center',
               }}
             >
-              You can ask some questions related to Knowledge, Business,
-              Advices, Education, etc.
+              {t('You can ask some questions related to Knowledge, Business, Advices, Education, etc.')}
+
               <Typography
                 sx={{
                   color: 'error.main',
@@ -138,7 +141,7 @@ const ChatBot = () => {
                   alignItems: 'center',
                 }}
               >
-                ⚠️ But avoid sharing personal information!
+                {t('⚠️ But avoid sharing personal information!')}
               </Typography>
             </Typography>
             <Button
@@ -153,7 +156,7 @@ const ChatBot = () => {
               }}
               className="button"
             >
-              Clear Conversation
+              {t('clear button')}
             </Button>
           </Box>
         </Box>
@@ -175,7 +178,7 @@ const ChatBot = () => {
             }}
           >
             <h1 className="text-[--orange] pt-4 md:pt-0 pb-8 px-4 text-xl  text-center group-[.iframe]:hidden">
-              Fast AI Inference
+              {t('title')}
             </h1>
           </Typography>
           <Box
