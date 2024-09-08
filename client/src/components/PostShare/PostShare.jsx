@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../actions/uploadAction'
 import './PostShare.scss'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 const PostShare = () => {
   const loading = useSelector((state) => state.postReducer.uploading)
@@ -18,6 +19,7 @@ const PostShare = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
   const desc = useRef()
+  const { t } = useTranslation(['profile'])
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
   const onImageChange = (event) => {
@@ -80,7 +82,7 @@ const PostShare = () => {
         <input
           ref={desc}
           type="text"
-          placeholder="Share your story for yourself!!!"
+          placeholder={t('share')}
           required
         />
         <div className="postOptions">
@@ -109,7 +111,7 @@ const PostShare = () => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? 'Posting...' : 'Share'}
+            {loading ? 'Posting...' : t('share button')}
           </button>
         </div>
         <div style={{ display: 'none' }}>

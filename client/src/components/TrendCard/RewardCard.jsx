@@ -1,10 +1,13 @@
 import React from 'react'
 import './TrendCard.scss'
-import { TrendData } from '../../Data/TrendData'
+import { useTranslation } from 'react-i18next'
+
 const RewardCard = ({ rewards, totalDuration }) => {
+  const { t } = useTranslation(['profile'])
+
   return (
     <div className='block bg-white rounded-xl'>
-      <h3 className='ml-10 mt-5'>Achievements</h3>
+      <h3 className='ml-10 mt-5 font-bold uppercase'>{t('achievements')}</h3>
       {rewards?.map((reward, index) => {
         if (reward.hour < 6) {
           return (
@@ -14,7 +17,7 @@ const RewardCard = ({ rewards, totalDuration }) => {
                 src={reward.link}
                 alt=""
               />
-              <div className='col-span-2 flex items-center'>{reward.tittle}</div>
+              <div className='col-span-2 flex items-center'>{t(`titles.${index}`)}</div>
             </div>
           )
         }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { uploadImage } from '../../actions/uploadAction'
 import { updateUser } from '../../actions/UserAction'
+import { useTranslation } from 'react-i18next'
 
 function ProfileModal({ modalOpened, setModalOpened, data }) {
   const theme = useMantineTheme()
@@ -13,6 +14,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
   const [profileImg, setProfileImg] = useState(null)
   const [coverImg, setCoverImg] = useState(null)
   const param = useParams()
+  const { t } = useTranslation(['profile'])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -70,15 +72,14 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
       onClose={() => setModalOpened(false)}
     >
       <form className="infoForm">
-        <h3>Your info</h3>
-
+        <h3 className='font-bold text-lg'>{t('information')}</h3>
         <div>
           <input
             type="text"
             className="infoInput"
             value={formData.firstname}
             name="firstname"
-            placeholder="First Name"
+            placeholder={t('first name')}
             onChange={handleChange}
           />
 
@@ -86,7 +87,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             type="text"
             className="infoInput"
             name="lastname"
-            placeholder="Last Name"
+            placeholder={t('last name')}
             onChange={handleChange}
             value={formData.lastname}
           />
@@ -97,7 +98,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             type="text"
             className="infoInput"
             name="workAt"
-            placeholder="Works at"
+            placeholder={t('work')}
             onChange={handleChange}
             value={formData.workAt}
           />
@@ -108,7 +109,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             type="text"
             className="infoInput"
             name="liveIn"
-            placeholder="Lives in"
+            placeholder={t('live')}
             onChange={handleChange}
             value={formData.liveIn}
           />
@@ -117,7 +118,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             type="text"
             className="infoInput"
             name="country"
-            placeholder="Country"
+            placeholder={t('country')}
             onChange={handleChange}
             value={formData.country}
           />
@@ -127,7 +128,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
           <input
             type="text"
             className="infoInput"
-            placeholder="Relationship Status"
+            placeholder={t('status')}
             name="relationship"
             onChange={handleChange}
             value={formData.relationship}
@@ -135,14 +136,18 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
         </div>
 
         <div>
-          Profile Image
-          <input type="file" name="profileImage" onChange={onImageChange} />
-          Cover Image
-          <input type="file" name="coverImage" onChange={onImageChange} />
+          <div>
+            <div>{t('profile image')}</div>
+            <input type="file" name="profileImage" onChange={onImageChange} />
+          </div>
+          <div>
+            <div>{t('cover image')}</div>
+            <input type="file" name="coverImage" onChange={onImageChange} />
+          </div>
         </div>
 
         <button className="button infoButton" onClick={handleSubmit}>
-          Update
+          {t('update')}
         </button>
       </form>
     </Modal>

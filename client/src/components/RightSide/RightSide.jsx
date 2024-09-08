@@ -14,12 +14,15 @@ import PostShare from '../PostShare/PostShare'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import RewardCard from '../TrendCard/RewardCard'
+import { useTranslation } from 'react-i18next'
 
 const RightSide = () => {
   const [modalOpened, setmodalOpened] = useState(false)
   const [rewards, setRewards] = useState([])
   const [totalDuration, setTotalDuration] = useState(0)
   const { user } = useSelector((state) => state.authReducer.authData)
+  const { t } = useTranslation(['profile'])
+
   useEffect(() => {
     const fetchRewards = async () => {
       try {
@@ -55,7 +58,7 @@ const RightSide = () => {
         className="button right-button"
         onClick={() => setmodalOpened(true)}
       >
-        Share
+        {t('view more')}
       </button>
       <ShareModal2
         modalOpened={modalOpened}
