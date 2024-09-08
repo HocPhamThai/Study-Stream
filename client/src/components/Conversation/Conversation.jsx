@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getUser } from '../../api/UserRequest'
+import { useTranslation } from 'react-i18next'
 
 const Conversation = ({ data, currentUserId, online }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [userData, setUserData] = useState(null)
+  const { t } = useTranslation(['chat'])
 
   const friendId = data?.members?.find((id) => id !== currentUserId)
   useEffect(() => {
@@ -40,7 +42,7 @@ const Conversation = ({ data, currentUserId, online }) => {
             <span className="font-bold">
               {userData?.firstname} {userData?.lastname}
             </span>
-            <span>{online ? 'Online' : 'Offline'}</span>
+            <span>{online ? t('online') : t('offline')}</span>
           </div>
         </div>
       </div>

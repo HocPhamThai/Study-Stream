@@ -68,7 +68,7 @@ function ChangeLanguage() {
         onClick={handleClick}
         className="flex items-center border border-gray-300 rounded px-3 py-2"
         sx={{
-          backgroundColor: 'rgba(128, 128, 128, 0.4)',
+          backgroundColor: 'rgba(128, 128, 128, 0.3)',
           color: 'black',
           justifyContent: 'flex-start',
           '&:hover': {

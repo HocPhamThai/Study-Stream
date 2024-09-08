@@ -10,6 +10,8 @@ import FOCUS_EN from '../locales/en/focus.json'
 import FOCUS_VI from '../locales/vi/focus.json'
 import PROFILE_EN from '../locales/en/profile.json'
 import PROFILE_VI from '../locales/vi/profile.json'
+import CHAT_EN from '../locales/en/chat.json'
+import CHAT_VI from '../locales/vi/chat.json'
 
 export const locales = {
   en: 'English',
@@ -22,14 +24,16 @@ const resources = {
     dashhome: DASHHOME_EN,
     learning: LEARNING_EN,
     focus: FOCUS_EN,
-    profile: PROFILE_EN
+    profile: PROFILE_EN,
+    chat: CHAT_EN
   },
   vi: {
     getStarted: GET_STARTED_VI,
     dashhome: DASHHOME_VI,
     learning: LEARNING_VI,
     focus: FOCUS_VI,
-    profile: PROFILE_VI
+    profile: PROFILE_VI,
+    chat: CHAT_VI
   }
 }
 

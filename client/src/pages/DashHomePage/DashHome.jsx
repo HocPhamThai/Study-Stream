@@ -110,10 +110,9 @@ const DashHome = () => {
           </span>
 
         </div>
-        <div className='relative mr-2'>
-          <ChangeLanguage />
-        </div>
-        <div className="relative mr-2">
+
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
           <AvatarDropdown />
         </div>
       </div>

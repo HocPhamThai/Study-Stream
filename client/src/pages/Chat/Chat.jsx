@@ -27,7 +27,8 @@ import { searchUsers } from '../../api/UserRequest'
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar'
 import { UilSetting } from '@iconscout/react-unicons'
 import HorizontalNavBar from '../../components/HorizontalNavbar/HorizontalNavbar'
-
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 const Chat = () => {
   const dispatch = useDispatch()
   const authData = useSelector((state) => state.authReducer.authData) || {
@@ -41,6 +42,7 @@ const Chat = () => {
   const [userSearchs, setUserSearchs] = useState([])
   const [querySearch, setQuerySearch] = useState('')
   const socket = useRef(null)
+  const { t } = useTranslation(['chat'])
 
   useEffect(() => {
     if (user) {
@@ -139,7 +141,7 @@ const Chat = () => {
           <LogoSearch />
         </div>
         <div className="flex flex-col gap-4 bg-white rounded-lg mt-[2px] p-4 min-h-[80vh] xs:min-h-[60vh]">
-          <h2>Chats</h2>
+          <h2>{t('chat')}</h2>
           <div>
             <SearchForm
               onSearch={onSearch}
@@ -150,64 +152,69 @@ const Chat = () => {
           <div className="flex flex-col gap-2 overflow-auto scrollbar-none">
             {showChat
               ? chats.map((chat) => (
-                  <div
-                    key={chat?._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => dispatch(setCurrentChat(chat))}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        dispatch(setCurrentChat(chat))
-                      }
+                <div
+                  key={chat?._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => dispatch(setCurrentChat(chat))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      dispatch(setCurrentChat(chat))
+                    }
+                  }}
+                  className="relative p-2 rounded-lg hover:bg-gray-300 cursor-pointer"
+                >
+                  <Conversation
+                    data={chat}
+                    currentUserId={user._id}
+                    online={checkOnlineStatus(chat)}
+                  />
+                  <button
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-orange-500 border-none p-1.5 rounded-md cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleDeleteChat(chat._id)
                     }}
-                    className="relative p-2 rounded-lg hover:bg-gray-300 cursor-pointer"
                   >
-                    <Conversation
-                      data={chat}
-                      currentUserId={user._id}
-                      online={checkOnlineStatus(chat)}
-                    />
-                    <button
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-orange-500 border-none p-1.5 rounded-md cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleDeleteChat(chat._id)
-                      }}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))
+                    X
+                  </button>
+                </div>
+              ))
               : userSearchs.map((user) => (
-                  <div
-                    key={user._id}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleUserClick(user._id)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleUserClick(user._id)
-                      }
-                    }}
-                  >
-                    <ConversationInSearch
-                      data={user}
-                      setShowChat={setShowChat}
-                    />
-                  </div>
-                ))}
+                <div
+                  key={user._id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleUserClick(user._id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleUserClick(user._id)
+                    }
+                  }}
+                >
+                  <ConversationInSearch
+                    data={user}
+                    setShowChat={setShowChat}
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-4 xs:hidden">
-        <div className="w-32 h-11 self-end flex items-center hidden md:block">
-          <div className="flex gap-4 flex-1 justify-between">
-            <Link to="/dashhome" style={{ width: '24px', height: 'auto' }}>
+        <div className="w-60 h-11 self-end flex items-center hidden md:flex">
+          <div className="relative mr-10">
+            <ChangeLanguage />
+          </div>
+          <div className="flex gap-4 flex-1 justify-between items-center mr-24">
+
+            <Link to="/dashhome" className='mr-6' style={{ width: '24px', height: 'auto' }}>
               <img src={Home} alt="" />
             </Link>
             <Link to={`/profile/${user._id}`}>
               <UilSetting />
             </Link>
+
           </div>
         </div>
         <ChatBox
