@@ -8,6 +8,7 @@ import UpdateUserModal from '../AdminManageUserButton/UpdateUserModal'
 import DeleteUserModal from '../AdminManageUserButton/DeleteUserModal'
 import ReadingUserModal from '../AdminManageUserButton/ReadingUserModal'
 import './UserTable.scss'
+import { useTranslation } from 'react-i18next'
 
 function UserTable({ dataAdmin }) {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -20,6 +21,7 @@ function UserTable({ dataAdmin }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState()
   const rowsPerPage = 6
+  const { t } = useTranslation(['chat'])
 
   const openModal = (userId, user, modalType) => {
     setSelectedUser(user)

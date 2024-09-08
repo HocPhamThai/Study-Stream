@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const SearchForm = ({ onSearch, showChat, setShowChat }) => {
   const [query, setQuery] = useState('')
   const [showIcon, setShowIcon] = useState(false)
+  const { t } = useTranslation(['chat'])
 
   useEffect(() => {
     if (showChat) {
@@ -59,8 +61,8 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for users..."
-          className="ml-8 pl-8 pr-2 py-2 w-full sm:pl-4 sm:pr-1 sm:py-1 focus:outline-none focus:border-none"
+          placeholder={t('search for users')}
+          className="ml-8 pl-8 pr-2 py-2 w-full sm:pl-4 sm:pr-1 sm:py-1 focus:outline-none focus:border-none rounded-r-md bg-gray-200"
         />
         <button
           type="submit"
