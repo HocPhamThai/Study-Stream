@@ -1,0 +1,32 @@
+{
+  "information": "Thông tin cá nhân",
+  "status": "Tình trạng",
+  "live": "Nơi ở",
+  "work": "Nơi làm việc",
+  "first name": "Tên của bạn",
+  "last name": "Họ của bạn",
+  "country": "Quê quán",
+  "profile image": "Ảnh đại diện",
+  "cover image": "Ảnh bìa",
+  "share": "Hãy chia sẻ câu chuyện của bạn!!!",
+  "logout": "Đăng xuất",
+  "update": "Cập nhật",
+  "share button": "Chia sẻ",
+  "view more": "Xem thêm",
+  "achievements": "Thành tựu",
+  "likes": "lượt thích",
+  "explore": "Khám phá",
+  "titles": [
+    "Đạt được chuỗi 1 giờ",
+    "Đạt được chuỗi 2 giờ",
+    "Đạt được chuỗi 3 giờ",
+    "Đạt được chuỗi 5 giờ",
+    "Đạt được chuỗi 7 giờ",
+    "Đạt được chuỗi 10 giờ",
+    "Đạt được chuỗi 25 giờ",
+    "Đạt được chuỗi 50 giờ",
+    "Đạt được chuỗi 75 giờ",
+    "Đạt được chuỗi 100 giờ",
+    "Đạt được chuỗi 200 giờ"
+  ]
+}

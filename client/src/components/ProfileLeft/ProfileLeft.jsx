@@ -15,7 +15,6 @@ const ProfileLeft = () => {
         </div>
         <div style={{ flex: '1' }}>
           <InfoCard />
-          {/* <FollowersCard /> */}
         </div>
       </div>
     </div>

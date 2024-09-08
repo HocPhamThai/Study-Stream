@@ -1,0 +1,31 @@
+{
+  "information": "Your Information",
+  "status": "Status",
+  "live": "Live in",
+  "work": "Work at",
+  "first name": "First name",
+  "last name": "Last name",
+  "country": "Country",
+  "profile image": "Profile Image",
+  "cover image": "Cover Image",
+  "share": "Share your story for yourself!!!",
+  "update": "Update",
+  "logout": "Logout",
+  "view more": "View more",
+  "achievements": "Achievements",
+  "likes": "likes",
+  "explore": "Explore",
+  "titles": [
+    "Achieved 1 hour streak",
+    "Achieved 2 hours streak",
+    "Achieved 3 hours streak",
+    "Achieved 5 hours streak",
+    "Achieved 7 hours streak",
+    "Achieved 10 hours streak",
+    "Achieved 25 hours streak",
+    "Achieved 50 hours streak",
+    "Achieved 75 hours streak",
+    "Achieved 100 hours streak",
+    "Achieved 200 hours streak"
+  ]
+}

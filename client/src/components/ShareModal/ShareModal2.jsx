@@ -1,8 +1,10 @@
 import { Modal, useMantineTheme } from '@mantine/core'
 import Tooltip from '@mui/material/Tooltip'
+import { useTranslation } from 'react-i18next'
 
 function ShareModal2({ modalOpened, setModalOpened, rewards, totalDuration }) {
   const theme = useMantineTheme()
+  const { t } = useTranslation(['profile'])
 
   return (
     <Modal
@@ -18,12 +20,12 @@ function ShareModal2({ modalOpened, setModalOpened, rewards, totalDuration }) {
       onClose={() => setModalOpened(false)}
     >
 
-      <h1 className='font-bold text-lg flex align-center justify-center'>Achievements</h1>
+      <h1 className='font-bold text-lg flex align-center justify-center uppercase'>{t('achievements')}</h1>
       <div className='grid grid-cols-5 mt-2'>
         {rewards?.map((reward, index) => (
           <div key={index} className='flex justify-center items-center'>
             <Tooltip
-              title={reward?.tittle}
+              title={t(`titles.${index}`)}
               arrow
               PopperProps={{
                 modifiers: [
@@ -46,7 +48,7 @@ function ShareModal2({ modalOpened, setModalOpened, rewards, totalDuration }) {
               <img
                 className={`col-span-1 w-[108px] h-[108px] justify-center my-2 ${totalDuration > reward.hour ? '' : 'grayscale'}`}
                 src={reward?.link}
-                alt={reward?.tittle}
+                alt={t(`titles.${index}`)}
               />
             </Tooltip>
           </div>
