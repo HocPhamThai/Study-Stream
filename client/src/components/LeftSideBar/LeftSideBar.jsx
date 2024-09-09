@@ -1,14 +1,17 @@
+import { t } from 'i18next'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { logOut } from '../../actions/AuthAction'
+import { useTranslation } from 'react-i18next'
 
 const LeftSideBar = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
   const location = useLocation()
   const [selected, setSelected] = useState('')
+  const { t, i18n } = useTranslation('navbar')
 
   useEffect(() => {
     const path = location.pathname.split('/')[1]
@@ -61,8 +64,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Dashhome
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: '90px',
+            }}
+          >
+            {t('Dashhome')}
           </div>
         </span>
 
@@ -100,8 +107,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Learning space
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
+            style={{
+              width: i18n.language === 'vi' ? '145px' : '120px',
+            }}
+          >
+            {t('Learning space')}
           </div>
         </span>
 
@@ -145,8 +156,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Focusing Space
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '160px' : '120px',
+            }}
+          >
+            {t('Focusing Space')}
           </div>
         </span>
 
@@ -183,8 +198,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Profile
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '116px' : '64px',
+            }}
+          >
+            {t('Profile')}
           </div>
         </span>
 
@@ -216,8 +235,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Chat
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '80px' : '55px',
+            }}
+          >
+            {t('Chat')}
           </div>
         </span>
 
@@ -264,8 +287,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Chatbot
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '130px' : '75px',
+            }}
+          >
+            {t('Chatbot')}
           </div>
         </span>
         <span className="relative flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300 group">
@@ -296,8 +323,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Analytics
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '84px' : '80px',
+            }}
+          >
+            {t('Analytics')}
           </div>
         </span>
 
@@ -334,8 +365,12 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Logout
+          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
+            style={{
+              width: i18n.language === 'vi' ? '90px' : '70px',
+            }}
+          >
+            {t('Logout')}
           </div>
         </span>
       </div>
