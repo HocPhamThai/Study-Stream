@@ -4,6 +4,7 @@ import { useState, useContext } from 'react'
 import { logOut } from '../../actions/AuthAction'
 import profile from './profile.png'
 import logout from './logout.png'
+import { useTranslation } from 'react-i18next'
 
 
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -12,6 +13,8 @@ function AvatarDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
+  const { t } = useTranslation('navbar')
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
@@ -53,13 +56,13 @@ function AvatarDropdown() {
             <li>
               <a href={`/profile/${user._id}`} className="flex px-4 py-2 hover:bg-gray-100">
                 <img src={profile} alt="" className='w-[18px] h-[18px]' />
-                <span className='ml-2'>Profile</span>
+                <span className='ml-2'>{t('Profile')}</span>
               </a>
             </li>
             <li>
               <a href="https://insigh.to/b/studystream" target="_blank" className="flex px-4 py-2 hover:bg-gray-100">
                 <img src="https://corodomo.com/assets/images/email.png" alt="" className='w-[18px] h-[18px]' />
-                <span className='ml-2'>Help center</span>
+                <span className='ml-2'>{t('Help center')}</span>
               </a>
             </li>
           </ul>
@@ -70,7 +73,7 @@ function AvatarDropdown() {
               onClick={handleLogOut}
             >
               <img src={logout} alt="" className='w-[20px] h-[20px]' />
-              <span className='ml-2'>Log out</span>
+              <span className='ml-2'>{t('Logout')}</span>
             </a>
           </div>
         </div>

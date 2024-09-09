@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const HorizontalNavBar = () => {
   const [selected, setSelected] = useState(null);
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
+  const { t, i18n } = useTranslation('navbar')
 
   const handleClick = (key) => {
     setSelected(key);
@@ -46,8 +48,12 @@ const HorizontalNavBar = () => {
               }
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Dashhome
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '86px' : '90px',
+            }}
+          >
+            {t('Dashhome')}
           </span>
         </span>
       </Link>
@@ -89,8 +95,12 @@ const HorizontalNavBar = () => {
               }
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Focusing space
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '160px' : '120px',
+            }}
+          >
+            {t('Focusing Space')}
           </span>
         </span>
       </Link>
@@ -125,8 +135,12 @@ const HorizontalNavBar = () => {
               }
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-lg opacity-0 group-hover:opacity-100">
-            Learning Space
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl opacity-0 group-hover:opacity-100"
+            style={{
+              width: i18n.language === 'vi' ? '150px' : '120px',
+            }}
+          >
+            {t('Learning space')}
           </span>
         </span>
       </Link>
@@ -158,15 +172,15 @@ const HorizontalNavBar = () => {
               }
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Profile
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '112px' : '66px',
+            }}
+          >
+            {t('Profile')}
           </span>
         </span>
       </Link>
-
-
-
-
       <Link to="/chatbot">
         <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
           <svg
@@ -205,7 +219,7 @@ const HorizontalNavBar = () => {
             </g>
           </svg>
           <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Chatbot
+            {t('Chatbot')}
           </span>
         </span>
       </Link>
@@ -237,8 +251,12 @@ const HorizontalNavBar = () => {
               fill={selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'}
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block">
-            Analytics
+          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+            style={{
+              width: i18n.language === 'vi' ? '84px' : '80px',
+            }}
+          >
+            {t('Analytics')}
           </span>
         </span>
       </Link>
