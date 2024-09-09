@@ -8,6 +8,7 @@ import { FaMusic } from 'react-icons/fa'
 import './MusicPlayer.scss'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 
 Modal.setAppElement('#root')
 
@@ -17,6 +18,7 @@ const MusicPlayer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isRepeat, setIsRepeat] = useState(false)
   const audioPlayerRef = useRef(null)
+  const { t } = useTranslation('pomodoro')
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -115,7 +117,7 @@ const MusicPlayer = () => {
         overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center"
         closeTimeoutMS={200}
       >
-        <h2 className="text-xl mb-4">Select a Song</h2>
+        <h2 className="text-xl mb-4">{t('Select a Song')}</h2>
         <div style={{ maxHeight: '150px', overflowY: 'auto' }}>
           {songs.map((song, index) => (
             <button
@@ -131,7 +133,7 @@ const MusicPlayer = () => {
           ))}
         </div>
         <button onClick={closeModal} className="modal-close-button">
-          Close
+          {t('Close')}
         </button>
       </Modal>
     </div>

@@ -1,18 +1,15 @@
-import React, { useState } from 'react'
-import { Transition } from '@headlessui/react'
-import { Dialog } from '@headlessui/react'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import Tooltip from '@mui/material/Tooltip'
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { styled } from '@mui/material/styles'
-import { toast } from 'sonner'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import { useEffect } from 'react'
+import Tooltip from '@mui/material/Tooltip'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { toast } from 'sonner'
 import AddTaskModal from './AddTaskModal'
-import EditTaskModal from './EditTaskModal'
 import DeleteTaskModal from './DeleteTaskModal'
+import EditTaskModal from './EditTaskModal'
 import TaskIcon from './task.png'
 
 const TaskModal = () => {
@@ -22,10 +19,8 @@ const TaskModal = () => {
   const [currentTask, setCurrentTask] = useState(null)
   const [selectedTask, setSelectedTask] = useState(null)
   const [tasks, setTasks] = useState(null)
-
   const [upcomingTasks, setUpcomingTasks] = useState([])
   const [completedTasks, setCompletedTasks] = useState([])
-
   const [isViewingTaskDetail, setIsViewingTaskDetail] = useState(false)
   const [loadingTaskId, setLoadingTaskId] = useState(null)
   const [title, setTitle] = useState('')
@@ -35,6 +30,7 @@ const TaskModal = () => {
   const [editTask, setEditTask] = useState(null)
   const { user } = useSelector((state) => state.authReducer.authData)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { t } = useTranslation('pomodoro')
 
   const fetchTasks = async () => {
     try {
@@ -82,7 +78,7 @@ const TaskModal = () => {
       setTimeout(() => {
         setUpcomingTasks(upcomingTasks.filter((t) => t._id !== task._id))
         setCompletedTasks([...completedTasks, task])
-        toast.success('Updated Successfully!')
+        toast.success(`${t('Updated Successfully!')}`)
         // Dừng tải hiệu ứng
         setLoadingTaskId(null)
         fetchTasks()
@@ -168,7 +164,7 @@ const TaskModal = () => {
       )
     )
     fetchTasks()
-    toast.success('Task updated successfully!', { className: 'custom-toast' })
+    toast.success(`${t('Task updated successfully!')}`, { className: 'custom-toast' })
   }
 
   const handleTaskDeleted = (deletedTaskId) => {
@@ -176,7 +172,7 @@ const TaskModal = () => {
       prevTask.filter((task) => task._id !== deletedTaskId)
     )
     fetchTasks()
-    toast.success(`Deleted task successfully!`, {
+    toast.success(`${t('Deleted task successfully!')}`, {
       className: 'custom-toast-delete',
     })
   }
@@ -301,7 +297,7 @@ const TaskModal = () => {
                     </g>
                   </svg>
                   <p className="text-sm text-default-400">
-                    Oops! You haven't created any notes yet!
+                    {t(`Oops! You haven't created any notes yet!`)}
                   </p>
                 </div>
               </span>
@@ -334,10 +330,10 @@ const TaskModal = () => {
                 className="absolute top-12 right-4 bg-[#ff5e62]/30 hover:bg-[#ff5e62]/10 text-[#ff5e62] py-2 px-4 rounded-xl shadow-md mb-4 transition duration-300"
                 onClick={() => setAddNoteOpen(true)}
               >
-                + Note
+                + {t('Note')}
               </button>
               <p className="text-lg font-bold absolute top-4 left-4">
-                Note list
+                {t('Note list')}
               </p>
             </div>
 
@@ -349,7 +345,7 @@ const TaskModal = () => {
                     className="text-gray-300 cursor-pointer"
                     onClick={() => setIsViewingTaskDetail(false)}
                   >
-                    {currentTask.completed ? 'Completed' : 'Upcoming'}
+                    {currentTask.completed ? t('Completed') : t('Upcoming')}
                   </span>
                   <span className="text-gray-300 mx-2"> &gt; </span>
                   <span className="text-gray-300">{currentTask.title}</span>
@@ -360,11 +356,11 @@ const TaskModal = () => {
             {!isViewingTaskDetail ? (
               <>
                 <h2 className="flex items-center justify-between font-semibold mb-4 ml-3 ">
-                  Upcoming
+                  {t('Upcoming')}
                 </h2>
                 {upcomingTasks?.length === 0 ? (
                   <div className="text-center text-white mb-5">
-                    Good job. You are done!
+                    {t('Good job. You are done!')}
                   </div>
                 ) : (
                   upcomingTasks?.map((task) => (
@@ -413,7 +409,7 @@ const TaskModal = () => {
                           <CustomTooltip title={task.endDate} arrow>
                             <div className="flex items-center whitespace-nowrap">
                               <p>
-                                Due:{' '}
+                                {t('Due')}:{' '}
                                 <span className="font-medium">
                                   {formatTime(task.endDate)}
                                 </span>
@@ -480,7 +476,7 @@ const TaskModal = () => {
                                           ></path>
                                         </g>
                                       </svg>
-                                      <p class="text-sm">Edit</p>
+                                      <p class="text-sm">{t('Edit')}</p>
                                     </div>
                                   )}
                                 </MenuItem>
@@ -520,7 +516,7 @@ const TaskModal = () => {
                                           </g>
                                         </g>
                                       </svg>
-                                      Delete
+                                      {t('Delete')}
                                     </div>
                                   )}
                                 </MenuItem>
@@ -542,7 +538,7 @@ const TaskModal = () => {
                 )}
 
                 <div className="flex items-center justify-between font-semibold ml-3">
-                  Completed{' '}
+                  {t('Completed')} {' '}
                 </div>
                 {completedTasks?.map((task) =>
                   task?.completed === true ? (
@@ -638,7 +634,7 @@ const TaskModal = () => {
                                         </g>
                                       </g>
                                     </svg>
-                                    Delete
+                                    {t('Delete')}
                                   </div>
                                 </div>
                               )}
@@ -666,7 +662,7 @@ const TaskModal = () => {
                   </h2>
 
                   <div className="mt-2 flex gap-2">
-                    <div className="flex w-28 items-center gap-1">
+                    <div className="flex w-32 items-center gap-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -686,12 +682,12 @@ const TaskModal = () => {
                         <circle cx="42" cy="43" r="3" fill="currentColor" />{' '}
                         <circle cx="32" cy="43" r="3" fill="currentColor" />{' '}
                       </svg>
-                      <p>Start date</p>
+                      <p>{t('Start date')}</p>
                     </div>
                     <p>{formatDateTime(currentTask.startDate)}</p>
                   </div>
                   <div className="mt-2 flex gap-2">
-                    <div className="flex w-28 items-center gap-1">
+                    <div className="flex w-32 items-center gap-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -711,7 +707,7 @@ const TaskModal = () => {
                         <circle cx="42" cy="43" r="3" fill="currentColor" />{' '}
                         <circle cx="32" cy="43" r="3" fill="currentColor" />{' '}
                       </svg>
-                      <p>End date</p>
+                      <p>{t('End date')}</p>
                     </div>
                     <p>{formatDateTime(currentTask.endDate)}🔥</p>
                   </div>
@@ -723,7 +719,7 @@ const TaskModal = () => {
                     type="button"
                     onClick={() => setIsViewingTaskDetail(false)}
                   >
-                    Back
+                    {t('Back')}
                   </button>
                 </div>
               )

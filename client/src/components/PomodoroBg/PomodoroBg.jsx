@@ -1,26 +1,26 @@
-import React from 'react'
-import Logo from '../../img/logo.png'
+import React, { useContext } from 'react'
 import 'react-circular-progressbar/dist/styles.css'
-import SettingsButton from '../../components/PomoButton/SettingsButton'
-import ModalTimer from '../../components/PomoButton/ModalTimer'
-import SettingsContext from '../../store/SettingsContext'
-import { useState, useContext } from 'react'
-import Timer from '../../components/Timer/Timer'
-import ModalChangeBackgound from '../../components/PomoButton/ModalChangeBackgound'
-import './PomodoroBg.scss'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
+import ModalChangeBackgound from '../../components/PomoButton/ModalChangeBackgound'
+import ModalTimer from '../../components/PomoButton/ModalTimer'
 import MusicPlayer from '../../components/PomoButton/MusicPlayer'
-import { logOut } from '../../actions/AuthAction'
-import LeftSideBar from '../LeftSideBar/LeftSideBar'
+import Timer from '../../components/Timer/Timer'
+import Logo from '../../img/logo.png'
+import SettingsContext from '../../store/SettingsContext'
 import AvatarDropdown from '../AvatarDropdown/AvatarDropdown'
-import TaskModal from '../TaskModal/TaskModal'
 import HorizontalNavBar from '../HorizontalNavbar/HorizontalNavbar'
+import LeftSideBar from '../LeftSideBar/LeftSideBar'
+import TaskModal from '../TaskModal/TaskModal'
+import './PomodoroBg.scss'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function PomodoroBg() {
   const settingsInfo = useContext(SettingsContext)
   const { user } = useSelector((state) => state.authReducer.authData)
+  const { t } = useTranslation('pomodoro')
 
   const style = {
     background: settingsInfo.bgColor,
@@ -39,7 +39,7 @@ function PomodoroBg() {
               <ModalChangeBackgound />
               <TaskModal />
             </div>
-            <span className='text-lg text-white hidden sm:flex'>Hi, {user.firstname + ' ' + user.lastname}</span>
+            <span className='text-lg text-white hidden sm:flex'>{t('Hi')}, {user.firstname + ' ' + user.lastname}</span>
             <Link to="/dashhome">
               <span className='flex cursor-pointer flex-center text-white hidden sm:flex'>
                 <svg
@@ -48,11 +48,12 @@ function PomodoroBg() {
                   <path fill="currentColor" d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"
                   />
                 </svg>
-                <span className='text-lg'>Back</span>
+                <span className='text-lg'>{t('Back')}</span>
               </span>
             </Link>
           </div>
-          <div className="relative mr-2 ">
+          <div className="relative mr-2 flex">
+            <div className=' m-auto'><ChangeLanguage /></div>
             <AvatarDropdown />
           </div>
         </div>

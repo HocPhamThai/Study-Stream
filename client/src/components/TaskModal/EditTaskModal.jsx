@@ -1,11 +1,9 @@
-import React from 'react'
 import { Dialog } from '@headlessui/react'
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { useState } from 'react'
-import { useRef } from 'react'
-import { useEffect } from 'react'
-import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 
 const EditTaskModal = ({
   editNoteOpen,
@@ -20,6 +18,7 @@ const EditTaskModal = ({
     endDate: data?.endDate ? new Date(data?.endDate) : null,
   })
   const initialData = useRef(data)
+  const { t } = useTranslation('pomodoro')
 
   // Hàm so sánh dữ liệu
   const isDataChanged = (newData, oldData) => {
@@ -55,7 +54,7 @@ const EditTaskModal = ({
           if (updatedData.endDate < updatedData.startDate) {
             // Thông báo lỗi hoặc xử lý nếu endDate nhỏ hơn startDate
             alert(
-              'End date must be later than the start date. Please select a different end date.'
+              `${t('End date must be later than the start date. Please select a different end date.')}`
             )
             return prevFormData // Trả về giá trị cũ nếu không hợp lệ
           }
@@ -178,7 +177,7 @@ const EditTaskModal = ({
                 </g>
               </svg>
               <div>
-                <p className="text-lg font-bold">Update a task</p>
+                <p className="text-lg font-bold">{t('Update a task')}</p>
               </div>
             </div>
           </header>
@@ -194,13 +193,13 @@ const EditTaskModal = ({
                       value={formData?.title}
                       onChange={handleChange}
                       autoComplete="off"
-                      placeholder="Enter title"
+                      placeholder={t("Enter title")}
                       className="w-full rounded-xl bg-white px-2 py-1 text-2xl font-bold text-black focus-visible:outline-none"
                     />
                   </div>
                 </div>
                 <div className="flex gap-4 lg:gap-20">
-                  <div className="flex w-[100px] items-center gap-1 text-sm text-gray-500">
+                  <div className="flex w-[130px] items-center gap-1 text-sm text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -268,7 +267,7 @@ const EditTaskModal = ({
                         ></circle>
                       </g>
                     </svg>
-                    Start date
+                    {t('Start date')}
                   </div>
                   <div className="flex-1 bg-orange-100 p-2 rounded-lg">
                     <DatePicker
@@ -284,7 +283,7 @@ const EditTaskModal = ({
                   </div>
                 </div>
                 <div className="flex gap-4 lg:gap-20">
-                  <div className="flex w-[100px] items-center gap-1 text-sm text-gray-500">
+                  <div className="flex w-[130px] items-center gap-1 text-sm text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -352,7 +351,7 @@ const EditTaskModal = ({
                         ></circle>
                       </g>
                     </svg>
-                    End date
+                    {t('End date')}
                   </div>
                   <div className="flex-1">
                     <div className="flex-1 bg-orange-100 p-2 rounded-lg">
@@ -375,7 +374,7 @@ const EditTaskModal = ({
                     value={formData?.description}
                     onChange={handleChange}
                     id="description"
-                    placeholder="Enter description"
+                    placeholder={t('Enter description')}
                     className="my-2 cursor-text rounded-lg border bg-white p-2 w-full"
                     rows="4"
                     autoComplete="off"
@@ -387,13 +386,13 @@ const EditTaskModal = ({
                   className='class="z-0 group relative inline-flex items-center justify-center box-border border-gray-700 appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent text-default-foreground data-[hover=true]:bg-default/40"'
                   onClick={() => setEditNoteOpen(false)}
                 >
-                  Cancel
+                  {t('Cancel')}
                 </button>
                 <button
                   type="submit"
                   className="z-0 text-white rounded-2xl group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent text-default-foreground bg-gradient-to-r from-[#ff9966] to-[#ff5e62]"
                 >
-                  Submit
+                  {t('Set button')}
                 </button>
               </footer>
             </form>
