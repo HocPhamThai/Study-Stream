@@ -3,6 +3,7 @@ import ReactApexChart from 'react-apexcharts'
 import 'tailwindcss/tailwind.css'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 
 const getInitialChartConfig = () => ({
   series: [
@@ -86,6 +87,7 @@ const Chart = () => {
   const [options, setOptions] = useState(getInitialChartConfig)
   const [weekRange, setWeekRange] = useState('')
   const { user } = useSelector((state) => state.authReducer.authData)
+  const { t } = useTranslation('analytics')
 
   useEffect(() => {
     const fetchWeekly = async () => {
@@ -188,19 +190,19 @@ const Chart = () => {
       <div className="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
         <div>
           <h6 className="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
-            Work hours
+            {t('Work hours')}
           </h6>
         </div>
       </div>
-      <div className="pt-6 px-2 pb-0">
+      <div className=" px-2 pb-0">
         <div className="flex justify-end mb-4">
           <select
             value={timeFrame}
             onChange={(e) => setTimeFrame(e.target.value)}
             className="p-2 border rounded"
           >
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
+            <option value="weekly">{t('Weekly')}</option>
+            <option value="monthly">{t('Monthly')}</option>
           </select>
         </div>
         {timeFrame === 'weekly' && (

@@ -13,12 +13,17 @@ import averageIcon from './averageIcon.png'
 import Chart from '../../components/Chart/Chart'
 import RightSide from '../../components/RightSide/RightSide'
 import motivationImg from './motivationImg.png'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
+import { useTranslation } from 'react-i18next'
+import './Analytics.scss'
+
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function Analytics() {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [duration, setDuration] = useState({})
   const [totalDuration, setTotalDuration] = useState(null)
+  const { t } = useTranslation('analytics')
 
   useEffect(() => {
     const fetchDuration = async () => {
@@ -78,11 +83,12 @@ function Analytics() {
             alt="Logo"
           />
           <span className="text-lg hidden sm:flex">
-            Hi, {user.firstname + ' ' + user.lastname}
+            {[t('Hi')]}, {user.firstname + ' ' + user.lastname}
           </span>
 
         </div>
-        <div className="relative mr-2">
+        <div className="relative mr-2 flex">
+          <div className=' m-auto'><ChangeLanguage /></div>
           <AvatarDropdown />
         </div>
       </div>
@@ -100,17 +106,17 @@ function Analytics() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" color="#fff" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7281 21.9137C11.8388 21.9715 11.9627 22.0009 12.0865 22C12.2103 21.999 12.3331 21.9686 12.4449 21.9097L16.0128 20.0025C17.0245 19.4631 17.8168 18.8601 18.435 18.1579C19.779 16.6282 20.5129 14.6758 20.4998 12.6626L20.4575 6.02198C20.4535 5.25711 19.9511 4.57461 19.2082 4.32652L12.5707 2.09956C12.1711 1.96424 11.7331 1.96718 11.3405 2.10643L4.72824 4.41281C3.9893 4.67071 3.496 5.35811 3.50002 6.12397L3.54231 12.7597C3.5554 14.7758 4.31448 16.7194 5.68062 18.2335C6.3048 18.9258 7.10415 19.52 8.12699 20.0505L11.7281 21.9137ZM10.7836 14.1089C10.9326 14.2521 11.1259 14.3227 11.3192 14.3207C11.5125 14.3198 11.7047 14.2472 11.8517 14.1021L15.7508 10.2581C16.0438 9.96882 16.0408 9.50401 15.7448 9.21866C15.4478 8.9333 14.9696 8.93526 14.6766 9.22454L11.3081 12.5449L9.92885 11.2191C9.63186 10.9337 9.15467 10.9367 8.8607 11.226C8.56774 11.5152 8.57076 11.98 8.86775 12.2654L10.7836 14.1089Z" fill="currentColor"></path></svg>
                 Noti
               </div>
-              <p className="text-medium font-semibold md:text-lg">
-                Maximize your productivity with every Pomodoro!
+              <p className="text-medium font-bold md:text-lg">
+                {t('Maximize your productivity with every Pomodoro!')}
               </p>
-              <p className="mt-4 text-sm">Track your progress and unlock insights into your time management.</p>
+              <p className="mt-4 text-sm font-thin">{t('Track your progress and unlock insights into your time management.')}</p>
               <div className="mt-4">
                 <Link to="/pomodoro">
                   <button
                     className="bg-transparent px-4 py-2 border border-red-100 hover:shadow-md rounded-xl"
                     type="button"
                   >
-                    Start now
+                    {t('Start now')}
                   </button>
                 </Link>
               </div>
@@ -124,7 +130,7 @@ function Analytics() {
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">
-            <p className="font-bold">Your activities</p>
+            <p className="font-bold">{t('Your activities')}</p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             <div className="col-span-1 flex items-center gap-4 rounded-xl bg-white px-4 py-6 shadow-lg border border-gray-200">
@@ -132,8 +138,8 @@ function Analytics() {
                 <img className="w-[40px] h-[40px]" src={averageIcon} alt="" />
               </div>
               <div>
-                <div className="text-gray-500">Average hours per day</div>
-                <div className="mt-3 text-3xl font-bold">
+                <div className="text-gray-500">{t('Average hours per day')}</div>
+                <div className="number mt-3 text-3xl font-bold">
                   + {formatDuration(duration?.averageDuration || 0)}
                 </div>
               </div>
@@ -143,8 +149,8 @@ function Analytics() {
                 <img className="w-[40px] h-[40px]" src={dayIcon} alt="" />
               </div>
               <div>
-                <div className="text-gray-500">Total Days Use</div>
-                <div className="mt-3 text-3xl font-bold">
+                <div className="text-gray-500">{t('Total Days Use')}</div>
+                <div className="number mt-3 text-3xl font-bold">
                   + {duration?.numberOfDays}
                 </div>
               </div>
@@ -200,15 +206,15 @@ function Analytics() {
                 </svg>
               </div>
               <div>
-                <div className="text-gray-500">Total Focused Time</div>
-                <div className="mt-3 text-3xl font-bold">
+                <div className="text-gray-500">{t('Total Focused Time')}</div>
+                <div className="number mt-3 text-3xl font-bold">
                   + {formatDuration(totalDuration || 0)}
                 </div>
               </div>
             </div>
           </div>
           <div className="mb-2 mt-5 flex justify-between">
-            <p className="font-bold">Analytics Chart</p>
+            <p className="font-bold">{t('Analytics Chart')}</p>
           </div>
           <div className="w-full col-span-2 md:col-span-2 lg:col-span-3 rounded-2xl shadow-lg border border-gray-200">
             <Chart />
