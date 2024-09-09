@@ -16,14 +16,13 @@ const ModalTimer = () => {
 
 
   const handleNotificationToggle = (event) => {
-    // setIsChecked(event.target.checked)
     setAllowNotifications(event.target.checked)
 
   }
 
   const handleCheckboxChange2 = () => {
     setIsChecked(!isChecked)
-    setAllowNoti(isChecked)
+    setAllowNoti(!isChecked)
   }
 
   const toggleModal = () => {
@@ -48,10 +47,8 @@ const ModalTimer = () => {
     setIsOpen(!isOpen)
   }
 
-
   return (
     <>
-
       <img src={clock_icon} alt="Set Times" onClick={toggleModal} className="cursor-pointer size-8 " />
       {isOpen && (
         <div
@@ -87,7 +84,7 @@ const ModalTimer = () => {
                 </div>
 
                 <div className="mt-4 flex items-center gap-6">
-                  <p className="w-full font-medium ">Break time(in min): </p>
+                  <p className="w-full font-medium ">Break time (in min): </p>
                   <input
                     min="1"
                     max="120"
@@ -119,7 +116,6 @@ const ModalTimer = () => {
                     ></div>
                   </div>
                 </div>
-                {console.log("AllowNotifications: ", isChecked)}
                 <label className='flex justify-between cursor-pointer select-none items-center mt-4'>
                   <span className='font-medium mr-10'>Auto start</span>
                   <div className='relative'>

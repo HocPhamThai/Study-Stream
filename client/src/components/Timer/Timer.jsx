@@ -6,7 +6,7 @@ import './Timer.scss'
 import Logo from '../../img/logo.png'
 import notificationSound from './timeup.mp3'
 
-const Timer = (color) => {
+const Timer = () => {
   const settingsInfo = useContext(SettingsContext)
   const [isPaused, setIsPaused] = useState(true)
   const [mode, setMode] = useState('work')
@@ -19,6 +19,11 @@ const Timer = (color) => {
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
   const [repeat, setRepeat] = useState()
   const audioRef = useRef(new Audio(notificationSound))
+
+  useEffect(() => {
+    setRepeat(settingsInfo.isRepeat)
+  }, [settingsInfo.isRepeat])
+
   function tick() {
     secondsLeftRef.current--
     setSecondsLeft(secondsLeftRef.current)
@@ -26,30 +31,32 @@ const Timer = (color) => {
 
   useEffect(() => {
     function switchMode() {
-      setRepeat(settingsInfo.isRepeat)
-      const nextMode = modeRef.current === 'work' ? ' break' : 'work'
+      const nextMode = modeRef.current === 'work' ? 'break' : 'work';
       const nextSeconds =
         (nextMode === 'work'
           ? settingsInfo.workMinutes
-          : settingsInfo.breakMinutes) * 60
+          : settingsInfo.breakMinutes) * 60;
 
-      if (repeat) {
-        // Tiếp tục lặp lại nếu repeat = true
-        setMode(nextMode);
-        modeRef.current = nextMode;
-
-        setSecondsLeft(nextSeconds);
-        secondsLeftRef.current = nextSeconds;
-      } else {
-        // Dừng lại nếu repeat = false
+      // Nếu repeat = false và đang ở chế độ work, thì dừng lại khi hết giờ
+      if (!repeat && modeRef.current === 'work') {
         setIsPaused(true);
         isPausedRef.current = true;
+        return;
       }
 
+      // Nếu repeat = true, tiếp tục chuyển đổi giữa work và break
+      setMode(nextMode);
+      modeRef.current = nextMode;
+
+      setSecondsLeft(nextSeconds);
+      secondsLeftRef.current = nextSeconds;
+
+      // Phát âm thanh thông báo nếu cần thiết
       if (settingsInfo.isNoti) {
         audioRef.current.play();
       }
     }
+
 
     setTempWorkMinutes(settingsInfo.workMinutes)
     setTempBreakMinutes(settingsInfo.breakMinutes)
@@ -75,7 +82,7 @@ const Timer = (color) => {
       tick()
       document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
 
-    }, 1000)
+    }, 10)
 
     return () => {
       clearInterval(interval)
@@ -111,6 +118,9 @@ const Timer = (color) => {
     const newSeconds = tempWorkMinutes * 60 // Always use work minutes
     setSecondsLeft(newSeconds)
     secondsLeftRef.current = newSeconds
+
+    document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
+
   }
 
   const totalSeconds =
@@ -124,6 +134,7 @@ const Timer = (color) => {
 
   return (
     <>
+      {console.log("Repeat: ", repeat)}
       <div className="relative flex items-center justify-center h-100 bg-transparent rounded-full mb-4">
         <div className="timer group fixed left-1/2 top-[70px] z-[999] -translate-x-1/2 rounded-t-lg text-white bg-black/90 w-[400px]">
           <div className="absolute left-1/2 top-8 -translate-x-1/2 -translate-y-full cursor-move">
@@ -135,7 +146,7 @@ const Timer = (color) => {
           </div>
           {mode === 'work' ? (
             <p className="pt-6 text-center text-lg font-medium text-red-400 focus:outline-none">
-              Working Session{' '}
+              Focusing Session{' '}
             </p>
           ) : (
             <p className="pt-6 text-center text-lg font-medium text-green-400 focus:outline-none">
@@ -143,7 +154,7 @@ const Timer = (color) => {
               Relaxing...{' '}
             </p>
           )}
-          <div className="px-4 text-center font-extrabold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4">
+          <div className="number-time px-4 text-center font-bold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4">
             <span>{minutes + ':' + seconds}</span>
           </div>
         </div>
