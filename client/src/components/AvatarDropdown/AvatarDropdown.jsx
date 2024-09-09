@@ -6,7 +6,6 @@ import profile from './profile.png'
 import logout from './logout.png'
 import { useTranslation } from 'react-i18next'
 
-
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function AvatarDropdown() {

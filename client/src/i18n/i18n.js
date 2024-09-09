@@ -18,6 +18,8 @@ import ANALYTICS_EN from '../locales/en/analytics.json'
 import ANALYTICS_VI from '../locales/vi/analytics.json'
 import NAVBAR_EN from '../locales/en/navbar.json'
 import NAVBAR_VI from '../locales/vi/navbar.json'
+import POMODORO_EN from '../locales/en/pomodoro.json'
+import POMODORO_VI from '../locales/vi/pomodoro.json'
 
 export const locales = {
   en: 'English',
@@ -35,6 +37,7 @@ const resources = {
     chatbot: CHATBOT_EN,
     analytics: ANALYTICS_EN,
     navbar: NAVBAR_EN,
+    pomodoro: POMODORO_EN
   },
   vi: {
     getStarted: GET_STARTED_VI,
@@ -45,7 +48,8 @@ const resources = {
     chat: CHAT_VI,
     chatbot: CHATBOT_VI,
     analytics: ANALYTICS_VI,
-    navbar: NAVBAR_VI
+    navbar: NAVBAR_VI,
+    pomodoro: POMODORO_VI
   }
 }
 

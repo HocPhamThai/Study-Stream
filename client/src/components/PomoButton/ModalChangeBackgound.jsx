@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import SettingsContext from '../../store/SettingsContext'
 import settings_icon from '../../img/icon_pomodoro/settings.png'
+import { useTranslation } from 'react-i18next'
 
 function ModalChangeBackgound() {
   const [isOpen, setIsOpen] = useState(false)
   const [tempColor, setTempColor] = useState('')
+  const { t } = useTranslation('pomodoro')
 
   const handleClick = (colors) => {
     const gradient = `linear-gradient(53deg, ${colors.join(', ')})`;
@@ -57,12 +59,12 @@ function ModalChangeBackgound() {
                 className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center "
                 onClick={toggleModal}
               >
-                <span className="sr-only">Close modal</span>
+                <span className="sr-only">{t('Close modal')}</span>
                 ✕
               </button>
               <div className="p-4 md:p-5">
                 <h3 className="mb-1 text-xl font-bold text-gray-900 text flex items-center justify-center ">
-                  Set color
+                  {t('Set color')}
                 </h3>
                 <div className="p-4 grid grid-cols-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-4">
                   {colorOptions.map((colors, index) => (
@@ -85,14 +87,14 @@ function ModalChangeBackgound() {
                     type="button"
                     className="text-white bg-gradient-to-r from-[#f9a225cc] to-[#f95f35cc] hover:bg-gradient-to-r hover:from-[#f9a225] hover:to-[#f95f35] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
-                    Set color
+                    {t('Set button')}
                   </button>
                   <button
                     onClick={toggleModal}
                     type="button"
                     className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-orange-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
                   >
-                    Cancel
+                    {t('Cancel')}
                   </button>
                 </div>
               </div>

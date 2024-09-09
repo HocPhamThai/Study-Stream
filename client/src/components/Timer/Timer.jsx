@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState, useContext } from 'react'
-import SettingsContext from '../../store/SettingsContext'
-import { useSelector } from 'react-redux'
 import axios from 'axios'
-import './Timer.scss'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import Logo from '../../img/logo.png'
+import SettingsContext from '../../store/SettingsContext'
+import './Timer.scss'
 import notificationSound from './timeup.mp3'
 
 const Timer = () => {
@@ -19,6 +20,7 @@ const Timer = () => {
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
   const [repeat, setRepeat] = useState()
   const audioRef = useRef(new Audio(notificationSound))
+  const { t } = useTranslation('pomodoro')
 
   useEffect(() => {
     setRepeat(settingsInfo.isRepeat)
@@ -82,7 +84,7 @@ const Timer = () => {
       tick()
       document.title = `${Math.floor(secondsLeftRef.current / 60)}:${('0' + secondsLeftRef.current % 60).slice(-2)} - ${modeRef.current === 'work' ? 'Focusing time' : 'Break time'}`
 
-    }, 10)
+    }, 1000)
 
     return () => {
       clearInterval(interval)
@@ -146,12 +148,12 @@ const Timer = () => {
           </div>
           {mode === 'work' ? (
             <p className="pt-6 text-center text-lg font-medium text-red-400 focus:outline-none">
-              Focusing Session{' '}
+              {t('Focusing Session')}!!!{' '}
             </p>
           ) : (
             <p className="pt-6 text-center text-lg font-medium text-green-400 focus:outline-none">
               {' '}
-              Relaxing...{' '}
+              {t('Relaxing')}...{' '}
             </p>
           )}
           <div className="number-time px-4 text-center font-bold text-[60px] pt-[20px] pb-[20px] tracking-[0.1em] mb-4">
@@ -167,7 +169,7 @@ const Timer = () => {
                 isPausedRef.current = false
               }}
             >
-              Start
+              {t('Start')}
             </div>
           ) : (
             <div
@@ -177,7 +179,7 @@ const Timer = () => {
                 isPausedRef.current = true
               }}
             >
-              Pause
+              {t('Pause')}
             </div>
           )}
 
@@ -185,7 +187,7 @@ const Timer = () => {
             className="w-full cursor-pointer overflow-hidden rounded-br bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-4 text-center opacity-90 hover:opacity-100 text-white"
             onClick={handleReset}
           >
-            Reset
+            {t('Reset')}
           </div>
         </div>
       </div>

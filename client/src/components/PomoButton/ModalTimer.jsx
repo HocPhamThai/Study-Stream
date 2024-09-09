@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useContext } from 'react'
-import SettingsContext from '../../store/SettingsContext'
+import React, { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import clock_icon from '../../img/icon_pomodoro/clock.png'
+import SettingsContext from '../../store/SettingsContext'
 
 const ModalTimer = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,7 +13,7 @@ const ModalTimer = () => {
   const [isChecked, setIsChecked] = useState(false)
   const [isCheckedNoti, setIsCheckedNoti] = useState(false)
   const [allowNoti, setAllowNoti] = useState(false)
-
+  const { t } = useTranslation('pomodoro')
 
   const handleNotificationToggle = (event) => {
     setAllowNotifications(event.target.checked)
@@ -39,7 +39,6 @@ const ModalTimer = () => {
     settingsInfo.setIsPaused(true)
     settingsInfo.setIsNoti(isCheckedNoti)
     settingsInfo.setIsRepeat(allowNoti)
-    console.log("settingsInfo Is Repeat: ", settingsInfo.isRepeat)
     toggleModal()
   }
 
@@ -67,9 +66,9 @@ const ModalTimer = () => {
                 <span className="sr-only">Close modal</span>✕
               </button>
               <div className="p-4 md:p-5">
-                <h3 className="mb-1 text-xl font-bold text-gray-90 flex items-center justify-center ">Set times</h3>
+                <h3 className="mb-1 text-xl font-bold text-gray-90 flex items-center justify-center ">{t('Set times')}</h3>
                 <div className="mt-4 flex items-center gap-6">
-                  <p className="w-full font-medium ">Work time (in min)</p>
+                  <p className="w-full font-medium ">{t('Focus time (in min)')}</p>
                   <input
                     min="1"
                     max="120"
@@ -84,7 +83,7 @@ const ModalTimer = () => {
                 </div>
 
                 <div className="mt-4 flex items-center gap-6">
-                  <p className="w-full font-medium ">Break time (in min): </p>
+                  <p className="w-full font-medium ">{t('Break time (in min)')}</p>
                   <input
                     min="1"
                     max="120"
@@ -97,7 +96,7 @@ const ModalTimer = () => {
                   />
                 </div>
                 <div className='mt-4 flex items-center justify-between'>
-                  <p className='font-medium'>Allow Notifications when time is up</p>
+                  <p className='font-medium'>{t('Allow Notifications when time is up')}</p>
                   <div
                     className='relative cursor-pointer'
                     onClick={() => setIsCheckedNoti(!isCheckedNoti)}
@@ -117,7 +116,7 @@ const ModalTimer = () => {
                   </div>
                 </div>
                 <label className='flex justify-between cursor-pointer select-none items-center mt-4'>
-                  <span className='font-medium mr-10'>Auto start</span>
+                  <span className='font-medium mr-10'>{t('Auto start')}</span>
                   <div className='relative'>
                     <input
                       type='checkbox'
@@ -141,14 +140,14 @@ const ModalTimer = () => {
                     type="button"
                     className="text-white bg-gradient-to-r from-[#f9a225cc] to-[#f95f35cc] hover:bg-gradient-to-r hover:from-[#f9a225] hover:to-[#f95f35] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                   >
-                    Set time
+                    {t('Set button')}
                   </button>
                   <button
                     onClick={toggleModalCancel}
                     type="button"
                     className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-orange-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
                   >
-                    Cancel
+                    {t('Cancel')}
                   </button>
                 </div>
               </div>

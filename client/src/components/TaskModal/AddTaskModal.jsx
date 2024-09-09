@@ -3,6 +3,8 @@ import { Dialog } from '@headlessui/react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
+
 const AddTaskModal = ({
   addNoteOpen,
   setAddNoteOpen,
@@ -62,13 +64,15 @@ const AddTaskModal = ({
     } else if (type === 'endDate') {
       if (selectedStartDate && date <= selectedStartDate) {
         alert(
-          'End date must be later than the start date. Please select a different end date.'
+          `${t('End date must be later than the start date. Please select a different end date.')}`
         )
       } else {
         setSelectedEndDate(date)
       }
     }
   }
+  const { t } = useTranslation('pomodoro')
+
 
   return (
     <Dialog
@@ -159,7 +163,7 @@ const AddTaskModal = ({
                 </g>
               </svg>
               <div>
-                <p className="text-lg font-bold">Create a new task</p>
+                <p className="text-lg font-bold">{t('Create a new task')}</p>
               </div>
             </div>
           </header>
@@ -175,13 +179,13 @@ const AddTaskModal = ({
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       autoComplete="off"
-                      placeholder="Enter title"
+                      placeholder={t('Enter title')}
                       className="w-full rounded-xl bg-white px-2 py-1 text-2xl font-bold text-black focus-visible:outline-none"
                     />
                   </div>
                 </div>
                 <div className="flex gap-4 lg:gap-20">
-                  <div className="flex w-[100px] items-center gap-1 text-sm text-gray-500">
+                  <div className="flex w-[130px] items-center gap-1 text-sm text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -249,7 +253,7 @@ const AddTaskModal = ({
                         ></circle>
                       </g>
                     </svg>
-                    Start date
+                    {t('Start date')}
                   </div>
                   <div className="flex-1 bg-orange-100 p-2 rounded-lg">
                     <DatePicker
@@ -260,13 +264,13 @@ const AddTaskModal = ({
                       dateFormat="Pp"
                       autoComplete="off"
                       className="flex h-full gap-x-0.5 w-full font-normal text-small cursor-pointer bg-orange-100"
-                      placeholderText="Select start date"
+                      placeholderText={t("Select start date")}
                       minDate={new Date()}
                     />
                   </div>
                 </div>
                 <div className="flex gap-4 lg:gap-20">
-                  <div className="flex w-[100px] items-center gap-1 text-sm text-gray-500">
+                  <div className="flex w-[130px] items-center gap-1 text-sm text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -334,7 +338,7 @@ const AddTaskModal = ({
                         ></circle>
                       </g>
                     </svg>
-                    End date
+                    {t('End date')}
                   </div>
                   <div className="flex-1">
                     <div className="flex-1 bg-orange-100 p-2 rounded-lg">
@@ -346,7 +350,7 @@ const AddTaskModal = ({
                         dateFormat="Pp"
                         autoComplete="off"
                         className="flex h-full gap-x-0.5 w-full font-normal text-small cursor-pointer bg-orange-100"
-                        placeholderText="Select end date"
+                        placeholderText={t('Select end date')}
                         minDate={new Date()}
                       />
                     </div>
@@ -358,7 +362,7 @@ const AddTaskModal = ({
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     id="description"
-                    placeholder="Enter description"
+                    placeholder={t('Enter description')}
                     className="my-2 cursor-text rounded-lg border bg-white p-2 w-full"
                     rows="4"
                     autoComplete="off"
@@ -367,13 +371,13 @@ const AddTaskModal = ({
               </div>
               <footer className="flex flex-row gap-2 justify-end px-2 py-2 lg:px-4 lg:py-4">
                 <button className='class="z-0 group relative inline-flex items-center justify-center box-border border-gray-700 appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent text-default-foreground data-[hover=true]:bg-default/40"'>
-                  Cancel
+                  {t('Cancel')}
                 </button>
                 <button
                   type="submit"
                   className="z-0 text-white rounded-2xl group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent text-default-foreground bg-gradient-to-r from-[#ff9966] to-[#ff5e62]"
                 >
-                  Submit
+                  {t('Set button')}
                 </button>
               </footer>
             </form>
