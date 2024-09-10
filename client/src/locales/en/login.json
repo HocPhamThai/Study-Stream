@@ -1,0 +1,22 @@
+{
+  "Login": "Login",
+  "Sign Up": "Sign Up",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "The confirm password is not match!!!": "The confirm password is not match!!!",
+  "Forgot Password?": "Forgot Password?",
+  "Already have an account! Login": "Already have an account! Login",
+  "Don't have an account? Sign Up": "Don't have an account? Sign Up",
+  "Username is required": "Username is required",
+  "Please enter a valid email address": "Please enter a valid email address",
+  "Password is required": "Password is required",
+  "Password needs to be 6 characters or more": "Password needs to be 6 characters or more",
+  "Passwords do not match": "Passwords do not match",
+  "Loading....": "Loading....",
+  "Forgot Password": "Forgot Password",
+  "Please input your email to Reset password": "Please input your email to Reset password",
+  "Enter email": "Enter email",
+  "Send OTP": "Send OTP"
+}
