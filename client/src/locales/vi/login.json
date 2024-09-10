@@ -1,0 +1,22 @@
+{
+  "Login": "Đăng nhập",
+  "Sign Up": "Đăng ký",
+  "Password": "Mật khẩu",
+  "Confirm Password": "Xác nhận mật khẩu",
+  "First Name": "Tên ",
+  "Last Name": "Họ",
+  "The confirm password is not match!!!": "Mật khẩu xác nhận không khớp!!!",
+  "Forgot Password?": "Quên mật khẩu?",
+  "Already have an account! Login": "Bạn đã có tài khoản! Đăng nhập",
+  "Don't have an account? Sign Up": "Bạn chưa có tài khoản? Đăng ký",
+  "Username is required": "Tên người dùng là bắt buộc",
+  "Please enter a valid email address": "Vui lòng nhập địa chỉ email hợp lệ",
+  "Password is required": "Mật khẩu là bắt buộc",
+  "Password needs to be 6 characters or more": "Mật khẩu phải có 6 ký tự trở lên",
+  "Passwords do not match": "Mật khẩu không khớp",
+  "Loading....": "Đang tải....",
+  "Forgot Password": "Quên mật khẩu",
+  "Please input your email to Reset password": "Vui lòng nhập email của bạn để Đặt lại mật khẩu",
+  "Enter email": "Nhập email",
+  "Send OTP": "Gửi OTP"
+}

@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logIn, signUp } from '../../actions/AuthAction'
 import Logo from '../../img/logo.png'
 import './Auth.scss'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
+import { useTranslation } from 'react-i18next'
 
 const Auth = () => {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
   const error = useSelector((state) => state.authReducer.error)
   const [isSignUp, SetIsSignup] = useState(false)
+  const { t } = useTranslation('login')
 
   useEffect(() => {
     if (error) {
@@ -53,15 +56,15 @@ const Auth = () => {
   const validateForm = () => {
     let errors = {}
     if (!data.username) {
-      errors.username = 'Username is required'
+      errors.username = `${t('Username is required')}`
     } else if (!/\S+@\S+\.\S+/.test(data.username)) {
-      errors.username = 'Please enter a valid email address'
+      errors.username = `${t('Please enter a valid email address')}`
     } else if (!data.password) {
-      errors.password = 'Password is required'
+      errors.password = `${t('Password is required')}`
     } else if (data.password.length < 6) {
-      errors.password = 'Password needs to be 6 characters or more'
+      errors.password = `${t('Password needs to be 6 characters or more')}`
     } else if (isSignUp && data.password !== data.confirmpass) {
-      errors.confirmpass = 'Passwords do not match'
+      errors.confirmpass = `${t('Passwords do not match')}`
     }
     setConfirmpass(data.password === data.confirmpass)
     return errors
@@ -108,12 +111,12 @@ const Auth = () => {
             />
             <h1 className=" block md:hidden textTitle ">Study Stream</h1>
           </div>
-          <h3 className="font-bold">{isSignUp ? 'Sign Up' : 'Login'}</h3>
+          <h3 className="font-bold uppercase ">{isSignUp ? t('Sign Up') : t('Login')}</h3>
           {isSignUp && (
             <div>
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder={t('First Name')}
                 className="infoInput "
                 name="firstname"
                 onChange={handleChange}
@@ -122,7 +125,7 @@ const Auth = () => {
               />
               <input
                 type="text"
-                placeholder="Last Name"
+                placeholder={t('Last Name')}
                 className="infoInput"
                 name="lastname"
                 onChange={handleChange}
@@ -134,7 +137,7 @@ const Auth = () => {
           <div>
             <input
               type="text"
-              placeholder="Email"
+              placeholder={t('Email')}
               className="infoInput"
               name="username"
               onChange={handleChange}
@@ -145,7 +148,7 @@ const Auth = () => {
           <div>
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t('Password')}
               className="infoInput"
               name="password"
               onChange={handleChange}
@@ -156,7 +159,7 @@ const Auth = () => {
             {isSignUp && (
               <input
                 type="password"
-                placeholder="Confirm Password"
+                placeholder={t('Confirm Password')}
                 className="infoInput"
                 name="confirmpass"
                 onChange={handleChange}
@@ -189,7 +192,7 @@ const Auth = () => {
                     marginRight: '1rem',
                   }}
                 >
-                  * The confirm password is not match!!!
+                  * {t('The confirm password is not match!!!')}
                 </span>
               ) : (
                 <span className="error">{formErrors.password}</span>
@@ -217,7 +220,7 @@ const Auth = () => {
                   lineHeight: 1,
                 }}
               >
-                Forgot Password?
+                {t('Forgot Password?')}
               </span>
             </a>
             <span
@@ -233,8 +236,8 @@ const Auth = () => {
               }}
             >
               {isSignUp
-                ? 'Already have an account! Login'
-                : "Don't have an account? Sign Up"}
+                ? t('Already have an account! Login')
+                : t(`Don't have an account? Sign Up`)}
             </span>
           </div>
           <button
@@ -242,7 +245,7 @@ const Auth = () => {
             type="submit"
             disabled={loading}
           >
-            {loading ? 'Loading....' : isSignUp ? 'Sign Up' : 'Login'}
+            {loading ? t('Loading....') : isSignUp ? t('Sign Up') : t('Login')}
           </button>
         </form>
       </div>
