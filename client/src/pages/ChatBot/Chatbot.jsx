@@ -85,7 +85,7 @@ const ChatBot = () => {
           gap: 3,
         }}
       >
-        <Box sx={{ ml: '-1rem', mt: '56px' }} className="hidden lg:block">
+        <Box sx={{ ml: '-1rem', mt: '44px' }} className="hidden lg:block">
           <LeftSideBar />
         </Box>
         <Box
@@ -103,7 +103,6 @@ const ChatBot = () => {
               bgcolor: 'white',
               borderRadius: 5,
               flexDirection: 'column',
-              mx: 3,
               mt: 9,
             }}
           >
@@ -132,7 +131,9 @@ const ChatBot = () => {
                 textAlign: 'center',
               }}
             >
-              {t('You can ask some questions related to Knowledge, Business, Advices, Education, etc.')}
+              {t(
+                'You can ask some questions related to Knowledge, Business, Advices, Education, etc.'
+              )}
 
               <Typography
                 sx={{

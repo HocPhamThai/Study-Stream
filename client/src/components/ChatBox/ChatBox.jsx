@@ -114,10 +114,11 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
             {messages?.map((message) => (
               <div
                 ref={scroll}
-                className={`${message?.senderId === currentUser
-                  ? 'bg-custom-gradient text-white self-end rounded-tl-lg rounded-tr-lg rounded-bl-lg text-right'
-                  : 'bg-custom-gradient-blue text-white rounded-tl-lg rounded-tr-lg rounded-br-lg'
-                  } p-3 max-w-lg w-fit flex flex-col gap-2`}
+                className={`${
+                  message?.senderId === currentUser
+                    ? 'bg-custom-gradient text-white self-end rounded-tl-lg rounded-tr-lg rounded-bl-lg text-right'
+                    : 'bg-custom-gradient-blue text-white rounded-tl-lg rounded-tr-lg rounded-br-lg'
+                } p-3 max-w-lg w-fit flex flex-col gap-2`}
               >
                 <span>{message?.text}</span>
                 <span className="text-[11px] text-gray-300 self-end">
@@ -140,14 +141,14 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
                 }
               }}
               cleanOnEnter={true}
-              placeholder={t("type a message")}
+              placeholder={t('type a message')}
               className="flex-1 bg-gray-200 rounded-lg border-none outline-none p-2 text-sm"
             />
             <button
               className="py-2 px-4 rounded-md button"
               onClick={handleSend}
             >
-              {t("send button")}
+              {t('send button')}
             </button>
           </div>
         </>
