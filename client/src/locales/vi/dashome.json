@@ -16,15 +16,15 @@
     "description": "Cùng nhau học tập, bớt căng thẳng"
   },
   "working room": {
-    "title": "🧑🏻‍💻 Phòng làm việc",
+    "title": "Phòng làm việc",
     "description": "Tăng năng suất của bạn với chúng tôi"
   },
   "quite room": {
-    "title": "⏳ Phòng yên tĩnh",
+    "title": "Phòng yên tĩnh",
     "description": "Không gian học tập lý tưởng để tập trung tuyệt đối"
   },
   "creative room": {
-    "title": "💡 Phòng sáng tạo",
+    "title": "Phòng sáng tạo",
     "description": "Khai phá khả năng sáng tạo, từng giờ học một"
   },
   "guide": {
@@ -32,7 +32,7 @@
     "step_1": "Chọn một phòng: ",
     "step_1_des": "Mỗi phòng đại diện cho một môi trường học tập hoặc làm việc cụ thể. Nhấp vào 'Tham gia ngay' để vào phòng bạn chọn.",
     "step_2": "Tham gia cộng đồng: ",
-    "step_2__des": "Khi vào phòng, bạn sẽ thấy những người khác đang tập trung vào cùng một chủ đề. Sử dụng không gian này để tăng năng suất của bạn.",
+    "step_2_des": "Khi vào phòng, bạn sẽ thấy những người khác đang tập trung vào cùng một chủ đề. Sử dụng không gian này để tăng năng suất của bạn.",
     "close": "Đóng"
   },
   "join now": "Tham gia ngay"

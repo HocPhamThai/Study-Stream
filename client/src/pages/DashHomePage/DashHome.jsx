@@ -27,7 +27,7 @@ const DashHome = () => {
   const { posts } = useSelector((state) => state.postReducer)
   const [dailyDuration, setDailyDuration] = useState(null)
   const [open, setOpen] = useState(false)
-  const { t } = useTranslation('dashhome')
+  const { t, i18n } = useTranslation('dashhome')
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -101,7 +101,7 @@ const DashHome = () => {
             src={Logo}
             alt="Logo"
           />
-          <span className="text-lg hidden sm:flex">
+          <span className="text-lg hidden sm:flex font-black">
             {t('header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
 
@@ -242,7 +242,7 @@ const DashHome = () => {
             </IconButton>
 
             <StyledDialog open={open} onClose={handleClose} aria-labelledby="dialog-title">
-              <DialogTitle id="dialog-title">{t('guide.title')}</DialogTitle>
+              <DialogTitle id="dialog-title" className='font-bs uppercase'>{t('guide.title')}</DialogTitle>
               <DialogContent>
                 <Typography variant="body2" gutterBottom sx={{ marginBottom: '10px' }}>
                   <strong>{t('guide.step_1')}</strong> {t('guide.step_1_des')}
@@ -259,7 +259,7 @@ const DashHome = () => {
             </StyledDialog>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
             <div className="p-8 w-full h-64 bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200">
               <p className="text-medium font-semibold md:text-lg">
                 {t('study room.title')}
@@ -267,7 +267,7 @@ const DashHome = () => {
               <p className="mt-4 text-sm">{t('study room.description')}</p>
               <button
                 onClick={focusRoom1}
-                className="contrast-button px-4 py-2 border rounded-xl"
+                className="contrast-button px-4 py-2 border rounded-xl mt-auto"
                 type="button"
               >
                 {t('join now')}
@@ -280,7 +280,7 @@ const DashHome = () => {
               <p className="mt-4 text-sm">{t('working room.description')}</p>
               <button
                 onClick={focusRoom2}
-                className="button px-4 py-2 border rounded-xl	"
+                className="button px-4 py-2 border rounded-xl	mt-auto"
                 type="button"
               >
                 {t('join now')}
@@ -296,7 +296,7 @@ const DashHome = () => {
               </p>
               <button
                 onClick={focusRoom3}
-                className="contrast-button px-4 py-2 border rounded-xl"
+                className="contrast-button px-4 py-2 border rounded-xl mt-auto"
                 type="button"
               >
                 {t('join now')}
@@ -311,14 +311,80 @@ const DashHome = () => {
               </p>
               <button
                 onClick={focusRoom4}
-                className="button px-4 py-2 border rounded-xl"
+                className="button px-4 py-2 border rounded-xl mt-auto"
                 type="button"
               >
                 {t('join now')}
 
               </button>
+            </div> i18n.language === 'vi'
+          </div> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'} bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+            >
+              <p className="text-medium font-semibold md:text-lg">
+                {t('study room.title')}
+              </p>
+              <p className="mt-4 text-sm">{t('study room.description')}</p>
+              <button
+                onClick={focusRoom1}
+                className="contrast-button px-4 py-2 border rounded-xl mt-auto"
+                type="button"
+              >
+                {t('join now')}
+              </button>
+            </div>
+
+            <div
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'} bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+            >
+              <p className="text-medium font-semibold md:text-lg">
+                {t('working room.title')}
+              </p>
+              <p className="mt-4 text-sm">{t('working room.description')}</p>
+              <button
+                onClick={focusRoom2}
+                className="button px-4 py-2 border rounded-xl mt-auto"
+                type="button"
+              >
+                {t('join now')}
+              </button>
+            </div>
+
+            <div
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'} bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+            >
+              <p className="text-medium font-semibold md:text-lg">
+                {t('quite room.title')}
+              </p>
+              <p className="mt-4 text-sm">{t('quite room.description')}</p>
+              <button
+                onClick={focusRoom3}
+                className="contrast-button px-4 py-2 border rounded-xl mt-auto"
+                type="button"
+              >
+                {t('join now')}
+              </button>
+            </div>
+
+            <div
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'} bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+            >
+              <p className="text-medium font-semibold md:text-lg">
+                {t('creative room.title')}
+              </p>
+              <p className="mt-4 text-sm">{t('creative room.description')}</p>
+              <button
+                onClick={focusRoom4}
+                className="button px-4 py-2 border rounded-xl mt-auto"
+                type="button"
+              >
+                {t('join now')}
+              </button>
             </div>
           </div>
+
         </div>
         {/* Right sidebar */}
         <div className="hidden xl:block w-96 mr-5">

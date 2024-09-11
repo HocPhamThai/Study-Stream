@@ -82,8 +82,7 @@ const Topic = () => {
             src={Logo}
             alt="Logo"
           />
-          {console.log("User: ", user)}
-          <span className="text-lg">
+          <span className="text-lg hidden sm:flex font-black">
             {t('hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
