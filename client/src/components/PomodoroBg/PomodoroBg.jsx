@@ -39,7 +39,7 @@ function PomodoroBg() {
               <ModalChangeBackgound />
               <TaskModal />
             </div>
-            <span className='text-lg text-white hidden sm:flex'>{t('Hi')}, {user.firstname + ' ' + user.lastname}</span>
+            <span className='text-lg text-white hidden sm:flex font-black'>{t('Hi')}, {user.firstname + ' ' + user.lastname}</span>
             <Link to="/dashhome">
               <span className='flex cursor-pointer flex-center text-white hidden sm:flex'>
                 <svg

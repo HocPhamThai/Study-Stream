@@ -173,7 +173,7 @@ const Chart = () => {
     // Lấy các ngày 1, 3, 5, ...
     const specificDays = data.filter((item) => {
       const date = new Date(item.date).getDate()
-      return date % 2 === 1
+      return date
     })
 
     return specificDays.map((item) => {
