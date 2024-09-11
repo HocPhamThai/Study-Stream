@@ -68,7 +68,7 @@ const SearchForm = ({ onSearch, showChat, setShowChat }) => {
           type="submit"
           className="ml-2 px-4 py-2 hidden sm:block sm:ml-1 sm:px-2 sm:py-1 button text-white rounded"
         >
-          Search
+          {t('search button')}
         </button>
       </form>
     </div>

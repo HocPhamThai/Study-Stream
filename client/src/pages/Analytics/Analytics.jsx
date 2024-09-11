@@ -82,7 +82,7 @@ function Analytics() {
             src={Logo}
             alt="Logo"
           />
-          <span className="text-lg hidden sm:flex">
+          <span className="text-lg hidden sm:flex font-black">
             {[t('Hi')]}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
@@ -168,7 +168,7 @@ function Analytics() {
               <div>
                 <div className="text-gray-500">{t('Total Days Use')}</div>
                 <div className="number mt-3 text-3xl font-bold">
-                  + {duration?.numberOfDays}
+                  + {duration?.numberOfDays || 0}
                 </div>
               </div>
             </div>

@@ -58,7 +58,7 @@ const CoursesTopic = () => {
             alt="Logo"
           />
           {console.log("User: ", user)}
-          <span className="text-lg">
+          <span className="text-lg hidden sm:flex">
             {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>

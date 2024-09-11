@@ -69,7 +69,7 @@ function Lessons() {
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
-          <span className="text-lg">
+          <span className="text-lg hidden sm:flex">
             {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
