@@ -73,6 +73,8 @@ const socketReducer = (state = intialState, action) => {
         sendMessage: null,
         receiveMessage: null,
       }
+    case 'AUTH_LOGOUT':
+      return intialState
     default:
       return state
   }

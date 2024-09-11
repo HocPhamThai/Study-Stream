@@ -18,6 +18,7 @@ import courseTopicRoute from './routes/courseTopicRoute.js'
 import cors from 'cors'
 import xss from 'xss-clean'
 import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 // set up public folder
@@ -25,6 +26,7 @@ app.use(express.static('src/public'))
 app.use('/images', express.static('images'))
 
 // middleware
+app.use(cookieParser())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())

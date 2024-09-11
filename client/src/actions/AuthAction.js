@@ -24,7 +24,7 @@ const signUp = (formData) => async (dispatch) => {
 }
 
 const logOut = () => async (dispatch) => {
-  localStorage.removeItem('accessToken')
+  localStorage.clear()
   dispatch({ type: 'AUTH_LOGOUT' })
 }
 

@@ -3,6 +3,7 @@ import express from 'express'
 import {
   forgotPassword,
   loginUser,
+  refreshToken,
   registerUser,
   resetPassword,
   verifyOTP,
@@ -15,5 +16,6 @@ router.post('/login', loginUser)
 router.post('/forgot-password', forgotPassword)
 router.post('/reset-password', resetPassword)
 router.post('/verify-otp', verifyOTP)
+router.post('/refresh-token', refreshToken)
 
 export default router

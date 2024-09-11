@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
 function AvatarDropdown() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
   const { t } = useTranslation('navbar')
@@ -21,8 +21,6 @@ function AvatarDropdown() {
   const handleLogOut = () => {
     dispatch(logOut())
   }
-
-
 
   return (
     <div>
@@ -48,20 +46,37 @@ function AvatarDropdown() {
         >
           <div className="px-4 py-3 text-sm text-gray-900 ">
             <div className=" font-bold truncate">
-              {user.lastname} {user.firstname}</div>
-            <div className="font-small truncate text-gray-400">{user.username}</div>
+              {user.lastname} {user.firstname}
+            </div>
+            <div className="font-small truncate text-gray-400">
+              {user.username}
+            </div>
           </div>
-          <ul className="py-2 text-sm text-gray-700" aria-labelledby="avatarButton">
+          <ul
+            className="py-2 text-sm text-gray-700"
+            aria-labelledby="avatarButton"
+          >
             <li>
-              <a href={`/profile/${user._id}`} className="flex px-4 py-2 hover:bg-gray-100">
-                <img src={profile} alt="" className='w-[18px] h-[18px]' />
-                <span className='ml-2'>{t('Profile')}</span>
+              <a
+                href={`/profile/${user._id}`}
+                className="flex px-4 py-2 hover:bg-gray-100"
+              >
+                <img src={profile} alt="" className="w-[18px] h-[18px]" />
+                <span className="ml-2">{t('Profile')}</span>
               </a>
             </li>
             <li>
-              <a href="https://insigh.to/b/studystream" target="_blank" className="flex px-4 py-2 hover:bg-gray-100">
-                <img src="https://corodomo.com/assets/images/email.png" alt="" className='w-[18px] h-[18px]' />
-                <span className='ml-2'>{t('Help center')}</span>
+              <a
+                href="https://insigh.to/b/studystream"
+                target="_blank"
+                className="flex px-4 py-2 hover:bg-gray-100"
+              >
+                <img
+                  src="https://corodomo.com/assets/images/email.png"
+                  alt=""
+                  className="w-[18px] h-[18px]"
+                />
+                <span className="ml-2">{t('Help center')}</span>
               </a>
             </li>
           </ul>
@@ -71,8 +86,8 @@ function AvatarDropdown() {
               className="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
               onClick={handleLogOut}
             >
-              <img src={logout} alt="" className='w-[20px] h-[20px]' />
-              <span className='ml-2'>{t('Logout')}</span>
+              <img src={logout} alt="" className="w-[20px] h-[20px]" />
+              <span className="ml-2">{t('Logout')}</span>
             </a>
           </div>
         </div>

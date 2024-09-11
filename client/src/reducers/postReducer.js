@@ -24,6 +24,8 @@ const postReducer = (state = initialState, action) => {
       return { ...state, posts: action.data, loading: false, error: false }
     case 'TIMELINE_POSTS_FAIL':
       return { ...state, loading: false, error: true }
+    case 'AUTH_LOGOUT':
+      return initialState
     default:
       return state
   }

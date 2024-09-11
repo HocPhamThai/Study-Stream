@@ -18,15 +18,18 @@ const registerUser = async (req, res) => {
     }
     const user = await newUser.save()
 
-    // const token = jwt.sign(
-    //   { username: user.username, id: user._id },
-    //   process.env.JWT_KEY,
-    //   {
-    //     expiresIn: '1h',
-    //   }
-    // )
-    // res.status(200).json({ user, token })
-    res.status(200).json({ user })
+    const { _id } = user
+    const accessToken = generateAccessToken({ _id })
+    const refreshToken = generateRefreshToken({ _id })
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    })
+
+    res.status(200).json({ user, accessToken })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -43,15 +46,17 @@ const loginUser = async (req, res) => {
       if (!validity) {
         res.status(400).json({ error: 'Invalid password' })
       } else {
-        // const token = jwt.sign(
-        //   { username: user.username, id: user._id },
-        //   process.env.JWT_KEY,
-        //   {
-        //     expiresIn: '1h',
-        //   }
-        // )
-        // res.status(200).json({ user, token })
-        res.status(200).json({ user })
+        const { _id } = user
+        const accessToken = generateAccessToken({ _id })
+        const refreshToken = generateRefreshToken({ _id })
+
+        res.cookie('refreshToken', refreshToken, {
+          httpOnly: true,
+          sameSite: 'Strict',
+          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        })
+
+        res.status(200).json({ user: user, accessToken })
       }
     } else {
       res.status(400).json({ error: 'Username does not exist' })
@@ -142,4 +147,40 @@ const resetPassword = async (req, res) => {
     return res.status(500).json({ error: error.message })
   }
 }
-export { forgotPassword, loginUser, registerUser, resetPassword, verifyOTP }
+const generateAccessToken = (user) => {
+  return jwt.sign(
+    { id: user._id, username: user.username },
+    process.env.JWT_KEY,
+    { expiresIn: '15m' }
+  )
+}
+
+const generateRefreshToken = (user) => {
+  return jwt.sign(
+    { id: user._id, username: user.username },
+    process.env.JWT_REFRESH_KEY,
+    { expiresIn: '7d' }
+  )
+}
+
+const refreshToken = async (req, res) => {
+  const refreshToken = req.cookies.refreshToken
+  if (!refreshToken) return res.status(401).json({ error: 'Token is required' })
+
+  try {
+    const user = jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY)
+    const accessToken = generateAccessToken(user)
+    res.status(200).json({ accessToken })
+  } catch (error) {
+    res.status(403).json({ error: 'Invalid refresh token' })
+  }
+}
+
+export {
+  forgotPassword,
+  loginUser,
+  registerUser,
+  resetPassword,
+  verifyOTP,
+  refreshToken,
+}
