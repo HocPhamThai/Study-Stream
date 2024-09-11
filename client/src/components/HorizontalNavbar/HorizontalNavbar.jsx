@@ -22,30 +22,13 @@ const HorizontalNavBar = () => {
             viewBox="0 0 24 24"
             className="w-8 h-8 opacity-75"
           >
-            <defs>
-              <linearGradient
-                id="orangeGradient"
-                gradientTransform="rotate(106.23)"
-              >
-                <stop offset="0%" stopColor="#f99827" />
-                <stop offset="100%" stopColor="#f95f35" />
-              </linearGradient>
-            </defs>
             <path
               d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z"
-              fill={
-                selected === 'dashhome'
-                  ? 'url(#orangeGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
             <path
               d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z"
-              fill={
-                selected === 'dashhome'
-                  ? 'url(#orangeGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
           </svg>
           <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
@@ -58,6 +41,7 @@ const HorizontalNavBar = () => {
         </span>
       </Link>
 
+
       <Link to="/topic" onClick={() => handleClick('topic')}>
         <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
           <svg
@@ -65,34 +49,17 @@ const HorizontalNavBar = () => {
             viewBox="0 0 24 24"
             className="w-8 h-8 opacity-75"
           >
-            <defs>
-              <linearGradient
-                id="topicGradient"
-                gradientTransform="rotate(106.23)"
-              >
-                <stop offset="0%" stopColor="#f99827" />
-                <stop offset="100%" stopColor="#f95f35" />
-              </linearGradient>
-            </defs>
             <path
               fillRule="evenodd"
               d="M7.502 6h7.128A3.375 3.375 0 0 1 18 9.375v9.375a3 3 0 0 0 3-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 0 0-.673-.05A3 3 0 0 0 15 1.5h-1.5a3 3 0 0 0-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6ZM13.5 3A1.5 1.5 0 0 0 12 4.5h4.5A1.5 1.5 0 0 0 15 3h-1.5Z"
               clipRule="evenodd"
-              fill={
-                selected === 'topic'
-                  ? 'url(#topicGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
             <path
               fillRule="evenodd"
               d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V9.375ZM6 12a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V12Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 15a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V15Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 18a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V18Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Z"
               clipRule="evenodd"
-              fill={
-                selected === 'topic'
-                  ? 'url(#topicGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
           </svg>
           <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
@@ -105,82 +72,33 @@ const HorizontalNavBar = () => {
         </span>
       </Link>
 
-      <Link to="/courses-topic" onClick={() => handleClick('courses-topic')}>
+      <Link to="/courses-topic">
         <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
             className="w-8 h-8 opacity-75"
           >
-            <defs>
-              <linearGradient id="orangeGradient" gradientTransform="rotate(106.23)">
-                <stop offset="0%" stopColor="#f99827" />
-                <stop offset="100%" stopColor="#f95f35" />
-              </linearGradient>
-            </defs>
             <path
               d="m504.5 433.613h-13.27v-269.446c0-19.735-16.06-35.79-35.8-35.79h-17.617c1.926-4.03 2.988-8.5 2.988-13.145 0-11.31-6.207-21.626-16.2-26.923l-98.07-51.95c-3.66-1.94-8.2-.544-10.138 3.117-1.939 3.66-.543 8.199 3.117 10.138l98.068 51.949c5.149 2.729 8.223 7.839 8.223 13.669s-3.074 10.939-8.221 13.667l-95.332 50.502-60.608-69.114c-2.731-3.115-7.47-3.425-10.584-.694s-3.425 7.47-.694 10.584l58.264 66.441-36.072 19.109c-10.365 5.483-22.74 5.483-33.102.002l-145.03-76.828c-5.148-2.729-8.223-7.839-8.223-13.668s3.074-10.939 8.221-13.668l145.027-76.828c10.365-5.484 22.74-5.484 33.101-.002l20.76 11c3.66 1.94 8.2.545 10.139-3.115s.544-8.2-3.115-10.139l-20.764-11.002c-14.758-7.809-32.38-7.809-47.139.001l-145.032 76.831c-9.991 5.296-16.197 15.612-16.197 26.922 0 4.645 1.062 9.114 2.988 13.145h-17.618c-19.74 0-35.8 16.055-35.8 35.79v269.446h-13.27c-4.142 0-7.5 3.358-7.5 7.5v16.623c0 26.821 21.82 48.642 48.641 48.642h414.717c26.821 0 48.642-21.82 48.642-48.642v-16.623c0-4.143-3.358-7.501-7.5-7.501zm-183.984-130.116 9.779 16.938c2.021 3.501.673 6.592 0 7.758s-2.676 3.879-6.719 3.879h-6.121c-4.043 0-6.045-2.713-6.719-3.879-.674-1.167-2.021-4.257 0-7.758zm7.5-110.176 31.034-16.44v29.783c0 21.39-12.088 40.566-31.034 49.672zm-72.017 31.521c8.095 0 16.192-1.953 23.572-5.857l33.445-17.717v60.871c-40.978 13.574-86.315 12.05-126.312-4.574-20.505-8.522-33.754-28.502-33.754-50.9v-29.785l79.483 42.106c7.378 3.905 15.471 5.856 23.566 5.856zm-220.229-60.675c0-11.464 9.331-20.79 20.8-20.79h33.137l37.753 20h-64.19c-4.142 0-7.5 3.358-7.5 7.5v235.24c0 4.142 3.358 7.5 7.5 7.5h39.59c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-32.09v-220.24h67.18v28.287c0 28.479 16.877 53.895 42.998 64.752 23.848 9.912 49.45 14.868 75.053 14.868 19.254 0 38.507-2.805 57.016-8.411v8.614l-15.27 26.448c-4.114 7.125-4.114 15.633 0 22.758s11.481 11.379 19.709 11.379h6.121c8.228 0 15.595-4.254 19.709-11.379s4.114-15.633 0-22.758l-15.27-26.448v-13.854c1.014-.401 2.029-.798 3.037-1.217 26.12-10.857 42.997-36.273 42.997-64.752v-28.287h67.18v220.24h-308.37c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h315.87c4.142 0 7.5-3.358 7.5-7.5v-235.24c0-4.142-3.358-7.5-7.5-7.5h-64.191l37.753-20h33.137c11.469 0 20.8 9.326 20.8 20.79v269.446h-440.459zm266.61 284.45c-2.771 8.065-10.434 13.878-19.427 13.878h-53.905c-8.994 0-16.656-5.813-19.428-13.878zm194.62 9.119c0 18.55-15.092 33.642-33.642 33.642h-414.717c-18.55 0-33.641-15.092-33.641-33.642v-9.123h13.193c.026 0 .051.004.077.004h165.877c3.126 16.422 17.582 28.878 34.901 28.878h53.905c17.318 0 31.774-12.457 34.9-28.878h165.877c.026 0 .051-.004.077-.004h13.193z"
-              fill={
-                selected === 'courses-topic'
-                  ? 'url(#orangeGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
             <path
               d="m258.268 371.117c0-4.142-3.358-7.5-7.5-7.5h-150.145c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h150.146c4.141 0 7.499-3.358 7.499-7.5z"
-              fill={
-                selected === 'courses-topic'
-                  ? 'url(#orangeGradient)'
-                  : 'currentColor'
-              }
+              fill="currentColor"
             />
           </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl opacity-0 group-hover:opacity-100"
+          <span
+            className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl opacity-0 group-hover:opacity-100"
             style={{
               width: i18n.language === 'vi' ? '150px' : '120px',
             }}
           >
-            {t('Learning space')}
+            {t('Courses Topic')}
           </span>
         </span>
       </Link>
 
-      <Link to={'/profile/' + user._id} onClick={() => handleClick('profile')}>
-        <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="w-8 h-8 opacity-75"
-          >
-            <defs>
-              <linearGradient
-                id="profileGradient"
-                gradientTransform="rotate(106.23)"
-              >
-                <stop offset="0%" stopColor="#f99827" />
-                <stop offset="100%" stopColor="#f95f35" />
-              </linearGradient>
-            </defs>
-            <path
-              fillRule="evenodd"
-              d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-              clipRule="evenodd"
-              fill={
-                selected === 'profile'
-                  ? 'url(#profileGradient)'
-                  : 'currentColor'
-              }
-            />
-          </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
-            style={{
-              width: i18n.language === 'vi' ? '112px' : '66px',
-            }}
-          >
-            {t('Profile')}
-          </span>
-        </span>
-      </Link>
       <Link to="/chatbot">
         <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
           <svg
@@ -225,44 +143,10 @@ const HorizontalNavBar = () => {
       </Link>
 
       {/* Analytics */}
-      <Link to="/analytics">
-        <span className="relative flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-orange-300 group">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-8 h-8 opacity-75"
-          >
-            <defs>
-              <linearGradient
-                id="analyticsGradient"
-                gradientTransform="rotate(106.23)"
-              >
-                <stop offset="0%" stopColor="#f99827" />
-                <stop offset="100%" stopColor="#f95f35" />
-              </linearGradient>
-            </defs>
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"
-              fill={selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'}
-            />
-          </svg>
-          <span className="absolute bottom-[120%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
-            style={{
-              width: i18n.language === 'vi' ? '84px' : '80px',
-            }}
-          >
-            {t('Analytics')}
-          </span>
-        </span>
-      </Link>
+
 
     </div>
-  );
-};
+  )
+}
 
-export default HorizontalNavBar;
+export default HorizontalNavBar
