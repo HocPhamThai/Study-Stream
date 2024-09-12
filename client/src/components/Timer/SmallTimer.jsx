@@ -130,7 +130,7 @@ const SmallTimer = ({ onTimerEnd }) => {
     <>
       <div className="relative flex items-center justify-center bg-transparent rounded-full mb-2">
         <div className="flex items-center justify-center">
-          <div className="timer group relative z-[999] rounded-l-lg text-white bg-black/90 w-[180px] flex items-center py-[0.86rem]">
+          <div className="timer group relative rounded-l-lg text-white bg-black/90 w-[180px] flex items-center py-[0.86rem]">
             {mode === 'work' ? (
               <p className="text-sm font-medium text-red-400 focus:outline-none ml-3">
                 Focusing
