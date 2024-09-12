@@ -64,7 +64,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: '90px',
             }}
@@ -75,7 +76,10 @@ const LeftSideBar = () => {
 
         <span className="relative flex size-10 cursor-pointer items-center justify-center rounded-2xl p-2 md:size-[48px] hover:bg-orange-300 group">
           <div style={{ width: '100%', height: '100%' }}>
-            <Link to="/courses-topic" onClick={() => handleClick('courses-topic')}>
+            <Link
+              to="/courses-topic"
+              onClick={() => handleClick('courses-topic')}
+            >
               <svg
                 id="Capa_1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +87,10 @@ const LeftSideBar = () => {
                 className="w-8 h-8 opacity-75"
               >
                 <defs>
-                  <linearGradient id="orangeGradient" gradientTransform="rotate(106.23)">
+                  <linearGradient
+                    id="orangeGradient"
+                    gradientTransform="rotate(106.23)"
+                  >
                     <stop offset="0%" stopColor="#f99827" />
                     <stop offset="100%" stopColor="#f95f35" />
                   </linearGradient>
@@ -107,7 +114,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
             style={{
               width: i18n.language === 'vi' ? '145px' : '120px',
             }}
@@ -156,7 +164,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: i18n.language === 'vi' ? '160px' : '120px',
             }}
@@ -198,7 +207,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: i18n.language === 'vi' ? '116px' : '64px',
             }}
@@ -235,7 +245,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: i18n.language === 'vi' ? '80px' : '55px',
             }}
@@ -266,28 +277,49 @@ const LeftSideBar = () => {
                 </defs>
                 <g>
                   <path
-                    fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
+                    fill={
+                      selected === 'chatbot'
+                        ? 'url(#chatbotGradient)'
+                        : 'currentColor'
+                    }
                     d="m130.285 431.124c-2.378 3.392-1.557 8.069 1.834 10.447 16.475 11.553 35.869 17.659 56.086 17.659h105.41c54.086 0 97.85-43.755 97.85-97.85 0-53.955-43.896-97.85-97.85-97.85h-105.41c-26.136 0-50.712 10.177-69.204 28.657-33.594 33.595-37.228 84.639-13.164 122.051 2.241 3.484 6.882 4.491 10.365 2.25s4.491-6.881 2.25-10.365c-20.406-31.723-17.228-74.945 11.154-103.327 15.657-15.647 36.468-24.265 58.599-24.265h105.41c45.684 0 82.85 37.167 82.85 82.85 0 45.795-37.047 82.85-82.85 82.85h-105.41c-17.12 0-33.536-5.167-47.474-14.94-3.392-2.38-8.068-1.558-10.446 1.833z"
                     clipRule="evenodd"
-                    fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
+                    fill={
+                      selected === 'chatbot'
+                        ? 'url(#chatbotGradient)'
+                        : 'currentColor'
+                    }
                   />
                   <path
-                    fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
+                    fill={
+                      selected === 'chatbot'
+                        ? 'url(#chatbotGradient)'
+                        : 'currentColor'
+                    }
                     d="m452.296 0h-138.74c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h138.74c24.614 0 44.64 20.025 44.64 44.64v76.43c0 24.615-20.025 44.64-44.64 44.64h-114.82c-5.928 0-11.728 2.401-15.912 6.585l-35.508 35.491v-19.576c0-12.407-10.094-22.5-22.5-22.5h-15.73c-28.739 0-52.12-23.386-52.12-52.13v-68.94c0-24.615 20.021-44.64 44.63-44.64h38.22c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-38.22c-32.88 0-59.63 26.754-59.63 59.64v68.94c0 16.027 5.652 30.753 15.057 42.309-65.133 15.31-116.753 62.9-138.859 123.638-4.036.642-7.969 1.654-11.788 3.008v-72.659c12.972-3.342 22.585-15.14 22.585-29.141 0-16.591-13.498-30.088-30.088-30.088s-30.089 13.497-30.089 30.088c0 14.003 9.616 25.803 22.591 29.143v80.175c-35.212 23.569-40.709 73.778-10.283 104.231 11.147 11.148 25.686 17.991 41.255 19.505 24.75 49.372 75.795 83.152 134.638 83.152h90.36c59.093 0 109.973-33.874 134.66-83.164 34.235-3.347 61.069-32.106 61.069-67.396 0-33.397-24.288-61.601-56.893-66.84-11.912-32.73-33.124-63.407-62.818-86.855-3.252-2.568-7.968-2.014-10.534 1.238-2.567 3.25-2.013 7.967 1.237 10.534 42.492 33.556 68.838 85.049 68.838 141.924 0 74.611-60.367 135.56-135.56 135.56h-90.36c-74.083 0-135.55-60.064-135.55-135.56 0-88.692 64.022-162.942 149.028-177.948 10.931 7.722 24.25 12.278 38.622 12.278h15.73c4.136 0 7.5 3.364 7.5 7.5v19.59c0 13.324 16.2 20.026 25.603 10.604l35.512-35.501c1.394-1.393 3.327-2.192 5.306-2.192h114.82c32.886 0 59.64-26.754 59.64-59.64v-76.433c0-32.886-26.754-59.64-59.639-59.64zm14.519 361.38c0 24.632-16.737 44.947-39.003 50.926 5.86-16.257 8.833-33.329 8.833-50.926 0-17.083-2.193-33.934-6.519-50.259 21.537 6.759 36.689 26.701 36.689 50.259zm-444.291-165.645c0-8.32 6.769-15.088 15.088-15.088s15.088 6.769 15.088 15.088-6.769 15.088-15.088 15.088-15.088-6.768-15.088-15.088zm-7.529 165.645c0-22.852 14.914-43.317 36.698-50.252-4.325 16.323-6.518 33.173-6.518 50.252 0 17.596 2.974 34.668 8.834 50.926-22.186-5.958-39.014-26.205-39.014-50.926z"
                   />
                   <path
-                    fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
+                    fill={
+                      selected === 'chatbot'
+                        ? 'url(#chatbotGradient)'
+                        : 'currentColor'
+                    }
                     d="m346.318 127.941c16.591 0 30.089-13.498 30.089-30.088s-13.498-30.088-30.089-30.088-30.088 13.497-30.088 30.088 13.497 30.088 30.088 30.088zm0-45.177c8.32 0 15.089 6.769 15.089 15.088s-6.769 15.088-15.089 15.088c-8.319 0-15.088-6.769-15.088-15.088s6.769-15.088 15.088-15.088z"
                   />
                   <path
-                    fill={selected === 'chatbot' ? 'url(#chatbotGradient)' : 'currentColor'}
+                    fill={
+                      selected === 'chatbot'
+                        ? 'url(#chatbotGradient)'
+                        : 'currentColor'
+                    }
                     d="m466.759 97.853c0-16.591-13.497-30.088-30.088-30.088s-30.089 13.498-30.089 30.088 13.498 30.088 30.089 30.088 30.088-13.497 30.088-30.088zm-45.176 0c0-8.319 6.769-15.088 15.088-15.088s15.089 6.769 15.089 15.088-6.769 15.088-15.089 15.088-15.088-6.769-15.088-15.088z"
                   />
                 </g>
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: i18n.language === 'vi' ? '130px' : '75px',
             }}
@@ -300,7 +332,9 @@ const LeftSideBar = () => {
             <Link to="/analytics" onClick={() => handleClick('analytics')}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill={selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'}
+                fill={
+                  selected === 'analytics' ? 'url(#analyticsGradient)' : 'none'
+                }
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
@@ -323,7 +357,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block"
             style={{
               width: i18n.language === 'vi' ? '84px' : '80px',
             }}
@@ -365,7 +400,8 @@ const LeftSideBar = () => {
               </svg>
             </Link>
           </div>
-          <div className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
+          <div
+            className="absolute top-1/2 left-[120%] transform -translate-y-1/2 bg-black bg-opacity-70 text-white text-xs p-3 rounded-xl z-10 hidden group-hover:block "
             style={{
               width: i18n.language === 'vi' ? '90px' : '70px',
             }}

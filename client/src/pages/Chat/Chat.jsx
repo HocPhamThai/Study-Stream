@@ -130,7 +130,7 @@ const Chat = () => {
   }
 
   return (
-    <div className="relative bg-gray-200 grid grid-cols-[5%,20%,auto] gap-4 m-[-1rem] p-4 overflow-visible md:grid-cols-[5%,25%,auto] sm:grid-cols-[16%,auto] xs:grid-cols-1 xs:gap-2 xs:p-2">
+    <div className="relative bg-gray-100 grid grid-cols-[5%,20%,auto] gap-4 m-[-1rem] p-4 overflow-visible md:grid-cols-[5%,25%,auto] sm:grid-cols-[16%,auto] xs:grid-cols-1 xs:gap-2 xs:p-2">
       <div className="left-sidebar mt-11 ml-[-1rem] self-start">
         <div className="hidden lg:block">
           <LeftSideBar />
@@ -152,52 +152,52 @@ const Chat = () => {
           <div className="flex flex-col gap-2 overflow-auto scrollbar-none">
             {showChat
               ? chats.map((chat) => (
-                <div
-                  key={chat?._id}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => dispatch(setCurrentChat(chat))}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      dispatch(setCurrentChat(chat))
-                    }
-                  }}
-                  className="relative p-2 rounded-lg hover:bg-gray-300 cursor-pointer"
-                >
-                  <Conversation
-                    data={chat}
-                    currentUserId={user._id}
-                    online={checkOnlineStatus(chat)}
-                  />
-                  <button
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-orange-500 border-none p-1.5 rounded-md cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleDeleteChat(chat._id)
+                  <div
+                    key={chat?._id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => dispatch(setCurrentChat(chat))}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        dispatch(setCurrentChat(chat))
+                      }
+                    }}
+                    className="relative p-2 rounded-lg hover:bg-gray-300 cursor-pointer"
+                  >
+                    <Conversation
+                      data={chat}
+                      currentUserId={user._id}
+                      online={checkOnlineStatus(chat)}
+                    />
+                    <button
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-orange-500 border-none p-1.5 rounded-md cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleDeleteChat(chat._id)
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))
+              : userSearchs.map((user) => (
+                  <div
+                    key={user._id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => handleUserClick(user._id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleUserClick(user._id)
+                      }
                     }}
                   >
-                    X
-                  </button>
-                </div>
-              ))
-              : userSearchs.map((user) => (
-                <div
-                  key={user._id}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => handleUserClick(user._id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      handleUserClick(user._id)
-                    }
-                  }}
-                >
-                  <ConversationInSearch
-                    data={user}
-                    setShowChat={setShowChat}
-                  />
-                </div>
-              ))}
+                    <ConversationInSearch
+                      data={user}
+                      setShowChat={setShowChat}
+                    />
+                  </div>
+                ))}
           </div>
         </div>
       </div>
@@ -207,14 +207,16 @@ const Chat = () => {
             <ChangeLanguage />
           </div>
           <div className="flex gap-4 flex-1 justify-between items-center mr-24">
-
-            <Link to="/dashhome" className='mr-6' style={{ width: '24px', height: 'auto' }}>
+            <Link
+              to="/dashhome"
+              className="mr-6"
+              style={{ width: '24px', height: 'auto' }}
+            >
               <img src={Home} alt="" />
             </Link>
             <Link to={`/profile/${user._id}`}>
               <UilSetting />
             </Link>
-
           </div>
         </div>
         <ChatBox

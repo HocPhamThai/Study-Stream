@@ -65,7 +65,7 @@ function Lessons() {
   )
 
   return (
-    <div className="bg-gray-200 z-50 -m-4">
+    <div className="bg-gray-100 z-50 -m-4">
       <div className="flex justify-between items-center bg-transparent p-2 ">
         <div className="w-auto h-9 relative ml-5 flex items-center space-x-5">
           <img className="h-full" src={Logo} alt="Logo" />
@@ -74,7 +74,9 @@ function Lessons() {
           </span>
         </div>
         <div className="relative mr-2 flex">
-          <div className=' m-auto'><ChangeLanguage /></div>
+          <div className=" m-auto">
+            <ChangeLanguage />
+          </div>
           <AvatarDropdown />
         </div>
       </div>
@@ -142,9 +144,7 @@ function Lessons() {
               <CourseOptionList
                 key={lesson.lessonId}
                 course={lesson}
-                onClick={() =>
-                  handleOptionSelect(lesson.lessonId)
-                }
+                onClick={() => handleOptionSelect(lesson.lessonId)}
               />
             ))}
           </div>

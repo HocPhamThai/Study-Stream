@@ -13,7 +13,7 @@ const Profile = () => {
   const handleOpen = () => setModalOpen(true)
   const handleClose = () => setModalOpen(false)
   return (
-    <div className="Profile flex flex-col lg:flex-row bg-gray-200">
+    <div className="Profile flex flex-col lg:flex-row bg-gray-100">
       <div className="hidden lg:block lg:w-1/4">
         <ProfileLeft />
       </div>
@@ -23,8 +23,6 @@ const Profile = () => {
         </div>
         <ProfileCard location="ProfilePage" />
         <PostSide />
-
-
       </div>
       <div className="hidden lg:block lg:w-1/4">
         <RightSide />

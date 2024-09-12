@@ -49,7 +49,7 @@ const CoursesTopic = () => {
   }
 
   return (
-    <div className="bg-gray-200 z-50 -m-4">
+    <div className="bg-gray-100 z-50 -m-4">
       <div className="flex justify-between items-center bg-transparent p-2">
         <div className="w-auto h-9 relative ml-3 flex items-center space-x-5">
           <img
@@ -57,19 +57,21 @@ const CoursesTopic = () => {
             src={Logo}
             alt="Logo"
           />
-          {console.log("User: ", user)}
+          {console.log('User: ', user)}
           <span className="text-lg hidden sm:flex">
             {t('dashhome:header.hi')}, {user.firstname + ' ' + user.lastname}
           </span>
         </div>
         <div className="relative mr-2 flex">
-          <div className=' m-auto'><ChangeLanguage /></div>
+          <div className=" m-auto">
+            <ChangeLanguage />
+          </div>
           <AvatarDropdown />
         </div>
       </div>
       <div className="flex flex-col lg:flex-row">
         {/* sidebar */}
-        <div className='hidden lg:block'>
+        <div className="hidden lg:block">
           <LeftSideBar />
         </div>
 
@@ -98,28 +100,41 @@ const CoursesTopic = () => {
                 <p className="text-medium font-semibold md:text-lg">
                   {t('space')} {t(`topics.${courseTopicId}.name`)}
                 </p>
-                <p className="mt-4 text-sm">{t(`topics.${courseTopicId}.description`)}</p>
+                <p className="mt-4 text-sm">
+                  {t(`topics.${courseTopicId}.description`)}
+                </p>
               </div>
               <div className="flex flex-1 justify-center">
-                <img className="w-[200px] h-[115px]" src={courses?.courseTopicImage} alt="" />
+                <img
+                  className="w-[200px] h-[115px]"
+                  src={courses?.courseTopicImage}
+                  alt=""
+                />
               </div>
             </div>
 
-            {listCourses.map(course => (
+            {listCourses.map((course) => (
               <div
                 key={course.courseId}
                 onClick={() => handleOptionSelect(course.courseId)}
                 className="cursor-pointer group relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-3xl shadow-sm"
                 style={{ backgroundColor: 'rgba(225,203,172,0.5)' }}
               >
-                <div className='flex items-center justify-center md:p-4'>
-                  <img className='h-[120px] md:h-[150px]' src={course.courseImage} alt="" />
+                <div className="flex items-center justify-center md:p-4">
+                  <img
+                    className="h-[120px] md:h-[150px]"
+                    src={course.courseImage}
+                    alt=""
+                  />
                 </div>
-                <div className='flex flex-1 flex-col p-4' style={{ backgroundColor: 'rgba(255, 235, 245)' }}>
-                  <p className='font-bold'>{course.courseName}</p>
-                  <div className='flex h-full flex-col items-end justify-between gap-2 md:flex-row md:items-center'>
-                    <div className='w-full overflow-hidden text-ellipsis'>
-                      <div className='w-full overflow-hidden text-sm line-clamp-3'>
+                <div
+                  className="flex flex-1 flex-col p-4"
+                  style={{ backgroundColor: 'rgba(255, 235, 245)' }}
+                >
+                  <p className="font-bold">{course.courseName}</p>
+                  <div className="flex h-full flex-col items-end justify-between gap-2 md:flex-row md:items-center">
+                    <div className="w-full overflow-hidden text-ellipsis">
+                      <div className="w-full overflow-hidden text-sm line-clamp-3">
                         {course.courseDescription}
                       </div>
                     </div>

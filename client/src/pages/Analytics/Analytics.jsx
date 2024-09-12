@@ -74,7 +74,7 @@ function Analytics() {
   }
 
   return (
-    <div className="bg-gray-200 z-50 -m-4">
+    <div className="bg-gray-100 z-50 -m-4">
       <div className="flex justify-between items-center bg-transparent p-2">
         <div className="w-auto h-9 relative ml-3 flex items-center space-x-5 ">
           <img
