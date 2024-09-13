@@ -170,7 +170,7 @@ function App() {
               }
             />
             <Route
-              path="/topic"
+              path="/:topic"
               element={user ? <Topic /> : <Navigate to="../get-started" />}
             />
             <Route
