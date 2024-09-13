@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function RandomPlaylist() {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [randomEntry, setRandomEntry] = useState([])
   const navigate = useNavigate()
+  const { topic } = useParams()
 
   useEffect(() => {
     const fetchRandomEntry = async () => {
@@ -32,14 +31,16 @@ function RandomPlaylist() {
       <div className="flex flex-col rounded-2xl bg-white p-6 mt-[14px]">
         <div className="mb-4 flex justify-between">
           <p className="font-bold">Random Playlist</p>
-          <p className="cursor-pointer text-sm font-medium text-cl-1">
-            <Link
-              to="/topic"
-              className="cursor-pointer text-sm font-medium text-[#f95f35]"
-            >
-              View all
-            </Link>
-          </p>
+          {topic !== 'topic' ?
+            <p className="cursor-pointer text-sm font-medium text-cl-1">
+              <Link
+                to="/topic"
+                className="cursor-pointer text-sm font-medium text-[#f95f35]"
+              >
+                View all
+              </Link>
+            </p>
+            : ''}
         </div>
         <div className="mt-2 flex flex-col gap-7">
           {randomEntry.map((entry, index) => (
