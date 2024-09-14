@@ -2,12 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function FavoritePlaylist() {
   const { user } = useSelector((state) => state.authReducer.authData)
   const [favoriteEntry, setFavoriteEntry] = useState([])
   const navigate = useNavigate()
   const { topic } = useParams()
+  const { t } = useTranslation('rcmList')
 
   useEffect(() => {
     const fetchFavoriteEntry = async () => {
@@ -31,14 +33,14 @@ function FavoritePlaylist() {
       {favoriteEntry?.length != 0 ? (
         <div className="flex flex-col rounded-2xl bg-white p-6 mt-[14px]">
           <div className="mb-4 flex justify-between">
-            <p className="font-bold">Your Favorite</p>
+            <p className="font-bold">{t('Your Favorite')}</p>
             {topic !== 'topic' ?
               <p className="cursor-pointer text-sm font-medium text-cl-1">
                 <Link
                   to="/topic"
                   className="cursor-pointer text-sm font-medium text-[#f95f35]"
                 >
-                  View all
+                  {t('View all')}
                 </Link>
               </p>
               : ''}
@@ -62,7 +64,7 @@ function FavoritePlaylist() {
                     {entry.name}
                   </p>
                   <div className="mt-2 w-fit cursor-pointer font-bold rounded-full bg-[rgba(225,203,172,0.5)] px-3 py-1 text-sm text-[#f95f35]">
-                    <span className="font-medium">Start</span>
+                    <span className="font-medium">{t('Start')}</span>
                   </div>
                 </div>
               </div>
