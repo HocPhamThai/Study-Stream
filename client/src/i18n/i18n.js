@@ -24,6 +24,8 @@ import LOGIN_EN from '../locales/en/login.json'
 import LOGIN_VI from '../locales/vi/login.json'
 import RCMLIST_EN from '../locales/en/recommend_list.json'
 import RCMLIST_VI from '../locales/vi/recommend_list.json'
+import LEARNING_SPACE_EN from '../locales/en/learning_space.json'
+import LEARNING_SPACE_VI from '../locales/vi/learning_space.json'
 
 export const locales = {
   en: 'English',
@@ -43,7 +45,8 @@ const resources = {
     navbar: NAVBAR_EN,
     pomodoro: POMODORO_EN,
     login: LOGIN_EN,
-    rcmList: RCMLIST_EN
+    rcmList: RCMLIST_EN,
+    learningSpace: LEARNING_SPACE_EN,
   },
   vi: {
     getStarted: GET_STARTED_VI,
@@ -57,7 +60,9 @@ const resources = {
     navbar: NAVBAR_VI,
     pomodoro: POMODORO_VI,
     login: LOGIN_VI,
-    rcmList: RCMLIST_VI
+    rcmList: RCMLIST_VI,
+    learningSpace: LEARNING_SPACE_VI,
+
   }
 }
 

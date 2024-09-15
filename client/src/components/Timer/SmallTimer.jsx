@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState, useContext } from 'react'
-import SettingsContext from '../../store/SettingsContext'
-import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import SettingsContext from '../../store/SettingsContext'
 import './Timer.scss'
-import Logo from '../../img/logo.png'
 import notificationSound from './timeup.mp3'
+import { useTranslation } from 'react-i18next'
 
 const SmallTimer = ({ onTimerEnd }) => {
   const settingsInfo = useContext(SettingsContext)
@@ -19,6 +19,7 @@ const SmallTimer = ({ onTimerEnd }) => {
   const [tempBreakMinutes, setTempBreakMinutes] = useState(5)
   const audioRef = useRef(new Audio(notificationSound))
   const [repeat, setRepeat] = useState()
+  const { t } = useTranslation('learningSpace')
 
   function tick() {
     secondsLeftRef.current--
@@ -154,7 +155,7 @@ const SmallTimer = ({ onTimerEnd }) => {
                   isPausedRef.current = false
                 }}
               >
-                Start
+                {t('Start')}
               </div>
             ) : (
               <div
@@ -164,7 +165,7 @@ const SmallTimer = ({ onTimerEnd }) => {
                   isPausedRef.current = true
                 }}
               >
-                Pause
+                {t('Pause')}
               </div>
             )}
 
@@ -172,7 +173,8 @@ const SmallTimer = ({ onTimerEnd }) => {
               className="cursor-pointer overflow-hidden rounded-br-lg bg-gradient-to-r from-[#f9a225] to-[#f95f35] p-1 text-center opacity-90 hover:opacity-100 text-white text-sm w-[66px]"
               onClick={handleReset}
             >
-              Reset
+              {t('Reset')}
+
             </div>
           </div>
         </div>
