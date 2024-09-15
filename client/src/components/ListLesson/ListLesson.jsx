@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function ListLesson({ courseTopicId, courseId, lessonId }) {
   const { user } = useSelector((state) => state.authReducer.authData)
@@ -11,6 +12,7 @@ function ListLesson({ courseTopicId, courseId, lessonId }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const { t } = useTranslation('learningSpace')
 
   useEffect(() => {
     const fetchLessons = async () => {
@@ -35,13 +37,13 @@ function ListLesson({ courseTopicId, courseId, lessonId }) {
     <div className="w-full lg:w-96 lg:mr-5 mt-5 lg:mt-0 ">
       <div className="flex flex-col rounded-2xl bg-white p-6 mt-[14px]">
         <div className="mb-4 flex justify-between">
-          <p className="font-bold">List lessons</p>
+          <p className="font-bold">{t('List lessons')}</p>
           <p className="cursor-pointer text-sm font-medium text-cl-1">
             <Link
               to={`/courses-topic/${courseTopicId}/${courseId}`}
               className="cursor-pointer text-sm font-medium text-[#f95f35]"
             >
-              View all
+              {t('View all')}
             </Link>
           </p>
         </div>
@@ -62,7 +64,7 @@ function ListLesson({ courseTopicId, courseId, lessonId }) {
                   {lesson.lessonName}
                 </p>
                 <div className="mt-2 w-fit cursor-pointer font-bold rounded-full bg-[rgba(225,203,172,0.5)] px-3 py-1 text-sm text-[#f95f35]">
-                  <span className="font-medium">Start</span>
+                  <span className="font-medium">{t('Start')}</span>
                 </div>
               </div>
             </div>

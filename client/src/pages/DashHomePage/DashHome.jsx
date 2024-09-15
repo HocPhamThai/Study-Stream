@@ -346,9 +346,8 @@ const DashHome = () => {
           </div> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div
-              className={`p-8 w-full ${
-                i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
-              } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
+                } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
             >
               <p className="text-medium font-semibold md:text-lg">
                 {t('study room.title')}
@@ -364,9 +363,8 @@ const DashHome = () => {
             </div>
 
             <div
-              className={`p-8 w-full ${
-                i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
-              } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
+                } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
             >
               <p className="text-medium font-semibold md:text-lg">
                 {t('working room.title')}
@@ -382,9 +380,8 @@ const DashHome = () => {
             </div>
 
             <div
-              className={`p-8 w-full ${
-                i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
-              } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
+                } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
             >
               <p className="text-medium font-semibold md:text-lg">
                 {t('quite room.title')}
@@ -400,9 +397,8 @@ const DashHome = () => {
             </div>
 
             <div
-              className={`p-8 w-full ${
-                i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
-              } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
+              className={`p-8 w-full ${i18n.language === 'vi' ? 'h-[17rem]' : 'h-[15rem]'
+                } bg-white col-span-1 m-auto flex flex-col items-start gap-4 rounded-xl text-black shadow-lg border border-gray-200`}
             >
               <p className="text-medium font-semibold md:text-lg">
                 {t('creative room.title')}
