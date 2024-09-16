@@ -1,13 +1,14 @@
 // src/components/StudyRoom.jsx
-import React, { useEffect, useState } from 'react'
-import './StudyRoom.scss';
-import './Main.scss';
-import Logo from "../../img/logo.png";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { joinRoomInit, sendMessage } from '../../actions/StudyRoom_rtc';
-import { useDispatch, useSelector } from 'react-redux'
-import { enterRoom, exitRoom } from '../../api/UserRequest'
-import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { enterRoom, exitRoom } from '../../api/UserRequest';
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage';
+import Logo from "../../img/logo.png";
+import './Main.scss';
+import './StudyRoom.scss';
 
 const StudyRoom = () => {
   const [activeMemberContainer, setActiveMemberContainer] = useState(false)
@@ -16,24 +17,24 @@ const StudyRoom = () => {
   const authData = useSelector((state) => state.authReducer.authData);
   const user = authData ? authData.user : null
   const [message, setMessage] = useState('')
-
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const roomNumber = parseInt(query.get('room'), 10)
+  const { t } = useTranslation('studyroom')
 
   let roomType
   switch (roomNumber) {
     case 1:
-      roomType = 'Study Room';
+      roomType = `${t('Study Room')}`;
       break;
     case 2:
-      roomType = 'Working Room';
+      roomType = `${t('Working Room')}`;
       break;
     case 3:
-      roomType = 'Quiet Room';
+      roomType = `${t('Quiet Room')}`;
       break;
     case 4:
-      roomType = 'Creative room';
+      roomType = `${t('Creative room')}`;
       break;
   }
 
@@ -190,9 +191,14 @@ const StudyRoom = () => {
               <path d="M24 20h-3v4l-5.333-4h-7.667v-4h2v2h6.333l2.667 2v-2h3v-8.001h-2v-2h4v12.001zm-15.667-6l-5.333 4v-4h-3v-14.001l18 .001v14h-9.667zm-6.333-2h3v2l2.667-2h8.333v-10l-14-.001v10.001z" />
             </svg>
           </button>
-          <a className="nav__link" id="create__room__btn" href="/dashhome">
-            Go back
-          </a>
+          <div className='flex'>
+            <div className=" m-auto mr-3">
+              <ChangeLanguage />
+            </div>
+            <a className="nav__link" id="create__room__btn" href="/dashhome">
+              {t('Go back')}
+            </a>
+          </div>
         </div>
       </header>
 
@@ -200,12 +206,10 @@ const StudyRoom = () => {
         <div id="room__container">
           <section id="members__container">
             <div id="members__header">
-              <p>Participants</p>
+              <p>{t('Participants')}</p>
               <strong id="members__count"></strong>
             </div>
             <div id="member__list">
-
-
             </div>
           </section>
 
