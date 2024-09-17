@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next'
 
 const HorizontalNavBar = () => {
   const [selected, setSelected] = useState(null);
-  const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.authReducer.authData)
   const { t, i18n } = useTranslation('navbar')
 
   const handleClick = (key) => {
