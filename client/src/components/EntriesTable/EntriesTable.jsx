@@ -1,14 +1,11 @@
-import React from 'react'
-import { toast } from 'sonner'
-import UserInfoModal from '../UserInfoModal/UserInfoModal'
-import UserPagination from '../AdminManageUserButton/UserPagination'
-import { useEffect, useRef, useState, useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 import AddEntryModal from '../AdminManageEntries/AddEntryModal'
-import UpdateEntryModal from '../AdminManageEntries/UpdateEntryModal'
 import DeleteEntryModal from '../AdminManageEntries/DeleteEntryModal'
+import UpdateEntryModal from '../AdminManageEntries/UpdateEntryModal'
+import UserPagination from '../AdminManageUserButton/UserPagination'
 
 function EntriesTable({ topicIdProps }) {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
