@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { toast } from 'sonner'
 import '../UserTable/UserTable.scss'
+import { useTranslation } from 'react-i18next'
 
 function UserInfoModal({ onUserAdded }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -11,6 +12,7 @@ function UserInfoModal({ onUserAdded }) {
   const error = useSelector((state) => state.authReducer.error)
   const [confirmpass, setConfirmpass] = useState(true)
   const [formErrors, setFormErrors] = useState([])
+  const { t } = useTranslation('admin')
 
   const [data, setData] = useState({
     firstname: '',
@@ -108,7 +110,7 @@ function UserInfoModal({ onUserAdded }) {
             d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
           />
         </svg>
-        Add user
+        {t('Users.Add user')}
       </button>
 
       {isModalOpen && (
@@ -253,7 +255,7 @@ function UserInfoModal({ onUserAdded }) {
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Add User
+                  {t('Users.Add user')}
                 </button>
               </div>
             </form>

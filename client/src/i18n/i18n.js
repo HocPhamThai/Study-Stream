@@ -28,6 +28,8 @@ import LEARNING_SPACE_EN from '../locales/en/learning_space.json'
 import LEARNING_SPACE_VI from '../locales/vi/learning_space.json'
 import STUDYROOM_EN from '../locales/en/studyroom.json'
 import STUDYROOM_VI from '../locales/vi/studyroom.json'
+import ADMIN_EN from '../locales/en/admin.json'
+import ADMIN_VI from '../locales/vi/admin.json'
 
 export const locales = {
   en: 'English',
@@ -49,7 +51,8 @@ const resources = {
     login: LOGIN_EN,
     rcmList: RCMLIST_EN,
     learningSpace: LEARNING_SPACE_EN,
-    studyroom: STUDYROOM_EN
+    studyroom: STUDYROOM_EN,
+    admin: ADMIN_EN
   },
   vi: {
     getStarted: GET_STARTED_VI,
@@ -65,7 +68,8 @@ const resources = {
     login: LOGIN_VI,
     rcmList: RCMLIST_VI,
     learningSpace: LEARNING_SPACE_VI,
-    studyroom: STUDYROOM_VI
+    studyroom: STUDYROOM_VI,
+    admin: ADMIN_VI
   }
 }
 

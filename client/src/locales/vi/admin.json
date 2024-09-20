@@ -1,0 +1,24 @@
+{
+  "Users": {
+    "All Users": "Số lượng người dùng",
+    "Username": "Tên",
+    "User role": "Vai trò",
+    "Country": "Quê quán",
+    "Add user": "Thêm",
+    "Last Update": "Cập nhật cuối",
+    "Edit": "Sửa",
+    "Preview": "Xem",
+    "Delete": "Xóa",
+    "Search for users": "Tìm kiếm người dùng",
+    "Update User": "Cập nhật người dùng",
+    "First Name": "Tên người dùng",
+    "Last Name": "Họ người dùng",
+    "User Role": "Vai trò",
+    "Password": "Mật khẩu",
+    "Confirm Password": "Xác nhận mật khẩu",
+    "* The confirm password is not match!!!": "* Mật khẩu xác nhận không đúng!!!",
+    "Cancel": "Hủy",
+    "Update Button": "Cập nhật",
+    "Enter password...": "Enter password..."
+  }
+}
