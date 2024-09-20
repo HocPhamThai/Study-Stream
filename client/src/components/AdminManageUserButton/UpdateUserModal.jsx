@@ -1,10 +1,6 @@
-import React from 'react'
-import { useState, useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { uploadImage } from '../../actions/uploadAction'
-import { updateUser } from '../../actions/UserAction'
 import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function UpdateUserModal({ data, onUserUpdated }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,6 +12,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
   const [confirmpass, setConfirmpass] = useState(true)
   const [formErrors, setFormErrors] = useState([])
   const initialData = useRef(data) // Lưu trữ dữ liệu ban đầu
+  const { t } = useTranslation(['admin'])
 
   // Hàm so sánh dữ liệu
   const isDataChanged = (newData, oldData) => {
@@ -85,7 +82,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
             clipRule="evenodd"
           />
         </svg>
-        Edit
+        {t('Users.Edit')}
       </button>
 
       {isModalOpen && (
@@ -93,7 +90,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
           <div className="bg-gray-800 rounded-lg shadow-lg p-8 z-50 w-full max-w-2xl">
             <h1 className="font-bold text-[20px] mb-5 text-white">
-              Update User
+              {t('Users.Update User')}
             </h1>
             <hr className="mb-5" />
             <form onSubmit={handleSubmit}>
@@ -103,7 +100,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     htmlFor="firstname"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    First Name
+                    {t('Users.First Name')}
                   </label>
                   <input
                     type="text"
@@ -121,7 +118,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     htmlFor="lastname"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Last Name
+                    {t('Users.Last Name')}
                   </label>
                   <input
                     type="text"
@@ -139,7 +136,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     htmlFor="role"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    User Role
+                    {t('Users.User Role')}
                   </label>
                   <select
                     id="role"
@@ -174,14 +171,14 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Password
+                    {t('Users.Password')}
                   </label>
                   <input
                     type="password"
                     name="password"
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter password..."
+                    placeholder={t('Users.Enter password...')}
                     onChange={handleChange}
                     value={formData.password}
                     autoComplete="off"
@@ -195,14 +192,14 @@ function UpdateUserModal({ data, onUserUpdated }) {
                     htmlFor="confirmpass"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Confirm Password
+                    {t('Users.Confirm Password')}
                   </label>
                   <input
                     type="password"
                     name="confirmpass"
                     id="confirmpass"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter password..."
+                    placeholder={t('Users.Enter password...')}
                     onChange={handleChange}
                     value={formData.confirmpass}
                   />
@@ -211,7 +208,7 @@ function UpdateUserModal({ data, onUserUpdated }) {
                   )}
                   {!formErrors.password && !confirmpass && (
                     <span style={{ color: 'red', fontSize: '0.7rem' }}>
-                      * The confirm password is not match!!!
+                      {t('Users.* The confirm password is not match!!!')}
                     </span>
                   )}
                 </div>
@@ -222,13 +219,13 @@ function UpdateUserModal({ data, onUserUpdated }) {
                   onClick={closeModal}
                   className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 border border-gray-200 rounded-lg text-sm font-medium px-5 py-2.5 hover:text-primary-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                 >
-                  Cancel
+                  {t('Users.Cancel')}
                 </button>
                 <button
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Update User
+                  {t('Users.Update User')}
                 </button>
               </div>
             </form>

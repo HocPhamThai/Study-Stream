@@ -9,6 +9,7 @@ import DeleteUserModal from '../AdminManageUserButton/DeleteUserModal'
 import ReadingUserModal from '../AdminManageUserButton/ReadingUserModal'
 import './UserTable.scss'
 import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 function UserTable({ dataAdmin }) {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -21,7 +22,7 @@ function UserTable({ dataAdmin }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState()
   const rowsPerPage = 6
-  const { t } = useTranslation(['chat'])
+  const { t } = useTranslation('admin')
 
   const openModal = (userId, user, modalType) => {
     setSelectedUser(user)
@@ -103,18 +104,13 @@ function UserTable({ dataAdmin }) {
           <div className="mx-auto max-w-screen-2xl px-4 lg:px-12 mb-3">
             <div className="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div className="flex-1 flex items-center space-x-2">
+                <div className="flex-1 flex items-center space-x-2 justify-between	">
                   <h5>
-                    <span className="text-gray-500">All Users: </span>
+                    <span className="text-gray-500">{t('Users.All Users')}: </span>
                     <span className="text-black">{user?.length}</span>
                   </h5>
-                  <div
-                    id="results-tooltip"
-                    role="tooltip"
-                    className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-black transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip"
-                  >
-                    Showing 1-100 of 436 results
-                    <div className="tooltip-arrow" data-popper-arrow="" />
+                  <div>
+                    <ChangeLanguage />
                   </div>
                 </div>
               </div>
@@ -143,7 +139,7 @@ function UserTable({ dataAdmin }) {
                       <input
                         type="text"
                         id="simple-search"
-                        placeholder="Search for users"
+                        placeholder={t('Users.Search for users')}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2"
                         value={searchQuery} // Bind input to searchQuery state
                         onChange={(e) => setSearchQuery(e.target.value)} // Update searchQuery state on input change
@@ -162,19 +158,19 @@ function UserTable({ dataAdmin }) {
                     <tr>
 
                       <th scope="col" className="p-4">
-                        Username
+                        {t('Users.Username')}
                       </th>
                       <th scope="col" className="p-4">
-                        User role
+                        {t('Users.User role')}
                       </th>
                       <th scope="col" className="p-4">
                         Email
                       </th>
                       <th scope="col" className="p-4">
-                        Country
+                        {t('Users.Country')}
                       </th>
                       <th scope="col" className="p-4">
-                        Last Update
+                        {t('Users.Last Update')}
                       </th>
                     </tr>
                   </thead>
@@ -244,7 +240,7 @@ function UserTable({ dataAdmin }) {
                                     d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
                                   />
                                 </svg>
-                                Preview
+                                {t('Users.Preview')}
                               </button>
                               {isModalOpen && modalType === 'preview' && (
                                 <ReadingUserModal
@@ -278,7 +274,7 @@ function UserTable({ dataAdmin }) {
                                     clipRule="evenodd"
                                   />
                                 </svg>
-                                Delete
+                                {t('Users.Delete')}
                               </button>
                               {isModalOpen && modalType === 'delete' && (
                                 <DeleteUserModal

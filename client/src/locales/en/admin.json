@@ -1,0 +1,24 @@
+{
+  "Users": {
+    "All Users": "All Users",
+    "Username": "Username",
+    "User role": "User role",
+    "Country": "Country",
+    "Add user": "Add user",
+    "Last Update": "Last Update",
+    "Edit": "Edit",
+    "Preview": "Preview",
+    "Delete": "Delete",
+    "Search for users": "Search for users",
+    "Update User": "Update User",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "User Role": "User Role",
+    "Password": "Password",
+    "Confirm Password": "Confirm Password",
+    "* The confirm password is not match!!!": "* The confirm password is not match!!!",
+    "Cancel": "Cancel",
+    "Update Button": "Update Button",
+    "Enter password...": "Nhập mật khẩu..."
+  }
+}
