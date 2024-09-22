@@ -20,5 +20,17 @@
     "Cancel": "Cancel",
     "Update Button": "Update Button",
     "Enter password...": "Nhập mật khẩu..."
-  }
+  },
+  "Topics": {
+    "Image": "Image",
+    "Topic Name": "Topic Name",
+    "Number of entries": "Number of entries",
+    "Description": "Description",
+    "Last Update": "Last Update",
+    "Add Topic": "Add Topic",
+    "entries": "entries"
+  },
+  "Edit": "Edit",
+  "Preview": "Preview",
+  "Delete": "Delete"
 }

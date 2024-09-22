@@ -20,5 +20,17 @@
     "Cancel": "Hủy",
     "Update Button": "Cập nhật",
     "Enter password...": "Enter password..."
-  }
+  },
+  "Topics": {
+    "Image": "Ảnh",
+    "Topic Name": "Tên chủ đề",
+    "Number of entries": "Số lượng nền",
+    "Description": "Mô tả",
+    "Last Update": "Cập nhật cuối",
+    "Add Topic": "Thêm chủ đề",
+    "entries": "nền"
+  },
+  "Edit": "Edit",
+  "Preview": "Preview",
+  "Delete": "Delete"
 }

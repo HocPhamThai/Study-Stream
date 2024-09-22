@@ -1,16 +1,14 @@
-import React from 'react'
-import { toast } from 'sonner'
-import UserInfoModal from '../UserInfoModal/UserInfoModal'
-import UserPagination from '../AdminManageUserButton/UserPagination'
-import { useEffect, useRef, useState, useContext } from 'react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ProfileModal from '../ProfileModal/ProfileModal'
-import UpdateUserModal from '../AdminManageUserButton/UpdateUserModal'
-import ReadingUserModal from '../AdminManageUserButton/ReadingUserModal'
+import { toast } from 'sonner'
 import AddTopicModal from '../AdminManageTopic/AddTopicModal'
-import UpdateTopicModal from '../AdminManageTopic/UpdateTopicModal'
 import DeleteTopicModal from '../AdminManageTopic/DeleteTopicModal'
+import UpdateTopicModal from '../AdminManageTopic/UpdateTopicModal'
+import ReadingUserModal from '../AdminManageUserButton/ReadingUserModal'
+import UserPagination from '../AdminManageUserButton/UserPagination'
+import { useTranslation } from 'react-i18next'
+import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage'
 
 function TopicTable() {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
@@ -22,6 +20,7 @@ function TopicTable() {
   const [selectedTopic, setSelectedTopic] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const { t } = useTranslation('admin')
 
   const navigate = useNavigate()
 
@@ -111,34 +110,14 @@ function TopicTable() {
           <div className="mx-auto max-w-screen-2xl px-4 lg:px-12 mb-3">
             <div className="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div className="flex-1 flex items-center space-x-2">
+                <div className="flex-1 flex items-center space-x-2 justify-between">
                   <h5>
                     <span className="text-gray-500">All Topic: </span>
                     <span className="text-black">{topics?.length}</span>
                   </h5>
-                  {/* <h5 className="text-gray-500 ml-1">
-                    1-100 (436)
-                  </h5> */}
-                  <button
-                    type="button"
-                    className="group"
-                    data-tooltip-target="results-tooltip"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 text-gray-600  group-hover:text-black"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="sr-only">More info</span>
-                  </button>
+                  <div>
+                    <ChangeLanguage />
+                  </div>
                   <div
                     id="results-tooltip"
                     role="tooltip"
@@ -192,19 +171,19 @@ function TopicTable() {
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                     <tr>
                       <th scope="col" className="p-4">
-                        Image
+                        {t('Topics.Image')}
                       </th>
                       <th scope="col" className="p-4">
-                        Topic Name
+                        {t('Topics.Topic Name')}
                       </th>
                       <th scope="col" className="p-4">
-                        Number of entries
+                        {t('Topics.Number of entries')}
                       </th>
                       <th scope="col" className="p-4">
-                        Description
+                        {t("Topics.Description")}
                       </th>
                       <th scope="col" className="p-4">
-                        Last Update
+                        {t('Topics.Last Update')}
                       </th>
                     </tr>
                   </thead>
@@ -242,7 +221,7 @@ function TopicTable() {
                           onClick={() => handleTopicSelected(topic.topicName)}
                         >
                           <div className="flex items-center">
-                            {topic?.entries.length} entries
+                            {topic?.entries.length} {t('Topics.entries')}
                           </div>
                         </td>
                         <td
