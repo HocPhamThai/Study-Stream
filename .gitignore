@@ -1,4 +1,9 @@
-/server/.env
+# .gitignore
 /client/.env
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+/server/.env
 /socket/node_modules
 /server/node_modules

@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -13,6 +11,8 @@
 
 # misc
 .DS_Store
+
+# environment variables
 /.env
 .env
 .env.local
@@ -20,6 +20,20 @@
 .env.test.local
 .env.production.local
 
+# client environment variables
+/client/.env
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+
+# server environment variables
+/server/.env
+
+# socket environment variables
+/socket/node_modules
+
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
