@@ -1,7 +1,7 @@
 .Auth {
   margin: -1rem;
   padding: 1rem;
-  // background-color: #f3f3f3;
+  background-color: #fff !important;
 
   .error {
     color: red;
@@ -22,7 +22,7 @@
     margin: 10px;
   }
 
-  >div {
+  > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,14 +31,14 @@
   .auth-left {
     gap: 2rem;
 
-    >img {
+    > img {
       width: 10rem;
       height: 10rem;
     }
   }
 
   .Webname {
-    >h1 {
+    > h1 {
       font-size: 3rem;
       background-color: red;
 
@@ -56,7 +56,7 @@
       -moz-text-fill-color: transparent;
     }
 
-    >h6 {
+    > h6 {
       font-size: 0.85rem;
     }
   }
@@ -94,7 +94,7 @@
   align-items: center;
   gap: 2rem;
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
     /* Đặt theo hàng dọc cho màn hình nhỏ */
@@ -106,11 +106,9 @@
 }
 
 @media (min-width: 640px) {
-
   /* sm: màn hình nhỏ hơn 640px */
   .infoForm {
-
-    >div {
+    > div {
       flex-direction: row;
       /* Đặt theo hàng ngang cho màn hình lớn hơn */
       height: 2rem;
@@ -147,7 +145,6 @@
   }
 }
 
-
 .infoInput {
   border: none;
   outline: none;
@@ -173,7 +170,7 @@
   border-radius: 1rem;
   padding: 1rem;
 
-  >div {
+  > div {
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -181,7 +178,8 @@
 }
 
 .widthLoginForm {
-  width: 18rem;
+  width: 24rem;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
 }
 
 .error {

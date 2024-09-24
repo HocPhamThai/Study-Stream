@@ -83,6 +83,16 @@ const Auth = () => {
     dispatch({ type: 'CLEAR_ERROR' })
   }
 
+  const handleGuestAccount = () => {
+    if (!isSignUp) {
+      const guestData = {
+        username: 'guest@gmail.com',
+        password: '123123',
+      }
+      dispatch(logIn(guestData))
+    }
+  }
+
   const handleForgot = () => {
     window.location.href = '/forgot'
   }
@@ -111,7 +121,9 @@ const Auth = () => {
             />
             <h1 className=" block md:hidden textTitle ">Study Stream</h1>
           </div>
-          <h3 className="font-bold uppercase ">{isSignUp ? t('Sign Up') : t('Login')}</h3>
+          <h3 className="font-bold uppercase ">
+            {isSignUp ? t('Sign Up') : t('Login')}
+          </h3>
           {isSignUp && (
             <div>
               <input
@@ -240,13 +252,26 @@ const Auth = () => {
                 : t(`Don't have an account? Sign Up`)}
             </span>
           </div>
-          <button
-            className="button infoButton"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? t('Loading....') : isSignUp ? t('Sign Up') : t('Login')}
-          </button>
+          <div>
+            <button
+              className="button infoButton"
+              type="button"
+              onClick={handleGuestAccount}
+            >
+              {t('Guest')}
+            </button>
+            <button
+              className="button infoButton"
+              type="submit"
+              disabled={loading}
+            >
+              {loading
+                ? t('Loading....')
+                : isSignUp
+                ? t('Sign Up')
+                : t('Login')}
+            </button>
+          </div>
         </form>
       </div>
     </div>
