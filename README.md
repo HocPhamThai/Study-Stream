@@ -38,25 +38,40 @@
 
 **🔷 Focus with the Pomodoro Method:** Offers a personalized focused environment using the Pomodoro technique, allowing users to set timers, change backgrounds, manage tasks, and enjoy music while staying focused.
 
-<img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026497/focusing_topic_intksb.png" alt="Focusing Topic"> <img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026498/focusing_entry_fpepye.png" alt="Focusing Entry">
 <div align="center">
-<img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026500/learning_space_qva8ye.png" alt="Focusing Space">
+<img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728131383/focusing_topic_baxbc1.png" alt="Focusing Topic"> 
+</div>
+
+<div align="center">
+<img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026498/focusing_entry_fpepye.png" alt="Focusing Entry">
+</div>
+
+<div align="center">
+  <img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026499/focusing_space_loegf4.png" alt="Focusing Space">
 </div>
 
 **🔷 Chat with the Chatbot:** Assists users with study-related queries or other challenges, providing helpful responses and guidance.
-<img width="100%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026976/chatbot_fa8m0a.png" alt="Chat with the Chatbot">
+
+<img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026976/chatbot_fa8m0a.png" alt="Chat with the Chatbot">
 
 **🔷 Learning space:** A dedicated space for users to explore and learn courses based on selected topics.
+
 <img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026496/learning_topic_fnttmu.png" alt="Learning Topic"> <img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026499/learning_course_j1vpkt.png" alt="Learning Topic">
 <div align="center">
 <img width="49%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026500/learning_space_qva8ye.png" alt="Focusing Space">
 </div>
 
 **🔷 Analytics:** Provides insightful analytics on Pomodoro study sessions, including average study hours per day, total focused time, and a detailed chart of daily focus patterns.
-<img width="100%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026976/chatbot_fa8m0a.png" alt="Analytics">
+
+<div align="center">
+<img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728026976/chatbot_fa8m0a.png" alt="Analytics">
+</div>
 
 **🔷 Profile:** A personal space where users can share their thoughts, update their avatar and cover images, and showcase achievements based on their Pomodoro study hours.
-<img width="100%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728028166/Profile_kxvdii.png" alt="Analytics">
+
+<div align="center">
+  <img width="80%" src="https://res.cloudinary.com/diskkx82m/image/upload/v1728028166/Profile_kxvdii.png" alt="Analytics">
+</div>
 
 ## 🌐 <a name="contact">Contact</a>
 ### Nguyen Tan Luc
@@ -65,3 +80,5 @@
 - **Email:** [tanluc.dev@gmail.com](mailto:tanluc.dev@gmail.com)
 
 ### Pham Thai Hoc
+  - **LinkedIn:** [Học Phạm Thái ](https://www.linkedin.com/in/h%E1%BB%8Dc-ph%E1%BA%A1m-th%C3%A1i-40b97120a/)
+- **Email:** [phamthaihoc008@gmail.com ](mailto:phamthaihoc008@gmail.com )
